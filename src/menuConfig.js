@@ -1,74 +1,5 @@
 export default [
   {
-    id: 'frontend',
-    name: '前端知识',
-    icon: '📱',
-    expanded: true,
-    children: [
-      {
-        id: 'html',
-        name: 'HTML',
-        children: [
-          {
-            id: 'html-basic',
-            name: '基础标签',
-            path: '/docs/前端知识/HTML/基础标签.md'
-          },
-          {
-            id: 'html-form',
-            name: '表单元素',
-            path: '/docs/前端知识/HTML/表单元素.md'
-          }
-        ]
-      },
-      {
-        id: 'css',
-        name: 'CSS',
-        children: [
-          {
-            id: 'css-selector',
-            name: '选择器',
-            path: '/docs/前端知识/CSS/选择器.md'
-          }
-        ]
-      },
-      {
-        id: 'js',
-        name: 'JavaScript',
-        children: [
-          {
-            id: 'js-variable',
-            name: '变量类型',
-            path: '/docs/前端知识/JavaScript/变量类型.md'
-          },
-          {
-            id: 'js-scope',
-            name: '作用域',
-            path: '/docs/前端知识/JavaScript/作用域.md'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'backend',
-    name: '后端知识',
-    icon: '💻',
-    expanded: false,
-    children: [
-      {
-        id: 'nodejs',
-        name: 'Node.js',
-        children: []
-      },
-      {
-        id: 'python',
-        name: 'Python',
-        children: []
-      }
-    ]
-  },
-  {
     id: 'network',
     name: '计算机网络基础',
     icon: '🌐',
@@ -88,7 +19,165 @@ export default [
         id: 'network-function',
         name: '网络的主要功能',
         path: '/docs/计算机网络基础/网络的主要功能.md'
+      },
+      {
+        id: 'network-classification',
+        name: '网络分类',
+        path: '/docs/计算机网络基础/网络分类.md'
+      },
+      {
+        id: 'network-performance',
+        name: '网络性能指标',
+        path: '/docs/计算机网络基础/网络性能指标.md'
+      },
+      {
+        id: 'network-protocol',
+        name: '网络体系结构与协议',
+        path: '/docs/计算机网络基础/网络体系结构与协议',
+        children: [
+          {
+            id: 'network-protocol-structure',
+            name: '协议三要素',
+            path: '/docs/计算机网络基础/网络体系结构与协议/协议三要素.md',
+          },
+          {
+            id: 'network-protocol-protocol',
+            name: '分层思想的好处',
+            path: '/docs/计算机网络基础/网络体系结构与协议/分层思想的好处.md',
+          },
+          {
+            id: 'network-protocol-osi',
+            name: 'OSI七层模型',
+            path: '/docs/计算机网络基础/网络体系结构与协议/OSI 七层模型.md',
+          },
+          {
+            id: 'network-protocol-tcp-ip',
+            name: 'TCP/IP四层模型',
+            path: './TCP&IP 四层模型.md',
+          },
+          {
+            id: 'data-structure-transport',
+            name: '数据封装与解封装',
+            path: './数据封装与解封装.md',
+          },
+        ]
+      },
+      {
+        id: 'network-protocol-physical',
+        name: '物理层',
+        path: '/docs/计算机网络基础/物理层',
+        children: [
+          {
+            id: 'network-protocol-physical-role',
+            name: '作用',
+            path: './作用.md',
+          },
+        ]
       }
     ]
-  }
+  },
+  {
+    id: 'data-structure',
+    name: '数据结构与算法',
+    icon: '📚',
+    expanded: false,
+    children: [
+      {
+        id: 'data-structure-outline',
+        name: '大纲',
+        path: '/docs/数据结构与算法/大纲.md'
+      }
+    ]
+  },
+  {
+    id: 'os',
+    name: '操作系统基础',
+    icon: '🚀',
+    expanded: false,
+    children: [
+      {
+        id: 'os-outline',
+        name: '大纲',
+        path: '/docs/操作系统基础/大纲.md'
+      }
+    ]
+  },
+  {
+    id: 'java',
+    name: 'Java核心语法',
+    icon: 'Java',
+    expanded: false,
+    children: [
+      {
+        id: 'java-outline',
+        name: '大纲',
+        path: '/docs/Java核心语法/大纲.md'
+      }
+    ]
+  },
+  {
+    id: 'java-web',
+    name: 'Java Web开发',
+    icon: 'Java',
+    expanded: false,
+    children: [
+      {
+        id: 'java-web-outline',
+        name: '大纲',
+        path: '/docs/Java Web开发入门/大纲.md'
+      }
+    ]
+  },
+  {
+    id: 'spring-boot',
+    name: 'Spring Boot',
+    icon: 'Java',
+    expanded: false,
+    children: [
+      {
+        id: 'spring-boot-outline',
+        name: '大纲',
+        path: '/docs/Spring Boot/大纲.md'
+      }
+    ]
+  },
+  {
+    id: 'sql',
+    name: 'SQL数据库',
+    icon: 'SQL',
+    expanded: false,
+    children: [
+      {
+        id: 'sql-outline',
+        name: '大纲',
+        path: '/docs/SQL与关系型数据库/大纲.md'
+      }
+    ]
+  },
+  {
+    id: 'nosql',
+    name: 'NoSQL数据库',
+    icon: 'SQL',
+    expanded: false,
+    children: [
+      {
+        id: 'nosql-outline',
+        name: '大纲',
+        path: '/docs/NoSQL入门/大纲.md'
+      }
+    ]
+  },
+  {
+    id: 'restful',
+    name: 'RESTful API设计',
+    icon: 'API',
+    expanded: false,
+    children: [
+      {
+        id: 'restful-outline',
+        name: '大纲',
+        path: '/docs/RESTful API设计/大纲.md'
+      }
+    ]
+  },
 ]
