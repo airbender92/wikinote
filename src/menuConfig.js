@@ -72,6 +72,38 @@ export default [
             name: '作用',
             path: './作用.md',
           },
+          {
+            id: 'transport-mediums',
+            name: '传输介质',
+            path: './传输介质.md',
+          },
+          {
+            id: 'communication-method',
+            name: '通信方式',
+            path: './通信方式.md',
+          },
+          {
+            id: 'data-transfer-method',
+            name: '数据传输方式',
+            path: './数据传输方式.md',
+          },
+          {
+            id: 'channel-multiplexing-technology',
+            name: '信道复用技术',
+            path: './信道复用技术.md',
+          },
+        ]
+      },
+      {
+        id: 'network-protocol-link',
+        name: '数据链路层',
+        path: '/docs/计算机网络基础/数据链路层',
+        children: [
+          {
+            id: 'network-protocol-link-role',
+            name: '作用',
+            path: './作用.md',
+          },
         ]
       }
     ]
