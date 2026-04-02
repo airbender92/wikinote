@@ -104,6 +104,73 @@ export default [
             name: '作用',
             path: './作用.md',
           },
+          {
+            id: 'frame-method',
+            name: '成帧方法',
+            path: './成帧方法.md',
+          },
+          {
+            id: 'error-control-method',
+            name: '差错控制',
+            path: './差错控制.md',
+          },
+          {
+            id: 'flow-control-method',
+            name: '流量控制',
+            path: './流量控制.md',
+          },
+          {
+            id: 'local-area-network',
+            name: '局域网技术',
+            path: './局域网技术.md',
+          },
+          {
+            id: 'network-device',
+            name: '设备',
+            path: './设备.md',
+          },
+        ]
+      },
+      {
+        id: 'network-protocol-network',
+        name: '网络层',
+        path: '/docs/计算机网络基础/网络层',
+        children: [
+          {
+            id: 'network-protocol-network-role',
+            name: '作用',
+            path: './作用.md',
+          },
+          {
+            id: 'ip-protocol',
+            name: 'IP协议',
+            path: './IP 协议.md',
+          },
+          {
+            id: 'subnetting',
+            name: '子网划分与超网',
+            path: './子网划分与超网.md',
+          },
+          {
+            id: 'arp-rarp',
+            name: 'ARP 与 RARP',
+            path: './ARP 与 RARP.md',
+          },
+          {
+            id: 'icmp-protocol',
+            name: 'ICMP 互联网控制报文协议',
+            path: './ICMP互联网控制报文协议.md',
+          },
+          {
+            id: 'routing-protocol',
+            name: '路由协议',
+            path: './路由协议.md',
+          },
+          {
+            id: 'network-device',
+            name: '设备',
+            path: './设备.md',
+          },
         ]
       }
     ]
