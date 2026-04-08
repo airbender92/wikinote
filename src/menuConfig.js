@@ -172,6 +172,75 @@ export default [
             path: './设备.md',
           },
         ]
+      },
+      {
+        id: 'network-protocol-transport',
+        name: '传输层',
+        path: '/docs/计算机网络基础/传输层',
+        children: [
+          {
+            id: 'network-protocol-transport-role',
+            name: '作用',
+            path: './作用.md',
+          },
+          {
+            id: 'port-number',
+            name: '端口号',
+            path: './端口号.md',
+          },
+          {
+            id: 'udp-protocol',
+            name: 'UDP 协议',
+            path: './UDP协议.md',
+          },
+          {
+            id: 'tcp-protocol',
+            name: 'TCP 协议',
+            path: './TCP协议.md',
+          },
+          {
+            id: 'tcp-three-way-handshake',
+            name: 'TCP 三次握手',
+            path: './TCP三次握手.md',
+          },
+          {
+            id: 'tcp-four-way-way',
+            name: 'TCP 四次挥手',
+            path: './TCP四次挥手.md',
+          },
+          {
+            id: 'tcp-reliability-protocol-management',
+            name: 'TCP 可靠传输机制',
+            path: './TCP可靠传输机制.md',
+          },
+        ]
+      },
+      {
+        id: 'network-protocol-application',
+        name: '应用层',
+        path: '/docs/计算机网络基础/应用层',
+        children: [
+          {
+            id: 'application-layer-protocol',
+            name: '应用层协议',
+            path: './常见应用层协议.md',
+          },
+          {
+            id: 'http-protocol-focus',
+            name: 'HTTP 协议重点',
+            path: './HTTP协议重点.md',
+          },
+          {
+            id: 'https-protocol-focus',
+            name: 'HTTPS 协议重点',
+            path: './HTTPS协议重点.md',
+          },
+          {
+            id: 'dns-protocol-focus',
+            name: 'DNS 解析过程',
+            path: './DNS解析过程.md',
+          },
+        ]
       }
     ]
   },
