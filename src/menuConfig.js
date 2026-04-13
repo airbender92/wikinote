@@ -264,6 +264,29 @@ export default [
     ]
   },
   {
+    "id": "mng-lng-hng",
+    "name": "命令行",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "mng-lng-hng-ch-zho-qin-dun-l-jng-md",
+        "name": "查找前端路径",
+        "path": "/docs/命令行\\查找前端路径.md"
+      },
+      {
+        "id": "mng-lng-hng-ch-zho-tng-xn-yn-yn-hng-de-xing-m-md",
+        "name": "查找腾讯云运行的项目",
+        "path": "/docs/命令行\\查找腾讯云运行的项目.md"
+      },
+      {
+        "id": "mng-lng-hng-ch-zho-yn-hng-de-xing-m-md",
+        "name": "查找运行的项目",
+        "path": "/docs/命令行\\查找运行的项目.md"
+      }
+    ]
+  },
+  {
     "id": "co-zu-x-tng-j-ch",
     "name": "操作系统基础",
     "icon": "🚀",
