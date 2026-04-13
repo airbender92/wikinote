@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm run generate:menu && vite",
     "dev:watch": "concurrently \"npm run watch:menu\" \"vite\"",
-    "build": "vite build",
+    "build": "npm run generate:menu && vite build",
     "preview": "vite preview",
     "generate:menu": "node generateMenuConfig.cjs",
     "watch:menu": "nodemon --watch docs --ext md --exec \"npm run generate:menu\""
