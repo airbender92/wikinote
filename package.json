@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "generate:menu": "node generateMenuConfig.cjs",
-    "watch:menu": "nodemon --watch doc --ext md --exec \"npm run generate:menu\""
+    "watch:menu": "nodemon --watch docs --ext md --exec \"npm run generate:menu\""
   },
   "dependencies": {
     "fuse.js": "^7.1.0",

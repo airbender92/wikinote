@@ -223,6 +223,7 @@ const getFirstDocId = () => {
 
 // 初始加载
 onMounted(() => {
+  console.log('\x1B[31m\x1B[1m%s\x1B[0m', '打印测试！');
   const firstDocId = getFirstDocId()
   if (firstDocId) {
     loadMarkdown(firstDocId)

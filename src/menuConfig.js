@@ -35,9 +35,57 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "nodejsfsfs",
+        "name": "Fs",
+        "path": "/docs/NodeJS\\fs/",
+        "children": [
+          {
+            "id": "nodejsfscopyfilesyncmd",
+            "name": "CopyFileSync",
+            "path": "/docs/NodeJS\\fs\\copyFileSync.md"
+          },
+          {
+            "id": "nodejsfsexistssyncmd",
+            "name": "ExistsSync",
+            "path": "/docs/NodeJS\\fs\\existsSync.md"
+          },
+          {
+            "id": "nodejsfsmkdirsyncmd",
+            "name": "MkdirSync",
+            "path": "/docs/NodeJS\\fs\\mkdirSync.md"
+          },
+          {
+            "id": "nodejsfsreaddirsyncmd",
+            "name": "ReaddirSync",
+            "path": "/docs/NodeJS\\fs\\readdirSync.md"
+          },
+          {
+            "id": "nodejsfsstatsyncmd",
+            "name": "StatSync",
+            "path": "/docs/NodeJS\\fs\\statSync.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
         "id": "nodejschildprocessmd",
         "name": "Child Process",
         "path": "/docs/NodeJS\\child_process.md"
+      },
+      {
+        "id": "nodejsprocessargvmd",
+        "name": "Process.argv",
+        "path": "/docs/NodeJS\\process.argv.md"
+      },
+      {
+        "id": "nodejsspawnmd",
+        "name": "Spawn",
+        "path": "/docs/NodeJS\\spawn.md"
+      },
+      {
+        "id": "nodejsdirnamemd",
+        "name": "  Dirname",
+        "path": "/docs/NodeJS\\__dirname.md"
       },
       {
         "id": "nodejs-wn-jin-d-q-md",
@@ -115,9 +163,103 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "webpackpluginsplugins",
+        "name": "Plugins",
+        "path": "/docs/webpack\\plugins/",
+        "children": [
+          {
+            "id": "webpackpluginsdefinepluginmd",
+            "name": "DefinePlugin",
+            "path": "/docs/webpack\\plugins\\DefinePlugin.md"
+          },
+          {
+            "id": "webpackpluginseslint-webpack-pluginmd",
+            "name": "Eslint Webpack Plugin",
+            "path": "/docs/webpack\\plugins\\eslint-webpack-plugin.md"
+          },
+          {
+            "id": "webpackpluginsprovidepluginmd",
+            "name": "ProvidePlugin",
+            "path": "/docs/webpack\\plugins\\ProvidePlugin.md"
+          },
+          {
+            "id": "webpackpluginsreact-refresh-webpack-pluginmd",
+            "name": "React Refresh Webpack Plugin",
+            "path": "/docs/webpack\\plugins\\react-refresh-webpack-plugin.md"
+          },
+          {
+            "id": "webpackpluginsstring-replace-loadermd",
+            "name": "String Replace Loader",
+            "path": "/docs/webpack\\plugins\\string-replace-loader.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "webpackcontentbasemd",
+        "name": "ContentBase",
+        "path": "/docs/webpack\\contentBase.md"
+      },
+      {
+        "id": "webpackdelmd",
+        "name": "Del",
+        "path": "/docs/webpack\\del.md"
+      },
+      {
+        "id": "webpackejs-m-bn-y-f-md",
+        "name": "EJS模板语法",
+        "path": "/docs/webpack\\EJS模板语法.md"
+      },
+      {
         "id": "webpackgit-repo-infomd",
         "name": "Git Repo Info",
         "path": "/docs/webpack\\git-repo-info.md"
+      },
+      {
+        "id": "webpackiconv-litemd",
+        "name": "Iconv Lite",
+        "path": "/docs/webpack\\iconv-lite.md"
+      },
+      {
+        "id": "webpackoptimizationmd",
+        "name": "Optimization",
+        "path": "/docs/webpack\\optimization.md"
+      },
+      {
+        "id": "webpack-kng-zh-ti-yn-s-zhun-y-m-md",
+        "name": "控制台颜色转义码",
+        "path": "/docs/webpack\\控制台颜色转义码.md"
+      },
+      {
+        "id": "webpack-l-yu-ln-ji-zi-md",
+        "name": "路由懒加载",
+        "path": "/docs/webpack\\路由懒加载.md"
+      }
+    ]
+  },
+  {
+    "id": "qin-dun",
+    "name": "前端",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "qin-dun-m-h-su-su-k-m-h-su-su-k",
+        "name": "模糊搜索库",
+        "path": "/docs/前端\\模糊搜索库/",
+        "children": [
+          {
+            "id": "qin-dun-m-h-su-su-k-fusemd",
+            "name": "Fuse",
+            "path": "/docs/前端\\模糊搜索库\\fuse.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "qin-dun-markdown-xun-rn-md",
+        "name": "Markdown渲染",
+        "path": "/docs/前端\\markdown渲染.md"
       }
     ]
   },
