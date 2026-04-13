@@ -35,6 +35,11 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "nodejschildprocessmd",
+        "name": "Child Process",
+        "path": "/docs/NodeJS\\child_process.md"
+      },
+      {
         "id": "nodejs-wn-jin-d-q-md",
         "name": "文件读取",
         "path": "/docs/NodeJS\\文件读取.md"
