@@ -4,18 +4,24 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run generate:menu && vite",
+    "dev:watch": "concurrently \"npm run watch:menu\" \"vite\"",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:menu": "node generateMenuConfig.cjs",
+    "watch:menu": "nodemon --watch doc --ext md --exec \"npm run generate:menu\""
   },
   "dependencies": {
     "fuse.js": "^7.1.0",
     "highlight.js": "^11.11.1",
     "markdown-it": "^14.1.1",
+    "pinyin": "^4.0.0",
     "vue": "^3.5.30"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.5",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14",
     "vite": "^8.0.1"
   }
 }
