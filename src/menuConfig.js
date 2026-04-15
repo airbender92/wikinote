@@ -293,6 +293,75 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "co-zu-x-tng-j-ch-ni-cn-gun-l-ni-cn-gun-l",
+        "name": "内存管理",
+        "path": "/docs/操作系统基础\\内存管理/",
+        "children": [
+          {
+            "id": "co-zu-x-tng-j-ch-ni-cn-gun-l-d-zh-zhun-hun-md",
+            "name": "地址转换",
+            "path": "/docs/操作系统基础\\内存管理\\地址转换.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-ni-cn-gun-l-cn-ch-cng-c-md",
+            "name": "存储层次",
+            "path": "/docs/操作系统基础\\内存管理\\存储层次.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "co-zu-x-tng-j-ch-co-zu-x-tng-gi-sh-co-zu-x-tng-gi-sh",
+        "name": "操作系统概述",
+        "path": "/docs/操作系统基础\\操作系统概述/",
+        "children": [
+          {
+            "id": "co-zu-x-tng-j-ch-co-zu-x-tng-gi-sh-zh-yo-li-xng-md",
+            "name": "主要类型",
+            "path": "/docs/操作系统基础\\操作系统概述\\主要类型.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-co-zu-x-tng-gi-sh-f-zhn-l-sh-md",
+            "name": "发展历史",
+            "path": "/docs/操作系统基础\\操作系统概述\\发展历史.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-co-zu-x-tng-gi-sh-dng-y-y-gng-nng-md",
+            "name": "定义与功能",
+            "path": "/docs/操作系统基础\\操作系统概述\\定义与功能.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "co-zu-x-tng-j-ch-jn-chng-y-xin-chng-gun-l-jn-chng-y-xin-chng-gun-l",
+        "name": "进程与线程管理",
+        "path": "/docs/操作系统基础\\进程与线程管理/",
+        "children": [
+          {
+            "id": "co-zu-x-tng-j-ch-jn-chng-y-xin-chng-gun-l-tng-b-h-ch-md",
+            "name": "同步互斥",
+            "path": "/docs/操作系统基础\\进程与线程管理\\同步互斥.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-jn-chng-y-xin-chng-gun-l-tio-d-sun-f-md",
+            "name": "调度算法",
+            "path": "/docs/操作系统基础\\进程与线程管理\\调度算法.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-jn-chng-y-xin-chng-gun-l-jn-chng-gi-nin-md",
+            "name": "进程概念",
+            "path": "/docs/操作系统基础\\进程与线程管理\\进程概念.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-jn-chng-y-xin-chng-gun-l-jn-chng-zhung-ti-md",
+            "name": "进程状态",
+            "path": "/docs/操作系统基础\\进程与线程管理\\进程状态.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
         "id": "co-zu-x-tng-j-ch-d-gng-md",
         "name": "大纲",
         "path": "/docs/操作系统基础\\大纲.md"
@@ -494,6 +563,39 @@ export default [
             "id": "j-sun-j-wng-lu-j-ch-wng-lu-t-x-ji-gu-y-xi-y-wng-lu-t-x-ji-gu-y-xi-y-md",
             "name": "网络体系结构与协议",
             "path": "/docs/计算机网络基础\\网络体系结构与协议\\网络体系结构与协议.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "j-sun-j-wng-lu-j-ch-wng-lu-n-qun-j-ch-wng-lu-n-qun-j-ch",
+        "name": "网络安全基础",
+        "path": "/docs/计算机网络基础\\网络安全基础/",
+        "children": [
+          {
+            "id": "j-sun-j-wng-lu-j-ch-wng-lu-n-qun-j-ch-web-tng-xn-li-chng-md",
+            "name": "Web 通信流程",
+            "path": "/docs/计算机网络基础\\网络安全基础\\Web 通信流程.md"
+          },
+          {
+            "id": "j-sun-j-wng-lu-j-ch-wng-lu-n-qun-j-ch-du-chng-ji-m-y-fi-du-chng-ji-m-md",
+            "name": "对称加密与非对称加密",
+            "path": "/docs/计算机网络基础\\网络安全基础\\对称加密与非对称加密.md"
+          },
+          {
+            "id": "j-sun-j-wng-lu-j-ch-wng-lu-n-qun-j-ch-chng-jin-gng-j-md",
+            "name": "常见攻击",
+            "path": "/docs/计算机网络基础\\网络安全基础\\常见攻击.md"
+          },
+          {
+            "id": "j-sun-j-wng-lu-j-ch-wng-lu-n-qun-j-ch-sh-z-qin-mng-md",
+            "name": "数字签名",
+            "path": "/docs/计算机网络基础\\网络安全基础\\数字签名.md"
+          },
+          {
+            "id": "j-sun-j-wng-lu-j-ch-wng-lu-n-qun-j-ch-fng-hu-qing-md",
+            "name": "防火墙",
+            "path": "/docs/计算机网络基础\\网络安全基础\\防火墙.md"
           }
         ],
         "expanded": false
