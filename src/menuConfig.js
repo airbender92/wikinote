@@ -63,6 +63,97 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "nginx-li-ling-gun-l-li-ling-gun-l",
+        "name": "流量管理",
+        "path": "/docs/Nginx\\流量管理/",
+        "children": [
+          {
+            "id": "nginx-li-ling-gun-l-abtestingmd",
+            "name": "A B Testing",
+            "path": "/docs/Nginx\\流量管理\\A_B Testing.md"
+          },
+          {
+            "id": "nginx-li-ling-gun-l-findingtheoriginalclientmd",
+            "name": "Finding The Original Client",
+            "path": "/docs/Nginx\\流量管理\\Finding the Original Client.md"
+          },
+          {
+            "id": "nginx-li-ling-gun-l-limitingbandwidthmd",
+            "name": "Limiting Bandwidth",
+            "path": "/docs/Nginx\\流量管理\\Limiting Bandwidth.md"
+          },
+          {
+            "id": "nginx-li-ling-gun-l-limitingconnectionsmd",
+            "name": "Limiting Connections",
+            "path": "/docs/Nginx\\流量管理\\Limiting Connections.md"
+          },
+          {
+            "id": "nginx-li-ling-gun-l-limitingratemd",
+            "name": "Limiting Rate",
+            "path": "/docs/Nginx\\流量管理\\Limiting Rate.md"
+          },
+          {
+            "id": "nginx-li-ling-gun-l-restrictingaccessbasedoncountrymd",
+            "name": "Restricting Access Based On Country",
+            "path": "/docs/Nginx\\流量管理\\Restricting Access Based on Country.md"
+          },
+          {
+            "id": "nginx-li-ling-gun-l-usingthegeoipmoduleanddatabasemd",
+            "name": "Using The GeoIP Module And Database",
+            "path": "/docs/Nginx\\流量管理\\Using the GeoIP Module and Database.md"
+          },
+          {
+            "id": "nginx-li-ling-gun-l-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\流量管理\\概述.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "nginx-go-xng-nng-f-zi-jn-hng-go-xng-nng-f-zi-jn-hng",
+        "name": "高性能负载均衡",
+        "path": "/docs/Nginx\\高性能负载均衡/",
+        "children": [
+          {
+            "id": "nginx-go-xng-nng-f-zi-jn-hng-httploadbalancingmd",
+            "name": "HTTP Load Balancing",
+            "path": "/docs/Nginx\\高性能负载均衡\\HTTP Load Balancing.md"
+          },
+          {
+            "id": "nginx-go-xng-nng-f-zi-jn-hng-load-balancingmethodsmd",
+            "name": "Load Balancing Methods",
+            "path": "/docs/Nginx\\高性能负载均衡\\Load-Balancing Methods.md"
+          },
+          {
+            "id": "nginx-go-xng-nng-f-zi-jn-hng-passivehealthchecksmd",
+            "name": "Passive Health Checks",
+            "path": "/docs/Nginx\\高性能负载均衡\\Passive Health Checks.md"
+          },
+          {
+            "id": "nginx-go-xng-nng-f-zi-jn-hng-stickycookiewithnginxplusmd",
+            "name": "Sticky Cookie With NGINX Plus",
+            "path": "/docs/Nginx\\高性能负载均衡\\Sticky Cookie with NGINX Plus.md"
+          },
+          {
+            "id": "nginx-go-xng-nng-f-zi-jn-hng-tcploadbalancingmd",
+            "name": "TCP Load Balancing",
+            "path": "/docs/Nginx\\高性能负载均衡\\TCP Load Balancing.md"
+          },
+          {
+            "id": "nginx-go-xng-nng-f-zi-jn-hng-udploadbalancingmd",
+            "name": "UDP Load Balancing",
+            "path": "/docs/Nginx\\高性能负载均衡\\UDP Load Balancing.md"
+          },
+          {
+            "id": "nginx-go-xng-nng-f-zi-jn-hng-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\高性能负载均衡\\概述.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
         "id": "nginx16usingincludesforcleanconfigsmd",
         "name": "1.6 Using Includes For Clean Configs",
         "path": "/docs/Nginx\\1.6 Using Includes for Clean Configs.md"
