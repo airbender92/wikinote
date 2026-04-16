@@ -3,6 +3,34 @@
 
 export default [
   {
+    "id": "docker",
+    "name": "Docker",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "docker-mng-lng-ji-sh-md",
+        "name": "命令解释",
+        "path": "/docs/docker\\命令解释.md"
+      },
+      {
+        "id": "docker-mng-lng-ji-sh-2md",
+        "name": "命令解释2",
+        "path": "/docs/docker\\命令解释2.md"
+      },
+      {
+        "id": "docker-mng-lng-ji-sh-3md",
+        "name": "命令解释3",
+        "path": "/docs/docker\\命令解释3.md"
+      },
+      {
+        "id": "docker-mng-lng-ji-sh-4md",
+        "name": "命令解释4",
+        "path": "/docs/docker\\命令解释4.md"
+      }
+    ]
+  },
+  {
     "id": "javaweb-ki-f-r-mn",
     "name": "Java Web开发入门",
     "icon": "📄",
@@ -25,6 +53,74 @@ export default [
         "id": "java-h-xn-y-f-d-gng-md",
         "name": "大纲",
         "path": "/docs/Java核心语法\\大纲.md"
+      }
+    ]
+  },
+  {
+    "id": "nginx",
+    "name": "Nginx",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "nginx16usingincludesforcleanconfigsmd",
+        "name": "1.6 Using Includes For Clean Configs",
+        "path": "/docs/Nginx\\1.6 Using Includes for Clean Configs.md"
+      },
+      {
+        "id": "nginx17servingstaticcontentmd",
+        "name": "1.7 Serving Static Content",
+        "path": "/docs/Nginx\\1.7 Serving Static Content.md"
+      },
+      {
+        "id": "nginxconfdmd",
+        "name": "Conf.d",
+        "path": "/docs/Nginx\\conf.d.md"
+      },
+      {
+        "id": "nginxetcnginxmd",
+        "name": "Etc Nginx",
+        "path": "/docs/Nginx\\etc_nginx.md"
+      },
+      {
+        "id": "nginxnginxconfmd",
+        "name": "Nginx Conf",
+        "path": "/docs/Nginx\\nginx_conf.md"
+      },
+      {
+        "id": "nginxnginx-mng-lng-ji-sh-md",
+        "name": "Nginx命令解释",
+        "path": "/docs/Nginx\\Nginx命令解释.md"
+      },
+      {
+        "id": "nginxps-mng-lng-n-zhung-md",
+        "name": "Ps命令安装",
+        "path": "/docs/Nginx\\ps命令安装.md"
+      },
+      {
+        "id": "nginxservermd",
+        "name": "Server",
+        "path": "/docs/Nginx\\server.md"
+      },
+      {
+        "id": "nginxvarlognginxmd",
+        "name": "Var Log Nginx",
+        "path": "/docs/Nginx\\var_log_nginx.md"
+      },
+      {
+        "id": "nginx-j-ch-mng-lng-md",
+        "name": "基础命令",
+        "path": "/docs/Nginx\\基础命令.md"
+      },
+      {
+        "id": "nginx-n-zhung-md",
+        "name": "安装",
+        "path": "/docs/Nginx\\安装.md"
+      },
+      {
+        "id": "nginx-qu-rn-ng-zhng-chng-fng-wn-md",
+        "name": "确认Ng正常访问",
+        "path": "/docs/Nginx\\确认Ng正常访问.md"
       }
     ]
   },
@@ -298,6 +394,11 @@ export default [
         "path": "/docs/操作系统基础\\内存管理/",
         "children": [
           {
+            "id": "co-zu-x-tng-j-ch-ni-cn-gun-l-fn-y-j-zh-md",
+            "name": "分页机制",
+            "path": "/docs/操作系统基础\\内存管理\\分页机制.md"
+          },
+          {
             "id": "co-zu-x-tng-j-ch-ni-cn-gun-l-d-zh-zhun-hun-md",
             "name": "地址转换",
             "path": "/docs/操作系统基础\\内存管理\\地址转换.md"
@@ -306,6 +407,11 @@ export default [
             "id": "co-zu-x-tng-j-ch-ni-cn-gun-l-cn-ch-cng-c-md",
             "name": "存储层次",
             "path": "/docs/操作系统基础\\内存管理\\存储层次.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-ni-cn-gun-l-x-n-ni-cn-md",
+            "name": "虚拟内存",
+            "path": "/docs/操作系统基础\\内存管理\\虚拟内存.md"
           }
         ],
         "expanded": false
@@ -329,6 +435,24 @@ export default [
             "id": "co-zu-x-tng-j-ch-co-zu-x-tng-gi-sh-dng-y-y-gng-nng-md",
             "name": "定义与功能",
             "path": "/docs/操作系统基础\\操作系统概述\\定义与功能.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "co-zu-x-tng-j-ch-wn-jin-x-tng-wn-jin-x-tng",
+        "name": "文件系统",
+        "path": "/docs/操作系统基础\\文件系统/",
+        "children": [
+          {
+            "id": "co-zu-x-tng-j-ch-wn-jin-x-tng-wn-jin-gi-nin-md",
+            "name": "文件概念",
+            "path": "/docs/操作系统基础\\文件系统\\文件概念.md"
+          },
+          {
+            "id": "co-zu-x-tng-j-ch-wn-jin-x-tng-m-l-ji-gu-md",
+            "name": "目录结构",
+            "path": "/docs/操作系统基础\\文件系统\\目录结构.md"
           }
         ],
         "expanded": false
