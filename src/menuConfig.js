@@ -63,6 +63,201 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "nginxauthenticationauthentication",
+        "name": "Authentication",
+        "path": "/docs/Nginx\\Authentication/",
+        "children": [
+          {
+            "id": "nginxauthentication61httpbasicauthenticationmd",
+            "name": "6.1 HTTP Basic Authentication",
+            "path": "/docs/Nginx\\Authentication\\6.1 HTTP Basic Authentication.md"
+          },
+          {
+            "id": "nginxauthentication62authenticationsubrequestsmd",
+            "name": "6.2 Authentication Subrequests",
+            "path": "/docs/Nginx\\Authentication\\6.2 Authentication Subrequests.md"
+          },
+          {
+            "id": "nginxauthentication-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\Authentication\\概述.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "nginxhttp2http2",
+        "name": "HTTP 2",
+        "path": "/docs/Nginx\\HTTP_2/",
+        "children": [
+          {
+            "id": "nginxhttp281enablinghttp2md",
+            "name": "8.1 Enabling HTTP2",
+            "path": "/docs/Nginx\\HTTP_2\\8.1 Enabling HTTP2.md"
+          },
+          {
+            "id": "nginxhttp2-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\HTTP_2\\概述.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "nginx-yn-dun-b-sh-yn-dun-b-sh",
+        "name": "云端部署",
+        "path": "/docs/Nginx\\云端部署/",
+        "children": [
+          {
+            "id": "nginx-yn-dun-b-sh-nginx-zu-wi-api-wng-gun-md",
+            "name": "NGINX 作为 API 网关",
+            "path": "/docs/Nginx\\云端部署\\NGINX 作为 API 网关.md"
+          },
+          {
+            "id": "nginx-yn-dun-b-sh-nginx-rng-q-jng-xing-md",
+            "name": "NGINX 容器镜像",
+            "path": "/docs/Nginx\\云端部署\\NGINX 容器镜像.md"
+          },
+          {
+            "id": "nginx-yn-dun-b-sh-rng-q-y-wi-f-w-md",
+            "name": "容器与微服务",
+            "path": "/docs/Nginx\\云端部署\\容器与微服务.md"
+          },
+          {
+            "id": "nginx-yn-dun-b-sh-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\云端部署\\概述.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-d-gu-m-k-ku-zhn-ni-rng-hun-cn",
+        "name": "大规模可扩展内容缓存",
+        "path": "/docs/Nginx\\大规模可扩展内容缓存/",
+        "children": [
+          {
+            "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-41cachingzonesmd",
+            "name": "4.1 Caching Zones",
+            "path": "/docs/Nginx\\大规模可扩展内容缓存\\4.1 Caching Zones.md"
+          },
+          {
+            "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-42cachinghashkeysmd",
+            "name": "4.2 Caching Hash Keys",
+            "path": "/docs/Nginx\\大规模可扩展内容缓存\\4.2 Caching Hash Keys.md"
+          },
+          {
+            "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-43cachelockingmd",
+            "name": "4.3 Cache Locking",
+            "path": "/docs/Nginx\\大规模可扩展内容缓存\\4.3 Cache Locking.md"
+          },
+          {
+            "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-44usestalecachemd",
+            "name": "4.4 Use Stale Cache",
+            "path": "/docs/Nginx\\大规模可扩展内容缓存\\4.4 Use Stale Cache.md"
+          },
+          {
+            "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-45cachebypassmd",
+            "name": "4.5 Cache Bypass",
+            "path": "/docs/Nginx\\大规模可扩展内容缓存\\4.5 Cache Bypass.md"
+          },
+          {
+            "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-47cacheslicingmd",
+            "name": "4.7 Cache Slicing",
+            "path": "/docs/Nginx\\大规模可扩展内容缓存\\4.7 Cache Slicing.md"
+          },
+          {
+            "id": "nginx-d-gu-m-k-ku-zhn-ni-rng-hun-cn-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\大规模可扩展内容缓存\\概述.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "nginx-n-qun-kng-zh-n-qun-kng-zh",
+        "name": "安全控制",
+        "path": "/docs/Nginx\\安全控制/",
+        "children": [
+          {
+            "id": "nginx-n-qun-kng-zh-73client-sideencryptionmd",
+            "name": "7.3 Client Side Encryption",
+            "path": "/docs/Nginx\\安全控制\\7.3 Client-Side Encryption.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-hstsmd",
+            "name": "HSTS",
+            "path": "/docs/Nginx\\安全控制\\HSTS.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-https-zhng-dng-xing-md",
+            "name": "HTTPS 重定向",
+            "path": "/docs/Nginx\\安全控制\\HTTPS 重定向.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-https-zhng-dng-xing-2md",
+            "name": "HTTPS 重定向2",
+            "path": "/docs/Nginx\\安全控制\\HTTPS 重定向2.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-satisfy-zh-lng-md",
+            "name": "Satisfy 指令",
+            "path": "/docs/Nginx\\安全控制\\satisfy 指令.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-shng-yu-ji-m-md",
+            "name": "上游加密",
+            "path": "/docs/Nginx\\安全控制\\上游加密.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-bo-h-y-g-m-l-md",
+            "name": "保护一个目录",
+            "path": "/docs/Nginx\\安全控制\\保护一个目录.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-yn-x-ku-y-z-yun-gng-xing-md",
+            "name": "允许跨域资源共享",
+            "path": "/docs/Nginx\\安全控制\\允许跨域资源共享.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-d-q-xin-zh-fng-wn-md",
+            "name": "地区限制访问",
+            "path": "/docs/Nginx\\安全控制\\地区限制访问.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-j-y-ip-de-fng-wn-kng-zh-md",
+            "name": "基于 IP 的访问控制",
+            "path": "/docs/Nginx\\安全控制\\基于 IP 的访问控制.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-di-gu-q-sh-jin-de-n-qun-lin-ji-md",
+            "name": "带过期时间的安全链接",
+            "path": "/docs/Nginx\\安全控制\\带过期时间的安全链接.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\安全控制\\概述.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-yng-m-yu-shng-chng-n-qun-lin-ji-md",
+            "name": "用密钥生成安全链接",
+            "path": "/docs/Nginx\\安全控制\\用密钥生成安全链接.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-hu-q-y-mng-ipmd",
+            "name": "获取域名IP",
+            "path": "/docs/Nginx\\安全控制\\获取域名IP.md"
+          },
+          {
+            "id": "nginx-n-qun-kng-zh-go-j-k-h-dun-ji-m-md",
+            "name": "高级客户端加密",
+            "path": "/docs/Nginx\\安全控制\\高级客户端加密.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
         "id": "nginx-li-ling-gun-l-li-ling-gun-l",
         "name": "流量管理",
         "path": "/docs/Nginx\\流量管理/",
@@ -154,6 +349,24 @@ export default [
         "expanded": false
       },
       {
+        "id": "nginx-go-j-mi-t-li-mi-t-go-j-mi-t-li-mi-t",
+        "name": "高级媒体流媒体",
+        "path": "/docs/Nginx\\高级媒体流媒体/",
+        "children": [
+          {
+            "id": "nginx-go-j-mi-t-li-mi-t-91servingmp4andflvmd",
+            "name": "9.1 Serving MP4 And FLV",
+            "path": "/docs/Nginx\\高级媒体流媒体\\9.1 Serving MP4 and FLV.md"
+          },
+          {
+            "id": "nginx-go-j-mi-t-li-mi-t-gi-sh-md",
+            "name": "概述",
+            "path": "/docs/Nginx\\高级媒体流媒体\\概述.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
         "id": "nginx16usingincludesforcleanconfigsmd",
         "name": "1.6 Using Includes For Clean Configs",
         "path": "/docs/Nginx\\1.6 Using Includes for Clean Configs.md"
@@ -172,6 +385,11 @@ export default [
         "id": "nginxetcnginxmd",
         "name": "Etc Nginx",
         "path": "/docs/Nginx\\etc_nginx.md"
+      },
+      {
+        "id": "nginxnginx-bin-ling-md",
+        "name": "Nginx 变量",
+        "path": "/docs/Nginx\\Nginx 变量.md"
       },
       {
         "id": "nginxnginxconfmd",
