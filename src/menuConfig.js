@@ -9,6 +9,16 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "dockerdockerfilemd",
+        "name": "Docker File",
+        "path": "/docs/docker\\docker_file.md"
+      },
+      {
+        "id": "docker-q-dng-rng-q-md",
+        "name": "启动容器",
+        "path": "/docs/docker\\启动容器.md"
+      },
+      {
         "id": "docker-mng-lng-ji-sh-md",
         "name": "命令解释",
         "path": "/docs/docker\\命令解释.md"
@@ -27,6 +37,11 @@ export default [
         "id": "docker-mng-lng-ji-sh-4md",
         "name": "命令解释4",
         "path": "/docs/docker\\命令解释4.md"
+      },
+      {
+        "id": "docker-zh-hng-li-chng-md",
+        "name": "执行流程",
+        "path": "/docs/docker\\执行流程.md"
       }
     ]
   },
@@ -53,6 +68,19 @@ export default [
         "id": "java-h-xn-y-f-d-gng-md",
         "name": "大纲",
         "path": "/docs/Java核心语法\\大纲.md"
+      }
+    ]
+  },
+  {
+    "id": "linux",
+    "name": "Linux",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "linux-mng-lng-md",
+        "name": "命令",
+        "path": "/docs/Linux\\命令.md"
       }
     ]
   },
@@ -430,6 +458,34 @@ export default [
         "id": "nginx-qu-rn-ng-zhng-chng-fng-wn-md",
         "name": "确认Ng正常访问",
         "path": "/docs/Nginx\\确认Ng正常访问.md"
+      }
+    ]
+  },
+  {
+    "id": "nginx2",
+    "name": "Nginx2",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "nginx2nginxconf-pi-zh-jing-ji-md",
+        "name": "Nginx.conf.配置讲解",
+        "path": "/docs/Nginx2\\nginx.conf.配置讲解.md"
+      },
+      {
+        "id": "nginx2nginx-pi-zh-md",
+        "name": "Nginx配置",
+        "path": "/docs/Nginx2\\nginx配置.md"
+      },
+      {
+        "id": "nginx2-n-zhung-md",
+        "name": "安装",
+        "path": "/docs/Nginx2\\安装.md"
+      },
+      {
+        "id": "nginx2-jin-ji-md",
+        "name": "简介",
+        "path": "/docs/Nginx2\\简介.md"
       }
     ]
   },
