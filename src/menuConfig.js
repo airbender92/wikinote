@@ -478,6 +478,11 @@ export default [
         "path": "/docs/Nginx2\\nginx配置.md"
       },
       {
+        "id": "nginx2-jin-kng-jin-ch-md",
+        "name": "健康检查",
+        "path": "/docs/Nginx2\\健康检查.md"
+      },
+      {
         "id": "nginx2-n-zhung-md",
         "name": "安装",
         "path": "/docs/Nginx2\\安装.md"
@@ -486,6 +491,11 @@ export default [
         "id": "nginx2-jin-ji-md",
         "name": "简介",
         "path": "/docs/Nginx2\\简介.md"
+      },
+      {
+        "id": "nginx2-f-zi-jn-hng-md",
+        "name": "负载均衡",
+        "path": "/docs/Nginx2\\负载均衡.md"
       }
     ]
   },
