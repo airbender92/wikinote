@@ -28,8 +28,8 @@ const searchResults = ref([])
 const showSearchResults = ref(false)
 const menuCollapsed = ref(false)
 const darkMode = ref(false)
+const showMobileMenu = ref(false)
 
-// 计算属性：获取当前文档的上一篇和下一篇
 const prevNextDocs = computed(() => {
   const allDocs = []
   const flattenMenu = (items) => {
@@ -51,39 +51,28 @@ const prevNextDocs = computed(() => {
   }
 })
 
-// 递归查找菜单项的完整路径（包括所有祖先路径）
 const findItemFullPath = (items, targetId, parentPath = '') => {
   for (const item of items) {
-    // 检查当前项是否是目标项
     if (item.id === targetId) {
-      // 如果是绝对路径且以目录分隔符结尾（目录路径）
       if (item.path && item.path.startsWith('/') && item.path.endsWith('/')) {
         return item.path
       }
-      // 如果是绝对路径且不以目录分隔符结尾（文件路径）
       else if (item.path && item.path.startsWith('/')) {
         return item.path
       }
-      // 如果是相对路径
       else if (item.path && item.path.startsWith('./')) {
         return `${parentPath}/${item.path.substring(2)}`.replace(/\/\//g, '/')
       }
-      // 如果没有路径，返回null
       return null
     }
     
-    // 检查子项
     if (item.children) {
-      // 计算当前项的路径（用于子项）
       let currentItemPath = parentPath
       if (item.path) {
         if (item.path.startsWith('./')) {
-          // 相对路径：基于父级路径构建
           currentItemPath = `${parentPath}/${item.path.substring(2)}`.replace(/\/\//g, '/')
         } else if (item.path.startsWith('/')) {
-          // 绝对路径：直接使用
           currentItemPath = item.path
-          // 如果是文件路径，提取目录部分
           if (item.path.endsWith('.md')) {
             const lastSlashIndex = item.path.lastIndexOf('/')
             if (lastSlashIndex !== -1) {
@@ -100,7 +89,6 @@ const findItemFullPath = (items, targetId, parentPath = '') => {
   return null
 }
 
-// 递归查找菜单项本身
 const findMenuItem = (items, id) => {
   for (const item of items) {
     if (item.id === id) {
@@ -114,17 +102,14 @@ const findMenuItem = (items, id) => {
   return null
 }
 
-// 加载Markdown文件 - 使用菜单项ID
 const loadMarkdown = async (itemId) => {
   try {
-    // 查找菜单项
     const item = findMenuItem(menu.value, itemId)
     if (!item || !item.path) {
       console.error('Menu item not found or has no path:', itemId)
       return
     }
     
-    // 获取完整路径（递归包含所有祖先路径）
     const fullPath = findItemFullPath(menu.value, itemId)
     if (!fullPath) {
       console.error('Could not determine full path for item:', itemId)
@@ -138,6 +123,7 @@ const loadMarkdown = async (itemId) => {
       markdownContent.value = md.render(content)
       currentPath.value = fullPath
       showSearchResults.value = false
+      showMobileMenu.value = false
     } else {
       console.error(`Failed to load ${fullPath}: HTTP ${response.status}`)
     }
@@ -146,18 +132,14 @@ const loadMarkdown = async (itemId) => {
   }
 }
 
-// 处理菜单点击 - 传递菜单项ID
 const handleMenuClick = (item) => {
-  // 如果有子菜单，只展开/折叠
   if (item.children) {
     item.expanded = !item.expanded
   } else if (item.id) {
-    // 使用菜单项ID加载文档
     loadMarkdown(item.id)
   }
 }
 
-// 搜索功能
 const handleSearch = () => {
   if (!searchQuery.value) {
     searchResults.value = []
@@ -169,7 +151,7 @@ const handleSearch = () => {
   const flattenMenu = (items) => {
     items.forEach(item => {
       if (item.path) {
-        allDocs.push({...item, id: item.id}) // 确保有id
+        allDocs.push({...item, id: item.id})
       }
       if (item.children) {
         flattenMenu(item.children)
@@ -187,23 +169,24 @@ const handleSearch = () => {
   showSearchResults.value = true
 }
 
-// 处理搜索结果点击
 const handleSearchResultClick = (result) => {
   loadMarkdown(result.item.id)
 }
 
-// 切换菜单展开/收起
 const toggleMenu = () => {
   menuCollapsed.value = !menuCollapsed.value
+  showMobileMenu.value = !showMobileMenu.value
 }
 
-// 切换深色模式
+const closeMobileMenu = () => {
+  showMobileMenu.value = false
+}
+
 const toggleDarkMode = () => {
   darkMode.value = !darkMode.value
   document.documentElement.classList.toggle('dark', darkMode.value)
 }
 
-// 获取第一个可用的文档ID
 const getFirstDocId = () => {
   const findFirstDoc = (items) => {
     for (const item of items) {
@@ -221,9 +204,7 @@ const getFirstDocId = () => {
   return findFirstDoc(menu.value)
 }
 
-// 初始加载
 onMounted(() => {
-  console.log('\x1B[31m\x1B[1m%s\x1B[0m', '打印测试！');
   const firstDocId = getFirstDocId()
   if (firstDocId) {
     loadMarkdown(firstDocId)
@@ -232,8 +213,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app">
-    <!-- 顶部导航栏 -->
+  <div class="app" :class="{ 'mobile-menu-open': showMobileMenu }">
     <header class="navbar">
       <div class="navbar-left">
         <button class="menu-toggle" @click="toggleMenu" aria-label="Toggle menu">
@@ -270,8 +250,8 @@ onMounted(() => {
     </header>
 
     <div class="main-container">
-      <!-- 左侧菜单 -->
-      <aside :class="['sidebar', { 'collapsed': menuCollapsed }]">
+      <aside :class="['sidebar', { 'collapsed': menuCollapsed, 'mobile-visible': showMobileMenu }]">
+        <button class="mobile-close-btn" @click="closeMobileMenu">✕</button>
         <nav class="menu">
           <ul class="menu-list">
             <li
@@ -326,12 +306,12 @@ onMounted(() => {
         </nav>
       </aside>
 
-      <!-- 右侧内容区 -->
+      <div v-if="showMobileMenu" class="mobile-overlay" @click="closeMobileMenu"></div>
+
       <main class="content">
         <div class="markdown-container">
           <div v-html="markdownContent" class="markdown-content"></div>
           
-          <!-- 上一篇/下一篇导航 -->
           <div class="prev-next-nav">
             <a v-if="prevNextDocs.prev" @click="loadMarkdown(prevNextDocs.prev.id)" class="prev-doc">
               ← {{ prevNextDocs.prev.name }}
@@ -347,7 +327,6 @@ onMounted(() => {
 </template>
 
 <style>
-/* 样式保持不变 */
 * {
   margin: 0;
   padding: 0;
@@ -366,7 +345,6 @@ onMounted(() => {
   --active-bg: #e8f5e8;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   --sidebar-width: 280px;
-  --sidebar-width-collapsed: 60px;
   --navbar-height: 60px;
   --transition: all 0.3s ease;
 }
@@ -398,7 +376,6 @@ body {
   flex-direction: column;
 }
 
-/* 顶部导航栏 */
 .navbar {
   background-color: var(--bg-primary);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -509,13 +486,11 @@ body {
   background-color: var(--hover-bg);
 }
 
-/* 主容器 */
 .main-container {
   flex: 1;
   display: flex;
 }
 
-/* 左侧菜单 */
 .sidebar {
   width: var(--sidebar-width);
   background-color: var(--bg-primary);
@@ -528,7 +503,9 @@ body {
 }
 
 .sidebar.collapsed {
-  width: var(--sidebar-width-collapsed);
+  width: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .menu-list {
@@ -645,16 +622,6 @@ body {
   display: none;
 }
 
-.sidebar.collapsed .menu-item-header,
-.sidebar.collapsed .sub-menu-item-header,
-.sidebar.collapsed .sub-sub-menu-item-header {
-  padding: 12px;
-  justify-content: center;
-  margin-right: 0;
-  border-radius: 4px;
-}
-
-/* 右侧内容区 */
 .content {
   flex: 1;
   padding: 40px;
@@ -766,7 +733,6 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* 上一篇/下一篇导航 */
 .prev-next-nav {
   display: flex;
   justify-content: space-between;
@@ -794,18 +760,25 @@ body {
   text-decoration: none;
 }
 
-/* 响应式设计 */
+.mobile-overlay {
+  display: none;
+}
+
+.mobile-close-btn {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .navbar {
     padding: 0 15px;
   }
   
   .app-title {
-    font-size: 16px;
+    font-size: 14px;
   }
   
-  .search-input {
-    width: 200px;
+  .search-container {
+    display: none;
   }
   
   .sidebar {
@@ -813,37 +786,142 @@ body {
     left: 0;
     top: var(--navbar-height);
     bottom: 0;
-    z-index: 99;
+    z-index: 200;
     transform: translateX(-100%);
-    height: calc(100vh - var(--navbar-height));
+    width: 280px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
   }
   
-  .sidebar:not(.collapsed) {
+  .sidebar.mobile-visible {
     transform: translateX(0);
   }
   
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+  }
+  
+  .mobile-close-btn {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: var(--text-primary);
+    z-index: 10;
+  }
+  
   .content {
-    padding: 20px;
+    padding: 15px;
+    width: 100%;
   }
   
   .markdown-container {
-    padding: 24px;
+    padding: 20px;
+    width: 100%;
   }
   
   .markdown-content h1 {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 16px;
   }
   
   .markdown-content h2 {
-    font-size: 24px;
+    font-size: 20px;
+    margin-top: 24px;
   }
   
   .markdown-content h3 {
-    font-size: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  .markdown-content p {
+    font-size: 14px;
+  }
+  
+  .markdown-content ul,
+  .markdown-content ol {
+    padding-left: 24px;
+  }
+  
+  .markdown-content code {
+    font-size: 13px;
+  }
+  
+  .markdown-content pre {
+    padding: 12px;
+    font-size: 13px;
+  }
+  
+  .prev-next-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .prev-doc,
+  .next-doc {
+    display: block;
+    text-align: center;
+    padding: 12px;
   }
 }
 
-/* 滚动条样式 */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 10px;
+  }
+  
+  .app-title {
+    font-size: 12px;
+  }
+  
+  .menu-toggle {
+    font-size: 18px;
+    padding: 6px;
+  }
+  
+  .dark-mode-toggle {
+    font-size: 18px;
+    padding: 6px;
+  }
+  
+  .content {
+    padding: 10px;
+  }
+  
+  .markdown-container {
+    padding: 15px;
+  }
+  
+  .markdown-content h1 {
+    font-size: 20px;
+  }
+  
+  .markdown-content h2 {
+    font-size: 18px;
+  }
+  
+  .markdown-content h3 {
+    font-size: 16px;
+  }
+  
+  .markdown-content p,
+  .markdown-content li {
+    font-size: 13px;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
