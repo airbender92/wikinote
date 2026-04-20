@@ -468,6 +468,26 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "nginx2nginx-zu-wi-web-f-w-q-md",
+        "name": "Nginx 作为 Web 服务器",
+        "path": "/docs/Nginx2\\Nginx 作为 Web 服务器.md"
+      },
+      {
+        "id": "nginx2nginx-xng-nng-yu-hu-md",
+        "name": "Nginx 性能优化",
+        "path": "/docs/Nginx2\\Nginx 性能优化.md"
+      },
+      {
+        "id": "nginx2nginx-hun-cn-md",
+        "name": "Nginx 缓存",
+        "path": "/docs/Nginx2\\Nginx 缓存.md"
+      },
+      {
+        "id": "nginx2nginx-tio-sh-y-g-zhng-pi-ch-md",
+        "name": "Nginx 调试与故障排查",
+        "path": "/docs/Nginx2\\Nginx 调试与故障排查.md"
+      },
+      {
         "id": "nginx2nginxconf-pi-zh-jing-ji-md",
         "name": "Nginx.conf.配置讲解",
         "path": "/docs/Nginx2\\nginx.conf.配置讲解.md"
@@ -481,6 +501,11 @@ export default [
         "id": "nginx2-jin-kng-jin-ch-md",
         "name": "健康检查",
         "path": "/docs/Nginx2\\健康检查.md"
+      },
+      {
+        "id": "nginx2-n-qun-md",
+        "name": "安全",
+        "path": "/docs/Nginx2\\安全.md"
       },
       {
         "id": "nginx2-n-zhung-md",
