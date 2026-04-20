@@ -614,6 +614,24 @@ export default [
     ]
   },
   {
+    "id": "oauth",
+    "name": "OAuth",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "oauthauthorizationcodegrantmd",
+        "name": "Authorization Code Grant",
+        "path": "/docs/OAuth\\Authorization Code Grant.md"
+      },
+      {
+        "id": "oauth-gi-sh-md",
+        "name": "概述",
+        "path": "/docs/OAuth\\概述.md"
+      }
+    ]
+  },
+  {
     "id": "restfulapi-sh-j",
     "name": "RESTful API设计",
     "icon": "🔌",
