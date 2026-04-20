@@ -174,8 +174,11 @@ const handleSearchResultClick = (result) => {
 }
 
 const toggleMenu = () => {
-  menuCollapsed.value = !menuCollapsed.value
   showMobileMenu.value = !showMobileMenu.value
+}
+
+const toggleDesktopMenu = () => {
+  menuCollapsed.value = !menuCollapsed.value
 }
 
 const closeMobileMenu = () => {
@@ -213,7 +216,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app" :class="{ 'mobile-menu-open': showMobileMenu }">
+  <div class="app">
     <header class="navbar">
       <div class="navbar-left">
         <button class="menu-toggle" @click="toggleMenu" aria-label="Toggle menu">
@@ -277,7 +280,7 @@ onMounted(() => {
                 >
                   <div
                     class="sub-menu-item-header"
-                    @click="handleMenuClick(subItem)"
+                    @click.stop="handleMenuClick(subItem)"
                   >
                     <span class="sub-menu-name">{{ subItem.name }}</span>
                     <span v-if="subItem.children" class="menu-toggle-icon">
@@ -293,7 +296,7 @@ onMounted(() => {
                     >
                       <div
                         class="sub-sub-menu-item-header"
-                        @click="handleMenuClick(subSubItem)"
+                        @click.stop="handleMenuClick(subSubItem)"
                       >
                         <span class="sub-sub-menu-name">{{ subSubItem.name }}</span>
                       </div>
@@ -788,12 +791,31 @@ body {
     bottom: 0;
     z-index: 200;
     transform: translateX(-100%);
-    width: 280px;
+    width: 280px !important;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto !important;
+    padding: 0 !important;
   }
   
   .sidebar.mobile-visible {
     transform: translateX(0);
+  }
+  
+  .sidebar.mobile-visible .menu-name,
+  .sidebar.mobile-visible .sub-menu-name,
+  .sidebar.mobile-visible .sub-sub-menu-name,
+  .sidebar.mobile-visible .menu-toggle-icon {
+    display: block !important;
+  }
+  
+  .sidebar.mobile-visible .menu-item-header,
+  .sidebar.mobile-visible .sub-menu-item-header,
+  .sidebar.mobile-visible .sub-sub-menu-item-header {
+    display: flex !important;
+  }
+  
+  .sidebar.mobile-visible .menu-icon {
+    display: inline-block !important;
   }
   
   .mobile-overlay {
