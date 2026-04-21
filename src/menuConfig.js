@@ -625,6 +625,31 @@ export default [
         "path": "/docs/OAuth\\Authorization Code Grant.md"
       },
       {
+        "id": "oauthoauth2implementationandvulnerabilitiesmd",
+        "name": "OAuth 2 Implementation And Vulnerabilities",
+        "path": "/docs/OAuth\\OAuth 2 implementation and vulnerabilities.md"
+      },
+      {
+        "id": "oauthoauth20intherealworldmd",
+        "name": "OAuth 2.0 In The Real World",
+        "path": "/docs/OAuth\\OAuth 2.0 in the real world.md"
+      },
+      {
+        "id": "oauthoauth-k-h-dun-md",
+        "name": "OAuth 客户端",
+        "path": "/docs/OAuth\\OAuth 客户端.md"
+      },
+      {
+        "id": "oauthoauth-shu-qun-f-w-q-md",
+        "name": "OAuth 授权服务器",
+        "path": "/docs/OAuth\\OAuth 授权服务器.md"
+      },
+      {
+        "id": "oauth-d-jin-oauth-z-yun-dun-md",
+        "name": "搭建OAuth资源端",
+        "path": "/docs/OAuth\\搭建OAuth资源端.md"
+      },
+      {
         "id": "oauth-gi-sh-md",
         "name": "概述",
         "path": "/docs/OAuth\\概述.md"
