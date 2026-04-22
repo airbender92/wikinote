@@ -635,6 +635,11 @@ export default [
         "path": "/docs/OAuth\\OAuth 2.0 in the real world.md"
       },
       {
+        "id": "oauthoauthtokensmd",
+        "name": "OAuth Tokens",
+        "path": "/docs/OAuth\\OAuth tokens.md"
+      },
+      {
         "id": "oauthoauth-k-h-dun-md",
         "name": "OAuth 客户端",
         "path": "/docs/OAuth\\OAuth 客户端.md"
@@ -645,6 +650,16 @@ export default [
         "path": "/docs/OAuth\\OAuth 授权服务器.md"
       },
       {
+        "id": "oauth-lng-pi-n-qun-sh-j-md",
+        "name": "令牌安全设计",
+        "path": "/docs/OAuth\\令牌安全设计.md"
+      },
+      {
+        "id": "oauth-shu-qun-f-w-q-lu-dng-md",
+        "name": "授权服务器漏洞",
+        "path": "/docs/OAuth\\授权服务器漏洞.md"
+      },
+      {
         "id": "oauth-d-jin-oauth-z-yun-dun-md",
         "name": "搭建OAuth资源端",
         "path": "/docs/OAuth\\搭建OAuth资源端.md"
@@ -653,6 +668,11 @@ export default [
         "id": "oauth-gi-sh-md",
         "name": "概述",
         "path": "/docs/OAuth\\概述.md"
+      },
+      {
+        "id": "oauth-z-yun-f-w-q-c-n-qun-md",
+        "name": "资源服务器侧安全",
+        "path": "/docs/OAuth\\资源服务器侧安全.md"
       }
     ]
   },
