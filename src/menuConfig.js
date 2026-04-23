@@ -72,6 +72,34 @@ export default [
     ]
   },
   {
+    "id": "jwthandbook",
+    "name": "JWT HANDBOOK",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "jwthandbookjsonwebsignaturesmd",
+        "name": "JSON Web Signatures",
+        "path": "/docs/JWT HANDBOOK\\JSON Web Signatures.md"
+      },
+      {
+        "id": "jwthandbookjsonwebtokenmd",
+        "name": "JSON WEB TOKEN",
+        "path": "/docs/JWT HANDBOOK\\JSON WEB TOKEN.md"
+      },
+      {
+        "id": "jwthandbookjsonwebtokensindetailmd",
+        "name": "JSON Web Tokens In Detail",
+        "path": "/docs/JWT HANDBOOK\\JSON Web Tokens in Detail.md"
+      },
+      {
+        "id": "jwthandbook-gi-sh-md",
+        "name": "概述",
+        "path": "/docs/JWT HANDBOOK\\概述.md"
+      }
+    ]
+  },
+  {
     "id": "linux",
     "name": "Linux",
     "icon": "📄",
@@ -653,6 +681,11 @@ export default [
         "id": "oauth-lng-pi-n-qun-sh-j-md",
         "name": "令牌安全设计",
         "path": "/docs/OAuth\\令牌安全设计.md"
+      },
+      {
+        "id": "oauth-k-h-dun-zh-c-j-zh-md",
+        "name": "客户端注册机制",
+        "path": "/docs/OAuth\\客户端注册机制.md"
       },
       {
         "id": "oauth-shu-qun-f-w-q-lu-dng-md",
