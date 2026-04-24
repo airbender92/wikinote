@@ -3,6 +3,13 @@
 
 export default [
   {
+    "id": "katex-c-sh-md",
+    "name": "KaTeX测试",
+    "icon": "📄",
+    "path": "/docs/KaTeX测试.md",
+    "expanded": false
+  },
+  {
     "id": "docker",
     "name": "Docker",
     "icon": "📄",
@@ -852,6 +859,19 @@ export default [
         "id": "qin-dun-markdown-xun-rn-md",
         "name": "Markdown渲染",
         "path": "/docs/前端\\markdown渲染.md"
+      }
+    ]
+  },
+  {
+    "id": "ji-m",
+    "name": "加密",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "ji-m-readmemd",
+        "name": "Readme",
+        "path": "/docs/加密\\readme.md"
       }
     ]
   },

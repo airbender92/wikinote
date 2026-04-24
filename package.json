@@ -14,7 +14,9 @@
   "dependencies": {
     "fuse.js": "^7.1.0",
     "highlight.js": "^11.11.1",
+    "katex": "^0.16.45",
     "markdown-it": "^14.1.1",
+    "markdown-it-katex": "^2.0.3",
     "pinyin": "^4.0.0",
     "vue": "^3.5.30"
   },

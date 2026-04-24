@@ -1,10 +1,35 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import MarkdownIt from 'markdown-it'
+import markdownItKatex from 'markdown-it-katex'
+import 'katex/dist/katex.min.css'
 import Fuse from 'fuse.js'
 import menuConfig from './menuConfig.js'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
+
+const vars = {
+  $E: `<span class="katex-script">E</span>`,
+  $D: `<span class="katex-script">D</span>`,
+  $m: `$m$`,
+  $c: `$c$`,
+  $sk: `$sk$`,
+  $pk: `$pk$`,
+  $k: `$k$`,
+  $n2: `$n^2$`,
+  $n3: `$n^3$`,
+  $2n: `$2^n$`,
+  $x: `$x$`,
+  $y: `$y$`,
+  $t: `$t$`,
+  $fx: `$f(x)$`,
+  $fxy: `$f$:$x$→$y$`,
+  $yfx: `$y=f(x)$`,
+  $em: `<span class="katex-script">E</span>$(m)$`,
+  $eskm: `<span class="katex-script">E</span>$_{sk}(m)$`,
+  $dskc: `<span class="katex-script">D</span>$_{sk}(c)$`,
+  $dskc2: `<span class="katex-script">D</span>$_{sk}$(<span class="katex-script">E</span>$_{sk}(m)$)`,
+}
 
 const md = new MarkdownIt({
   html: true,
@@ -18,6 +43,11 @@ const md = new MarkdownIt({
     }
     return ''
   }
+})
+
+md.use(markdownItKatex, {
+  throwOnError: false,
+  errorColor: '#ff0000'
 })
 
 const menu = ref(menuConfig)
@@ -119,7 +149,10 @@ const loadMarkdown = async (itemId) => {
     console.log('Loading markdown from:', fullPath)
     const response = await fetch(fullPath)
     if (response.ok) {
-      const content = await response.text()
+      let content = await response.text();
+      for (const [key, value] of Object.entries(vars)) {
+        content = content.replaceAll(`{{${key}}}`, value)
+      }
       markdownContent.value = md.render(content)
       currentPath.value = fullPath
       showSearchResults.value = false

@@ -147,10 +147,26 @@ async function generateMenuConfig() {
   try {
     const topLevelItems = [];
     
-    // 扫描doc目录下的所有一级目录
+    // 扫描doc目录下的所有一级目录和根目录下的md文件
     const docPath = path.join(process.cwd(), CONFIG.docDir);
     const entries = await readdir(docPath, { withFileTypes: true });
     const directories = entries.filter(entry => entry.isDirectory());
+    const rootFiles = entries.filter(entry => entry.isFile() && entry.name.endsWith('.md'));
+    
+    // 处理根目录下的md文件
+    for (const file of rootFiles) {
+      const fileName = file.name;
+      const menuName = formatName(fileName);
+      const id = generateId(fileName);
+      
+      topLevelItems.push({
+        id,
+        name: menuName,
+        icon: '📄',
+        path: `/docs/${fileName}`,
+        expanded: CONFIG.defaultExpanded
+      });
+    }
     
     for (const dir of directories) {
       const dirName = dir.name;
@@ -189,7 +205,8 @@ export default ${JSON.stringify(topLevelItems, null, 2)};`;
     // 显示生成的结构预览
     console.log('\n📋 生成的菜单结构预览:');
     topLevelItems.forEach(item => {
-      console.log(`- ${item.name} (${item.children.length} 个子项)`);
+      const childCount = item.children ? item.children.length : 0;
+      console.log(`- ${item.name} (${childCount} 个子项)`);
     });
     
   } catch (error) {

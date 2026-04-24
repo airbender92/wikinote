@@ -1,3 +1,10 @@
+@font-face {
+    font-family: KaTeX_Caligraphic;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fe-static.deepseek.com/chat/static/KaTeX_Caligraphic-Regular.55fac25845.woff2)format("woff2"),url(https://fe-static.deepseek.com/chat/static/KaTeX_Caligraphic-Regular.dad44a7fc6.woff)format("woff"),url(https://fe-static.deepseek.com/chat/static/KaTeX_Caligraphic-Regular.07ef19e7b0.ttf)format("truetype")
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -28,6 +35,47 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+}
+/* 定义一个使用该花体的样式类 */
+.katex-script {
+    font-family: KaTeX_Caligraphic;
+    font-size: 1.4em;
+}
+
+/* 全局覆盖 KaTeX 下标 _ */
+
+.katex .base.textstyle > .mord{
+  line-height: 0;
+}
+
+.katex .base.textstyle.uncramped .vlist{
+  top: -0.2em;
+}
+
+/* 全局表格默认样式 */
+table {
+  border-collapse: collapse; /* 合并边框，避免双线 */
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* 表头 + 单元格 统一边框 */
+table th,
+table td {
+  border: 1px solid #ccc;  /* 灰色细边框 */
+  padding: 8px 12px;      /* 内边距，防止文字贴边 */
+}
+
+/* 表头背景加深 */
+table th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+}
+
+/* 隔行变色，更好阅读 */
+table tr:nth-child(even) {
+  background-color: #fafafa;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -298,3 +346,4 @@ code {
 [class^="language-"]{
  display: block;
 }
+
