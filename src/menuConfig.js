@@ -85,6 +85,26 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "jwthandbookbestcurrentpracticesmd",
+        "name": "Best Current Practices",
+        "path": "/docs/JWT HANDBOOK\\Best Current Practices.md"
+      },
+      {
+        "id": "jwthandbookjsonwebalgorithmsmd",
+        "name": "JSON Web Algorithms",
+        "path": "/docs/JWT HANDBOOK\\JSON Web Algorithms.md"
+      },
+      {
+        "id": "jwthandbookjsonwebencryptionmd",
+        "name": "JSON Web Encryption",
+        "path": "/docs/JWT HANDBOOK\\JSON Web Encryption.md"
+      },
+      {
+        "id": "jwthandbookjsonwebkeysmd",
+        "name": "JSON Web Keys",
+        "path": "/docs/JWT HANDBOOK\\JSON Web Keys.md"
+      },
+      {
         "id": "jwthandbookjsonwebsignaturesmd",
         "name": "JSON Web Signatures",
         "path": "/docs/JWT HANDBOOK\\JSON Web Signatures.md"
