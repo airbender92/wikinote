@@ -53,6 +53,24 @@ export default [
     ]
   },
   {
+    "id": "http",
+    "name": "HTTP",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "httpoverviewmd",
+        "name": "Overview",
+        "path": "/docs/HTTP\\Overview.md"
+      },
+      {
+        "id": "httpurlsandresourcesmd",
+        "name": "URLs And Resources",
+        "path": "/docs/HTTP\\URLs and Resources.md"
+      }
+    ]
+  },
+  {
     "id": "javaweb-ki-f-r-mn",
     "name": "Java Web开发入门",
     "icon": "📄",
