@@ -59,6 +59,11 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "httphttpmessagesmd",
+        "name": "HTTP Messages",
+        "path": "/docs/HTTP\\HTTP Messages.md"
+      },
+      {
         "id": "httpoverviewmd",
         "name": "Overview",
         "path": "/docs/HTTP\\Overview.md"
