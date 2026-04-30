@@ -59,6 +59,16 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "httpconnectionmanagementmd",
+        "name": "Connection Management",
+        "path": "/docs/HTTP\\Connection Management.md"
+      },
+      {
+        "id": "httphttparchitecturemd",
+        "name": "HTTP Architecture",
+        "path": "/docs/HTTP\\HTTP Architecture.md"
+      },
+      {
         "id": "httphttpmessagesmd",
         "name": "HTTP Messages",
         "path": "/docs/HTTP\\HTTP Messages.md"
