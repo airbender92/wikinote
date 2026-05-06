@@ -59,14 +59,14 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "httpcachingmd",
+        "name": "Caching",
+        "path": "/docs/HTTP\\Caching.md"
+      },
+      {
         "id": "httpconnectionmanagementmd",
         "name": "Connection Management",
         "path": "/docs/HTTP\\Connection Management.md"
-      },
-      {
-        "id": "httphttparchitecturemd",
-        "name": "HTTP Architecture",
-        "path": "/docs/HTTP\\HTTP Architecture.md"
       },
       {
         "id": "httphttpmessagesmd",
@@ -79,9 +79,19 @@ export default [
         "path": "/docs/HTTP\\Overview.md"
       },
       {
+        "id": "httpproxiesmd",
+        "name": "Proxies",
+        "path": "/docs/HTTP\\Proxies.md"
+      },
+      {
         "id": "httpurlsandresourcesmd",
         "name": "URLs And Resources",
         "path": "/docs/HTTP\\URLs and Resources.md"
+      },
+      {
+        "id": "httpwebserversmd",
+        "name": "Web Servers",
+        "path": "/docs/HTTP\\Web Servers.md"
       }
     ]
   },
