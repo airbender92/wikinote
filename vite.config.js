@@ -40,7 +40,30 @@ function copyAssetsPlugin() {
   }
 }
 
+// 自定义插件：打印开发服务器地址
+function printServerUrlPlugin() {
+  return {
+    name: 'print-server-url',
+    configureServer(server) {
+      server.httpServer?.once('listening', () => {
+        const address = server.httpServer?.address()
+        const port = typeof address === 'object' ? address?.port : 5173
+        console.log('')
+        console.log('🚀 开发服务器已启动:')
+        console.log(`   本地访问: http://localhost:${port}`)
+        console.log(`   网络访问: http://0.0.0.0:${port}`)
+        console.log('')
+      })
+    }
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), copyAssetsPlugin()]
+  plugins: [vue(), copyAssetsPlugin(), printServerUrlPlugin()],
+  server: {
+    port: 5173,
+    strictPort: true,
+    host: true
+  }
 })
