@@ -4280,6 +4280,11 @@ export default [
             "path": "/docs/股市\\概念\\假跌洗盘.md"
           },
           {
+            "id": "g-sh-gi-nin-cn-ko-bn-md",
+            "name": "参考版",
+            "path": "/docs/股市\\概念\\参考版.md"
+          },
+          {
             "id": "g-sh-gi-nin-d-pn-md",
             "name": "大盘",
             "path": "/docs/股市\\概念\\大盘.md"
