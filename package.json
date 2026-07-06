@@ -9,7 +9,8 @@
     "build": "npm run generate:menu && vite build",
     "preview": "vite preview",
     "generate:menu": "node generateMenuConfig.cjs",
-    "watch:menu": "nodemon --watch docs --ext md --exec \"npm run generate:menu\""
+    "watch:menu": "nodemon --watch docs --ext md --exec \"npm run generate:menu\"",
+    "zip": "cross-zip ./ dist.zip"
   },
   "dependencies": {
     "fuse.js": "^7.1.0",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.5",
     "concurrently": "^9.2.1",
+    "cross-zip-cli": "^1.0.0",
     "nodemon": "^3.1.14",
     "vite": "^8.0.1"
   }
