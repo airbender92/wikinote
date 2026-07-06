@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "generate:menu": "node generateMenuConfig.cjs",
     "watch:menu": "nodemon --watch docs --ext md --exec \"npm run generate:menu\"",
-    "zip": "node zip-pack.js"
+    "zip": "node zip-pack.cjs"
   },
   "dependencies": {
     "fuse.js": "^7.1.0",
