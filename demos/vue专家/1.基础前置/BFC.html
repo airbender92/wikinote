@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>BFC 完整 Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .demo {
+      margin: 40px 0;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .demo h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    /* ============== 1. 浮动高度塌陷 ============== */
+    .float-box {
+      width: 100px;
+      height: 100px;
+      background: #aef;
+      float: left;
+    }
+    .collapse-parent {
+      background: #faa;
+      border: 2px solid red;
+    }
+    .bfc-parent {
+      background: #faa;
+      border: 2px solid green;
+      /* 触发 BFC，清除浮动 */
+      /* overflow: hidden; */
+      display: flow-root; /* 推荐，无副作用 */
+    }
+
+    /* ============== 2. margin 合并问题 ============== */
+    .margin-box {
+      width: 100px;
+      height: 50px;
+      background: #fec;
+      margin: 30px 0;
+    }
+    .bfc-wrap {
+      /* 父级 BFC，隔离 margin */
+      display: flow-root;
+    }
+
+    /* ============== 3. 浮动覆盖问题 ============== */
+    .float-left {
+      width: 100px;
+      height: 150px;
+      background: #cff;
+      float: left;
+    }
+    .normal-right {
+      height: 150px;
+      background: #ffc;
+    }
+    .bfc-right {
+      height: 150px;
+      background: #ffc;
+      /* 触发 BFC，不被浮动覆盖 */
+      display: flow-root;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============== Demo1：浮动导致父元素高度塌陷 ============== -->
+<div class="demo">
+  <h3>1. 浮动高度塌陷（对比）</h3>
+  <p>红色边框：父元素未 BFC → 高度塌陷</p>
+  <div class="collapse-parent">
+    <div class="float-box">浮动盒子</div>
+  </div>
+  <br>
+  <p>绿色边框：父元素 BFC → 正常包裹浮动</p>
+  <div class="bfc-parent">
+    <div class="float-box">浮动盒子</div>
+  </div>
+</div>
+
+<!-- ============== Demo2：垂直 margin 合并 ============== -->
+<div class="demo">
+  <h3>2. margin 合并（对比）</h3>
+  <p>未使用 BFC：两个盒子 margin 30px + 30px = 合并为 30px</p>
+  <div class="margin-box">盒子1</div>
+  <div class="margin-box">盒子2</div>
+  <br>
+  <p>使用 BFC 包裹：margin 不合并，间距 60px</p>
+  <div class="margin-box">盒子A</div>
+  <div class="bfc-wrap">
+    <div class="margin-box">盒子B（被BFC包裹）</div>
+  </div>
+</div>
+
+<!-- ============== Demo3：浮动覆盖问题 ============== -->
+<div class="demo">
+  <h3>3. 浮动覆盖问题（对比）</h3>
+  <p>右侧未 BFC：被浮动元素覆盖</p>
+  <div class="float-left">左侧浮动</div>
+  <div class="normal-right">我是普通右侧盒子（被覆盖）</div>
+  <div style="clear: both;"></div>
+  <br>
+  <p>右侧 BFC：不被浮动覆盖，自适应两栏布局</p>
+  <div class="float-left">左侧浮动</div>
+  <div class="bfc-right">我是 BFC 右侧盒子（不被覆盖）</div>
+</div>
+
+</body>
+</html>
