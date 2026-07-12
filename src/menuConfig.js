@@ -4266,6 +4266,85 @@ export default [
     ]
   },
   {
+    "id": "zh-nng-zh-zo-hng-y",
+    "name": "智能制造行业",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "zh-nng-zh-zo-hng-y-gi-nin-gi-nin",
+        "name": "概念",
+        "path": "/docs/智能制造行业\\概念/",
+        "children": [
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-1-dng-din-li-md",
+            "name": "1.额定电流",
+            "path": "/docs/智能制造行业\\概念\\1.额定电流.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-2-chng-b-ch-din-md",
+            "name": "2.常闭触点",
+            "path": "/docs/智能制造行业\\概念\\2.常闭触点.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-3-dun-l-md",
+            "name": "3.短路",
+            "path": "/docs/智能制造行业\\概念\\3.短路.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-4-qin-din-y-md",
+            "name": "4.欠电压",
+            "path": "/docs/智能制造行业\\概念\\4.欠电压.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-5-d-y-dun-l-q-ji-gu-md",
+            "name": "5.低压断路器结构",
+            "path": "/docs/智能制造行业\\概念\\5.低压断路器结构.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-6-sn-xing-jio-li-din-md",
+            "name": "6.三相交流电",
+            "path": "/docs/智能制造行业\\概念\\6.三相交流电.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-7-xing-xin-lng-xin-md",
+            "name": "7.相线零线",
+            "path": "/docs/智能制造行业\\概念\\7.相线零线.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-8-sn-xing-din-y-md",
+            "name": "8.三相电压",
+            "path": "/docs/智能制造行业\\概念\\8.三相电压.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc-lng-q-b-xu-plc",
+        "name": "零起步学PLC",
+        "path": "/docs/智能制造行业\\零起步学PLC/",
+        "children": [
+          {
+            "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc0-ch-j-gi-nin-md",
+            "name": "0.初级概念",
+            "path": "/docs/智能制造行业\\零起步学PLC\\0.初级概念.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc1-do-ki-gun-md",
+            "name": "1.刀开关",
+            "path": "/docs/智能制造行业\\零起步学PLC\\1.刀开关.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "zh-nng-zh-zo-hng-y-readmemd",
+        "name": "Readme",
+        "path": "/docs/智能制造行业\\readme.md"
+      }
+    ]
+  },
+  {
     "id": "jng-j-xu-sh-j",
     "name": "经济学书籍",
     "icon": "📄",
