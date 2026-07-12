@@ -27,6 +27,39 @@ export default [
           }
         ],
         "expanded": false
+      },
+      {
+        "id": "ai-bn-d-d-jin-bn-d-d-jin",
+        "name": "本地搭建",
+        "path": "/docs/AI\\本地搭建/",
+        "children": [
+          {
+            "id": "ai-bn-d-d-jin-anythingllm-d-jin-bn-d-zh-sh-k-cn-ko-wn-dng-md",
+            "name": "AnythingLLM 搭建本地知识库参考文档",
+            "path": "/docs/AI\\本地搭建\\AnythingLLM 搭建本地知识库参考文档.md"
+          },
+          {
+            "id": "ai-bn-d-d-jin-anythingllm-qin-r-m-xng-ollamamd",
+            "name": "AnythingLLM嵌入模型Ollama",
+            "path": "/docs/AI\\本地搭建\\AnythingLLM嵌入模型Ollama.md"
+          },
+          {
+            "id": "ai-bn-d-d-jin-anythingllm-qin-y-n-zhung-wi-zh-md",
+            "name": "AnythingLLM迁移安装位置",
+            "path": "/docs/AI\\本地搭建\\AnythingLLM迁移安装位置.md"
+          },
+          {
+            "id": "ai-bn-d-d-jin-deepseek-r1-bn-d-b-sh-cn-ko-shu-c-md",
+            "name": "DeepSeek R1 本地部署参考手册",
+            "path": "/docs/AI\\本地搭建\\DeepSeek-R1 本地部署参考手册.md"
+          },
+          {
+            "id": "ai-bn-d-d-jin-openwebuidocker-b-sh-wn-t-pi-ch-y-ji-ju-cn-ko-md",
+            "name": "Open WebUI Docker 部署问题排查与解决参考",
+            "path": "/docs/AI\\本地搭建\\Open WebUI Docker 部署问题排查与解决参考.md"
+          }
+        ],
+        "expanded": false
       }
     ]
   },
@@ -93,6 +126,34 @@ export default [
           }
         ],
         "expanded": false
+      }
+    ]
+  },
+  {
+    "id": "css-y-ch-l-q",
+    "name": "CSS 预处理器",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "css-y-ch-l-q-cssmodulesmd",
+        "name": "CSS Modules",
+        "path": "/docs/CSS 预处理器\\CSS Modules.md"
+      },
+      {
+        "id": "css-y-ch-l-q-cssmodules2md",
+        "name": "CSS Modules2",
+        "path": "/docs/CSS 预处理器\\CSS Modules2.md"
+      },
+      {
+        "id": "css-y-ch-l-q-css-in-jsmd",
+        "name": "CSS In JS",
+        "path": "/docs/CSS 预处理器\\CSS-in-JS.md"
+      },
+      {
+        "id": "css-y-ch-l-q-sasslessmd",
+        "name": "Sass&Less",
+        "path": "/docs/CSS 预处理器\\Sass&Less.md"
       }
     ]
   },
@@ -1381,6 +1442,11 @@ export default [
                 "id": "java-sh-j-headfirstjava-d-li-zhng-1chairwars-zhng-wn-md",
                 "name": "1.Chair Wars 重温",
                 "path": "/docs/JAVA书籍\\Head First JAVA\\第六章\\1.Chair Wars 重温.md"
+              },
+              {
+                "id": "java-sh-j-headfirstjava-d-li-zhng-2-zhng-xi-md",
+                "name": "2.重写",
+                "path": "/docs/JAVA书籍\\Head First JAVA\\第六章\\2.重写.md"
               }
             ],
             "expanded": false
@@ -2098,9 +2164,19 @@ export default [
     "expanded": false,
     "children": [
       {
+        "id": "mdnimportmetamd",
+        "name": "Import.meta",
+        "path": "/docs/mdn\\import.meta.md"
+      },
+      {
         "id": "mdnpadendmd",
         "name": "PadEnd",
         "path": "/docs/mdn\\padEnd.md"
+      },
+      {
+        "id": "mdndirnamemd",
+        "name": "  Dirname",
+        "path": "/docs/mdn\\__dirname.md"
       }
     ]
   },
@@ -2944,6 +3020,24 @@ export default [
     ]
   },
   {
+    "id": "rollup",
+    "name": "Rollup",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "rollup1-xi-y-di-min-xing-esmodule-de-d-bo-gng-j-md",
+        "name": "1.下一代面向 ES Module 的打包工具",
+        "path": "/docs/rollup\\1.下一代面向 ES Module 的打包工具.md"
+      },
+      {
+        "id": "rollupreadmemd",
+        "name": "Readme",
+        "path": "/docs/rollup\\readme.md"
+      }
+    ]
+  },
+  {
     "id": "springboot",
     "name": "Spring Boot",
     "icon": "🌱",
@@ -3746,6 +3840,122 @@ export default [
     ]
   },
   {
+    "id": "vue-zhun-ji",
+    "name": "Vue专家",
+    "icon": "📄",
+    "expanded": false,
+    "children": [
+      {
+        "id": "vue-zhun-ji-1-j-ch-qin-zh-1-j-ch-qin-zh",
+        "name": "1.基础前置",
+        "path": "/docs/vue专家\\1.基础前置/",
+        "children": [
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-750px-sh-j-go-md",
+            "name": "750px 设计稿",
+            "path": "/docs/vue专家\\1.基础前置\\750px 设计稿.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-autoprefixermd",
+            "name": "Autoprefixer",
+            "path": "/docs/vue专家\\1.基础前置\\autoprefixer.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-bfcmd",
+            "name": "BFC",
+            "path": "/docs/vue专家\\1.基础前置\\BFC.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-clear-bothmd",
+            "name": "Clear Both",
+            "path": "/docs/vue专家\\1.基础前置\\clear-both.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-css-bin-ling-md",
+            "name": "CSS 变量",
+            "path": "/docs/vue专家\\1.基础前置\\CSS 变量.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-css-loadermd",
+            "name": "Css Loader",
+            "path": "/docs/vue专家\\1.基础前置\\css-loader.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-postcss-pxtoremmd",
+            "name": "Postcss Pxtorem",
+            "path": "/docs/vue专家\\1.基础前置\\postcss-pxtorem.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-postcssmd",
+            "name": "PostCSS",
+            "path": "/docs/vue专家\\1.基础前置\\PostCSS.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-postcss-pi-zh-md",
+            "name": "PostCSS配置",
+            "path": "/docs/vue专家\\1.基础前置\\PostCSS配置.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-px2remmd",
+            "name": "Px2rem",
+            "path": "/docs/vue专家\\1.基础前置\\px2rem.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-style-loadermd",
+            "name": "Style Loader",
+            "path": "/docs/vue专家\\1.基础前置\\style-loader.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-yun-z-hu-cssmd",
+            "name": "原子化 CSS",
+            "path": "/docs/vue专家\\1.基础前置\\原子化 CSS.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-xing-yng-sh-md",
+            "name": "响应式",
+            "path": "/docs/vue专家\\1.基础前置\\响应式.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-xing-yng-sh-htmlfontsizemd",
+            "name": "响应式htmlfontSize",
+            "path": "/docs/vue专家\\1.基础前置\\响应式htmlfontSize.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-sh-j-go-md",
+            "name": "设计稿",
+            "path": "/docs/vue专家\\1.基础前置\\设计稿.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-sh-j-go-lessdemomd",
+            "name": "设计稿lessdemo",
+            "path": "/docs/vue专家\\1.基础前置\\设计稿lessdemo.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-sh-j-go-xing-s-zhun-hun-md",
+            "name": "设计稿像素转换",
+            "path": "/docs/vue专家\\1.基础前置\\设计稿像素转换.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-sh-j-go-hun-sun-yun-l-md",
+            "name": "设计稿换算原理",
+            "path": "/docs/vue专家\\1.基础前置\\设计稿换算原理.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-lu-j-xing-s-w-l-xing-s-md",
+            "name": "逻辑像素物理像素",
+            "path": "/docs/vue专家\\1.基础前置\\逻辑像素物理像素.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "vue-zhun-ji-readmemd",
+        "name": "Readme",
+        "path": "/docs/vue专家\\readme.md"
+      }
+    ]
+  },
+  {
     "id": "webpack",
     "name": "Webpack",
     "icon": "📦",
@@ -4255,6 +4465,11 @@ export default [
             "path": "/docs/股市\\概念\\MACD出现金叉.md"
           },
           {
+            "id": "g-sh-gi-nin-rsimd",
+            "name": "RSI",
+            "path": "/docs/股市\\概念\\RSI.md"
+          },
+          {
             "id": "g-sh-gi-nin-shng-ch-wi-qin-d-hu-xio-jn-ch-ji-go-md",
             "name": "上车为前大后小金叉就搞",
             "path": "/docs/股市\\概念\\上车为前大后小金叉就搞.md"
@@ -4283,6 +4498,11 @@ export default [
             "id": "g-sh-gi-nin-cn-ko-bn-md",
             "name": "参考版",
             "path": "/docs/股市\\概念\\参考版.md"
+          },
+          {
+            "id": "g-sh-gi-nin-wi-pn-md",
+            "name": "外盘",
+            "path": "/docs/股市\\概念\\外盘.md"
           },
           {
             "id": "g-sh-gi-nin-d-pn-md",
@@ -4399,6 +4619,16 @@ export default [
           }
         ],
         "expanded": false
+      },
+      {
+        "id": "g-sh-readmemd",
+        "name": "Readme",
+        "path": "/docs/股市\\readme.md"
+      },
+      {
+        "id": "g-sh-wn-zhng-bn-dun-xin-jng-xun-xun-g-jio-y-t-x-k-zh-ji-sh-co-md",
+        "name": "完整版短线精选选股交易体系（可直接实操）",
+        "path": "/docs/股市\\完整版短线精选选股交易体系（可直接实操）.md"
       }
     ]
   },
