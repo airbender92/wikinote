@@ -3856,6 +3856,11 @@ export default [
             "path": "/docs/vue专家\\1.基础前置\\750px 设计稿.md"
           },
           {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-applymd",
+            "name": "Apply",
+            "path": "/docs/vue专家\\1.基础前置\\apply.md"
+          },
+          {
             "id": "vue-zhun-ji-1-j-ch-qin-zh-autoprefixermd",
             "name": "Autoprefixer",
             "path": "/docs/vue专家\\1.基础前置\\autoprefixer.md"
@@ -3896,14 +3901,59 @@ export default [
             "path": "/docs/vue专家\\1.基础前置\\PostCSS配置.md"
           },
           {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-proxyreflectmd",
+            "name": "Proxy&Reflect",
+            "path": "/docs/vue专家\\1.基础前置\\Proxy&Reflect.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-proxymd",
+            "name": "Proxy",
+            "path": "/docs/vue专家\\1.基础前置\\Proxy.md"
+          },
+          {
             "id": "vue-zhun-ji-1-j-ch-qin-zh-px2remmd",
             "name": "Px2rem",
             "path": "/docs/vue专家\\1.基础前置\\px2rem.md"
           },
           {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-reflectmd",
+            "name": "Reflect",
+            "path": "/docs/vue专家\\1.基础前置\\Reflect.md"
+          },
+          {
             "id": "vue-zhun-ji-1-j-ch-qin-zh-style-loadermd",
             "name": "Style Loader",
             "path": "/docs/vue专家\\1.基础前置\\style-loader.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-thismd",
+            "name": "This",
+            "path": "/docs/vue专家\\1.基础前置\\this.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-weakmapmd",
+            "name": "WeakMap",
+            "path": "/docs/vue专家\\1.基础前置\\WeakMap.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-sh-jin-xn-hun-md",
+            "name": "事件循环",
+            "path": "/docs/vue专家\\1.基础前置\\事件循环.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-zu-yng-y-md",
+            "name": "作用域",
+            "path": "/docs/vue专家\\1.基础前置\\作用域.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-hn-sh-sh-bin-chng-md",
+            "name": "函数式编程",
+            "path": "/docs/vue专家\\1.基础前置\\函数式编程.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-yun-xng-md",
+            "name": "原型",
+            "path": "/docs/vue专家\\1.基础前置\\原型.md"
           },
           {
             "id": "vue-zhun-ji-1-j-ch-qin-zh-yun-z-hu-cssmd",
@@ -3919,6 +3969,26 @@ export default [
             "id": "vue-zhun-ji-1-j-ch-qin-zh-xing-yng-sh-htmlfontsizemd",
             "name": "响应式htmlfontSize",
             "path": "/docs/vue专家\\1.基础前置\\响应式htmlfontSize.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-xng-nng-md",
+            "name": "性能",
+            "path": "/docs/vue专家\\1.基础前置\\性能.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-xun-rn-li-chng-md",
+            "name": "渲染流程",
+            "path": "/docs/vue专家\\1.基础前置\\渲染流程.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-hun-cn-md",
+            "name": "缓存",
+            "path": "/docs/vue专家\\1.基础前置\\缓存.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-sh-j-m-sh-md",
+            "name": "设计模式",
+            "path": "/docs/vue专家\\1.基础前置\\设计模式.md"
           },
           {
             "id": "vue-zhun-ji-1-j-ch-qin-zh-sh-j-go-md",
@@ -3941,9 +4011,80 @@ export default [
             "path": "/docs/vue专家\\1.基础前置\\设计稿换算原理.md"
           },
           {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-ku-y-md",
+            "name": "跨域",
+            "path": "/docs/vue专家\\1.基础前置\\跨域.md"
+          },
+          {
             "id": "vue-zhun-ji-1-j-ch-qin-zh-lu-j-xing-s-w-l-xing-s-md",
             "name": "逻辑像素物理像素",
             "path": "/docs/vue专家\\1.基础前置\\逻辑像素物理像素.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-zhng-pi-zhng-hu-md",
+            "name": "重排重绘",
+            "path": "/docs/vue专家\\1.基础前置\\重排重绘.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-b-bo-md",
+            "name": "闭包",
+            "path": "/docs/vue专家\\1.基础前置\\闭包.md"
+          },
+          {
+            "id": "vue-zhun-ji-1-j-ch-qin-zh-b-bo-fng-du-md",
+            "name": "闭包防抖",
+            "path": "/docs/vue专家\\1.基础前置\\闭包防抖.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "vue-zhun-ji-2vue-h-xn-2vue-h-xn",
+        "name": "2.vue核心",
+        "path": "/docs/vue专家\\2.vue核心/",
+        "children": [
+          {
+            "id": "vue-zhun-ji-2vue-h-xn-z-jin-tng-xn-z-jin-tng-xn",
+            "name": "组件通信",
+            "path": "/docs/vue专家\\2.vue核心\\组件通信/",
+            "children": [
+              {
+                "id": "vue-zhun-ji-2vue-h-xn-z-jin-tng-xn-emitmd",
+                "name": "Emit",
+                "path": "/docs/vue专家\\2.vue核心\\组件通信\\emit.md"
+              },
+              {
+                "id": "vue-zhun-ji-2vue-h-xn-z-jin-tng-xn-propsmd",
+                "name": "Props",
+                "path": "/docs/vue专家\\2.vue核心\\组件通信\\props.md"
+              }
+            ],
+            "expanded": false
+          },
+          {
+            "id": "vue-zhun-ji-2vue-h-xn-v-oncemd",
+            "name": "V Once",
+            "path": "/docs/vue专家\\2.vue核心\\v-once.md"
+          },
+          {
+            "id": "vue-zhun-ji-2vue-h-xn-zhn-tng-q-md",
+            "name": "侦听器",
+            "path": "/docs/vue专家\\2.vue核心\\侦听器.md"
+          },
+          {
+            "id": "vue-zhun-ji-2vue-h-xn-zh-lng-md",
+            "name": "指令",
+            "path": "/docs/vue专家\\2.vue核心\\指令.md"
+          },
+          {
+            "id": "vue-zhun-ji-2vue-h-xn-m-bn-y-f-md",
+            "name": "模板语法",
+            "path": "/docs/vue专家\\2.vue核心\\模板语法.md"
+          },
+          {
+            "id": "vue-zhun-ji-2vue-h-xn-j-sun-sh-xng-md",
+            "name": "计算属性",
+            "path": "/docs/vue专家\\2.vue核心\\计算属性.md"
           }
         ],
         "expanded": false
@@ -4282,14 +4423,134 @@ export default [
             "path": "/docs/智能制造行业\\概念\\1.额定电流.md"
           },
           {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-10-din-yun-md",
+            "name": "10.电源",
+            "path": "/docs/智能制造行业\\概念\\10.电源.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-11-din-chng-fng-xing-md",
+            "name": "11.电场方向",
+            "path": "/docs/智能制造行业\\概念\\11.电场方向.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-12-zh-li-din-chng-din-bo-md",
+            "name": "12.直流电充电宝",
+            "path": "/docs/智能制造行业\\概念\\12.直流电充电宝.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-13-x-din-ch-md",
+            "name": "13.蓄电池",
+            "path": "/docs/智能制造行业\\概念\\13.蓄电池.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-14-ti-xn-md",
+            "name": "14.铁芯",
+            "path": "/docs/智能制造行业\\概念\\14.铁芯.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-15-z-yu-f-r-din-li-md",
+            "name": "15.自由发热电流",
+            "path": "/docs/智能制造行业\\概念\\15.自由发热电流.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-16-ju-yun-din-y-md",
+            "name": "16.绝缘电压",
+            "path": "/docs/智能制造行业\\概念\\16.绝缘电压.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-17-tu-ku-dng-j-md",
+            "name": "17.脱扣等级",
+            "path": "/docs/智能制造行业\\概念\\17.脱扣等级.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-18-j-hu-md",
+            "name": "18.极化",
+            "path": "/docs/智能制造行业\\概念\\18.极化.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-19-din-sh-md",
+            "name": "19.电势",
+            "path": "/docs/智能制造行业\\概念\\19.电势.md"
+          },
+          {
             "id": "zh-nng-zh-zo-hng-y-gi-nin-2-chng-b-ch-din-md",
             "name": "2.常闭触点",
             "path": "/docs/智能制造行业\\概念\\2.常闭触点.md"
           },
           {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-20-chng-qing-fng-xing-md",
+            "name": "20.场强方向",
+            "path": "/docs/智能制造行业\\概念\\20.场强方向.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-21-dng-sh-min-md",
+            "name": "21.等势面",
+            "path": "/docs/智能制造行业\\概念\\21.等势面.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-22-din-sh-ch-md",
+            "name": "22.电势差",
+            "path": "/docs/智能制造行业\\概念\\22.电势差.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-23-dng-z-zhun-z-md",
+            "name": "23.定子转子",
+            "path": "/docs/智能制造行业\\概念\\23.定子转子.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-24-hu-r-yun-jin-md",
+            "name": "24.霍尔元件",
+            "path": "/docs/智能制造行业\\概念\\24.霍尔元件.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-25-xun-zhun-c-chng-md",
+            "name": "25.旋转磁场",
+            "path": "/docs/智能制造行业\\概念\\25.旋转磁场.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-26-f-l-d-din-c-gn-yng-md",
+            "name": "26.法拉第电磁感应",
+            "path": "/docs/智能制造行业\\概念\\26.法拉第电磁感应.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-27-sh-lng-zhun-z-md",
+            "name": "27.鼠笼转子",
+            "path": "/docs/智能制造行业\\概念\\27.鼠笼转子.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-29-ch-chng-md",
+            "name": "29.叉乘",
+            "path": "/docs/智能制造行业\\概念\\29.叉乘.md"
+          },
+          {
             "id": "zh-nng-zh-zo-hng-y-gi-nin-3-dun-l-md",
             "name": "3.短路",
             "path": "/docs/智能制造行业\\概念\\3.短路.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-30-zu-yu-shu-md",
+            "name": "30.左右手",
+            "path": "/docs/智能制造行业\\概念\\30.左右手.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-31-do-xin-md",
+            "name": "31.导线",
+            "path": "/docs/智能制造行业\\概念\\31.导线.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-32-din-li-h-gn-q-md",
+            "name": "32.电流互感器",
+            "path": "/docs/智能制造行业\\概念\\32.电流互感器.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-33-z-u-bin-y-q-md",
+            "name": "33.自耦变压器",
+            "path": "/docs/智能制造行业\\概念\\33.自耦变压器.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-34-sn-xing-din-md",
+            "name": "34.三相电",
+            "path": "/docs/智能制造行业\\概念\\34.三相电.md"
           },
           {
             "id": "zh-nng-zh-zo-hng-y-gi-nin-4-qin-din-y-md",
@@ -4315,6 +4576,11 @@ export default [
             "id": "zh-nng-zh-zo-hng-y-gi-nin-8-sn-xing-din-y-md",
             "name": "8.三相电压",
             "path": "/docs/智能制造行业\\概念\\8.三相电压.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-9-sh-m-sh-din-md",
+            "name": "9.什么是电",
+            "path": "/docs/智能制造行业\\概念\\9.什么是电.md"
           }
         ],
         "expanded": false
@@ -4542,6 +4808,11 @@ export default [
             "id": "g-sh-gi-nin-macd-ch-xin-jn-ch-md",
             "name": "MACD出现金叉",
             "path": "/docs/股市\\概念\\MACD出现金叉.md"
+          },
+          {
+            "id": "g-sh-gi-nin-pemd",
+            "name": "PE",
+            "path": "/docs/股市\\概念\\PE.md"
           },
           {
             "id": "g-sh-gi-nin-rsimd",
