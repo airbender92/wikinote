@@ -4553,6 +4553,26 @@ export default [
             "path": "/docs/智能制造行业\\概念\\34.三相电.md"
           },
           {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-35-ji-ch-q-md",
+            "name": "35.接触器",
+            "path": "/docs/智能制造行业\\概念\\35.接触器.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-36-tng-din-xin-qun-chn-shng-c-chng-md",
+            "name": "36.通电线圈产生磁场",
+            "path": "/docs/智能制造行业\\概念\\36.通电线圈产生磁场.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-37-r-j-din-q-md",
+            "name": "37.热继电器",
+            "path": "/docs/智能制造行业\\概念\\37.热继电器.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-gi-nin-38-ji-ch-q-y-r-j-din-q-xi-tng-md",
+            "name": "38.接触器与热继电器协同",
+            "path": "/docs/智能制造行业\\概念\\38.接触器与热继电器协同.md"
+          },
+          {
             "id": "zh-nng-zh-zo-hng-y-gi-nin-4-qin-din-y-md",
             "name": "4.欠电压",
             "path": "/docs/智能制造行业\\概念\\4.欠电压.md"
