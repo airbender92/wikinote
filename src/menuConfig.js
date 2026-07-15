@@ -4606,6 +4606,79 @@ export default [
         "expanded": false
       },
       {
+        "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-din-de-gi-nin",
+        "name": "电的概念",
+        "path": "/docs/智能制造行业\\电的概念/",
+        "children": [
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-1-din-z-kng-xu-md",
+            "name": "1.电子空穴",
+            "path": "/docs/智能制造行业\\电的概念\\1.电子空穴.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-10-jio-pn-shui-md",
+            "name": "10.角频率",
+            "path": "/docs/智能制造行业\\电的概念\\10.角频率.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-11-z-kng-md",
+            "name": "11.阻抗",
+            "path": "/docs/智能制造行业\\电的概念\\11.阻抗.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-12-din-rng-md",
+            "name": "12.电容",
+            "path": "/docs/智能制造行业\\电的概念\\12.电容.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-13-j-din-hun-hun-xing-q-md",
+            "name": "13.集电环换向器",
+            "path": "/docs/智能制造行业\\电的概念\\13.集电环换向器.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-2k-cng-md",
+            "name": "2.K 层",
+            "path": "/docs/智能制造行业\\电的概念\\2.K 层.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-3-zhng-z-zh-z-md",
+            "name": "3.中子质子",
+            "path": "/docs/智能制造行业\\电的概念\\3.中子质子.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-4-din-l-xin-md",
+            "name": "4.电力线",
+            "path": "/docs/智能制造行业\\电的概念\\4.电力线.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-5-d-c-nn-bi-md",
+            "name": "5.地磁南北",
+            "path": "/docs/智能制造行业\\电的概念\\5.地磁南北.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-6-tng-xing-din-li-xing-x-md",
+            "name": "6.同向电流相吸",
+            "path": "/docs/智能制造行业\\电的概念\\6.同向电流相吸.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-7-lng-c-dng-l-n-xing-din-li-md",
+            "name": "7.楞次定律逆向电流",
+            "path": "/docs/智能制造行业\\电的概念\\7.楞次定律逆向电流.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-8-zu-l-yu-din-md",
+            "name": "8.左力右电",
+            "path": "/docs/智能制造行业\\电的概念\\8.左力右电.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-9-shn-sh-jio-li-din-y-md",
+            "name": "9.瞬时交流电压",
+            "path": "/docs/智能制造行业\\电的概念\\9.瞬时交流电压.md"
+          }
+        ],
+        "expanded": false
+      },
+      {
         "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc-lng-q-b-xu-plc",
         "name": "零起步学PLC",
         "path": "/docs/智能制造行业\\零起步学PLC/",
@@ -4619,6 +4692,21 @@ export default [
             "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc1-do-ki-gun-md",
             "name": "1.刀开关",
             "path": "/docs/智能制造行业\\零起步学PLC\\1.刀开关.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc2-dun-z-pi-md",
+            "name": "2.端子排",
+            "path": "/docs/智能制造行业\\零起步学PLC\\2.端子排.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc3-z-h-ki-gun-qsmd",
+            "name": "3.组合开关 QS",
+            "path": "/docs/智能制造行业\\零起步学PLC\\3.组合开关 QS.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc4uvwmd",
+            "name": "4.UVW",
+            "path": "/docs/智能制造行业\\零起步学PLC\\4.UVW.md"
           }
         ],
         "expanded": false
