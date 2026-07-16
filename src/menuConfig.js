@@ -4636,6 +4636,16 @@ export default [
             "path": "/docs/智能制造行业\\电的概念\\13.集电环换向器.md"
           },
           {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-14-zhng-li-q-md",
+            "name": "14.整流器",
+            "path": "/docs/智能制造行业\\电的概念\\14.整流器.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-15-f-d-din-ch-md",
+            "name": "15.伏打电池",
+            "path": "/docs/智能制造行业\\电的概念\\15.伏打电池.md"
+          },
+          {
             "id": "zh-nng-zh-zo-hng-y-din-de-gi-nin-2k-cng-md",
             "name": "2.K 层",
             "path": "/docs/智能制造行业\\电的概念\\2.K 层.md"
