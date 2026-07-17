@@ -4717,6 +4717,11 @@ export default [
             "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc4uvwmd",
             "name": "4.UVW",
             "path": "/docs/智能制造行业\\零起步学PLC\\4.UVW.md"
+          },
+          {
+            "id": "zh-nng-zh-zo-hng-y-lng-q-b-xu-plc5-din-dng-kng-zh-md",
+            "name": "5.点动控制",
+            "path": "/docs/智能制造行业\\零起步学PLC\\5.点动控制.md"
           }
         ],
         "expanded": false
