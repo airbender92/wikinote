@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>观察池55只·午盘低吸错杀标的分析（2026-08-05）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #1a2332; line-height: 1.65; padding-bottom: 60px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .header { background: linear-gradient(135deg, #16324f 0%, #1f4e79 60%, #2a6aa5 100%); color: #fff; padding: 34px 0 28px; margin-bottom: 24px; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { opacity: .85; font-size: 13px; margin-top: 8px; }
+  .header .tags { margin-top: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-right: 8px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(20,40,80,.06); }
+  .card h2 { font-size: 19px; color: #16324f; margin-bottom: 14px; padding-left: 11px; border-left: 4px solid #2a6aa5; }
+  .card h3 { font-size: 15px; color: #1f4e79; margin: 14px 0 8px; }
+  .tldr { background: #eef4fb; border: 1px solid #c9ddf2; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .tldr h2 { color: #16324f; font-size: 18px; margin-bottom: 10px; }
+  .tldr .verdict { font-size: 15px; color: #21415e; }
+  .tldr ul { margin: 10px 0 0 20px; }
+  .tldr li { margin-bottom: 6px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 10px 0 4px; }
+  .stat { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .stat .num { font-size: 22px; font-weight: 700; }
+  .stat .lbl { font-size: 12px; color: #6b7a8e; margin-top: 2px; }
+  .up { color: #d9382f; }
+  .down { color: #0a9c6d; }
+  .flat { color: #6b7a8e; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th { background: #16324f; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #edf1f6; }
+  tr:nth-child(even) td { background: #fafbfd; }
+  .pill { display: inline-block; border-radius: 10px; padding: 1px 10px; font-size: 12px; font-weight: 600; }
+  .pill-a { background: #fde8e6; color: #d9382f; }
+  .pill-b { background: #e8f6f0; color: #0a9c6d; }
+  .pill-c { background: #fdf3e3; color: #b0762a; }
+  .pill-d { background: #eef0f4; color: #6b7a8e; }
+  .chartbox { width: 100%; height: 420px; margin-top: 8px; }
+  .chartbox-sm { width: 100%; height: 300px; margin-top: 8px; }
+  .note { font-size: 12px; color: #8a97a8; margin-top: 6px; }
+  .warn { background: #fdf6ec; border: 1px solid #f0dcb8; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .disc { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 14px 18px; font-size: 12px; color: #6b7a8e; margin-top: 8px; }
+  .plan { border-left: 3px solid #2a6aa5; padding: 8px 14px; margin: 8px 0; background: #f8fafc; }
+  .switch { font-size: 12px; color: #2a6aa5; cursor: pointer; user-select: none; }
+  .hidden { display: none; }
+  .sec { color: #4a5a6e; font-weight: 600; font-size: 13px; margin: 16px 0 6px; }
+  @media (max-width: 760px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <h1>观察池55只·午盘低吸错杀标的分析</h1>
+    <div class="sub">数据时点：2026-08-05 早盘约10:10-10:15（盘中实时）｜行情来源：腾讯行情接口；消息面：NeoData/腾讯自选股</div>
+    <div class="tags"><span class="tag">早盘实况</span><span class="tag">错杀甄别</span><span class="tag">午盘低吸计划</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>核心结论（TL;DR）</h2>
+    <div class="verdict">
+      今日早盘是<b>普涨放量中的结构性切换</b>，不是系统性风险：两市成交较昨日放量约1900亿，上涨3826家（69%）、涨停50家、跌停仅2家。资金明显从<b>红利（银行/电力/石油）与消费</b>切向<b>科技算力（AI服务器/半导体设备/有色）</b>；同时科技内部剧烈分化，光模块/CPO（谷歌概念）重挫（中际旭创-11%、新易盛-9%），拖累立讯精密等"AI硬件链"标的。
+    </div>
+    <ul>
+      <li><b>已进低吸区间、错杀属性清晰（可午盘分批建仓）</b>：云南白药、长江电力、中国海油、川投能源、中国中车，共5只防御/价值错杀；</li>
+      <li><b>进区间但需甄别（有瑕疵/半错杀）</b>：立讯精密（板块情绪错杀+港股破发余波，可右侧确认）、泸州老窖（警惕价值陷阱）、中国建筑（深度价值非典型错杀）；</li>
+      <li><b>接近区间上沿（可挂单等回调）</b>：海康威视、中国石化、格力电器、海天味业、建设银行、山西汾酒；</li>
+      <li><b>今日强势勿追</b>：工业富联+5.8%、药明康德+4.9%、紫金/洛钼+4%，已远离低吸区间。</li>
+    </ul>
+    <div class="note">说明：判断基于观察池尽调结论（《长期观察池_55标的_20260804》《低吸标的联合尽调报告_20260804》）叠加今日实时行情，仅供研究参考。</div>
+  </div>
+
+  <!-- 一、市场状态 -->
+  <div class="card">
+    <h2>一、今日早盘市场状态</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num up">+0.54%</div><div class="lbl">上证指数 3842.84</div></div>
+      <div class="stat"><div class="num up">+0.17%</div><div class="lbl">深证成指 13909.19</div></div>
+      <div class="stat"><div class="num down">-0.93%</div><div class="lbl">创业板指 3456.51</div></div>
+      <div class="stat"><div class="num up">+2.00%</div><div class="lbl">科创50 1648.61</div></div>
+    </div>
+    <div class="grid4" style="grid-template-columns:repeat(3,1fr);">
+      <div class="stat"><div class="num" style="font-size:17px;">1.10万亿</div><div class="lbl">两市成交（较昨日+1891亿）</div></div>
+      <div class="stat"><div class="num up" style="font-size:17px;">3826 / 50</div><div class="lbl">上涨家数 / 涨停家数</div></div>
+      <div class="stat"><div class="num down" style="font-size:17px;">1420 / 2</div><div class="lbl">下跌家数 / 跌停家数</div></div>
+    </div>
+    <h3>结构诊断</h3>
+    <table>
+      <tr><th style="width:30%;">方向</th><th>今日表现</th><th>性质</th></tr>
+      <tr><td><b>科技算力</b>（AI服务器/半导体）</td><td class="up">工业富联+5.76%、北方华创+2.26%、中芯国际+1.14%、长电+1.10%、深科技+1.37%、中科曙光+2.47%</td><td>主线进攻，资金主攻方向</td></tr>
+      <tr><td><b>光模块/CPO</b>（谷歌概念）</td><td class="down">中际旭创-11.15%、新易盛-9.07%、天孚通信-5.33%</td><td>科技内部杀跌，情绪性调整（海外算力链波动传导）</td></tr>
+      <tr><td><b>有色/资源</b></td><td class="up">紫金+4.02%、洛阳钼业+4.01%、中国铝业+1.04%</td><td>商品价格驱动，强势不低吸</td></tr>
+      <tr><td><b>医药/CXO</b></td><td class="up">药明康德+4.87%（连续大涨）</td><td>事件驱动（1260H诉讼进展），追高风险大</td></tr>
+      <tr><td><b>红利防御</b>（银行/电力/石油）</td><td class="down">建行-1.19%、交行-0.71%、长电-1.38%、川投-1.82%、海油-1.77%、石化-1.37%</td><td><b>风格切换被卖出 → 错杀温床</b></td></tr>
+      <tr><td><b>消费/白酒</b></td><td class="down">泸州老窖-1.83%、山西汾酒-0.99%、茅台-0.86%、片仔癀-1.30%</td><td>资金流出，多数未入区间，属阴跌非急跌</td></tr>
+    </table>
+    <div class="warn"><b>市场档位判断：震荡-切换档。</b>广度健康（69%上涨、放量）说明不是系统性风险；但主线集中在科技，红利/消费被抽血。此环境适合"低吸被错杀的高安全边际品种"，不适合追高强势科技。操作上控制总仓位、分批建仓。</div>
+  </div>
+
+  <!-- 二、55只全景 -->
+  <div class="card">
+    <h2>二、观察池55只早盘全景（实时）</h2>
+    <div class="chartbox" id="chartAll"></div>
+    <div class="note">红=上涨 绿=下跌（A股惯例），按今日涨跌幅排序。数据：2026-08-05 约10:13。</div>
+    <div class="switch" onclick="toggleTable()">📊 切换为表格查看精确值</div>
+    <div id="tblWrap" class="hidden" style="overflow-x:auto;"></div>
+  </div>
+
+  <!-- 三、错杀判定标准 -->
+  <div class="card">
+    <h2>三、"错杀"甄别标准（对照尽调结论）</h2>
+    <p>不是"跌了就能低吸"。本次筛选同时满足以下条件才纳入：</p>
+    <table>
+      <tr><th style="width:34%;">条件</th><th>说明</th></tr>
+      <tr><td>① 基本面无恶化</td><td>已通过8/4联合尽调（排除三安/五粮液/西电/紫光/兴业）；业绩预告/季报未现恶化信号</td></tr>
+      <tr><td>② 今日下跌原因可归因</td><td>属资金风格切换、板块情绪拖累等"非基本面因素"；有突发利空的剔除</td></tr>
+      <tr><td>③ 价格进入/接近低吸区间</td><td>对照8/4尽调纠正后的"高安全边际长线区间"</td></tr>
+      <tr><td>④ 风险等级可控</td><td>优先低风险/极低风险品种；中等偏高风险需瑕疵可控</td></tr>
+    </table>
+    <div class="warn"><b>反例提醒：</b>泸州老窖虽已入区间，但Q4净利-96%、券商下调预测，属于"便宜但有基本面瑕疵"，不是纯粹错杀；中国建筑PB 0.4但业绩仍下行（降级观察），属深度价值而非错杀。二者不可与云南白药、长江电力等同对待。</div>
+  </div>
+
+  <!-- 四、错杀标的明细 -->
+  <div class="card">
+    <h2>四、重点错杀标的明细（按梯队）</h2>
+
+    <div class="sec">✅ 第一梯队：已入区间 · 基本面稳 · 错杀属性清晰（午盘可分批）</div>
+    <table>
+      <tr><th>标的</th><th>现价</th><th>今日</th><th>低吸区间</th><th>PE</th><th>风险</th><th>错杀归因</th><th>关注点</th></tr>
+      <tr>
+        <td><b>云南白药</b><br><span style="color:#8a97a8;">000538</span></td>
+        <td>50.82</td><td class="down">-1.70%</td><td>47～51 ✅</td><td>17.3</td><td><span class="pill pill-d">低</span></td>
+        <td>红利资金切出，无个股利空</td><td>股息率5.0%、分红率90%、营收35年连增；股价在区间中上部，可分2-3批</td>
+      </tr>
+      <tr>
+        <td><b>长江电力</b><br><span style="color:#8a97a8;">600900</span></td>
+        <td>27.91</td><td class="down">-1.38%</td><td>26.5～28 ✅</td><td>18.9</td><td><span class="pill pill-d">极低</span></td>
+        <td>红利防御被风格卖出</td><td>26Q1净利+30.5%、分红率70.9%、大股东增持45亿；回调即买点，可挂区间中下沿</td>
+      </tr>
+      <tr>
+        <td><b>中国海油</b><br><span style="color:#8a97a8;">600938</span></td>
+        <td>31.00</td><td class="down">-1.77%</td><td>28～31 ✅</td><td>11.8</td><td><span class="pill pill-c">中等</span></td>
+        <td>油价情绪波动+红利切换</td><td>桶油成本27.8美元、产量增长；刚触及区间上沿，油价大跌是主要风险，宜挂区间下沿分批</td>
+      </tr>
+      <tr>
+        <td><b>川投能源</b><br><span style="color:#8a97a8;">600674</span></td>
+        <td>15.09</td><td class="down">-1.82%</td><td>14～15.2 ✅</td><td>15.6</td><td><span class="pill pill-d">低</span></td>
+        <td>红利防御资金流出</td><td>雅砻江水电、股息率3.3%、现金流为正；区区间中上部，等15以下再补</td>
+      </tr>
+      <tr>
+        <td><b>中国中车</b><br><span style="color:#8a97a8;">601766</span></td>
+        <td>5.99</td><td class="down">-0.66%</td><td>5.5～6.0 ✅</td><td>12.7</td><td><span class="pill pill-d">低</span></td>
+        <td>低估值蓝筹被风格忽视</td><td>在手订单3571亿、分红率50%、大股东增持1.5-3亿；Q4单季-37.5%为瑕疵，跌回5.9下方分批</td>
+      </tr>
+    </table>
+
+    <div class="sec">⚠️ 第二梯队：已入区间 · 有瑕疵/需甄别（谨慎或右侧确认）</div>
+    <table>
+      <tr><th>标的</th><th>现价</th><th>今日</th><th>低吸区间</th><th>PE</th><th>风险</th><th>错杀归因</th><th>操作建议</th></tr>
+      <tr>
+        <td><b>立讯精密</b><br><span style="color:#8a97a8;">002475</span></td>
+        <td>53.34</td><td class="down">-3.86%</td><td>50～55 ✅</td><td>23.9</td><td><span class="pill pill-b">中等偏低</span></td>
+        <td><b>光模块/CPO板块情绪拖累</b>（谷歌概念-11%）+7/9港股上市破发余波</td>
+        <td>基本面未恶化（26Q1营收+35.8%、净利+20.2%，中报预增18~22%）；但A/H价差与苹果依赖(56.7%)是存量担忧。<b>建议右侧确认</b>：等午后股价不再创日内新低、板块止跌信号出现再分批，避免接飞刀</td>
+      </tr>
+      <tr>
+        <td><b>泸州老窖</b><br><span style="color:#8a97a8;">000568</span></td>
+        <td>87.67</td><td class="down">-1.83%</td><td>78～88 ✅</td><td>13.0</td><td><span class="pill pill-c">中等（负面较多）</span></td>
+        <td>白酒资金流出</td><td>股息率6.7%、分红率78.5%是亮点；但Q4净利-96%、券商下调预测。<b>非典型错杀，警惕价值陷阱</b>，只可极小仓位或等业绩企稳信号</td>
+      </tr>
+      <tr>
+        <td><b>中国建筑</b><br><span style="color:#8a97a8;">601668</span></td>
+        <td>4.60</td><td class="down">-0.86%</td><td>4.2～4.7 ✅</td><td>5.0</td><td><span class="pill pill-c">中等</span></td>
+        <td>低估值蓝筹被忽视</td><td>PB 0.4深度破净、分红率创新高；但业绩仍下行（降级观察标的）。<b>深度价值非典型错杀</b>，等地产企稳信号</td>
+      </tr>
+    </table>
+
+    <div class="sec">⏳ 第三梯队：接近区间上沿 · 可挂单等回调（差1-2%内）</div>
+    <table>
+      <tr><th>标的</th><th>现价</th><th>今日</th><th>低吸区间</th><th>距区间上沿</th><th>备注</th></tr>
+      <tr><td>海康威视 002415</td><td>38.33</td><td class="down">-0.78%</td><td>35～38</td><td class="up">+0.9%</td><td>中报净利+39.6%、低风险，最接近的优质错杀候选</td></tr>
+      <tr><td>中国石化 600028</td><td>5.03</td><td class="down">-1.37%</td><td>4.7～5.0</td><td class="up">+0.6%</td><td>观察池明确标注"H1盈警属错杀"、PB 0.75破净</td></tr>
+      <tr><td>格力电器 000651</td><td>40.16</td><td class="down">-0.89%</td><td>37～40</td><td class="up">+0.4%</td><td>股息率7.4%、承诺分红≥50%净利</td></tr>
+      <tr><td>海天味业 603288</td><td>36.83</td><td class="down">-1.34%</td><td>33～36.5</td><td class="up">+0.9%</td><td>业绩创新高、派息率113%；生虫事件舆情为隐患</td></tr>
+      <tr><td>建设银行 601939</td><td>9.98</td><td class="down">-1.19%</td><td>9.0～9.8</td><td class="up">+1.8%</td><td>8/3起资金切换错杀，不良率1.31%</td></tr>
+      <tr><td>山西汾酒 600809</td><td>120.64</td><td class="down">-0.99%</td><td>105～118</td><td class="up">+2.2%</td><td>股息率5.4%，26Q1利润-19%需观察</td></tr>
+    </table>
+  </div>
+
+  <!-- 五、低吸计划 -->
+  <div class="card">
+    <h2>五、午盘低吸执行计划（条件 → 动作 → 风控）</h2>
+    <div class="plan"><b>总原则：</b>今日为"切换档"市场，总仓位控制在5-6成以内；低吸标的单只不超过总仓位10-15%；宁可分批，不一把梭；优先第一梯队，第二梯队右侧确认。</div>
+
+    <h3>1. 第一梯队（防御错杀，可分批左侧）</h3>
+    <table>
+      <tr><th>标的</th><th>参考买入区</th><th>分批路径</th><th>止损/失效</th></tr>
+      <tr><td>云南白药</td><td>50.5～51.0</td><td>50.8建1/2仓，49.5-50补1/2</td><td>跌破49（区间下沿下方2%）止损或观察</td></tr>
+      <tr><td>长江电力</td><td>27.5～27.9</td><td>27.9建1/2，27.3-27.6补1/2</td><td>跌破26.5（区间下沿）离场</td></tr>
+      <tr><td>中国海油</td><td>30.5～31.0</td><td>31.0试1/3，30.2-30.5加1/3，29.5-30再加1/3</td><td>跌破29（区间下方4%）止损；油价单日暴跌>3%暂缓</td></tr>
+      <tr><td>川投能源</td><td>14.8～15.1</td><td>15.0建1/2，14.6-14.8补1/2</td><td>跌破14（区间下沿）离场</td></tr>
+      <tr><td>中国中车</td><td>5.90～6.00</td><td>5.98试1/2，5.85-5.90加1/2</td><td>跌破5.7止损</td></tr>
+    </table>
+
+    <h3>2. 第二梯队（甄别后右侧）</h3>
+    <table>
+      <tr><th>标的</th><th>触发条件（右侧确认）</th><th>参考买入区</th><th>失效条件</th></tr>
+      <tr><td>立讯精密</td><td>午后止跌回升、日内不再创新低，且光模块板块（中际旭创等）跌幅收窄</td><td>53.0以下分批，52-53试1/3</td><td>跌破52（4/30起平台）或出现公司层面利空则放弃</td></tr>
+      <tr><td>泸州老窖</td><td>仅建议极小仓（≤5%总仓）博弈股息价值，或等中报确认毛利率/动销企稳</td><td>85-88</td><td>跌破85且放量则视为价值陷阱确认，离场</td></tr>
+      <tr><td>中国建筑</td><td>等地产数据/政策企稳信号（降级观察标的，非紧急）</td><td>4.3-4.6</td><td>PB跌破0.38以下先观望</td></tr>
+    </table>
+
+    <h3>3. 第三梯队（挂单等回调，不追）</h3>
+    <p>海康威视（38.0下方）、格力电器（40.0下方）、中国石化（5.0下方）、海天味业（36.5下方）、建设银行（9.8下方）——若午后回调入区间再考虑，不主动追。</p>
+
+    <h3>4. 明确不低吸（今日强势/高位）</h3>
+    <p><span class="pill pill-a">工业富联+5.8%</span> <span class="pill pill-a">药明康德+4.9%</span> <span class="pill pill-a">紫金+4.0%</span> <span class="pill pill-a">洛钼+4.0%</span> <span class="pill pill-a">中科曙光+2.5%</span> <span class="pill pill-a">北方华创+2.3%</span> —— 均已远离低吸区间，追高风险大于机会；<span class="pill pill-b">三安光电/五粮液</span>（已排除）<span class="pill pill-b">中兴/牧原/汇川</span>（降级观察，未到信号）同样不低吸。</p>
+
+    <div class="warn"><b>失效条件（计划作废）：</b>① 午后大盘放量下杀、跌停家数显著扩大（>20家）→ 全部暂停低吸；② 光模块/CPO板块继续跌停潮，且扩散至整个科技板块 → 立讯计划作废；③ 任何低吸标的出现公司层面突发利空（公告/处罚/业绩变脸）→ 立即放弃该标的。</div>
+  </div>
+
+  <!-- 六、观察清单 -->
+  <div class="card">
+    <h2>六、午后重点观察清单</h2>
+    <table>
+      <tr><th>观察项</th><th>关注信号</th><th>意义</th></tr>
+      <tr><td>光模块板块（中际旭创/新易盛）</td><td>午后跌幅是否收窄、能否止跌</td><td>决定立讯精密等AI硬件链能否低吸</td></tr>
+      <tr><td>红利方向（银行/电力/石油）</td><td>流出是否延续</td><td>第一梯队标的的买点深浅</td></tr>
+      <tr><td>两市成交额</td><td>能否维持1.1万亿以上</td><td>切换市的有效性</td></tr>
+      <tr><td>海康威视/格力/石化</td><td>是否回落入区间</td><td>第三梯队挂单成交与否</td></tr>
+      <tr><td>泸州老窖</td><td>中报预告及动销数据</td><td>价值陷阱确认/证伪</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="disc">
+      <b>⚠️ 风险提示与免责声明：</b>本文/本对话内容仅为基于公开信息的分析讨论，不构成任何投资建议、理财建议或交易邀约。市场有风险，投资需谨慎。文中所涉标的、价位、策略均仅供研究参考，不保证分析准确性或完整性，不代表对任何投资结果的承诺。投资者应根据自身风险承受能力、投资目标和财务状况独立做出决策并承担相应风险。过往业绩不预示未来表现。数据来源：腾讯行情接口（2026-08-05盘中）、NeoData金融数据、腾讯自选股；行情数据为查询时点快照，以实际盘面为准。
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============ 55只全景柱状图 ============
+var allData = [
+  {n:'立讯精密',p:53.34,v:-3.86},{n:'泸州老窖',p:87.67,v:-1.83},{n:'川投能源',p:15.09,v:-1.82},{n:'中国海油',p:31.00,v:-1.77},
+  {n:'云南白药',p:50.82,v:-1.70},{n:'国电南瑞',p:24.62,v:-1.40},{n:'长江电力',p:27.91,v:-1.38},{n:'中国石化',p:5.03,v:-1.37},
+  {n:'海天味业',p:36.83,v:-1.34},{n:'片仔癀',p:135.71,v:-1.30},{n:'建设银行',p:9.98,v:-1.19},{n:'山西汾酒',p:120.64,v:-0.99},
+  {n:'格力电器',p:40.16,v:-0.89},{n:'贵州茅台',p:1316.99,v:-0.86},{n:'中国建筑',p:4.60,v:-0.86},{n:'华能国际',p:7.15,v:-0.83},
+  {n:'比亚迪',p:90.40,v:-0.82},{n:'海康威视',p:38.33,v:-0.78},{n:'交通银行',p:6.99,v:-0.71},{n:'中国中车',p:5.99,v:-0.66},
+  {n:'汇川技术',p:63.68,v:-0.66},{n:'阳光电源',p:105.67,v:-0.63},{n:'海尔智家',p:22.38,v:-0.49},{n:'国投电力',p:14.96,v:-0.47},
+  {n:'伊利股份',p:26.25,v:-0.46},{n:'中国神华',p:42.99,v:-0.37},{n:'福耀玻璃',p:56.75,v:-0.32},{n:'陕西煤业',p:23.85,v:-0.29},
+  {n:'长城汽车',p:16.03,v:-0.25},{n:'双汇发展',p:25.46,v:-0.24},{n:'恒瑞医药',p:53.34,v:-0.15},{n:'中国平安',p:53.89,v:-0.07},
+  {n:'迈瑞医疗',p:154.23,v:-0.03},{n:'亨通光电',p:50.27,v:0.00},{n:'美的集团',p:85.15,v:0.01},{n:'中兴通讯',p:34.39,v:0.06},
+  {n:'水晶光电',p:25.96,v:0.19},{n:'三一重工',p:19.57,v:0.20},{n:'中信证券',p:28.06,v:0.21},{n:'歌尔股份',p:23.26,v:0.65},
+  {n:'万华化学',p:74.15,v:0.69},{n:'豪威集团',p:88.68,v:0.83},{n:'中国铝业',p:9.68,v:1.04},{n:'长电科技',p:66.13,v:1.10},
+  {n:'中芯国际',p:122.48,v:1.14},{n:'广发证券',p:21.17,v:1.24},{n:'深科技',p:37.04,v:1.37},{n:'牧原股份',p:38.55,v:1.39},
+  {n:'宁德时代',p:403.70,v:2.18},{n:'北方华创',p:702.52,v:2.26},{n:'中科曙光',p:87.66,v:2.47},{n:'洛阳钼业',p:19.96,v:4.01},
+  {n:'紫金矿业',p:33.41,v:4.02},{n:'药明康德',p:148.24,v:4.87},{n:'工业富联',p:63.38,v:5.76}
+];
+var colors = allData.map(function(d){ return d.v >= 0 ? '#d9382f' : '#0a9c6d'; });
+echarts.init(document.getElementById('chartAll')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(ps){ var p=ps[0]; return p.name + '：' + p.value + '%'; } },
+  grid: { left: 40, right: 16, top: 10, bottom: 90 },
+  xAxis: { type: 'category', data: allData.map(function(d){return d.n;}), axisLabel: { rotate: 60, fontSize: 10, interval: 0 } },
+  yAxis: { type: 'value', name: '涨跌幅%', axisLabel: { formatter: '{value}%' } },
+  series: [{ type: 'bar', data: allData.map(function(d,i){ return { value: d.v, itemStyle: { color: colors[i], borderRadius: [2,2,0,0] } }; }), barMaxWidth: 16 }]
+});
+
+// ============ 错杀标的 vs 低吸区间 ============
+var zoneData = [
+  { n: '云南白药', price: 50.82, lo: 47, hi: 51 },
+  { n: '长江电力', price: 27.91, lo: 26.5, hi: 28 },
+  { n: '中国海油', price: 31.00, lo: 28, hi: 31 },
+  { n: '川投能源', price: 15.09, lo: 14, hi: 15.2 },
+  { n: '中国中车', price: 5.99, lo: 5.5, hi: 6.0 },
+  { n: '立讯精密', price: 53.34, lo: 50, hi: 55 },
+  { n: '泸州老窖', price: 87.67, lo: 78, hi: 88 },
+  { n: '中国建筑', price: 4.60, lo: 4.2, hi: 4.7 }
+];
+var zoneNames = zoneData.map(function(z){ return z.n; });
+var zoneChart = echarts.init(document.getElementById('chartZone'));
+zoneChart.setOption({
+  tooltip: { trigger: 'axis', formatter: function(ps){ return ps[0].name; } },
+  grid: { left: 90, right: 60, top: 10, bottom: 20 },
+  xAxis: { type: 'value', scale: true },
+  yAxis: { type: 'category', data: zoneNames, axisLabel: { fontSize: 12 } },
+  series: [
+    { name: '低吸区间', type: 'bar', barWidth: 12, itemStyle: { color: '#c3d6ea' }, data: zoneData.map(function(z){ return [z.lo, z.hi - z.lo]; }) },
+    { name: '现价', type: 'scatter', symbolSize: 9, itemStyle: { color: '#d9382f' }, data: zoneData.map(function(z){ return [z.price, z.n]; }) }
+  ]
+});
+</script>
+
+<script>
+// ============ 表格切换 ============
+var tblHtml = '<table><tr><th>标的</th><th>现价</th><th>今日涨跌幅</th><th>低吸区间</th></tr>';
+allData.forEach(function(d){
+  var match = [{n:'云南白药',z:'47~51'},{n:'长江电力',z:'26.5~28'},{n:'中国海油',z:'28~31'},{n:'川投能源',z:'14~15.2'},{n:'中国中车',z:'5.5~6.0'},{n:'立讯精密',z:'50~55'},{n:'泸州老窖',z:'78~88'},{n:'中国建筑',z:'4.2~4.7'}].find(function(m){ return m.n === d.n; });
+  var zone = match ? match.z : '--';
+  tblHtml += '<tr><td>' + d.n + '</td><td>' + d.p + '</td><td class="' + (d.v>=0?'up':'down') + '">' + d.v + '%</td><td>' + zone + '</td></tr>';
+});
+tblHtml += '</table>';
+document.getElementById('tblWrap').innerHTML = tblHtml;
+function toggleTable(){
+  var w = document.getElementById('tblWrap');
+  w.classList.toggle('hidden');
+}
+</script>
+
+</body>
+</html>
