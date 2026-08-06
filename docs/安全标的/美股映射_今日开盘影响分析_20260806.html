@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射 · 55只标的今日开盘影响分析（2026-08-06）</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --line:#e4e7ec;
+    --ink:#1f2329; --sub:#6b7280; --mut:#9aa0a8;
+    --red:#d4342c; --redBg:#fdecea; --green:#0a9b5c; --greenBg:#e7f6ef;
+    --blue:#2563eb; --blueBg:#eaf1fe; --amber:#b45309; --amberBg:#fdf3e3;
+    --purple:#6d28d9; --purpleBg:#f3edfd;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;padding:28px 16px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  /* 头部 */
+  .head{background:linear-gradient(135deg,#1f2937,#374151);color:#fff;border-radius:14px;padding:26px 30px;margin-bottom:20px;}
+  .head h1{font-size:22px;font-weight:700;letter-spacing:.5px;}
+  .head .sub{margin-top:6px;font-size:13px;color:#c7cdd6;}
+  .head .tagline{margin-top:12px;font-size:13px;color:#e5e7eb;border-left:3px solid #f59e0b;padding-left:10px;}
+  /* 通用卡片 */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:18px;}
+  .card h2{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .card h2 .num{background:var(--blue);color:#fff;font-size:12px;border-radius:6px;padding:1px 8px;font-weight:600;}
+  /* 行情回顾双卡 */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+  .duo .night{border-radius:12px;padding:18px 20px;border:1px solid var(--line);}
+  .n1{background:#fff5f5;border-color:#f3c6c2;}
+  .n2{background:#f5f8f6;border-color:#c6e3d4;}
+  .night h3{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+  .badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;}
+  .b-red{background:var(--red);color:#fff;}
+  .b-green{background:var(--green);color:#fff;}
+  .b-mix{background:#6b7280;color:#fff;}
+  .night table{width:100%;font-size:12.5px;border-collapse:collapse;}
+  .night td{padding:3.5px 0;border-bottom:1px dashed var(--line);}
+  .night tr:last-child td{border-bottom:none;}
+  .night td.k{color:var(--sub);}
+  .night td.v{text-align:right;font-variant-numeric:tabular-nums;}
+  .up{color:var(--red);font-weight:600;}
+  .down{color:var(--green);font-weight:600;}
+  .flat{color:var(--sub);}
+  /* 要点列表 */
+  .keys li{margin:7px 0 7px 0;padding-left:22px;position:relative;font-size:13.5px;list-style:none;}
+  .keys li::before{content:"◆";position:absolute;left:2px;color:var(--blue);font-size:11px;top:3px;}
+  .keys li b{font-weight:600;}
+  /* 映射表 */
+  .grp{border-radius:10px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;}
+  .grp-head{background:#eef1f5;padding:9px 14px;font-size:13.5px;font-weight:700;display:flex;justify-content:space-between;align-items:center;}
+  .grp-head .n{font-size:11px;font-weight:600;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:20px;padding:1px 9px;}
+  table.map{width:100%;border-collapse:collapse;font-size:12.5px;}
+  table.map th{background:#f8fafc;font-size:11.5px;color:var(--sub);text-align:left;padding:7px 12px;border-bottom:1px solid var(--line);font-weight:600;}
+  table.map td{padding:7px 12px;border-bottom:1px solid #f0f2f5;vertical-align:top;}
+  table.map tr:last-child td{border-bottom:none;}
+  .t-now{white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums;}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 8px;border-radius:20px;white-space:nowrap;}
+  .t-strong{background:var(--red);color:#fff;}
+  .t-good{background:var(--redBg);color:var(--red);}
+  .t-midgood{background:var(--blueBg);color:var(--blue);}
+  .t-mid{background:#eef1f5;color:var(--sub);}
+  .t-midbad{background:var(--amberBg);color:var(--amber);}
+  .t-bad{background:var(--greenBg);color:var(--green);}
+  .src{color:var(--sub);font-size:12px;}
+  .op{font-size:12px;}
+  /* 观察信号 */
+  .signal{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .sig{background:#f8fafc;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:8px;padding:10px 14px;font-size:13px;}
+  .sig b{display:block;color:var(--blue);font-size:12.5px;margin-bottom:2px;}
+  /* 风险 */
+  .risk li{margin:6px 0 6px 18px;font-size:13.5px;list-style:none;position:relative;padding-left:20px;}
+  .risk li::before{content:"⚠";position:absolute;left:0;top:0;font-size:12px;}
+  .risk .warn{color:var(--amber);font-weight:600;}
+  .foot{text-align:center;color:var(--mut);font-size:11.5px;padding:10px 0 20px;}
+  @media (max-width:760px){.duo,.signal{grid-template-columns:1fr;} .head{padding:20px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <h1>美股映射 · 55只标的今日开盘影响分析</h1>
+    <div class="sub">长期观察池（2026-08-04 扩展版）｜报告时点：2026-08-06 08:00（A股开盘前）｜数据源：美东8/4、8/5收盘行情</div>
+    <div class="tagline">一句话结论：美股"科技暴涨夜 → 科技分化夜"传导至A股，今日大概率是 <b style="color:#fbbf24">半导体/算力/光通信高位分歧、资金切向银行/医药/资源蓝筹</b> 的"风格切换日"；油价暴跌是另一条主线（油服利空、火电/消费受益）。</div>
+  </div>
+
+  <!-- 一、行情回顾 -->
+  <div class="card">
+    <h2><span class="num">01</span>美股两夜行情回顾</h2>
+    <div class="duo">
+      <div class="night n1">
+        <h3>🌙 美东 8/4（周二）暴涨夜 <span class="badge b-red">半导体/光通信狂飙</span></h3>
+        <table>
+          <tr><td class="k">道指</td><td class="v up">+1.71% · 54085.88（首破54000）</td></tr>
+          <tr><td class="k">标普500</td><td class="v up">+1.79% · 7736.52（首破7700，历史新高）</td></tr>
+          <tr><td class="k">纳指</td><td class="v up">+2.59% · 26584.99</td></tr>
+          <tr><td class="k">费城半导体</td><td class="v up">+6.5%（7月曾暴跌20.6%，连涨4日）</td></tr>
+          <tr><td class="k">存储三巨头</td><td class="v up">闪迪+10.8% / 英特尔+10.8% / SK海力士+8.2% / 美光+7.6%</td></tr>
+          <tr><td class="k">半导体个股</td><td class="v up">ARM+17.4% / 迈威尔+12.8% / 高通+7.3% / AMD+7% / 博通+6%</td></tr>
+          <tr><td class="k">光通信</td><td class="v up">应用光电+19.4% / Coherent+12.4% / 康宁+9.1%</td></tr>
+          <tr><td class="k">AI软件/七巨头</td><td class="v up">Palantir+29.5% / 英伟达+2.6% / 苹果+2.0% / 特斯拉+1.6%</td></tr>
+          <tr><td class="k">油价（WTI）</td><td class="v down">-5.7% · 75.77美元（霍尔木兹谈判进展）</td></tr>
+          <tr><td class="k">贵金属</td><td class="v up">金+1.07% · 4134美元 / 银+3.27% · 59.75美元</td></tr>
+          <tr><td class="k">中概金龙</td><td class="v down">-0.35%</td></tr>
+          <tr><td class="k">美联储9月加息概率</td><td class="v up">67.2% → 56.9%</td></tr>
+        </table>
+      </div>
+      <div class="night n2">
+        <h3>🌤 美东 8/5（周三）分化夜 <span class="badge b-mix">科技回调 · 蓝筹新高</span></h3>
+        <table>
+          <tr><td class="k">道指</td><td class="v up">+0.49% · 54349.12（连续第2日新高）</td></tr>
+          <tr><td class="k">标普500</td><td class="v down">-0.17% · 7723.55</td></tr>
+          <tr><td class="k">纳指</td><td class="v down">-0.83% · 26363.44（回吐部分涨幅）</td></tr>
+          <tr><td class="k">领涨板块</td><td class="v up">材料 +1.54% ｜ 医疗 +1.34%</td></tr>
+          <tr><td class="k">领跌板块</td><td class="v down">通信服务 -2.39% ｜ 能源 -2.03%</td></tr>
+        </table>
+        <div style="font-size:12px;color:var(--sub);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;">
+          解读：连续暴涨后科技股获利回吐，资金转向<b>材料/医疗/道指蓝筹</b>（银行、航空、周期）。油价继续承压拖累能源板块。<b>这是典型的"高位切换"信号。</b>
+        </div>
+      </div>
+    </div>
+    <div class="keys">
+      <ul>
+        <li><b>关键前提①</b>：A股半导体指数昨日（8/5）已大涨 <b class="up">+6.49%</b>，提前消化了美东8/4的暴涨 —— 今日再高开即是<b>二次兑现</b>，追高风险明显大于机会。</li>
+        <li><b>关键前提②</b>：美联储9月<b>加息</b>概率仍有 56.9%（非降息周期），油价大跌才将其从67.2%压低 —— 成长股估值天花板仍在，反弹是修复而非反转。</li>
+        <li><b>关键前提③</b>：周五（8/7）公布美国非农就业数据，为本周最大变量，今日尾盘可能出现避险性减仓。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 二、核心传导结论 -->
+  <div class="card">
+    <h2><span class="num">02</span>今日核心传导结论（4条主线）</h2>
+    <div class="keys">
+      <ul>
+        <li><b>主线一 · 科技高位分歧</b>：美东8/4半导体/存储/光通信暴涨已被A股昨日反应（半导体+6.49%），昨夜美股科技回落 → 今日<b>半导体、算力、光模块大概率高开冲高后分化</b>，强势品种（存储链）回踩是机会，情绪品种（高PE）注意兑现。</li>
+        <li><b>主线二 · 油价暴跌双刃剑</b>：WTI -5.7%至75.77美元 → <b>利空</b>：中国海油、中国石化（桶油利润）；<b>利好</b>：华能国际（火电燃料成本）、航空/物流链；同时压低美联储加息预期，整体利多风险资产。</li>
+        <li><b>主线三 · 金银高位与材料领涨</b>：金4134美元/银59.75美元高位 + 美材料板块+1.54%领涨 → <b>紫金、洛钼、中铝</b>等资源股偏正面，但注意8/5盘中金银已现转跌，追高需谨慎。</li>
+        <li><b>主线四 · 风格切换承接</b>：美银行股全线涨+道指新高 → <b>A股银行、券商、高股息</b>（建行、交行、中信、广发、平安）今日有望承接科技流出的资金；美医疗+1.34% → <b>药明康德、恒瑞、迈瑞</b>受益。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 三、55只标的映射 -->
+  <div class="card">
+    <h2><span class="num">03</span>55只标的开盘影响映射</h2>
+    <p style="font-size:12px;color:var(--sub);margin-bottom:14px;">影响评级：<span class="tag t-strong">强利好</span> <span class="tag t-good">利好</span> <span class="tag t-midgood">中性偏多</span> <span class="tag t-mid">中性</span> <span class="tag t-midbad">中性偏空</span> <span class="tag t-bad">利空</span>　（预期开盘为8/6日竞合价参考，非精确预测）</p>
+
+    <!-- 通信算力 -->
+    <div class="grp">
+      <div class="grp-head">① 通信 / 算力（2只）<span class="n">光通信映射最强</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">工业富联</td><td><span class="tag t-good">利好</span></td><td class="src">英伟达+2.6%、AI服务器H1预增93~101%、Q1经营现金流+250亿</td><td class="op"><b>高开+1~3%</b>。英伟达链逻辑最硬，但昨日板块已大涨，高开勿追，回踩48~55安全区分批。</td></tr>
+        <tr><td class="t-now">亨通光电</td><td><span class="tag t-strong">强利好</span></td><td class="src">应用光电+19.4%、Coherent+12.4%、康宁+9.1% → 空芯光纤直接映射</td><td class="op"><b>高开（光通信最强映射）</b>。空芯光纤题材+光纤涨价，短线弹性最大；但已连续上涨，谨防冲高兑现，42~47区间才有安全边际。</td></tr>
+      </table>
+    </div>
+
+    <!-- 科技半导体 -->
+    <div class="grp">
+      <div class="grp-head">② 科技 / 半导体（9只）<span class="n">昨日+6.49%后今日分歧</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">深科技</td><td><span class="tag t-good">利好</span></td><td class="src">存储链最直接映射：闪迪+10.8%、SK海力士+8.2%、美光+7.6%</td><td class="op"><b>高开偏强</b>。存储涨价周期逻辑最硬，若高开后回踩33~36.5区间反而是低吸机会。</td></tr>
+        <tr><td class="t-now">长电科技</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">先进封装+AI，中报预增63~102%；费半连涨4日</td><td class="op"><b>高开分歧</b>。基本面支撑但PE 70.8倍偏高，冲高勿追，58~65区间观察承接。</td></tr>
+        <tr><td class="t-now">中科曙光</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">算力+液冷全栈，与美股AI算力情绪联动</td><td class="op"><b>高开分歧</b>。算力叙事仍在，但依赖投资收益，追高谨慎，78~85区间。</td></tr>
+        <tr><td class="t-now">立讯精密</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">苹果+2.0%，AI连接+汽车业务</td><td class="op"><b>高开+1%左右</b>。苹果链顺风，中报预增18~22%，50~55区间安全。</td></tr>
+        <tr><td class="t-now">水晶光电</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">苹果链+AR光学，昨日回调33%后有修复</td><td class="op"><b>高开</b>。AR眼镜叙事+苹果上涨，23~25.5区间，负债率低质地稳。</td></tr>
+        <tr><td class="t-now">海康威视</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">中报净利+39.6%、创新业务+28.9%；美股映射弱</td><td class="op"><b>平开~微高开</b>。基本面独立强势，AI叙事有加成，35~38区间为安全边际。</td></tr>
+        <tr><td class="t-now">豪威集团</td><td><span class="tag t-mid">中性</span></td><td class="src">CIS与美股半导体联动，但Q1净利-42%业绩弱</td><td class="op"><b>高开分歧</b>。跟随板块但业绩未验证，注意兑现，78~86区间。</td></tr>
+        <tr><td class="t-now">北方华创</td><td><span class="tag t-mid">中性</span></td><td class="src">设备龙头订单排至2027，但PE 89倍处历史99%分位</td><td class="op"><b>高开后回落压力大</b>。昨日板块+6.49%后今日美股科技回落，估值极贵品种最易被砸，580~650才有安全边际，严禁追高。</td></tr>
+        <tr><td class="t-now">中芯国际</td><td><span class="tag t-midbad">中性偏空</span></td><td class="src">PE 205倍、出口管制压制，纯情绪驱动</td><td class="op"><b>高开兑现概率大</b>。短线情绪品种，昨日大涨后今日获利盘最重，105~118区间观察，不追。</td></tr>
+      </table>
+    </div>
+
+    <!-- 高端制造 -->
+    <div class="grp">
+      <div class="grp-head">③ 高端制造 / 电力设备（4只）<span class="n">内需为主 · 影响有限</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">歌尔股份</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">AI眼镜代工70%、Palantir+29.5%带动AI硬件情绪、苹果+2%</td><td class="op"><b>高开</b>。AI眼镜叙事+苹果链，净利10季连增，20.5~22.8区间。</td></tr>
+        <tr><td class="t-now">三一重工</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">卡特彼勒财报强劲（支撑美东8/4道指），工程机械外需映射</td><td class="op"><b>平开~微高开</b>。海外占比63%、提价逻辑，16.5~18.3区间。</td></tr>
+        <tr><td class="t-now">中国中车</td><td><span class="tag t-mid">中性</span></td><td class="src">内需基建属性，与美股无关</td><td class="op"><b>平开</b>。在手订单3571亿、分红50%，防御属性，5.5~6.0区间。</td></tr>
+        <tr><td class="t-now">国电南瑞</td><td><span class="tag t-mid">中性</span></td><td class="src">电网自动化内需，与美股无关</td><td class="op"><b>平开</b>。稳增长方向，22~24.5区间。</td></tr>
+      </table>
+    </div>
+
+    <!-- 消费 -->
+    <div class="grp">
+      <div class="grp-head">④ 消费 / 食品饮料（7只）<span class="n">防御承接 · 弱相关</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">万华化学</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">美材料板块+1.54%领涨；H1预增60~70%、MDI全球市占33.8%</td><td class="op"><b>微高开</b>。材料周期顺风+业绩强，66~72区间。</td></tr>
+        <tr><td class="t-now">贵州茅台</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">科技回调日，资金避险回流消费龙头</td><td class="op"><b>平开</b>。高股息3.8%+最坚挺高端酒，1200~1300区间。</td></tr>
+        <tr><td class="t-now">泸州老窖</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">股息率6.7%防御价值，风格切换承接</td><td class="op"><b>平开</b>。负面已充分定价，78~88区间，防御优先。</td></tr>
+        <tr><td class="t-now">山西汾酒</td><td><span class="tag t-mid">中性</span></td><td class="src">美股影响小</td><td class="op"><b>平开</b>。26Q1利润-19%仍在消化，105~118区间。</td></tr>
+        <tr><td class="t-now">伊利股份</td><td><span class="tag t-mid">中性</span></td><td class="src">原奶周期反转预期独立逻辑</td><td class="op"><b>平开</b>。股息5.2%，24~26区间。</td></tr>
+        <tr><td class="t-now">双汇发展</td><td><span class="tag t-mid">中性</span></td><td class="src">防御属性</td><td class="op"><b>平开</b>。股息5.7%、ROE 24%，22.5~25区间。</td></tr>
+        <tr><td class="t-now">海天味业</td><td><span class="tag t-mid">中性</span></td><td class="src">美股影响小</td><td class="op"><b>平开</b>。业绩创新高但PE 30倍不便宜，33~36.5区间。</td></tr>
+      </table>
+    </div>
+
+    <!-- 家电 -->
+    <div class="grp">
+      <div class="grp-head">⑤ 家电（3只）<span class="n">独立行情</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">格力电器</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">股息率7.4%，风格切换日防御资金首选</td><td class="op"><b>平开~微高开</b>。PE约8倍+高股息，37~40区间。</td></tr>
+        <tr><td class="t-now">美的集团</td><td><span class="tag t-mid">中性</span></td><td class="src">内需+海外OBM，美股影响小</td><td class="op"><b>平开</b>。分红率73.6%，78~84区间。</td></tr>
+        <tr><td class="t-now">海尔智家</td><td><span class="tag t-mid">中性</span></td><td class="src">美国关税扰动仍在，中性</td><td class="op"><b>平开</b>。全球零售量17连冠，20.5~22.2区间。</td></tr>
+      </table>
+    </div>
+
+    <!-- 医药 -->
+    <div class="grp">
+      <div class="grp-head">⑥ 医药 / 医疗（5只）<span class="n">美医疗+1.34%领涨 → 顺风</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">药明康德</td><td><span class="tag t-good">利好</span></td><td class="src">美医疗+1.34%领涨、在手订单664亿、8/4已涨停、1260H地缘风险边际缓和</td><td class="op"><b>高开，有望延续强势</b>。CXO顺风最强，但8/4涨停后短线超买，勿追高，回踩118~128区间最稳。</td></tr>
+        <tr><td class="t-now">恒瑞医药</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">美医疗领涨+创新药出海BD持续</td><td class="op"><b>微高开</b>。创新药占比58%逻辑独立，47~52区间。</td></tr>
+        <tr><td class="t-now">迈瑞医疗</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">医疗器械映射美医疗板块，招采回暖</td><td class="op"><b>微高开</b>。国际收入53%，140~152区间。</td></tr>
+        <tr><td class="t-now">云南白药</td><td><span class="tag t-mid">中性</span></td><td class="src">防御属性</td><td class="op"><b>平开</b>。股息5%、分红率90%，47~51区间。</td></tr>
+        <tr><td class="t-now">片仔癀</td><td><span class="tag t-mid">中性</span></td><td class="src">美股影响小，7/16涨停后调整中</td><td class="op"><b>平开</b>。PE 43.6倍不便宜，122~135区间。</td></tr>
+      </table>
+    </div>
+
+    <!-- 金融 -->
+    <div class="grp">
+      <div class="grp-head">⑦ 金融（5只）<span class="n">美银行全线涨 · 今日承接主力</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">中信证券</td><td><span class="tag t-good">利好</span></td><td class="src">美投行大涨（大摩/高盛/花旗+2%+）、H1预增69.6%、昨日A股放量</td><td class="op"><b>微高开</b>。券商与成交额正相关，A股昨日放量+今日风格切换，24.5~27.5区间。</td></tr>
+        <tr><td class="t-now">广发证券</td><td><span class="tag t-good">利好</span></td><td class="src">H1预增70~85%、ROE 10.16%</td><td class="op"><b>微高开</b>。弹性大但处罚偏多，18.5~20.5区间。</td></tr>
+        <tr><td class="t-now">建设银行</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">美银行股全线涨、避险资金流向高股息</td><td class="op"><b>微高开</b>。PB 0.76+股息3.9%，风格切换首选，9.0~9.8区间。</td></tr>
+        <tr><td class="t-now">交通银行</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">同上，PB 0.54深度折价</td><td class="op"><b>微高开</b>。股息4.6%，6.2~6.8区间。</td></tr>
+        <tr><td class="t-now">中国平安</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">NBV+20.8%、美股金融情绪偏暖</td><td class="op"><b>平开~微高开</b>。股息5%，47~52区间。</td></tr>
+      </table>
+    </div>
+
+    <!-- 新能源 -->
+    <div class="grp">
+      <div class="grp-head">⑧ 新能源 / 汽车（5只）<span class="n">中概新能源弱 · 中性</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">宁德时代</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">中报净利+42%、全球市占39%、回购200-400亿</td><td class="op"><b>平开~微高开</b>。基本面独立于美股，360~390区间。</td></tr>
+        <tr><td class="t-now">比亚迪</td><td><span class="tag t-mid">中性</span></td><td class="src">特斯拉+1.6%但中概新势力弱（小鹏-2%、理想-1%）</td><td class="op"><b>平开</b>。出口创新高vs价格战，82~90区间。</td></tr>
+        <tr><td class="t-now">阳光电源</td><td><span class="tag t-mid">中性</span></td><td class="src">储能逻辑，美股影响小</td><td class="op"><b>平开</b>。Q1净利-40%仍在消化，95~104区间。</td></tr>
+        <tr><td class="t-now">福耀玻璃</td><td><span class="tag t-mid">中性</span></td><td class="src">美国关税扰动仍在，油价跌对其成本略有利</td><td class="op"><b>平开</b>。全球市占35%，52~56区间。</td></tr>
+        <tr><td class="t-now">长城汽车</td><td><span class="tag t-midbad">中性偏空</span></td><td class="src">中概新能源弱+花旗沽售+中报预减59~63%</td><td class="op"><b>平开~微低开</b>。基本面最弱之一，14~15.8区间耐心等。</td></tr>
+      </table>
+    </div>
+
+    <!-- 能源资源 -->
+    <div class="grp">
+      <div class="grp-head">⑨ 能源 / 资源 / 公用（10只）<span class="n">油价暴跌分化最大的一条线</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">华能国际</td><td><span class="tag t-good">利好</span></td><td class="src">油价-5.7% → 火电燃料成本下降；股息率5.6%、2025净利+42%</td><td class="op"><b>微高开</b>。成本受益最直接，6.6~7.1区间。</td></tr>
+        <tr><td class="t-now">紫金矿业</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">金4134美元高位+美材料+1.54%；H1预增68%</td><td class="op"><b>微高开</b>。但8/5盘中金银转跌需提防，27~30区间分批。</td></tr>
+        <tr><td class="t-now">洛阳钼业</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">铜钴+美材料领涨，中报预增79~90%</td><td class="op"><b>微高开</b>。17.5~19.0区间，钴出口配额为变量。</td></tr>
+        <tr><td class="t-now">中国铝业</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">铝价+美材料板块顺风，H1预增58~73%</td><td class="op"><b>微高开</b>。8.2~9.0区间。</td></tr>
+        <tr><td class="t-now">长江电力</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">避险防御、26Q1净利+30.5%、分红率70.9%</td><td class="op"><b>平开~微高开</b>。风格切换日稳坐钓鱼台，26.5~28区间。</td></tr>
+        <tr><td class="t-now">陕西煤业</td><td><span class="tag t-midgood">中性偏多</span></td><td class="src">中报预增47~53%强基本面，煤价独立于油价</td><td class="op"><b>平开</b>。21.5~23.5区间。</td></tr>
+        <tr><td class="t-now">川投能源</td><td><span class="tag t-mid">中性</span></td><td class="src">水电防御</td><td class="op"><b>平开</b>。14~15.2区间。</td></tr>
+        <tr><td class="t-now">国投电力</td><td><span class="tag t-mid">中性</span></td><td class="src">水电防御</td><td class="op"><b>平开</b>。13.8~14.8区间。</td></tr>
+        <tr><td class="t-now">中国神华</td><td><span class="tag t-mid">中性</span></td><td class="src">煤价独立于油价，但情绪受"能源板块-2.03%"扰动</td><td class="op"><b>平开~微低开</b>。一体化+中报预增兜底，39~42.5区间。</td></tr>
+        <tr><td class="t-now">中国海油</td><td><span class="tag t-bad">利空</span></td><td class="src">WTI -5.7%至75.77美元，桶油利润承压；美能源-2.03%领跌</td><td class="op"><b>低开概率大</b>。若油价企稳78美元上方可持有，跌破则28~31区间再评估。</td></tr>
+        <tr><td class="t-now">中国石化</td><td><span class="tag t-bad">利空</span></td><td class="src">油价下跌利空，但PB 0.75破净+原"H1盈警属错杀"逻辑</td><td class="op"><b>低开概率大</b>。深度低开（-3%+）反而进入错杀低吸观察窗口，4.7~5.0区间分批。</td></tr>
+      </table>
+    </div>
+
+    <!-- 降级观察 -->
+    <div class="grp">
+      <div class="grp-head">⑩ 降级观察（4只，等信号）<span class="n">跟随大盘</span></div>
+      <table class="map">
+        <tr><th style="width:110px;">标的</th><th style="width:64px;">评级</th><th>传导来源 / 逻辑</th><th style="width:46%;">开盘与操作提示</th></tr>
+        <tr><td class="t-now">中兴通讯</td><td><span class="tag t-mid">中性</span></td><td class="src">算力业务+150%，跟随昨日科技大涨</td><td class="op"><b>高开分歧</b>。若高开>3%注意兑现，28~31区间才符合低吸纪律。</td></tr>
+        <tr><td class="t-now">汇川技术</td><td><span class="tag t-mid">中性</span></td><td class="src">机器人题材独立于美股</td><td class="op"><b>平开</b>。Q1净利-23%，54~60区间等毛利率回升信号。</td></tr>
+        <tr><td class="t-now">牧原股份</td><td><span class="tag t-mid">中性</span></td><td class="src">猪价独立逻辑</td><td class="op"><b>平开</b>。33~36区间等猪价企稳。</td></tr>
+        <tr><td class="t-now">中国建筑</td><td><span class="tag t-mid">中性</span></td><td class="src">PB 0.4深度破净，与美股无关</td><td class="op"><b>平开</b>。4.2~4.7区间，耐心。</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 四、观察信号 -->
+  <div class="card">
+    <h2><span class="num">04</span>今日盘中观察信号（按时间）</h2>
+    <div class="signal">
+      <div class="sig"><b>09:30-09:45 开盘定性</b>看半导体指数高开幅度：高开＞2%大概率冲高回落（兑现）；平开或低开＜1%反而是低吸窗口（深科技/工业富联/亨通回踩）。</div>
+      <div class="sig"><b>09:45-10:30 风格确认</b>看银行/券商/医药是否放量承接：建行、交行、中信、药明若放量上行，确认今日是"风格切换日"，科技勿追、蓝筹可看。</div>
+      <div class="sig"><b>10:30-11:30 油价链验证</b>看中国海油/中国石化低开幅度：海油低开＜1.5%属强势（油价企稳），＞3%则恐慌，石化若-3%+进入错杀观察。</div>
+      <div class="sig"><b>14:00-15:00 尾盘避险</b>周五非农数据临近，尾盘若科技股加速回落，勿接飞刀；防御仓位（长江电力、茅台、格力）可持有过节。</div>
+    </div>
+  </div>
+
+  <!-- 五、风险 -->
+  <div class="card">
+    <h2><span class="num">05</span>风险提示（务必阅读）</h2>
+    <ul class="risk">
+      <li><span class="warn">追高风险</span>：A股半导体昨日已+6.49%、美股科技昨夜回落，今日高位追涨是最大风险源，严格执行各标的"高安全边际区间"纪律。</li>
+      <li><span class="warn">油价反弹风险</span>：霍尔木兹海峡协议"尚未敲定"，若谈判破裂油价可能报复性反弹——届时利空华能/利好中国海油/石化，方向可能日内反转。</li>
+      <li><span class="warn">加息预期压制</span>：美联储9月加息概率仍56.9%，成长股（半导体、CXO高估值品种）反弹空间受制，勿因两日大涨改变中期判断。</li>
+      <li><span class="warn">非农数据扰动</span>：周五（8/7）美国非农为本周最大变量，若超预期强劲→加息概率回升→今日涨幅或在下周回吐，注意仓位管理。</li>
+      <li><span class="warn">金银盘中转跌</span>：8/5亚洲时段现货金已从4080美元回落转跌，资源股（紫金）若高开勿追，关注铜价能否独立支撑。</li>
+    </ul>
+  </div>
+
+  <div class="foot">数据来源：美东8/4、8/5收盘公开行情（道指/标普/纳指/费半/油价/金银等）；观察池数据截至2026-08-04收盘。<br>本文仅供研究参考，不构成投资建议。市场有风险，决策需独立判断。</div>
+
+</div>
+</body>
+</html>

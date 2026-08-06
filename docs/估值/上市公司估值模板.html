@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上市公司估值模板 - 零基础完整版</title>
+<style>
+  :root {
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --border: #e5e3dc;
+    --border-strong: #c8c5bb;
+    --text: #2c2c2a;
+    --text-muted: #6b6862;
+    --text-hint: #9a978f;
+    --accent: #3266ad;
+    --accent-light: #e6f1fb;
+    --red: #c0392b;
+    --red-light: #fdeaea;
+    --green: #1a7a4c;
+    --green-light: #e8f5ee;
+    --amber: #b8860b;
+    --amber-light: #fef9e7;
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* Header */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0;
+    margin-bottom: 32px;
+  }
+  .header h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; }
+  .header p { color: var(--text-muted); font-size: 14px; }
+
+  /* Section */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .section-header:hover { background: #fafaf7; }
+  .section-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .section-title { font-size: 18px; font-weight: 500; flex: 1; }
+  .section-toggle {
+    font-size: 12px;
+    color: var(--text-hint);
+    transition: transform 0.2s;
+  }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section.collapsed .section-body { display: none; }
+
+  /* Tip box */
+  .tip {
+    background: var(--amber-light);
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #6b5a1e;
+  }
+  .tip strong { color: #4a3c0e; }
+
+  /* Form */
+  .field-row { display: flex; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .field { flex: 1; min-width: 200px; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color 0.15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(50,102,173,0.1);
+  }
+  .field .hint { font-size: 12px; color: var(--text-hint); margin-top: 4px; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: #f5f3ee;
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td input {
+    width: 100%;
+    border: 1px solid transparent;
+    padding: 4px 8px;
+    font-size: 13px;
+    font-family: inherit;
+    background: transparent;
+    border-radius: 4px;
+    color: var(--text);
+  }
+  td input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+  td .calc { color: var(--accent); font-weight: 500; }
+
+  /* Metric cards */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .metric-card {
+    background: #f5f3ee;
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+  .metric-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .metric-card .value { font-size: 22px; font-weight: 600; color: var(--text); }
+  .metric-card .unit { font-size: 13px; color: var(--text-hint); }
+
+  /* Result box */
+  .result-box {
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    background: var(--accent-light);
+    margin-top: 16px;
+  }
+  .result-box h4 { font-size: 16px; margin-bottom: 12px; }
+  .result-range {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .result-range .dash { color: var(--text-hint); }
+  .result-range .unit { font-size: 16px; color: var(--text-muted); }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .badge-blue { background: var(--accent-light); color: var(--accent); }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+
+  /* Method tabs */
+  .method-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .method-tab {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.15s;
+  }
+  .method-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 500;
+  }
+  .method-content { display: none; }
+  .method-content.active { display: block; }
+
+  /* Bar chart (CSS) */
+  .bar-chart { margin: 16px 0; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .bar-label { width: 120px; text-align: right; color: var(--text-muted); }
+  .bar-track { flex: 1; height: 24px; background: #f0eee7; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; color: #fff; font-size: 12px; transition: width 0.3s; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--text-hint);
+    font-size: 13px;
+  }
+
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .nav a {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .nav a:hover { background: var(--surface); color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .field-row { flex-direction: column; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>上市公司估值模板</h1>
+    <p>零基础完整版 | 内含 DCF 现金流折现 + 相对估值 + 股利折现三大方法</p>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a href="#s1">1 公司概况</a>
+    <a href="#s2">2 行业分析</a>
+    <a href="#s3">3 财务分析</a>
+    <a href="#s4">4 DCF估值</a>
+    <a href="#s5">5 相对估值</a>
+    <a href="#s6">6 股利折现</a>
+    <a href="#s7">7 敏感性</a>
+    <a href="#s8">8 结论</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== Section 1: Company Overview ===== -->
+<div class="section" id="s1">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">1</div>
+    <div class="section-title">公司概况与基本面分析</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>新手提示：</strong>估值的第一步是"看懂这家公司是干什么的"。如果你无法用一句话说清公司的赚钱模式，就不应该急着估值。
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>公司名称</label>
+        <input type="text" placeholder="如：贵州茅台 / 腾讯控股 / 苹果公司">
+      </div>
+      <div class="field">
+        <label>股票代码</label>
+        <input type="text" placeholder="如：600519 / 00700 / AAPL">
+      </div>
+      <div class="field">
+        <label>上市交易所</label>
+        <select>
+          <option value="">请选择</option>
+          <option>上交所 (SSE)</option>
+          <option>深交所 (SZSE)</option>
+          <option>港交所 (HKEX)</option>
+          <option>纳斯达克 (NASDAQ)</option>
+          <option>纽交所 (NYSE)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>所属行业</label>
+        <input type="text" placeholder="如：白酒 / 互联网社交 / 消费电子">
+      </div>
+      <div class="field">
+        <label>市值（亿元）</label>
+        <input type="number" id="marketCap" placeholder="如：2000" oninput="calcMetrics()">
+      </div>
+      <div class="field">
+        <label>当前股价（元）</label>
+        <input type="number" id="currentPrice" placeholder="如：35.5" oninput="calcMetrics()">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>主营业务（一句话描述赚钱模式）</label>
+        <textarea rows="2" placeholder="如：通过生产和销售高端白酒获取利润，品牌溢价是核心竞争力"></textarea>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>核心竞争力（最多3点）</label>
+        <textarea rows="3" placeholder="1. 品牌：...\n2. 渠道：...\n3. 成本优势：..."></textarea>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>主要风险（最多3点）</label>
+        <textarea rows="3" placeholder="1. 政策风险：...\n2. 竞争加剧：...\n3. 原材料涨价：..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Section 2: Industry & Competitive Analysis ===== -->
+<div class="section" id="s2">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">2</div>
+    <div class="section-title">行业分析与竞争格局</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>新手提示：</strong>"好行业里的普通公司"往往比"差行业里的好公司"更值得投资。行业增速、竞争格局直接决定公司的天花板。
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">分析维度</th>
+          <th style="width:50%">你的分析</th>
+          <th style="width:20%">判断</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>行业规模与增速</td>
+          <td><input type="text" placeholder="行业市场规模约XX亿，年增速约X%"></td>
+          <td><select><option value="">评估</option><option>高增长</option><option>稳定</option><option>衰退</option></select></td>
+        </tr>
+        <tr>
+          <td>竞争格局（集中度）</td>
+          <td><input type="text" placeholder="行业CR3/CR5 = XX%，龙头集中度..."></td>
+          <td><select><option value="">评估</option><option>寡头垄断</option><option>竞争激烈</option><option>分散</option></select></td>
+        </tr>
+        <tr>
+          <td>进入壁垒</td>
+          <td><input type="text" placeholder="品牌/牌照/技术/规模效应..."></td>
+          <td><select><option value="">评估</option><option>高壁垒</option><option>中等</option><option>低壁垒</option></select></td>
+        </tr>
+        <tr>
+          <td>公司市场地位</td>
+          <td><input type="text" placeholder="市场份额约XX%，排名..."></td>
+          <td><select><option value="">评估</option><option>龙头</option><option>挑战者</option><option>跟随者</option></select></td>
+        </tr>
+        <tr>
+          <td>政策与监管环境</td>
+          <td><input type="text" placeholder="有利/中性/受限..."></td>
+          <td><select><option value="">评估</option><option>利好</option><option>中性</option><option>不利</option></select></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== Section 3: Financial Analysis ===== -->
+<div class="section" id="s3">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">3</div>
+    <div class="section-title">财务报表核心数据（近3年）</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>新手提示：</strong>估值的核心数据来源是三大报表：利润表（赚不赚钱）、资产负债表（家底厚不厚）、现金流量表（赚的钱是不是真金白银）。从年报或财经网站（如东方财富、同花顺）可以直接获取。
+    </div>
+
+    <h4 style="margin: 16px 0 8px; font-size: 14px;">利润表关键数据（单位：亿元）</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th>前年</th>
+          <th>去年</th>
+          <th>今年(TTM)</th>
+          <th>趋势</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>营业收入</td>
+          <td><input type="number" id="rev1" oninput="calcGrowth()"></td>
+          <td><input type="number" id="rev2" oninput="calcGrowth()"></td>
+          <td><input type="number" id="rev3" oninput="calcGrowth()"></td>
+          <td><span id="revGrowth" class="calc">-</span></td>
+        </tr>
+        <tr>
+          <td>归母净利润</td>
+          <td><input type="number" id="profit1" oninput="calcGrowth()"></td>
+          <td><input type="number" id="profit2" oninput="calcGrowth()"></td>
+          <td><input type="number" id="profit3" oninput="calcGrowth()"></td>
+          <td><span id="profitGrowth" class="calc">-</span></td>
+        </tr>
+        <tr>
+          <td>毛利率（%）</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><span>-</span></td>
+        </tr>
+        <tr>
+          <td>净利率（%）</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><span>-</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin: 16px 0 8px; font-size: 14px;">资产负债表关键数据（单位：亿元）</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th>前年</th>
+          <th>去年</th>
+          <th>今年</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>总资产</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+        <tr>
+          <td>总负债</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+        <tr>
+          <td>净资产（股东权益）</td>
+          <td><input type="number" id="equity" oninput="calcMetrics()"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+        <tr>
+          <td>资产负债率（%）</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin: 16px 0 8px; font-size: 14px;">现金流量表关键数据（单位：亿元）</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th>前年</th>
+          <th>去年</th>
+          <th>今年(TTM)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>经营性现金流净额</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number" id="ocf" oninput="calcMetrics()"></td>
+        </tr>
+        <tr>
+          <td>资本支出（CapEx）</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number" id="capex" oninput="calcMetrics()"></td>
+        </tr>
+        <tr>
+          <td>自由现金流 = 经营现金流 - 资本支出</td>
+          <td colspan="3"><span id="fcf" class="calc" style="font-size:16px; font-weight:600;">请填写左侧数据</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="metrics-grid" id="quickMetrics">
+      <div class="metric-card">
+        <div class="label">ROE（净资产收益率）</div>
+        <div class="value" id="roeVal">-</div>
+        <div class="unit">建议 >15%</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">FCF/净利润比</div>
+        <div class="value" id="fcfRatioVal">-</div>
+        <div class="unit">建议 >80%</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">负债率</div>
+        <div class="value" id="debtRatioVal">-</div>
+        <div class="unit">建议 <60%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Section 4: DCF Valuation ===== -->
+<div class="section" id="s4">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">4</div>
+    <div class="section-title">方法一：DCF 现金流折现法（绝对估值）</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>核心原理：</strong>一家公司的价值 = 未来所有年份自由现金流的现值总和。DCF 是最接近"真实价值"的方法，但对假设参数非常敏感。适合现金流稳定、可预测的成熟公司（如消费品、公用事业），不适合初创或周期性强的公司。
+    </div>
+
+    <h4 style="margin: 12px 0; font-size: 15px;">第一步：预测未来5年自由现金流（FCF）</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>年份</th>
+          <th>Y1</th>
+          <th>Y2</th>
+          <th>Y3</th>
+          <th>Y4</th>
+          <th>Y5</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>营收增长率（%）</td>
+          <td><input type="number" class="dcf-growth" value="15" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-growth" value="13" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-growth" value="11" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-growth" value="9" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-growth" value="7" oninput="calcDCF()"></td>
+        </tr>
+        <tr>
+          <td>预测营收（亿元）</td>
+          <td><span class="calc dcf-rev">-</span></td>
+          <td><span class="calc dcf-rev">-</span></td>
+          <td><span class="calc dcf-rev">-</span></td>
+          <td><span class="calc dcf-rev">-</span></td>
+          <td><span class="calc dcf-rev">-</span></td>
+        </tr>
+        <tr>
+          <td>FCF利润率（%）</td>
+          <td><input type="number" class="dcf-margin" value="25" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-margin" value="25" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-margin" value="25" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-margin" value="24" oninput="calcDCF()"></td>
+          <td><input type="number" class="dcf-margin" value="24" oninput="calcDCF()"></td>
+        </tr>
+        <tr>
+          <td>预测FCF（亿元）</td>
+          <td><span class="calc dcf-fcf" style="font-weight:600;">-</span></td>
+          <td><span class="calc dcf-fcf" style="font-weight:600;">-</span></td>
+          <td><span class="calc dcf-fcf" style="font-weight:600;">-</span></td>
+          <td><span class="calc dcf-fcf" style="font-weight:600;">-</span></td>
+          <td><span class="calc dcf-fcf" style="font-weight:600;">-</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="hint" style="font-size:12px; color:var(--text-hint); margin-top:4px;">提示：先在上方"财务分析"填入今年营收，这里会自动按增长率预测。FCF利润率 = FCF/营收，可参考历史数据。</p>
+
+    <h4 style="margin: 20px 0 12px; font-size: 15px;">第二步：计算折现率（WACC）</h4>
+    <div class="field-row">
+      <div class="field">
+        <label>无风险利率（%）（参考10年国债收益率）</label>
+        <input type="number" id="rf" value="2.5" oninput="calcDCF()" style="font-size:14px;">
+        <div class="hint">中国10年国债约 2.5-3%，美国约 4%</div>
+      </div>
+      <div class="field">
+        <label>股权风险溢价 ERP（%）</label>
+        <input type="number" id="erp" value="6" oninput="calcDCF()" style="font-size:14px;">
+        <div class="hint">市场平均 5-7%，新兴市场可取 7-8%</div>
+      </div>
+      <div class="field">
+        <label>贝塔系数 β（参考行业或同类公司）</label>
+        <input type="number" id="beta" value="1.0" step="0.1" oninput="calcDCF()" style="font-size:14px;">
+        <div class="hint">β<1 低波动，β=1 跟随大盘，β>1 高波动</div>
+      </div>
+    </div>
+    <div class="metric-card" style="background: var(--accent-light); margin: 8px 0 20px;">
+      <div class="label">股权成本 Ke = Rf + β × ERP</div>
+      <div class="value" id="keVal" style="color: var(--accent);">-</div>
+      <div class="unit" id="keFormula">（简化版WACC，不考虑负债时）</div>
+    </div>
+
+    <h4 style="margin: 20px 0 12px; font-size: 15px;">第三步：计算永续终值（Terminal Value）</h4>
+    <div class="field-row">
+      <div class="field">
+        <label>永续增长率（%）</label>
+        <input type="number" id="perpGrowth" value="3" oninput="calcDCF()" style="font-size:14px;">
+        <div class="hint">通常取 2-4%，不应超过GDP增速</div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin: 8px 0;">终值公式：TV = Y5的FCF × (1+永续增长率) / (折现率 - 永续增长率)</p>
+
+    <h4 style="margin: 20px 0 12px; font-size: 15px;">第四步：汇总估值</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>金额（亿元）</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5年FCF现值合计</td>
+          <td><span id="pvSum" class="calc" style="font-size:16px; font-weight:600;">-</span></td>
+          <td>每年FCF / (1+折现率)^年数</td>
+        </tr>
+        <tr>
+          <td>永续终值现值</td>
+          <td><span id="pvTV" class="calc" style="font-size:16px; font-weight:600;">-</span></td>
+          <td>TV / (1+折现率)^5</td>
+        </tr>
+        <tr>
+          <td>企业总价值（EV）</td>
+          <td><span id="ev" class="calc" style="font-size:16px; font-weight:600;">-</span></td>
+          <td>5年现值 + 终值现值</td>
+        </tr>
+        <tr>
+          <td>减：净负债（现金为负值）</td>
+          <td><input type="number" id="netDebt" value="0" oninput="calcDCF()" style="border:1px solid var(--border-strong); border-radius:4px; padding:4px 8px;"></td>
+          <td>总负债 - 货币资金</td>
+        </tr>
+        <tr>
+          <td>= 股权价值</td>
+          <td><span id="equityVal" class="calc" style="font-size:18px; font-weight:700; color:var(--accent);">-</span></td>
+          <td>企业价值 - 净负债</td>
+        </tr>
+        <tr>
+          <td>÷ 总股本（亿股）</td>
+          <td><input type="number" id="shares" value="10" oninput="calcDCF()" style="border:1px solid var(--border-strong); border-radius:4px; padding:4px 8px;"></td>
+          <td>流通股+限售股</td>
+        </tr>
+        <tr>
+          <td>= DCF每股价值</td>
+          <td><span id="dcfPrice" class="calc" style="font-size:20px; font-weight:700; color:var(--accent);">-</span></td>
+          <td>股权价值 / 总股本</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="result-box" style="border-color: var(--accent);">
+      <h4>DCF 估值结果</h4>
+      <div class="result-range">
+        <span id="dcfFinalPrice">填写数据后自动计算</span>
+        <span class="unit">元/股</span>
+      </div>
+      <p style="margin-top:8px; font-size:13px; color:var(--text-muted);" id="dcfCompare">填入当前股价后可自动对比</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Section 5: Relative Valuation ===== -->
+<div class="section" id="s5">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">5</div>
+    <div class="section-title">方法二：相对估值法（乘数法）</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>核心原理：</strong>找几家"差不多的同行公司"，比较它们的估值倍数（PE/PB/EV-EBITDA 等），再乘以目标公司的利润/净资产等指标，得出合理估值。简单直观，是投行和券商最常用的方法。
+    </div>
+
+    <h4 style="margin: 12px 0; font-size: 15px;">可比公司估值表</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">指标</th>
+          <th>目标公司</th>
+          <th>可比A</th>
+          <th>可比B</th>
+          <th>可比C</th>
+          <th>可比D</th>
+          <th>行业均值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>公司名称</td>
+          <td><input type="text" placeholder="目标"></td>
+          <td><input type="text" placeholder="同行A"></td>
+          <td><input type="text" placeholder="同行B"></td>
+          <td><input type="text" placeholder="同行C"></td>
+          <td><input type="text" placeholder="同行D"></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>市值（亿元）</td>
+          <td><input type="number" id="compTargetCap"></td>
+          <td><input type="number" class="comp-cap"></td>
+          <td><input type="number" class="comp-cap"></td>
+          <td><input type="number" class="comp-cap"></td>
+          <td><input type="number" class="comp-cap"></td>
+          <td id="avgCap">-</td>
+        </tr>
+        <tr>
+          <td>净利润（亿元）</td>
+          <td><input type="number" id="compTargetProfit"></td>
+          <td><input type="number" class="comp-profit"></td>
+          <td><input type="number" class="comp-profit"></td>
+          <td><input type="number" class="comp-profit"></td>
+          <td><input type="number" class="comp-profit"></td>
+          <td id="avgProfit">-</td>
+        </tr>
+        <tr>
+          <td>净资产（亿元）</td>
+          <td><input type="number" id="compTargetEquity"></td>
+          <td><input type="number" class="comp-equity"></td>
+          <td><input type="number" class="comp-equity"></td>
+          <td><input type="number" class="comp-equity"></td>
+          <td><input type="number" class="comp-equity"></td>
+          <td id="avgEquity">-</td>
+        </tr>
+        <tr>
+          <td><strong>PE（市盈率）</strong></td>
+          <td><input type="number" id="compTargetPE"></td>
+          <td><input type="number" class="comp-pe"></td>
+          <td><input type="number" class="comp-pe"></td>
+          <td><input type="number" class="comp-pe"></td>
+          <td><input type="number" class="comp-pe"></td>
+          <td id="avgPE" class="calc">-</td>
+        </tr>
+        <tr>
+          <td><strong>PB（市净率）</strong></td>
+          <td><input type="number" id="compTargetPB"></td>
+          <td><input type="number" class="comp-pb"></td>
+          <td><input type="number" class="comp-pb"></td>
+          <td><input type="number" class="comp-pb"></td>
+          <td><input type="number" class="comp-pb"></td>
+          <td id="avgPB" class="calc">-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin: 20px 0 12px; font-size: 15px;">用行业均值推算目标公司估值</h4>
+    <div class="metrics-grid">
+      <div class="metric-card" style="background: var(--green-light);">
+        <div class="label">按行业PE推算</div>
+        <div class="value" id="peEstimate" style="color: var(--green);">-</div>
+        <div class="unit">亿元市值</div>
+      </div>
+      <div class="metric-card" style="background: var(--green-light);">
+        <div class="label">按行业PB推算</div>
+        <div class="value" id="pbEstimate" style="color: var(--green);">-</div>
+        <div class="unit">亿元市值</div>
+      </div>
+      <div class="metric-card" style="background: var(--accent-light);">
+        <div class="label">相对估值均值</div>
+        <div class="value" id="relEstimate" style="color: var(--accent);">-</div>
+        <div class="unit">亿元市值</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--text-hint);">计算方式：行业PE × 目标净利润 / 行业PB × 目标净资产，两者取平均。填入"财务分析"中的净利润和净资产数据可自动联动。</p>
+  </div>
+</div>
+
+<!-- ===== Section 6: Dividend Discount Model ===== -->
+<div class="section" id="s6">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">6</div>
+    <div class="section-title">方法三：股利折现模型（DDM）</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>适用场景：</strong>仅适合稳定分红、分红率高的公司（如银行、高速公路、电力等公用事业股）。不分红或分红不稳定的公司不适用。
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>当前每股股利（元/股）</label>
+        <input type="number" id="dps" value="1.0" step="0.01" oninput="calcDDM()" style="font-size:14px;">
+      </div>
+      <div class="field">
+        <label>股利永续增长率（%）</label>
+        <input type="number" id="divGrowth" value="5" oninput="calcDDM()" style="font-size:14px;">
+        <div class="hint">参考历史分红增速</div>
+      </div>
+      <div class="field">
+        <label>要求回报率/折现率（%）</label>
+        <input type="number" id="divRate" value="8" oninput="calcDDM()" style="font-size:14px;">
+        <div class="hint">可用CAPM计算的Ke</div>
+      </div>
+    </div>
+    <div class="result-box" style="border-color: var(--green); background: var(--green-light);">
+      <h4 style="color: var(--green);">Gordon增长模型（永续增长）</h4>
+      <div class="result-range">
+        <span id="ddmPrice" style="color: var(--green);">-</span>
+        <span class="unit">元/股</span>
+      </div>
+      <p style="margin-top:8px; font-size:13px; color:var(--text-muted);">公式：P = D₁ / (r - g) = D₀ × (1+g) / (r - g)</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Section 7: Sensitivity Analysis ===== -->
+<div class="section" id="s7">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">7</div>
+    <div class="section-title">敏感性分析</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>为什么要做敏感性分析？</strong>因为 DCF 的结果高度依赖折现率和永续增长率，参数微调就会导致估值大幅变化。通过两张参数表，可以直观看到估值区间。
+    </div>
+
+    <h4 style="margin: 12px 0; font-size: 15px;">DCF每股价值敏感性矩阵</h4>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom: 12px;">行 = 折现率（WACC），列 = 永续增长率。填入基础数据后自动生成。</p>
+    <table id="sensTable">
+      <thead>
+        <tr>
+          <th>折现率 \ 永续增速</th>
+          <th>2%</th>
+          <th>2.5%</th>
+          <th>3%</th>
+          <th>3.5%</th>
+          <th>4%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>7%</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td></tr>
+        <tr><td>8%</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td></tr>
+        <tr><td>9%</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td></tr>
+        <tr><td>10%</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td></tr>
+        <tr><td>11%</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td><td class="sens-cell">-</td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin: 20px 0 12px; font-size: 15px;">各方法估值对比</h4>
+    <div class="bar-chart" id="methodCompare">
+      <div class="bar-row">
+        <div class="bar-label">DCF估值</div>
+        <div class="bar-track"><div class="bar-fill" id="barDCF" style="width:0%; background: var(--accent);">-</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">相对估值</div>
+        <div class="bar-track"><div class="bar-fill" id="barRel" style="width:0%; background: var(--green);">-</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">DDM估值</div>
+        <div class="bar-track"><div class="bar-fill" id="barDDM" style="width:0%; background: var(--amber);">-</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">当前股价</div>
+        <div class="bar-track"><div class="bar-fill" id="barCurrent" style="width:0%; background: var(--red);">-</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Section 8: Final Conclusion ===== -->
+<div class="section" id="s8">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-num">8</div>
+    <div class="section-title">最终估值结论与投资判断</div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <strong>新手须知：</strong>估值永远是一个区间，不是精确的数字。综合多种方法，取一个合理区间，再与市场价格对比，得出"贵了/合理/便宜"的判断。
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>估值方法</th>
+          <th>每股价值（元）</th>
+          <th>权重（%）</th>
+          <th>加权价值（元）</th>
+          <th>适用性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>DCF 现金流折现</td>
+          <td><input type="number" id="wDCF" oninput="calcFinal()"></td>
+          <td><input type="number" id="wDCFpct" value="50" oninput="calcFinal()">%</td>
+          <td><span id="wDCFval" class="calc">-</span></td>
+          <td><select><option>高适用</option><option>中等</option><option>低</option></select></td>
+        </tr>
+        <tr>
+          <td>相对估值（PE/PB）</td>
+          <td><input type="number" id="wRel" oninput="calcFinal()"></td>
+          <td><input type="number" id="wRelpct" value="35" oninput="calcFinal()">%</td>
+          <td><span id="wRelval" class="calc">-</span></td>
+          <td><select><option>高适用</option><option>中等</option><option>低</option></select></td>
+        </tr>
+        <tr>
+          <td>DDM 股利折现</td>
+          <td><input type="number" id="wDDM" oninput="calcFinal()"></td>
+          <td><input type="number" id="wDDMpct" value="15" oninput="calcFinal()">%</td>
+          <td><span id="wDDMval" class="calc">-</span></td>
+          <td><select><option>高适用</option><option>中等</option><option>低</option></select></td>
+        </tr>
+        <tr style="border-top: 2px solid var(--border-strong);">
+          <td colspan="2"><strong>综合合理估值</strong></td>
+          <td><span id="totalPct" class="calc">100%</span></td>
+          <td><span id="finalVal" class="calc" style="font-size:20px; font-weight:700; color:var(--accent);">-</span></td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="result-box">
+      <h4>最终判断</h4>
+      <div class="field-row">
+        <div class="field">
+          <label>综合估值（元/股）</label>
+          <input type="text" id="finalEst" placeholder="自动填入" readonly style="font-size:18px; font-weight:600; color:var(--accent);">
+        </div>
+        <div class="field">
+          <label>当前股价（元/股）</label>
+          <input type="number" id="finalCurrent" placeholder="填入当前股价" oninput="calcFinal()">
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div id="verdict" style="font-size:16px; font-weight:500; padding:12px 16px; border-radius:8px; background:#f0eee7; text-align:center;">
+          填入数据后自动判断
+        </div>
+      </div>
+      <div class="field-row" style="margin-top:16px;">
+        <div class="field">
+          <label>投资逻辑摘要（3句话总结）</label>
+          <textarea rows="3" placeholder="1. 公司的核心价值在于...\n2. 当前估值水平...\n3. 建议操作..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>上市公司估值模板 v1.0 | 仅供学习参考，不构成投资建议</p>
+  <p>投资有风险，入市需谨慎</p>
+</div>
+
+<script>
+function toggleSection(header) {
+  header.parentElement.classList.toggle('collapsed');
+}
+
+function calcGrowth() {
+  var r1 = parseFloat(document.getElementById('rev1').value) || 0;
+  var r2 = parseFloat(document.getElementById('rev2').value) || 0;
+  var r3 = parseFloat(document.getElementById('rev3').value) || 0;
+  var p1 = parseFloat(document.getElementById('profit1').value) || 0;
+  var p2 = parseFloat(document.getElementById('profit2').value) || 0;
+  var p3 = parseFloat(document.getElementById('profit3').value) || 0;
+
+  if (r1 > 0 && r3 > 0) {
+    var revCAGR = (Math.pow(r3 / r1, 1 / 2) - 1) * 100;
+    document.getElementById('revGrowth').textContent = revCAGR.toFixed(1) + '%/年';
+    document.getElementById('revGrowth').style.color = revCAGR > 0 ? '#1a7a4c' : '#c0392b';
+  }
+  if (p1 > 0 && p3 > 0) {
+    var profitCAGR = (Math.pow(p3 / p1, 1 / 2) - 1) * 100;
+    document.getElementById('profitGrowth').textContent = profitCAGR.toFixed(1) + '%/年';
+    document.getElementById('profitGrowth').style.color = profitCAGR > 0 ? '#1a7a4c' : '#c0392b';
+  }
+  calcMetrics();
+  calcDCF();
+}
+
+function calcMetrics() {
+  var ocf = parseFloat(document.getElementById('ocf').value) || 0;
+  var capex = parseFloat(document.getElementById('capex').value) || 0;
+  var fcf = ocf - capex;
+  var profit3 = parseFloat(document.getElementById('profit3').value) || 0;
+  var equity = parseFloat(document.getElementById('equity').value) || 0;
+  var profit = parseFloat(document.getElementById('profit3').value) || 0;
+  var marketCap = parseFloat(document.getElementById('marketCap').value) || 0;
+
+  if (ocf > 0 || capex > 0) {
+    document.getElementById('fcf').textContent = fcf.toFixed(2) + ' 亿元';
+  }
+
+  if (profit3 > 0 && equity > 0) {
+    var roe = (profit3 / equity) * 100;
+    document.getElementById('roeVal').textContent = roe.toFixed(1) + '%';
+    document.getElementById('roeVal').style.color = roe > 15 ? '#1a7a4c' : (roe > 8 ? '#b8860b' : '#c0392b');
+  }
+
+  if (fcf > 0 && profit3 > 0) {
+    var ratio = (fcf / profit3) * 100;
+    document.getElementById('fcfRatioVal').textContent = ratio.toFixed(0) + '%';
+    document.getElementById('fcfRatioVal').style.color = ratio > 80 ? '#1a7a4c' : '#b8860b';
+  }
+
+  calcDCF();
+  calcRelValuation();
+}
+
+function calcDCF() {
+  var rev3 = parseFloat(document.getElementById('rev3').value) || 0;
+  if (rev3 === 0) return;
+
+  var growthInputs = document.getElementsByClassName('dcf-growth');
+  var marginInputs = document.getElementsByClassName('dcf-margin');
+  var revSpans = document.getElementsByClassName('dcf-rev');
+  var fcfSpans = document.getElementsByClassName('dcf-fcf');
+
+  var rf = parseFloat(document.getElementById('rf').value) / 100 || 0.025;
+  var erp = parseFloat(document.getElementById('erp').value) / 100 || 0.06;
+  var beta = parseFloat(document.getElementById('beta').value) || 1.0;
+  var ke = rf + beta * erp;
+
+  document.getElementById('keVal').textContent = (ke * 100).toFixed(2) + '%';
+  document.getElementById('keFormula').textContent = '= ' + (rf*100).toFixed(1) + '% + ' + beta.toFixed(1) + ' × ' + (erp*100).toFixed(0) + '%';
+
+  var perpGrowth = parseFloat(document.getElementById('perpGrowth').value) / 100 || 0.03;
+  var netDebt = parseFloat(document.getElementById('netDebt').value) || 0;
+  var shares = parseFloat(document.getElementById('shares').value) || 10;
+
+  var currentRev = rev3;
+  var pvSum = 0;
+  var lastFCF = 0;
+
+  for (var i = 0; i < 5; i++) {
+    var g = (parseFloat(growthInputs[i].value) || 0) / 100;
+    var m = (parseFloat(marginInputs[i].value) || 0) / 100;
+    currentRev = currentRev * (1 + g);
+    var fcf = currentRev * m;
+    revSpans[i].textContent = currentRev.toFixed(1);
+    fcfSpans[i].textContent = fcf.toFixed(1);
+    lastFCF = fcf;
+    pvSum += fcf / Math.pow(1 + ke, i + 1);
+  }
+
+  document.getElementById('pvSum').textContent = pvSum.toFixed(2);
+
+  var tv = lastFCF * (1 + perpGrowth) / (ke - perpGrowth);
+  var pvTV = tv / Math.pow(1 + ke, 5);
+  document.getElementById('pvTV').textContent = pvTV.toFixed(2);
+
+  var ev = pvSum + pvTV;
+  document.getElementById('ev').textContent = ev.toFixed(2);
+
+  var equityVal = ev - netDebt;
+  document.getElementById('equityVal').textContent = equityVal.toFixed(2);
+
+  var dcfPrice = equityVal / shares;
+  document.getElementById('dcfPrice').textContent = dcfPrice.toFixed(2);
+  document.getElementById('dcfFinalPrice').textContent = dcfPrice.toFixed(2) + ' 元';
+
+  var currentPrice = parseFloat(document.getElementById('currentPrice').value) || 0;
+  if (currentPrice > 0) {
+    var diff = ((dcfPrice - currentPrice) / currentPrice * 100);
+    var msg = '当前价 ' + currentPrice.toFixed(2) + ' 元，DCF估值' + (diff > 0 ? '高于' : '低于') + '市价 ' + Math.abs(diff).toFixed(0) + '%';
+    document.getElementById('dcfCompare').textContent = msg;
+    document.getElementById('dcfCompare').style.color = diff > 10 ? '#1a7a4c' : (diff < -10 ? '#c0392b' : '#b8860b');
+  }
+
+  // Sensitivity table
+  var sensGrowthRates = [0.02, 0.025, 0.03, 0.035, 0.04];
+  var sensDiscountRates = [0.07, 0.08, 0.09, 0.10, 0.11];
+  var cells = document.getElementsByClassName('sens-cell');
+  var idx = 0;
+
+  // Recalculate FCF projections without discount
+  currentRev = rev3;
+  var fcfs = [];
+  for (var i = 0; i < 5; i++) {
+    var g = (parseFloat(growthInputs[i].value) || 0) / 100;
+    var m = (parseFloat(marginInputs[i].value) || 0) / 100;
+    currentRev = currentRev * (1 + g);
+    fcfs.push(currentRev * m);
+  }
+
+  for (var di = 0; di < 5; di++) {
+    for (var gi = 0; gi < 5; gi++) {
+      var d = sensDiscountRates[di];
+      var g2 = sensGrowthRates[gi];
+      var pv = 0;
+      for (var j = 0; j < 5; j++) {
+        pv += fcfs[j] / Math.pow(1 + d, j + 1);
+      }
+      var tv2 = fcfs[4] * (1 + g2) / (d - g2);
+      pv += tv2 / Math.pow(1 + d, 5);
+      var eqVal = pv - netDebt;
+      var px = eqVal / shares;
+      cells[idx].textContent = px.toFixed(1);
+      // Color code
+      if (currentPrice > 0) {
+        var pct = (px - currentPrice) / currentPrice * 100;
+        if (pct > 20) cells[idx].style.color = '#1a7a4c';
+        else if (pct < -20) cells[idx].style.color = '#c0392b';
+        else cells[idx].style.color = '#3266ad';
+      }
+      idx++;
+    }
+  }
+
+  // Update comparison bars
+  updateBars(dcfPrice, currentPrice);
+}
+
+function calcRelValuation() {
+  var targetProfit = parseFloat(document.getElementById('compTargetProfit').value) || parseFloat(document.getElementById('profit3').value) || 0;
+  var targetEquity = parseFloat(document.getElementById('compTargetEquity').value) || parseFloat(document.getElementById('equity').value) || 0;
+
+  // Average PE
+  var peInputs = document.getElementsByClassName('comp-pe');
+  var peSum = 0, peCount = 0;
+  for (var i = 0; i < peInputs.length; i++) {
+    var v = parseFloat(peInputs[i].value);
+    if (v > 0) { peSum += v; peCount++; }
+  }
+  var avgPE = peCount > 0 ? peSum / peCount : 0;
+  document.getElementById('avgPE').textContent = avgPE > 0 ? avgPE.toFixed(1) : '-';
+
+  // Average PB
+  var pbInputs = document.getElementsByClassName('comp-pb');
+  var pbSum = 0, pbCount = 0;
+  for (var i = 0; i < pbInputs.length; i++) {
+    var v = parseFloat(pbInputs[i].value);
+    if (v > 0) { pbSum += v; pbCount++; }
+  }
+  var avgPB = pbCount > 0 ? pbSum / pbCount : 0;
+  document.getElementById('avgPB').textContent = avgPB > 0 ? avgPB.toFixed(2) : '-';
+
+  if (avgPE > 0 && targetProfit > 0) {
+    var peEst = avgPE * targetProfit;
+    document.getElementById('peEstimate').textContent = peEst.toFixed(1);
+  }
+  if (avgPB > 0 && targetEquity > 0) {
+    var pbEst = avgPB * targetEquity;
+    document.getElementById('pbEstimate').textContent = pbEst.toFixed(1);
+  }
+  if (avgPE > 0 && avgPB > 0 && targetProfit > 0 && targetEquity > 0) {
+    var relEst = (avgPE * targetProfit + avgPB * targetEquity) / 2;
+    document.getElementById('relEstimate').textContent = relEst.toFixed(1);
+  }
+}
+
+function calcDDM() {
+  var dps = parseFloat(document.getElementById('dps').value) || 0;
+  var g = parseFloat(document.getElementById('divGrowth').value) / 100 || 0.05;
+  var r = parseFloat(document.getElementById('divRate').value) / 100 || 0.08;
+
+  if (r > g && dps > 0) {
+    var price = dps * (1 + g) / (r - g);
+    document.getElementById('ddmPrice').textContent = price.toFixed(2);
+  } else {
+    document.getElementById('ddmPrice').textContent = '参数无效(r需>g)';
+  }
+  updateBars(null, null, parseFloat(document.getElementById('ddmPrice').textContent) || null);
+}
+
+function updateBars(dcfPrice, currentPrice, ddmPrice) {
+  var prices = [];
+  if (dcfPrice) prices.push({val: dcfPrice, el: 'barDCF', label: 'DCF'});
+  var relEst = parseFloat(document.getElementById('relEstimate').textContent);
+  var shares = parseFloat(document.getElementById('shares').value) || 10;
+  if (relEst > 0) prices.push({val: relEst/shares, el: 'barRel', label: '相对'});
+  if (ddmPrice) prices.push({val: ddmPrice, el: 'barDDM', label: 'DDM'});
+  if (currentPrice) prices.push({val: currentPrice, el: 'barCurrent', label: '当前'});
+
+  if (prices.length === 0) return;
+  var maxVal = Math.max.apply(null, prices.map(function(p){return p.val;}));
+  if (maxVal === 0) return;
+
+  prices.forEach(function(p) {
+    var el = document.getElementById(p.el);
+    if (el) {
+      el.style.width = (p.val / maxVal * 100) + '%';
+      el.textContent = p.label + ' ' + p.val.toFixed(2);
+    }
+  });
+}
+
+function calcFinal() {
+  var dcf = parseFloat(document.getElementById('wDCF').value) || 0;
+  var dcfPct = parseFloat(document.getElementById('wDCFpct').value) || 0;
+  var rel = parseFloat(document.getElementById('wRel').value) || 0;
+  var relPct = parseFloat(document.getElementById('wRelpct').value) || 0;
+  var ddm = parseFloat(document.getElementById('wDDM').value) || 0;
+  var ddmPct = parseFloat(document.getElementById('wDDMpct').value) || 0;
+
+  var totalPct = dcfPct + relPct + ddmPct;
+  document.getElementById('totalPct').textContent = totalPct + '%';
+
+  var wDCF = dcf * dcfPct / 100;
+  var wRel = rel * relPct / 100;
+  var wDDM = ddm * ddmPct / 100;
+  var finalVal = wDCF + wRel + wDDM;
+
+  document.getElementById('wDCFval').textContent = wDCF.toFixed(2);
+  document.getElementById('wRelval').textContent = wRel.toFixed(2);
+  document.getElementById('wDDMval').textContent = wDDM.toFixed(2);
+  document.getElementById('finalVal').textContent = finalVal.toFixed(2);
+  document.getElementById('finalEst').value = finalVal.toFixed(2);
+
+  var current = parseFloat(document.getElementById('finalCurrent').value) || 0;
+  var verdict = document.getElementById('verdict');
+  if (finalVal > 0 && current > 0) {
+    var diff = (finalVal - current) / current * 100;
+    if (diff > 20) {
+      verdict.textContent = '当前股价 ' + current.toFixed(2) + ' 元，低于估值 ' + diff.toFixed(0) + '% → 判断：偏低估，可能值得关注';
+      verdict.style.background = '#e8f5ee';
+      verdict.style.color = '#1a7a4c';
+    } else if (diff < -20) {
+      verdict.textContent = '当前股价 ' + current.toFixed(2) + ' 元，高于估值 ' + Math.abs(diff).toFixed(0) + '% → 判断：偏高估，需谨慎';
+      verdict.style.background = '#fdeaea';
+      verdict.style.color = '#c0392b';
+    } else {
+      verdict.textContent = '当前股价 ' + current.toFixed(2) + ' 元，与估值偏差 ' + Math.abs(diff).toFixed(0) + '% → 判断：基本合理';
+      verdict.style.background = '#fef9e7';
+      verdict.style.color = '#b8860b';
+    }
+  }
+}
+
+// Init
+calcDCF();
+calcDDM();
+</script>
+</body>
+</html>
