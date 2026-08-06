@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球共振下的3900点·今日归因与明日策略（2026-08-06）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #1a2332; line-height: 1.65; padding-bottom: 60px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .header { background: linear-gradient(135deg, #16324f 0%, #1f4e79 60%, #2a6aa5 100%); color: #fff; padding: 34px 0 28px; margin-bottom: 24px; }
+  .header h1 { font-size: 25px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { opacity: .85; font-size: 13px; margin-top: 8px; }
+  .header .tags { margin-top: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-right: 8px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(20,40,80,.06); }
+  .card h2 { font-size: 19px; color: #16324f; margin-bottom: 14px; padding-left: 11px; border-left: 4px solid #2a6aa5; }
+  .card h3 { font-size: 15px; color: #1f4e79; margin: 14px 0 8px; }
+  .tldr { background: #eef4fb; border: 1px solid #c9ddf2; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .tldr h2 { color: #16324f; font-size: 18px; margin-bottom: 10px; }
+  .tldr ul { margin: 10px 0 0 20px; }
+  .tldr li { margin-bottom: 6px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 10px 0 4px; }
+  .stat { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .stat .num { font-size: 21px; font-weight: 700; }
+  .stat .lbl { font-size: 12px; color: #6b7a8e; margin-top: 2px; }
+  .up { color: #d9382f; }
+  .down { color: #0a9c6d; }
+  .flat { color: #6b7a8e; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th { background: #16324f; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #edf1f6; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafbfd; }
+  .pill { display: inline-block; border-radius: 10px; padding: 1px 10px; font-size: 12px; font-weight: 600; }
+  .pill-a { background: #fde8e6; color: #d9382f; }
+  .pill-b { background: #e8f6f0; color: #0a9c6d; }
+  .pill-c { background: #fdf3e3; color: #b0762a; }
+  .pill-d { background: #eef0f4; color: #6b7a8e; }
+  .chartbox { width: 100%; height: 440px; margin-top: 8px; }
+  .chartbox-sm { width: 100%; height: 300px; margin-top: 8px; }
+  .note { font-size: 12px; color: #8a97a8; margin-top: 6px; }
+  .warn { background: #fdf6ec; border: 1px solid #f0dcb8; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .danger { background: #fdecec; border: 1px solid #f3c4c4; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .ok { background: #eef8f3; border: 1px solid #c5e6d6; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .disc { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 14px 18px; font-size: 12px; color: #6b7a8e; margin-top: 8px; }
+  .plan { border-left: 3px solid #2a6aa5; padding: 8px 14px; margin: 8px 0; background: #f8fafc; }
+  .idea { border-left: 3px solid #b0762a; background: #fdf8ef; padding: 10px 14px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+  .idea b { color: #8a5a14; }
+  .verdict { border: 2px solid #2a6aa5; border-radius: 12px; padding: 18px 22px; margin-top: 14px; background: linear-gradient(135deg,#f3f8fd,#eaf3fb); }
+  .verdict h3 { color: #16324f; margin-bottom: 8px; font-size: 16px; }
+  @media (max-width: 760px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <h1>全球共振下的3900点：今日A股归因 · 日韩/美股全景 · 明日（8/7周五）策略</h1>
+    <div class="sub">数据时点：2026-08-06 21:30（A股收盘 + 美股美东8/6盘中）｜行情来源：腾讯行情/Choice/新浪财经；消息来源：财联社/中新社/每经/新浪/上海证券报/证券时报</div>
+    <div class="tags"><span class="tag">3900点归因</span><span class="tag">日韩存储崩盘</span><span class="tag">美股分化</span><span class="tag">周五非农决战</span><span class="tag">持仓决策</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>核心结论（TL;DR）</h2>
+    <ul>
+      <li><b>今天A股站上3900是"权重搭台、结构分化"的缩量虚涨。</b>上证 <b>3900.35 +0.57%</b>，但深成指-0.24%、创业板-0.55%，成交缩至 <b>2.53万亿（-1300亿）</b>，跌家数一度逼近4300家。第一功臣是<b>煤炭（板块+4.88%涨停潮）</b>，叠加贵金属（现货金破<b>4300美元</b>）、电子特气/化学品、半导体设备/CPO午后回升，以及权重低开高走护盘。</li>
+      <li><b>日韩今天崩了，且崩在存储。</b>日经-0.93%，韩国KOSPI <b>-4.58%</b>（近期最大单日跌幅），SK海力士<b>-10.37%</b>、三星电子-6.30%。导火索是隔夜美股闪迪/西数财报"利好兑现出货"+AMD-7%。<b>但A股存储今天逆势上涨（深科技+3.13%、长电涨停）——这是"时差补跌"陷阱，明日A股存储链大概率补跌。</b></li>
+      <li><b>美股处于"道指新高、纳指回调"的分化中。</b>美东8/5夜：道指五连阳创收盘新高54349、标普-0.17%、纳指-0.83%（谷歌AI人事地震-4%、AMD-7%、SpaceX大跌+史上最大解禁）。<b>但ADP小非农爆冷（4.4万 vs 预期7万）→ 9月加息概率降至54.9%、美债收益率回落</b>；今晚8/6盘中道指再创盘中新高、纳指平开，市场在等<b>周五非农</b>。</li>
+      <li><b>明天（8/7周五）是"非农决战前的观望日"：A股盘中盲猜、真正的变盘在下周一。</b>非农预期8.3万（高于6月5.7万）、失业率4.2%；北京时间明晚20:30公布（A股收盘后）。基准情景：上证3880~3930高位震荡、存储补跌、煤炭贵金属惯性分化、CXO超跌反抽，量能或续缩。</li>
+      <li><b>持仓操作基调：科技逢高减、防御持有、深跌才低吸、非农前留30%现金——整体"减仓+观望"，不清仓、不加仓。</b>富联70/亨通57+/中兴34.5~35减、歌尔23附近减1手锁盈、招商反弹减；宁德355~360、迈瑞138~145等深跌首仓（非农前仅试探）。</li>
+    </ul>
+    <div class="note">判断基于《长期观察池_55标的_20260804》《买入.md（区间校验v2）》叠加今日收盘行情与外围最新消息，仅供研究参考，不构成投资建议。</div>
+  </div>
+
+  <!-- 一、A股归因 -->
+  <div class="card">
+    <h2>一、今天A股为什么能拉上3900？——六大力量拆解</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num up">3900.35</div><div class="lbl">上证指数 +0.57%（阶段新高3902）</div></div>
+      <div class="stat"><div class="num up">+4.88%</div><div class="lbl">煤炭板块（今日第一大主力）</div></div>
+      <div class="stat"><div class="num down">2.53万亿</div><div class="lbl">两市成交（较昨日-1300亿缩量）</div></div>
+      <div class="stat"><div class="num up">83/1</div><div class="lbl">涨停/跌停家数（情绪未坏）</div></div>
+    </div>
+    <div class="chartbox-sm" id="chartIdx"></div>
+    <table>
+      <tr><th style="width:20%;">力量</th><th style="width:45%;">今日表现</th><th>为什么是它</th></tr>
+      <tr><td><b>① 煤炭（第一功臣）</b></td><td class="up">板块+4.88%领涨：昊华/潞安/淮北/平煤/兖矿等涨停；观察池陕煤+4.14%、神华+2.26%</td><td>8/5动力煤CCI指数全线上调（5500大卡839元/吨+5元）；极端高温致多地电网负荷连创历史新高；2026产能核减窗口期供给收缩（有效供应预计-1.9%至38.06亿吨）；低估值+高股息避险</td></tr>
+      <tr><td><b>② 贵金属/有色</b></td><td class="up">现货金突破<b>4300美元</b>（6/18来首次，隔夜伦敦金+4%/银+5%）；黄金股全线飘红（盛达+7.38%、西部黄金+6%、招金+5.51%）</td><td>避险+地缘（中东）+降息预期升温共振，金价"放大器"效应</td></tr>
+      <tr><td><b>③ 电子特气/化学品</b></td><td class="up">中巨芯20cm涨停、天通/江化微涨停、蜀道装备20cm；六氟化钨需求逻辑</td><td>HBM/3D NAND/先进制程升级带动特气与湿电子化学品需求，半导体材料补涨</td></tr>
+      <tr><td><b>④ 半导体设备/封测/CPO</b></td><td class="up">午后V型回升：长电科技<b>涨停</b>、景旺电子涨停、有研新材涨停、北方华创+1.13%、深科技+3.13%</td><td>1.6T光模块放量+CPO商业化导入+国内AI算力加码（中信证券观点），主线韧性仍在</td></tr>
+      <tr><td><b>⑤ 权重护盘+低开高走</b></td><td class="flat">低开3864→午后二度接起→尾盘翻红站上3900；石化+2.01%、建行+1.51%</td><td>红利/权重承接资金，指数层面"国家队+险资"托盘特征明显</td></tr>
+      <tr><td><b>⑥ 短线情绪</b></td><td class="up">爱丽家居<b>10连板</b>（下半年首个，跨界存储测试设备）；83涨停/仅1跌停</td><td>7月科技"鲸落"后短线资金在连板中找赚钱效应，投机活跃</td></tr>
+    </table>
+    <div class="warn"><b>但要拆穿"虚涨"：</b>①成交缩量1300亿，量价背离；②深成指-0.24%、创业板-0.55%、沪深300/上证50均收跌，只有上证（权重股主导）涨；③盘中下跌家数一度接近4300家，收盘仍涨2789/跌2590——<b>"指数新高、个股分化"的典型高位特征</b>。资金在高位板块间快速轮动（科技→煤炭→贵金属→化工），追涨性价比显著下降。<b>3900是"煤炭抬出来的"而不是"普涨推上去的"。</b></div>
+  </div>
+
+  <!-- 二、日韩 -->
+  <div class="card">
+    <h2>二、日韩今天：存储崩盘的传导夜</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num down">-0.93%</div><div class="lbl">日经225 65683.26（盘中一度-2%+）</div></div>
+      <div class="stat"><div class="num down">-4.58%</div><div class="lbl">韩国KOSPI 6296.38（近期最大单日跌幅）</div></div>
+      <div class="stat"><div class="num down">-10.37%</div><div class="lbl">SK海力士（盘中-11%+）</div></div>
+      <div class="stat"><div class="num down">-6.30%</div><div class="lbl">三星电子（盘中-7%+）</div></div>
+    </div>
+    <h3>崩盘传导链</h3>
+    <div class="plan">美股闪迪/西数财报"利好兑现出货"（盘后-7%/-10%）→ AMD财报后大跌-7% → 韩国存储双雄（SK海力士/三星占KOSPI权重极高）重挫 → KOSPI-4.58%、日经受拖累-0.93%。<b>本质是"存储高景气预期已定价完毕，财报落地即出货"的全球性获利了结。</b></div>
+    <div class="danger"><b>关键背离信号：</b>今天A股存储链逆势走强（深科技+3.13%、长电科技涨停、有研新材涨停），与日韩形成鲜明反差。这不是A股"更强"，而是<b>比日韩慢半拍——明天A股存储/封测补跌的概率显著上升</b>。长电科技今日涨停75.87，已远超65~72持有区间上沿，明日若高开或冲高即是兑现窗口而非加仓窗口。</div>
+  </div>
+
+  <!-- 三、美股 -->
+  <div class="card">
+    <h2>三、美股现状：道指新高 vs 纳指回调，静待非农</h2>
+    <div class="chartbox-sm" id="chartUs"></div>
+    <h3>美东8/5夜收盘（北京时间8/6早）</h3>
+    <table>
+      <tr><th style="width:22%;">指数/标的</th><th>表现</th><th>解读</th></tr>
+      <tr><td><b>道琼斯</b></td><td class="up">+0.49% 报54349.12，<b>五连阳创收盘新高</b></td><td>工业/医疗/银行蓝筹接棒，传统经济强于科技</td></tr>
+      <tr><td><b>标普500</b></td><td class="down">-0.17% 报7723.55（盘中曾创日内新高）</td><td>材料+1.54%/医疗+1.34%领涨，通信服务-2.39%领跌</td></tr>
+      <tr><td><b>纳斯达克</b></td><td class="down">-0.83% 报26363.44，终结连涨</td><td>谷歌AI人事地震（Alphabet-4%，市值蒸发1800亿美元）、AMD-7.04%、SpaceX大跌拖累</td></tr>
+      <tr><td><b>英伟达</b></td><td class="up">+3.43% 逆势</td><td>马斯克表态SpaceX AI算力只用英伟达芯片+鸿海销售大增</td></tr>
+      <tr><td><b>SpaceX</b></td><td class="down">首份财报超预期仍大跌（开盘-12%）</td><td>8/6约9.1亿股解禁、市值超1000亿美元，<b>美股史上最大解禁</b>抽血</td></tr>
+      <tr><td><b>费城半导体</b></td><td class="down">-1.40%</td><td>AMD/存储拖累；银行股全线上涨（富国/高盛/大摩+0.5~0.9%）</td></tr>
+    </table>
+    <h3>关键宏观变量（对周五最关键）</h3>
+    <table>
+      <tr><th style="width:26%;">变量</th><th>最新状态</th><th>对A股意义</th></tr>
+      <tr><td><b>ADP小非农</b></td><td class="down"><b>爆冷：7月私营新增仅4.4万</b>（预期7万、前值9.8万），10Y/30Y美债收益率应声回落</td><td>加息预期急降温，利多风险资产；但与非农预期形成"预期差"（见第五节）</td></tr>
+      <tr><td><b>9月加息概率</b></td><td class="flat"><b>54.9%</b>（一周前58.3%）</td><td>虽降温但仍过半！市场对非农极度敏感</td></tr>
+      <tr><td><b>周五非农预期</b></td><td class="flat">经济学家预期新增<b>8.3万</b>（高于6月5.7万）、失业率4.2%</td><td>北京时间<b>明晚20:30</b>公布，A股周五盘中是"数据前观望日"</td></tr>
+      <tr><td><b>美联储官员</b></td><td class="flat">卡什卡利（7月加息三票委）主张"逐步加息"；费城联储鲍尔森主张按兵不动</td><td>内部分裂，数据决定方向</td></tr>
+      <tr><td><b>黄金</b></td><td class="up">现货金<b>破4300美元</b>（6/18来首次）、银+5%</td><td>贵金属链明日惯性但短线超买</td></tr>
+      <tr><td><b>油价/中东</b></td><td class="flat">布油/美油企稳小涨；伊朗-阿曼协议"接近最终敲定"</td><td>协议若周末敲定→国际油价再跌（利空石油链，不影响国内煤炭）</td></tr>
+    </table>
+    <div class="note">美东8/6盘中（北京时间今晚21:30开盘）：道指54384.72 +0.07%续创盘中新高、纳指26364.17 平盘——开盘平稳，<b>资金同样在等周五非农</b>。今晚观察重点：①存储/半导体能否企稳；②SpaceX解禁抛压；③美债收益率方向。</div>
+  </div>
+
+  <!-- 四、明日影响 -->
+  <div class="card">
+    <h2>四、明天（8/7周五）：非农决战前的最后一日</h2>
+    <h3>时间线推演</h3>
+    <div class="plan">
+      今晚（美东8/6）美股收盘 → 明日（8/7）早盘日韩开盘（是否续跌） → 明日上午9:30 A股开盘（<b>数据前观望日</b>） → 明日晚20:30 美国7月非农公布（A股已收盘） → 下周一（8/10）A股真正定价非农。
+      <br><b>结论：明天A股盘中是"盲猜日"，真正的变盘在下周一。周五的操作核心是"把不确定性留到周一之前处置"——即控制仓位过周末。</b>
+    </div>
+    <div class="grid4">
+      <div class="stat"><div class="num" style="font-size:18px;">3880~3930</div><div class="lbl">上证区间（高位震荡）</div></div>
+      <div class="stat"><div class="num down" style="font-size:18px;">存储补跌</div><div class="lbl">日韩暴跌时差传导</div></div>
+      <div class="stat"><div class="num" style="font-size:18px;">缩量观望</div><div class="lbl">非农前夜、量能或续缩</div></div>
+      <div class="stat"><div class="num" style="font-size:18px;">3情景</div><div class="lbl">见下：基准/偏空/偏多</div></div>
+    </div>
+    <h3>三情景推演</h3>
+    <table>
+      <tr><th style="width:18%;">情景</th><th style="width:52%;">路径</th><th>操作含义</th></tr>
+      <tr><td><b>① 基准（概率最高）</b></td><td>高位震荡分化：煤炭/贵金属惯性冲高后分化回落；存储链补跌；CXO/医药超跌反抽；券商继续弱。量能2.3~2.5万亿</td><td>科技逢高兑现、不追资源高位、防御持有</td></tr>
+      <tr><td><b>② 偏空</b></td><td>今晚美股存储续跌+纳指大跌→日韩周五续跌→A股科技低开；上证失守3880看3850</td><td>宁德/迈瑞等深跌到位反而分批窗口；科技股坚决降仓</td></tr>
+      <tr><td><b>③ 偏多</b></td><td>市场抢跑"非农走弱→宽松"（ADP已爆冷），风险偏好回升，煤炭+半导体共振冲3930+</td><td>仍不建议追高；持仓者可借冲高兑现而非加仓</td></tr>
+    </table>
+    <div class="warn"><b>风险优先级排序：</b>① 非农超预期（≥8.3万）→ 加息概率回升 → 下周一科技低开；② 存储补跌（日韩传导）→ 高位科技踩踏；③ 霍尔木兹协议周末敲定 → 下周一油价下跌冲击石油链；④ 锂电池消费税发酵（见下）→ 新能源链持续承压。<b>这四件事都发生在周五收盘之后，所以周五尾盘必须留足现金和对冲空间。</b></div>
+  </div>
+
+  <!-- 五、大家没想到的点 -->
+  <div class="card">
+    <h2>五、大家没想到的8个点（市场盲区）</h2>
+
+    <div class="idea"><b>1. 锂电池消费税恢复征收——7/16的公告，今天才发酵，市场定价严重滞后。</b>财政部/海关总署/税务总局公告（2026年第20号，7/16发文）：9/1起锂离子蓄电池等按<b>2%</b>征收消费税、2027/9/1升至4%；钠电/固态/燃料电池免税至2028年底。宁德今天-4.24%被归因为"花旗锂价+46%"，<b>但消费税是更确定的政策利空</b>（"油电同权"第三击：购置税减半→车船税免征取消→电池消费税恢复）。实际利润影响有限（9月才实施且减半），但估值与情绪压制是持续的——宁德355~360首仓区可能被"锂价+消费税"双杀砸到，<b>挂单从"等回调"升级为"可能被迫接"</b>，务必等不再创新低。</div>
+
+    <div class="idea"><b>2. 日韩暴跌 vs A股存储逆势上涨 = 时差补跌陷阱。</b>SK海力士-10.37%、三星-6.30%，A股深科技+3.13%、长电涨停——市场今天的解读是"A股存储独立强势"，<b>但历史上A股半导体与日韩的背离几乎从不以"A股赢"结束，只以"补跌"结束</b>。明天存储链（深科技/长电/中芯）是最明确的减仓对象。</div>
+
+    <div class="idea"><b>3. ADP爆冷(4.4万) vs 非农预期(8.3万) 的预期差陷阱。</b>市场容易看到ADP走弱就转鸽，但经济学家预期官方非农<b>8.3万、高于6月的5.7万</b>——若实际非农接近预期，反而是"强数据"（ADP和非农经常背离），9月加息概率（仍54.9%过半）将反弹。周五是"数据前别赌方向"，而不是"已经知道方向"。</div>
+
+    <div class="idea"><b>4. 动力煤（内盘）≠ 布油（外盘），两套定价体系。</b>伊朗-阿曼协议若周末敲定→国际油价跌，但国内煤炭是独立逻辑：CCI指数上调+高温用电+供给收缩（-1.9%）。<b>别把"油价跌利空煤炭"套到A股</b>；反过来，周五石油链（海油/石化）若因协议再跌，与煤炭无对冲关系——两者资金逻辑不同。</div>
+
+    <div class="idea"><b>5. SpaceX史上最大解禁（1000亿美元）+ 谷歌AI人事地震，是美股科技的两个"尾部雷"。</b>SpaceX 8/6解禁9.1亿股仍在消化；Alphabet因Jeff Dean离职创业、Hassabis交权一日蒸发1800亿美元——<b>AI巨头的人事/解禁风险会随时传导到A股算力/光通信情绪</b>（亨通/富联/中兴的映射源头）。</div>
+
+    <div class="idea"><b>6. 今天8/6是本周"出金日"。</b>T+1取现下，今天卖出的资金才能周五取现，所以今天是本周资金面最紧的一天；明天（周五）出金压力反而缓解——<b>但周五A股收盘后非农才公布，所以"出金日已过"不代表能安心持股过周末</b>，风险在周末不在周五。</div>
+
+    <div class="idea"><b>7. 黄金破4300是"6月18日以来首次"，短线超买。</b>隔夜伦敦金+4%、银+5%后亚洲早盘直接破4300——两天内贵金属涨幅过大，明日黄金股（紫金等）惯性冲高后<b>回落风险高于继续上攻</b>，追高黄金=接盘。</div>
+
+    <div class="idea"><b>8. 爱丽家居10连板是"下半年第一个"，双刃剑。</b>它证明短线投机资金活跃（对高位题材是支撑），但10连板背后是跨界存储测试设备的并购炒作——<b>一旦退潮，连板股的踩踏会放大整个市场的情绪波动</b>，尤其与存储链共振时（存储跌+10连板炸板=双杀）。</div>
+  </div>
+
+  <!-- 六、观察池分层 -->
+  <div class="card">
+    <h2>六、观察池55只：明日（8/7）分层操作指引</h2>
+    <div class="chartbox" id="chartAll"></div>
+    <div class="note">红=今日上涨 绿=今日下跌（A股惯例），按今日涨跌幅排序，数据为2026-08-06收盘（腾讯行情接口）。</div>
+    <table>
+      <tr><th style="width:16%;">分层</th><th style="width:44%;">标的</th><th>明日要点</th></tr>
+      <tr><td class="down"><b>① 补跌风险（减）</b></td><td><b>深科技</b>39.91（+3.13%）、<b>长电科技</b>75.87（涨停）、<b>中芯国际</b>124.15、<b>立讯精密</b>55.90</td><td>日韩存储暴跌传导+财报兑现出货；长电涨停后远超65~72区间，<b>高开/冲高即兑现</b>；深科技明日首当其冲</td></tr>
+      <tr><td class="up"><b>② 惯性冲高（勿追）</b></td><td><b>陕西煤业</b>24.88、<b>中国神华</b>43.97、<b>中国石化</b>5.08、<b>建设银行</b>10.11、<b>紫金矿业</b>34.50、<b>中国铝业</b>9.61</td><td>煤炭涨停潮次日必分化、贵金属金价4300后超买；<b>一律不追</b>，石化若回踩4.9再看，紫金回踩32~33</td></tr>
+      <tr><td class="flat"><b>③ 高位分歧（兑现）</b></td><td><b>工业富联</b>68.27（+3.56%）、<b>亨通光电</b>56.15（+3.2%）、<b>中科曙光</b>87.80、<b>北方华创</b>742.50</td><td>算力/光通信高位分歧加剧，冲高兑现盘重；富联70/亨通57+兑现位不变</td></tr>
+      <tr><td class="flat"><b>④ 超跌反抽（观察）</b></td><td><b>药明康德</b>142.70、<b>迈瑞医疗</b>149.75、<b>恒瑞医药</b>52.11、<b>片仔癀</b>135.79</td><td>连续两日杀跌后或技术性反抽；<b>但药明142.70距118~128区尚远，反抽是减仓机会不是低吸机会</b>；迈瑞138~145若明日续跌则接近分批区</td></tr>
+      <tr><td class="down"><b>⑤ 双杀压制（等企稳）</b></td><td><b>宁德时代</b>388.00（-4.24%）、<b>比亚迪</b>89.45、<b>阳光电源</b>106.70</td><td>锂价+消费税双杀；宁德355~360挂单区更近，<b>等"不再创新低"再首仓</b>；比亚迪82~90区间内观察</td></tr>
+      <tr><td class="up"><b>⑥ 防御持有</b></td><td><b>云南白药</b>50.69、<b>长江电力</b>27.75、<b>中国中车</b>5.93、<b>华能国际</b>7.01、<b>川投能源</b>15.01</td><td>高股息/防御资金避风港；白药50以下补、华能6.8~7.0已近区间上沿、中车5.5~6.0区间内</td></tr>
+    </table>
+    <div class="note">其余标的多处于"等回调"状态：海康37.45（32~35）、泸州老窖87.01（78~88）、中信27.92/广发21.20（券商弱，反弹减）、美的85.32（75~80等回踩）等，均未到低吸条件，耐心等待。</div>
+  </div>
+
+  <!-- 七、持仓决策 -->
+  <div class="card">
+    <h2>七、你的持仓：明日决策（保持观望 / 减仓 / 清仓 / 加仓）</h2>
+    <div class="chartbox-sm" id="chartPos"></div>
+    <table>
+      <tr><th>持仓</th><th>成本</th><th>8/6收盘</th><th>浮盈亏</th><th>仓位占比</th><th>明日决策</th></tr>
+      <tr><td><b>工业富联</b> 3手</td><td>60.00</td><td class="up">68.27（+3.56%）</td><td class="up">+2481（+13.8%）</td><td>28.2%</td><td><b>冲70再减1手</b>；今日最高69.8未到70，明日再给机会。存储补跌+算力高位分歧下，<b>别等70，68.5~70分批减</b>；破66防守</td></tr>
+      <tr><td><b>亨通光电</b> 1手</td><td>49.30</td><td class="up">56.15（+3.2%）</td><td class="up">+685（+13.9%）</td><td>7.7%</td><td><b>冲57+兑现</b>（今日最高57.18又回落）；光通信映射谷歌AI地震+存储链情绪，<b>不恋战</b>；回踩54.5减半</td></tr>
+      <tr><td><b>歌尔股份</b> 2手</td><td>13.80</td><td class="down">23.44（-1.14%）</td><td class="up">+1928（+69.9%）</td><td>6.5%</td><td><b>23附近减1手锁盈</b>（今日已23.44贴近）；浮盈近70%，明天若科技补跌，<b>先减为敬</b></td></tr>
+      <tr><td><b>中兴通讯</b> 5手</td><td>34.00</td><td class="flat">34.70（-0.12%）</td><td class="up">+350（+2.1%）</td><td>23.9%</td><td><b>反弹34.5~35减2手（铁律）</b>——5手仓位+算力降级观察，科技线集中度60%必须降；明日已在此区间，开盘即可执行</td></tr>
+      <tr><td><b>云南白药</b> 2手</td><td>50.90</td><td class="down">50.69（-0.41%）</td><td class="down">-42（-0.4%）</td><td>13.9%</td><td><b>防御持有（观望）</b>；50以下分批补，破49观察——非农对防御板块影响最小</td></tr>
+      <tr><td><b>招商证券</b> 8手</td><td>19.20</td><td class="flat">18.00（+0.33%）</td><td class="down">-960（-6.25%）</td><td>19.8%</td><td><b>反弹18.5附近减2~3手</b>；券商板块今日普跌（天风/中金-2%），弱市中券商弹性差；破17.7减2手</td></tr>
+    </table>
+
+    <div class="verdict">
+      <h3>综合决策：减仓 + 观望（不清仓、不加仓）</h3>
+      <ul style="margin-left:20px;">
+        <li><b>减仓（明日优先执行）</b>：富联68.5~70减1手 → 中兴34.5~35减2手 → 歌尔23附近减1手 → 亨通57+兑现。目的：把科技线集中度从60%降到45%以下。</li>
+        <li><b>观望（持有）</b>：白药（防御，50以下才补）、招商（反弹减，破位再减）、资源红利（陕煤/神华/建行有货则持有，<b>不追高</b>）。</li>
+        <li><b>不清仓</b>：6只持仓均无"逻辑破坏"级利空（中兴业绩弱但已入观察池降级处理），清仓只用于"错杀修复后仓位过重"的科技股，用减仓替代。</li>
+        <li><b>不加仓（仅两个深跌首仓例外）</b>：宁德355~360（等不再创新低，<b>消费税+锂价双杀下可能明天触发，首仓1手试探</b>）、迈瑞138~145（若明日续跌）。<b>非农前只允许首仓试探，不允许重仓。</b></li>
+        <li><b>现金纪律</b>：明日减仓后保留<b>30%~35%现金</b>过周末——因为非农（明晚20:30）、霍尔木兹协议、存储补跌三个变量都在周五收盘后落地，周一开盘前无法预判。</li>
+      </ul>
+    </div>
+
+    <div class="danger"><b>如果非农超预期鹰派（≥8.3万）</b>：周一A股科技低开风险大，周五尾盘科技仓位应主动压到40%以下——即富联/亨通/中兴/歌尔的减仓<u>尽量在周五上午完成，不要拖到尾盘</u>，尾盘只留决策余地。<b>周五是"卖"的时间窗口，不是"买"的。</b></div>
+    <div class="disc">注：持仓成本与份额为8/6核实口径（富联今早已减1手：4手@60→3手；总市值约7.27万）。本报告数据截至2026-08-06 21:30，仅供参考，不构成投资建议。</div>
+  </div>
+
+  <div class="disc">
+    数据说明：A股行情来自腾讯行情接口/Choice（2026-08-06收盘）；日韩收盘来自财联社/上证报（2026-08-06）；美股数据来自新浪财经/财联社/证券时报（美东8/5收盘 + 8/6盘中）；政策公告来自财政部12366官网（电池消费税2026年第20号公告）。本报告基于《长期观察池_55标的_20260804》《买入.md（区间校验v2）》框架编制。<b>仅供研究参考，不构成投资建议。投资有风险，决策需谨慎。</b>
+  </div>
+
+</div>
+
+<script>
+// 全球主要指数（8/6，美股为8/5夜收盘）
+var gIdx = [
+  {n:'韩国KOSPI', v:-4.58}, {n:'日经225', v:-0.93}, {n:'纳指(8/5夜)', v:-0.83},
+  {n:'创业板指', v:-0.55}, {n:'深证成指', v:-0.24}, {n:'标普500(8/5夜)', v:-0.17},
+  {n:'科创50', v:0.45}, {n:'道指(8/5夜)', v:0.49}, {n:'上证指数', v:0.57}
+];
+echarts.init(document.getElementById('chartIdx')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(ps){ return ps[0].name + '：' + ps[0].value + '%'; } },
+  grid: { left: 100, right: 30, top: 10, bottom: 20 },
+  xAxis: { type: 'value', name: '%', axisLabel: { formatter: '{value}%' } },
+  yAxis: { type: 'category', data: gIdx.map(function(d){ return d.n; }), axisLabel: { fontSize: 11 } },
+  series: [{ type: 'bar', barMaxWidth: 16, label: { show: true, position: 'right', formatter: '{c}%', fontSize: 11 },
+    data: gIdx.map(function(d){ return { value: d.v, itemStyle: { color: d.v >= 0 ? '#d9382f' : '#0a9c6d' } }; }) }]
+});
+
+// 美股关键标的（8/5夜）
+var usData = [
+  {n:'SK海力士(韩)', v:-10.37}, {n:'AMD', v:-7.04}, {n:'三星电子(韩)', v:-6.30},
+  {n:'费城半导体', v:-1.40}, {n:'标普500', v:-0.17}, {n:'苹果', v:0.52},
+  {n:'道琼斯', v:0.49}, {n:'英伟达', v:3.43}
+];
+echarts.init(document.getElementById('chartUs')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(ps){ return ps[0].name + '：' + ps[0].value + '%'; } },
+  grid: { left: 90, right: 30, top: 10, bottom: 20 },
+  xAxis: { type: 'value', name: '%', axisLabel: { formatter: '{value}%' } },
+  yAxis: { type: 'category', data: usData.map(function(d){ return d.n; }), axisLabel: { fontSize: 11 } },
+  series: [{ type: 'bar', barMaxWidth: 16, label: { show: true, position: 'right', formatter: '{c}%', fontSize: 11 },
+    data: usData.map(function(d){ return { value: d.v, itemStyle: { color: d.v >= 0 ? '#d9382f' : '#0a9c6d' } }; }) }]
+});
+
+// 观察池55只（8/6收盘）
+var allData = [
+  {n:'长电科技',p:75.87,v:10.00},{n:'陕西煤业',p:24.88,v:4.14},{n:'工业富联',p:68.27,v:3.56},{n:'亨通光电',p:56.15,v:3.20},
+  {n:'深科技',p:39.91,v:3.13},{n:'中国神华',p:43.97,v:2.26},{n:'中国石化',p:5.08,v:2.01},{n:'建设银行',p:10.11,v:1.51},
+  {n:'紫金矿业',p:34.50,v:1.17},{n:'北方华创',p:742.50,v:1.13},{n:'中国海油',p:30.96,v:0.88},{n:'三一重工',p:19.76,v:0.71},
+  {n:'万华化学',p:74.97,v:0.70},{n:'水晶光电',p:27.32,v:0.66},{n:'国投电力',p:14.88,v:0.61},{n:'双汇发展',p:25.38,v:0.20},
+  {n:'川投能源',p:15.01,v:0.20},{n:'贵州茅台',p:1308.55,v:0.16},{n:'交通银行',p:6.94,v:0.14},{n:'立讯精密',p:55.90,v:0.05},
+  {n:'牧原股份',p:38.37,v:0.03},{n:'长江电力',p:27.75,v:-0.04},{n:'格力电器',p:40.25,v:-0.05},{n:'中兴通讯',p:34.70,v:-0.12},
+  {n:'美的集团',p:85.32,v:-0.18},{n:'伊利股份',p:26.32,v:-0.19},{n:'中国建筑',p:4.57,v:-0.22},{n:'中国中车',p:5.93,v:-0.34},
+  {n:'云南白药',p:50.69,v:-0.41},{n:'洛阳钼业',p:20.37,v:-0.49},{n:'泸州老窖',p:87.01,v:-0.58},{n:'片仔癀',p:135.79,v:-0.76},
+  {n:'广发证券',p:21.20,v:-0.80},{n:'中信证券',p:27.92,v:-0.92},{n:'福耀玻璃',p:56.05,v:-0.94},{n:'中科曙光',p:87.80,v:-0.96},
+  {n:'中国平安',p:53.50,v:-0.96},{n:'海尔智家',p:22.12,v:-0.98},{n:'中芯国际',p:124.15,v:-1.04},{n:'歌尔股份',p:23.44,v:-1.14},
+  {n:'海天味业',p:36.55,v:-1.14},{n:'山西汾酒',p:119.60,v:-1.17},{n:'豪威集团',p:89.65,v:-1.30},{n:'阳光电源',p:106.70,v:-1.43},
+  {n:'国电南瑞',p:24.17,v:-1.51},{n:'比亚迪',p:89.45,v:-1.51},{n:'华能国际',p:7.01,v:-1.54},{n:'汇川技术',p:63.39,v:-1.55},
+  {n:'长城汽车',p:15.72,v:-1.57},{n:'中国铝业',p:9.61,v:-1.64},{n:'海康威视',p:37.45,v:-2.58},{n:'恒瑞医药',p:52.11,v:-2.67},
+  {n:'迈瑞医疗',p:149.75,v:-2.95},{n:'药明康德',p:142.70,v:-3.25},{n:'宁德时代',p:388.00,v:-4.24}
+];
+var colors = allData.map(function(d){ return d.v >= 0 ? '#d9382f' : '#0a9c6d'; });
+echarts.init(document.getElementById('chartAll')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(ps){ var p = ps[0]; return p.name + '：' + p.value + '%（现价' + allData[ps[0].dataIndex].p + '）'; } },
+  grid: { left: 40, right: 16, top: 10, bottom: 120 },
+  xAxis: { type: 'category', data: allData.map(function(d){ return d.n; }), axisLabel: { rotate: 60, fontSize: 10, interval: 0 } },
+  yAxis: { type: 'value', name: '涨跌幅%', axisLabel: { formatter: '{value}%' } },
+  series: [{ type: 'bar', data: allData.map(function(d, i){ return { value: d.v, itemStyle: { color: colors[i], borderRadius: [2,2,0,0] } }; }), barMaxWidth: 14 }]
+});
+
+// 持仓浮盈亏
+var pos = [
+  {n:'歌尔股份', v:1928}, {n:'工业富联', v:2481}, {n:'亨通光电', v:685},
+  {n:'中兴通讯', v:350}, {n:'云南白药', v:-42}, {n:'招商证券', v:-960}
+];
+echarts.init(document.getElementById('chartPos')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(ps){ return ps[0].name + '：' + (ps[0].value >= 0 ? '+' : '') + ps[0].value + '元'; } },
+  grid: { left: 40, right: 30, top: 10, bottom: 20 },
+  xAxis: { type: 'category', data: pos.map(function(d){ return d.n; }), axisLabel: { fontSize: 11 } },
+  yAxis: { type: 'value', name: '浮盈亏(元)' },
+  series: [{ type: 'bar', barMaxWidth: 40, label: { show: true, position: 'top', formatter: function(p){ return (p.value >= 0 ? '+' : '') + p.value; }, fontSize: 11 },
+    data: pos.map(function(d){ return { value: d.v, itemStyle: { color: d.v >= 0 ? '#d9382f' : '#0a9c6d' } }; }) }]
+});
+</script>
+
+</body>
+</html>
