@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科技成长板块 × 金融危机情景分析（补充专题）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f7f8fa;color:#1f2329;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+.hero{background:linear-gradient(135deg,#fff5f5,#fff);border:1px solid #f0e0e0;border-radius:16px;padding:28px 32px;margin-bottom:20px}
+.hero h1{font-size:24px;color:#b71c1c;margin-bottom:8px}
+.hero .sub{color:#666;font-size:14px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chip{background:#fff;border:1px solid #e5e5e5;border-radius:20px;padding:6px 14px;font-size:12px;color:#444}
+.chip b{color:#b71c1c}
+.reason{background:#fff8e1;border:1px solid #ffe082;border-radius:14px;padding:18px 24px;margin-bottom:20px}
+.reason h2{font-size:16px;color:#8d6e00;margin-bottom:10px}
+.reason p{font-size:13.5px;color:#6d5a00;margin-bottom:8px}
+.section{background:#fff;border:1px solid #eee;border-radius:14px;padding:22px 26px;margin-bottom:20px}
+.section h2{font-size:18px;margin-bottom:14px;color:#222;border-left:4px solid #b71c1c;padding-left:10px}
+#scatter{width:100%;height:480px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:#fafafa;color:#555;font-weight:600;padding:9px 8px;text-align:left;border-bottom:2px solid #eee;white-space:nowrap;position:sticky;top:0}
+td{padding:8px;border-bottom:1px solid #f2f2f2;vertical-align:middle}
+tr:hover{background:#fafafa}
+.rk{color:#999;font-weight:600}
+.nm b{font-size:13px}
+.code{color:#aaa;font-size:11px;margin-left:6px}
+.badge{display:inline-block;color:#fff;border-radius:4px;padding:1px 6px;font-size:10px;margin-top:3px}
+.zone{font-weight:600;color:#b71c1c}
+.ph{color:#999;font-size:11px}
+.note{background:#fffbe6;border:1px solid #ffe58f;border-radius:10px;padding:14px 18px;font-size:12.5px;color:#8c6d1f;margin-top:18px}
+.note b{color:#ad6800}
+.footer{text-align:center;color:#999;font-size:12px;margin-top:30px}
+@media(max-width:720px){.wrap{padding:12px}.hero{padding:18px}td{font-size:11px}th{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+<h1>🔴 科技成长板块 × 金融危机情景分析（补充专题）</h1>
+<div class="sub">聚焦当前最火爆的 AI算力 / 半导体 / 消费电子科技股，纳入同一危机评分模型（数据：腾讯自选股 2026-08-07 收盘）</div>
+<div class="meta">
+<span class="chip">覆盖 <b>30</b> 只科技龙头</span>
+<span class="chip">含 <b>科创板</b> · <b>创业板</b> · <b>沪深主板</b></span>
+<span class="chip">景气主线：AI算力 / 半导体设备 / AI芯片 / 存储 / 消费电子</span>
+</div>
+</div>
+
+<div class="reason">
+<h2>❓ 为什么上一份「50标的」报告里没有它们？</h2>
+<p><b>原因1（口径）：</b>上一份报告按你的要求严格限定<b>沪深主板</b>，而当前最火爆的科技股（寒武纪、中芯国际、海光信息、澜起科技、中微公司等）几乎全部在<b>科创板/创业板</b>；主板内的科技龙头（兆易创新、北方华创、生益科技等）虽入选候选池，但按"防御×弹性×风险"综合分排序时被高分蓝筹挤出前50。</p>
+<p><b>原因2（模型）：</b>危机评分模型把<b>风险分</b>（估值泡沫+高Beta）权重设得很高，科技股 PE 普遍 50~300 倍、Beta≈1，风险分极高 → 在"避险型"框架下天然垫底。但这恰恰说明：<b>科技股不是避险品种，而是"危机中跌最深、政策底后反弹最猛"的进攻品种</b>，应单独一套打法。</p>
+<p><b>本专题结论：</b>科技股在危机三阶段中表现最极端——前期高位深跌（-40%~-70%）、中期恐慌深跌、后期政策底（新质生产力/科技自立）大反弹（+50%~150%）。<b>适合"政策底确认后"低吸进攻，绝不适合作为危机初期避险仓。</b></p>
+</div>
+
+<div class="section">
+<h2>📊 定位散点图（X=防御分，Y=弹性分）——科技股整体偏右下：低防御、高弹性</h2>
+<div id="scatter"></div>
+</div>
+
+<div class="section">
+<h2>📋 科技龙头危机情景清单（30只）</h2>
+<table>
+<thead>
+<tr><th>#</th><th>标的</th><th>景气主线</th><th>PE</th><th>PB</th><th>年内涨幅</th><th>分类</th><th>防御</th><th>弹性</th><th>风险</th><th>危机三阶段</th><th>低吸区间</th></tr>
+</thead>
+<tbody>
+<tr>
+<td class="rk">1</td>
+<td class="nm"><b>新易盛</b><span class="code">300502</span><br><span class="badge" style="background:#00838f">创业</span></td>
+<td>ai硬件</td>
+<td>55</td>
+<td>30.2</td>
+<td>37%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>50</td>
+<td>82</td>
+<td>77</td>
+<td>高位深跌 → 恐慌深跌 → <b>大反弹(先锋)</b></td>
+<td><span class="zone">286.25 ~ 345.18</span><br><span class="ph">现价420.95 · 52周低128.49</span></td>
+</tr><tr>
+<td class="rk">2</td>
+<td class="nm"><b>立讯精密</b><span class="code">002475</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>消费电子</td>
+<td>26</td>
+<td>5.0</td>
+<td>1%</td>
+<td style="color:#6a1b9a;font-weight:600">高风险高弹性</td>
+<td>52</td>
+<td>70</td>
+<td>65</td>
+<td>高位回落 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">35.33 ~ 44.45</span><br><span class="ph">现价56.99 · 52周低36.13</span></td>
+</tr><tr>
+<td class="rk">3</td>
+<td class="nm"><b>歌尔股份</b><span class="code">002241</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>消费电子</td>
+<td>21</td>
+<td>2.3</td>
+<td>-18%</td>
+<td style="color:#6a1b9a;font-weight:600">高风险高弹性</td>
+<td>47</td>
+<td>71</td>
+<td>65</td>
+<td>高位回落 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">17.19 ~ 18.17</span><br><span class="ph">现价23.29 · 52周低20.22</span></td>
+</tr><tr>
+<td class="rk">4</td>
+<td class="nm"><b>中际旭创</b><span class="code">300308</span><br><span class="badge" style="background:#00838f">创业</span></td>
+<td>ai硬件</td>
+<td>72</td>
+<td>31.1</td>
+<td>51%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>44</td>
+<td>82</td>
+<td>84</td>
+<td>高位深跌 → 恐慌深跌 → <b>大反弹(先锋)</b></td>
+<td><span class="zone">625.51 ~ 754.29</span><br><span class="ph">现价919.87 · 52周低203.6</span></td>
+</tr><tr>
+<td class="rk">5</td>
+<td class="nm"><b>豪威集团</b><span class="code">603501</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>消费电子</td>
+<td>31</td>
+<td>3.5</td>
+<td>-29%</td>
+<td style="color:#6a1b9a;font-weight:600">高风险高弹性</td>
+<td>42</td>
+<td>73</td>
+<td>72</td>
+<td>高位回落 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">71.94 ~ 82.73</span><br><span class="ph">现价89.76 · 52周低84.63</span></td>
+</tr><tr>
+<td class="rk">6</td>
+<td class="nm"><b>海康威视</b><span class="code">002415</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>ai硬件</td>
+<td>21</td>
+<td>4.0</td>
+<td>28%</td>
+<td style="color:#6a1b9a;font-weight:600">高风险高弹性</td>
+<td>55</td>
+<td>66</td>
+<td>70</td>
+<td>高位回落 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">23.41 ~ 29.05</span><br><span class="ph">现价37.24 · 52周低27.54</span></td>
+</tr><tr>
+<td class="rk">7</td>
+<td class="nm"><b>工业富联</b><span class="code">601138</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>ai硬件</td>
+<td>33</td>
+<td>8.3</td>
+<td>12%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>47</td>
+<td>73</td>
+<td>77</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">46.36 ~ 55.91</span><br><span class="ph">现价68.18 · 52周低34.08</span></td>
+</tr><tr>
+<td class="rk">8</td>
+<td class="nm"><b>中兴通讯</b><span class="code">000063</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>ai硬件</td>
+<td>37</td>
+<td>2.2</td>
+<td>-7%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>39</td>
+<td>76</td>
+<td>77</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">26.68 ~ 28.45</span><br><span class="ph">现价34.7 · 52周低31.39</span></td>
+</tr><tr>
+<td class="rk">9</td>
+<td class="nm"><b>胜宏科技</b><span class="code">300476</span><br><span class="badge" style="background:#00838f">创业</span></td>
+<td>ai硬件</td>
+<td>59</td>
+<td>17.6</td>
+<td>-2%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>41</td>
+<td>75</td>
+<td>77</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">190.54 ~ 229.76</span><br><span class="ph">现价280.2 · 52周低177.88</span></td>
+</tr><tr>
+<td class="rk">10</td>
+<td class="nm"><b>沪电股份</b><span class="code">002463</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>ai硬件</td>
+<td>56</td>
+<td>15.3</td>
+<td>73%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>44</td>
+<td>73</td>
+<td>77</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">85.59 ~ 103.21</span><br><span class="ph">现价125.87 · 52周低49.74</span></td>
+</tr><tr>
+<td class="rk">11</td>
+<td class="nm"><b>中科曙光</b><span class="code">603019</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>ai芯片</td>
+<td>59</td>
+<td>5.9</td>
+<td>4%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>34</td>
+<td>75</td>
+<td>79</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">60.36 ~ 72.79</span><br><span class="ph">现价88.77 · 52周低67.51</span></td>
+</tr><tr>
+<td class="rk">12</td>
+<td class="nm"><b>TCL科技</b><span class="code">000100</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>消费电子</td>
+<td>20</td>
+<td>1.7</td>
+<td>9%</td>
+<td style="color:#6a1b9a;font-weight:600">高风险高弹性</td>
+<td>45</td>
+<td>61</td>
+<td>65</td>
+<td>高位回落 → 恐慌深跌 → <b>修复反弹</b></td>
+<td><span class="zone">3.36 ~ 3.79</span><br><span class="ph">现价4.86 · 52周低3.95</span></td>
+</tr><tr>
+<td class="rk">13</td>
+<td class="nm"><b>天孚通信</b><span class="code">300394</span><br><span class="badge" style="background:#00838f">创业</span></td>
+<td>ai硬件</td>
+<td>116</td>
+<td>46.0</td>
+<td>60%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>38</td>
+<td>79</td>
+<td>91</td>
+<td>高位深跌 → 恐慌深跌 → <b>大反弹(先锋)</b></td>
+<td><span class="zone">156.86 ~ 189.16</span><br><span class="ph">现价230.68 · 52周低69.78</span></td>
+</tr><tr>
+<td class="rk">14</td>
+<td class="nm"><b>生益科技</b><span class="code">600183</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>ai硬件</td>
+<td>87</td>
+<td>21.3</td>
+<td>98%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>38</td>
+<td>74</td>
+<td>84</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">95.19 ~ 114.78</span><br><span class="ph">现价139.98 · 52周低38.04</span></td>
+</tr><tr>
+<td class="rk">15</td>
+<td class="nm"><b>领益智造</b><span class="code">002600</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>消费电子</td>
+<td>49</td>
+<td>4.3</td>
+<td>-18%</td>
+<td style="color:#6a1b9a;font-weight:600">高风险高弹性</td>
+<td>38</td>
+<td>66</td>
+<td>72</td>
+<td>高位回落 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">8.0 ~ 9.92</span><br><span class="ph">现价12.72 · 52周低9.41</span></td>
+</tr><tr>
+<td class="rk">16</td>
+<td class="nm"><b>京东方A</b><span class="code">000725</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>消费电子</td>
+<td>38</td>
+<td>1.7</td>
+<td>46%</td>
+<td style="color:#6a1b9a;font-weight:600">高风险高弹性</td>
+<td>37</td>
+<td>66</td>
+<td>72</td>
+<td>高位回落 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">3.76 ~ 4.73</span><br><span class="ph">现价6.07 · 52周低3.73</span></td>
+</tr><tr>
+<td class="rk">17</td>
+<td class="nm"><b>兆易创新</b><span class="code">603986</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>存储</td>
+<td>102</td>
+<td>11.8</td>
+<td>95%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>29</td>
+<td>80</td>
+<td>91</td>
+<td>高位深跌 → 恐慌深跌 → <b>大反弹(先锋)</b></td>
+<td><span class="zone">283.59 ~ 341.98</span><br><span class="ph">现价417.05 · 52周低115.65</span></td>
+</tr><tr>
+<td class="rk">18</td>
+<td class="nm"><b>紫光股份</b><span class="code">000938</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>ai硬件</td>
+<td>51</td>
+<td>7.1</td>
+<td>55%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>38</td>
+<td>68</td>
+<td>77</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">25.84 ~ 31.16</span><br><span class="ph">现价38.0 · 52周低23.17</span></td>
+</tr><tr>
+<td class="rk">19</td>
+<td class="nm"><b>长电科技</b><span class="code">600584</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>设备</td>
+<td>84</td>
+<td>4.9</td>
+<td>112%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>32</td>
+<td>71</td>
+<td>82</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">52.87 ~ 63.76</span><br><span class="ph">现价77.75 · 52周低34.38</span></td>
+</tr><tr>
+<td class="rk">20</td>
+<td class="nm"><b>北方华创</b><span class="code">002371</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>设备</td>
+<td>98</td>
+<td>14.1</td>
+<td>64%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>35</td>
+<td>69</td>
+<td>82</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">511.35 ~ 616.63</span><br><span class="ph">现价751.99 · 52周低325.23</span></td>
+</tr><tr>
+<td class="rk">21</td>
+<td class="nm"><b>澜起科技</b><span class="code">688008</span><br><span class="badge" style="background:#7b1fa2">科创</span></td>
+<td>ai硬件</td>
+<td>103</td>
+<td>13.1</td>
+<td>84%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>32</td>
+<td>75</td>
+<td>91</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">146.55 ~ 176.73</span><br><span class="ph">现价215.52 · 52周低87.75</span></td>
+</tr><tr>
+<td class="rk">22</td>
+<td class="nm"><b>士兰微</b><span class="code">600460</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>设备</td>
+<td>118</td>
+<td>4.5</td>
+<td>15%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>27</td>
+<td>73</td>
+<td>89</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">22.13 ~ 26.69</span><br><span class="ph">现价32.55 · 52周低24.62</span></td>
+</tr><tr>
+<td class="rk">23</td>
+<td class="nm"><b>东山精密</b><span class="code">002384</span><br><span class="badge" style="background:#2e7d32">深主</span></td>
+<td>ai硬件</td>
+<td>175</td>
+<td>15.8</td>
+<td>131%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>29</td>
+<td>72</td>
+<td>91</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">132.78 ~ 160.12</span><br><span class="ph">现价195.27 · 52周低48.68</span></td>
+</tr><tr>
+<td class="rk">24</td>
+<td class="nm"><b>中微公司</b><span class="code">688012</span><br><span class="badge" style="background:#7b1fa2">科创</span></td>
+<td>设备</td>
+<td>129</td>
+<td>12.8</td>
+<td>101%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>29</td>
+<td>69</td>
+<td>89</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">250.0 ~ 301.47</span><br><span class="ph">现价367.65 · 52周低125.4</span></td>
+</tr><tr>
+<td class="rk">25</td>
+<td class="nm"><b>寒武纪</b><span class="code">688256</span><br><span class="badge" style="background:#7b1fa2">科创</span></td>
+<td>ai芯片</td>
+<td>277</td>
+<td>61.6</td>
+<td>32%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>24</td>
+<td>71</td>
+<td>98</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">815.95 ~ 983.94</span><br><span class="ph">现价1199.93 · 52周低448.66</span></td>
+</tr><tr>
+<td class="rk">26</td>
+<td class="nm"><b>沪硅产业</b><span class="code">688126</span><br><span class="badge" style="background:#7b1fa2">科创</span></td>
+<td>设备</td>
+<td>亏损</td>
+<td>5.2</td>
+<td>23%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>22</td>
+<td>70</td>
+<td>96</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">18.12 ~ 21.85</span><br><span class="ph">现价26.65 · 52周低16.61</span></td>
+</tr><tr>
+<td class="rk">27</td>
+<td class="nm"><b>三安光电</b><span class="code">600703</span><br><span class="badge" style="background:#1565c0">沪主</span></td>
+<td>设备</td>
+<td>亏损</td>
+<td>2.1</td>
+<td>2%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>22</td>
+<td>69</td>
+<td>96</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">9.79 ~ 11.81</span><br><span class="ph">现价14.4 · 52周低10.84</span></td>
+</tr><tr>
+<td class="rk">28</td>
+<td class="nm"><b>海光信息</b><span class="code">688041</span><br><span class="badge" style="background:#7b1fa2">科创</span></td>
+<td>ai芯片</td>
+<td>252</td>
+<td>29.7</td>
+<td>32%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>22</td>
+<td>70</td>
+<td>98</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">201.11 ~ 242.52</span><br><span class="ph">现价295.75 · 52周低134.81</span></td>
+</tr><tr>
+<td class="rk">29</td>
+<td class="nm"><b>华虹宏力</b><span class="code">688347</span><br><span class="badge" style="background:#7b1fa2">科创</span></td>
+<td>设备</td>
+<td>945</td>
+<td>10.3</td>
+<td>149%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>21</td>
+<td>68</td>
+<td>95</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">182.44 ~ 220.0</span><br><span class="ph">现价268.29 · 52周低61.4</span></td>
+</tr><tr>
+<td class="rk">30</td>
+<td class="nm"><b>中芯国际</b><span class="code">688981</span><br><span class="badge" style="background:#7b1fa2">科创</span></td>
+<td>设备</td>
+<td>218</td>
+<td>5.8</td>
+<td>5%</td>
+<td style="color:#c62828;font-weight:600">泡沫高危(最深跌)</td>
+<td>23</td>
+<td>66</td>
+<td>95</td>
+<td>高位深跌 → 恐慌深跌 → <b>强反弹</b></td>
+<td><span class="zone">87.38 ~ 105.37</span><br><span class="ph">现价128.5 · 52周低86.22</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+<b>⚠️ 风险提示：</b>科技股 PE 普遍处于历史高位（寒武纪277x、海光252x、华虹945x、中芯218x），泡沫破裂时回撤可远超一般蓝筹（2000年纳指 -78% 即为前车之鉴）。本表低吸区间为<b>情景推算</b>，其中"泡沫高危"类（红标）应<b>等待政策底右侧信号</b>（汇金增持/降准降息/产业政策落地）再分批介入，且严格控制仓位。数据时点 2026-08-07，不构成投资建议。
+</div>
+
+<div class="footer">数据来源：腾讯自选股接口（2026-08-07收盘）· 模型：wb-finance 危机情景评分 · 仅供研究学习</div>
+
+<script>
+var chart = echarts.init(document.getElementById('scatter'));
+chart.setOption({
+  tooltip: {
+    trigger: 'item',
+    formatter: function(p) {
+      var d = p.data;
+      return '<b>' + d.name + '</b><br>主线:' + d.tag + '<br>防御分:' + d.def + ' 弹性分:' + d.el + ' 风险分:' + d.risk + '<br>低吸区间:' + d.lowZone + '<br>现价:' + d.price;
+    }
+  },
+  grid: { left: 60, right: 40, top: 40, bottom: 55 },
+  xAxis: { type: 'value', name: '防御分（抗跌）', min: 15, max: 60 },
+  yAxis: { type: 'value', name: '弹性分（反弹）', min: 55, max: 90 },
+  series: [{
+    type: 'scatter',
+    data: [{value:[50.1,81.6],name:"新易盛(创业板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"286.25~345.18",price:"420.95",def:50.1,el:81.6,risk:76.8,tag:"ai硬件"},{value:[51.9,70.1],name:"立讯精密(深主板)",itemStyle:{color:"#6a1b9a"},symbolSize:8,lowZone:"35.33~44.45",price:"56.99",def:51.9,el:70.1,risk:65.2,tag:"消费电子"},{value:[46.7,71.3],name:"歌尔股份(深主板)",itemStyle:{color:"#6a1b9a"},symbolSize:8,lowZone:"17.19~18.17",price:"23.29",def:46.7,el:71.3,risk:65.2,tag:"消费电子"},{value:[44.1,81.8],name:"中际旭创(创业板)",itemStyle:{color:"#c62828"},symbolSize:10.76004,lowZone:"625.51~754.29",price:"919.87",def:44.1,el:81.8,risk:83.8,tag:"ai硬件"},{value:[42.0,72.7],name:"豪威集团(沪主板)",itemStyle:{color:"#6a1b9a"},symbolSize:8,lowZone:"71.94~82.73",price:"89.76",def:42.0,el:72.7,risk:72.2,tag:"消费电子"},{value:[54.9,66.2],name:"海康威视(深主板)",itemStyle:{color:"#6a1b9a"},symbolSize:8,lowZone:"23.41~29.05",price:"37.24",def:54.9,el:66.2,risk:69.8,tag:"ai硬件"},{value:[47.4,72.9],name:"工业富联(沪主板)",itemStyle:{color:"#c62828"},symbolSize:13.5297,lowZone:"46.36~55.91",price:"68.18",def:47.4,el:72.9,risk:76.8,tag:"ai硬件"},{value:[38.9,76.2],name:"中兴通讯(深主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"26.68~28.45",price:"34.7",def:38.9,el:76.2,risk:76.8,tag:"ai硬件"},{value:[40.9,74.9],name:"胜宏科技(创业板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"190.54~229.76",price:"280.2",def:40.9,el:74.9,risk:76.8,tag:"ai硬件"},{value:[44.5,72.8],name:"沪电股份(深主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"85.59~103.21",price:"125.87",def:44.5,el:72.8,risk:76.8,tag:"ai硬件"},{value:[33.9,74.6],name:"中科曙光(沪主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"60.36~72.79",price:"88.77",def:33.9,el:74.6,risk:79.0,tag:"ai芯片"},{value:[45.3,61.2],name:"TCL科技(深主板)",itemStyle:{color:"#6a1b9a"},symbolSize:8,lowZone:"3.36~3.79",price:"4.86",def:45.3,el:61.2,risk:65.2,tag:"消费电子"},{value:[37.5,79.1],name:"天孚通信(创业板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"156.86~189.16",price:"230.68",def:37.5,el:79.1,risk:90.8,tag:"ai硬件"},{value:[38.3,74.0],name:"生益科技(沪主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"95.19~114.78",price:"139.98",def:38.3,el:74.0,risk:83.8,tag:"ai硬件"},{value:[38.5,66.3],name:"领益智造(深主板)",itemStyle:{color:"#6a1b9a"},symbolSize:8,lowZone:"8.0~9.92",price:"12.72",def:38.5,el:66.3,risk:72.2,tag:"消费电子"},{value:[36.7,66.1],name:"京东方A(深主板)",itemStyle:{color:"#6a1b9a"},symbolSize:8,lowZone:"3.76~4.73",price:"6.07",def:36.7,el:66.1,risk:72.2,tag:"消费电子"},{value:[29.3,79.6],name:"兆易创新(沪主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"283.59~341.98",price:"417.05",def:29.3,el:79.6,risk:90.8,tag:"存储"},{value:[38.1,67.7],name:"紫光股份(深主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"25.84~31.16",price:"38.0",def:38.1,el:67.7,risk:76.8,tag:"ai硬件"},{value:[32.3,71.2],name:"长电科技(沪主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"52.87~63.76",price:"77.75",def:32.3,el:71.2,risk:82.4,tag:"设备"},{value:[35.2,68.8],name:"北方华创(深主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"511.35~616.63",price:"751.99",def:35.2,el:68.8,risk:82.4,tag:"设备"},{value:[32.3,74.7],name:"澜起科技(科创板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"146.55~176.73",price:"215.52",def:32.3,el:74.7,risk:90.8,tag:"ai硬件"},{value:[27.4,73.2],name:"士兰微(沪主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"22.13~26.69",price:"32.55",def:27.4,el:73.2,risk:89.4,tag:"设备"},{value:[28.8,72.5],name:"东山精密(深主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"132.78~160.12",price:"195.27",def:28.8,el:72.5,risk:90.8,tag:"ai硬件"},{value:[29.1,68.9],name:"中微公司(科创板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"250.0~301.47",price:"367.65",def:29.1,el:68.9,risk:89.4,tag:"设备"},{value:[24.1,71.3],name:"寒武纪(科创板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"815.95~983.94",price:"1199.93",def:24.1,el:71.3,risk:98.2,tag:"ai芯片"},{value:[22.5,69.5],name:"沪硅产业(科创板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"18.12~21.85",price:"26.65",def:22.5,el:69.5,risk:96.4,tag:"设备"},{value:[22.5,68.9],name:"三安光电(沪主板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"9.79~11.81",price:"14.4",def:22.5,el:68.9,risk:96.4,tag:"设备"},{value:[22.1,69.8],name:"海光信息(科创板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"201.11~242.52",price:"295.75",def:22.1,el:69.8,risk:98.2,tag:"ai芯片"},{value:[21.0,67.9],name:"华虹宏力(科创板)",itemStyle:{color:"#c62828"},symbolSize:8,lowZone:"182.44~220.0",price:"268.29",def:21.0,el:67.9,risk:94.7,tag:"设备"},{value:[23.0,65.6],name:"中芯国际(科创板)",itemStyle:{color:"#c62828"},symbolSize:11.00096,lowZone:"87.38~105.37",price:"128.5",def:23.0,el:65.6,risk:94.7,tag:"设备"}],
+    label: { show: false },
+    emphasis: { label: { show: true, fontSize: 12, fontWeight: 'bold' } },
+    markLine: {
+      silent: true,
+      symbol: 'none',
+      lineStyle: { type: 'dashed', color: '#ccc' },
+      data: [ { xAxis: 45 }, { yAxis: 72 } ]
+    }
+  }]
+});
+</script>
+</body>
+</html>
