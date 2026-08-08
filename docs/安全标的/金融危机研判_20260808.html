@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金融危机研判·狂热监测（2026-08-08 首次基线）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #1a2332; line-height: 1.65; padding-bottom: 60px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .header { background: linear-gradient(135deg, #3b3a1a 0%, #7a6a1a 55%, #b08a1a 100%); color: #fff; padding: 34px 0 28px; margin-bottom: 24px; }
+  .header h1 { font-size: 25px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { opacity: .85; font-size: 13px; margin-top: 8px; }
+  .header .tags { margin-top: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-right: 8px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(20,40,80,.06); }
+  .card h2 { font-size: 19px; color: #16324f; margin-bottom: 14px; padding-left: 11px; border-left: 4px solid #2a6aa5; }
+  .card h3 { font-size: 15px; color: #1f4e79; margin: 14px 0 8px; }
+  .tldr { background: #fdf8ef; border: 1px solid #f0dcb8; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .tldr h2 { color: #633806; font-size: 18px; margin-bottom: 10px; }
+  .tldr ul { margin: 10px 0 0 20px; }
+  .tldr li { margin-bottom: 6px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 10px 0 4px; }
+  .stat { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .stat .num { font-size: 21px; font-weight: 700; }
+  .stat .lbl { font-size: 12px; color: #6b7a8e; margin-top: 2px; }
+  .up { color: #d9382f; }
+  .down { color: #0a9c6d; }
+  .flat { color: #6b7a8e; }
+  .amber { color: #b0762a; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th { background: #16324f; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #edf1f6; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafbfd; }
+  .chartbox { width: 100%; height: 380px; margin-top: 8px; }
+  .chartbox-sm { width: 100%; height: 300px; margin-top: 8px; }
+  .note { font-size: 12px; color: #8a97a8; margin-top: 6px; }
+  .warn { background: #fdf6ec; border: 1px solid #f0dcb8; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .danger { background: #fdecec; border: 1px solid #f3c4c4; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .ok { background: #eef8f3; border: 1px solid #c5e6d6; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .disc { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 14px 18px; font-size: 12px; color: #6b7a8e; margin-top: 8px; }
+  .scorebox { background: linear-gradient(135deg,#fdf8ef,#faeeda); border: 2px solid #b0762a; border-radius: 14px; padding: 18px 22px; text-align: center; margin-bottom: 14px; }
+  .scorebox .big { font-size: 44px; font-weight: 700; color: #b0762a; }
+  .scorebox .stage { font-size: 16px; color: #633806; margin-top: 4px; font-weight: 500; }
+  .idea { border-left: 3px solid #b0762a; background: #fdf8ef; padding: 10px 14px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+  .idea b { color: #8a5a14; }
+  .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; }
+  @media (max-width: 760px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <h1>金融危机研判·狂热监测（首次基线，2026-08-08）</h1>
+    <div class="sub">数据时点：2026-08-08 09:41（北京时间）｜A股/日韩取8/7收盘、美股取8/7（美东周五）收盘｜来源：腾讯行情/证券时报/中国基金报/上证报/东方财富/雪球/环球市场播报/新浪财经</div>
+    <div class="tags"><span class="tag">狂热度 6.5/10</span><span class="tag">升温→局部狂热</span><span class="tag">档位：绿灯偏黄</span><span class="tag">黄灯差2~3条</span><span class="tag">30Y美债5.16%</span><span class="tag">HY利差2.80%走阔</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>核心结论（TL;DR）</h2>
+    <ul>
+      <li><b>狂热度评分 6.5/10，阶段=「升温期 → 局部狂热」过渡带。</b>A股特征是<b>结构性狂热</b>：AI算力/存储/创新药板块级亢奋（成交连续4日&gt;2.5万亿、两融3日+373亿、爱丽家居10连板、上证创阶段新高3940），但<b>全民参与度未验证</b>（无爆款基金/开户暴增记录）——离2015/2021式全民狂热还有距离。</li>
+      <li><b>档位判定：绿灯偏黄（临界）。</b>黄灯硬触发差 2~3 条：①HY信用利差 2.80% 周内走阔12bp、逼近3%警戒线；②30Y美债 5.16% 站上2007年危机前水平（债市在悄悄预警，股市还在创新高）；③日元套利交易隐患（净空头116.5亿美元近两年高位）+韩国杠杆全球最脆（每30人1人收追保）。<b>这些不是"已发生"，是"引信已装上"。</b></li>
+      <li><b>最值得警惕的背离：美股创新高、比特币不涨（6.46万，本月+2% vs 标普+3.12%）。</b>说明这轮上涨是"AI独牛+存量资金"而非全面风险偏好回升——<b>增量资金有限，一旦AI叙事逆转，全球共振下跌没有对冲</b>。叠加A股存储与日韩/美股"时差背离"3日未修复，是最大尾部风险。</li>
+      <li><b>持仓动作（与今日开盘研判一致，执行不犹豫）</b>：富联68.5~70减1手 → 中兴35.0~35.5减1手 → 招商18.5~18.6减2手 → 歌尔守22.8 / 中车守5.5 / 南瑞守23.9 / 白药持有（49.5~50补1手仅克制）。<b>现金目标：35%→40%</b>（临界档位，多留5%保险）。</li>
+      <li><b>纪律：在黄灯就动手，不等红灯；宁可卖早，不可卖晚。</b>本月哨点：8/12美国CPI、8/13-14美联储讲话、8/21-23杰克逊霍尔、日央行10月加息窗口。<b>下次复检：8/12 CPI 后 或 出现狂热事件（天量3万亿/爆款基金/开户暴增）24小时内。</b></li>
+    </ul>
+    <div class="note">本报告为【提示词E】首次执行，建立基线。所有信号标注"当前值/分位/触发与否"，黄灯、红灯各差几条已明确列出。仅供研究参考，不构成投资建议。</div>
+  </div>
+
+  <!-- 一、评分 -->
+  <div class="card">
+    <h2>一、狂热度评分与阶段判断</h2>
+    <div class="scorebox">
+      <div class="big">6.5<span style="font-size:20px;"> / 10</span></div>
+      <div class="stage">阶段判断：升温期 → 局部狂热（结构性亢奋，未到全民狂热）</div>
+      <div style="font-size:12px; color:#8a5a14; margin-top:6px;">判定：绿灯偏黄（临界）｜黄灯硬触发还差 2~3 条信号</div>
+    </div>
+    <div class="chartbox" id="chartRadar"></div>
+    <div class="note">雷达图：6维度狂热度/风险度评分（0~10，越高越热/越险）。红=已热，黄=边缘，绿=正常。</div>
+    <div class="warn"><b>解读：</b>成交量能、涨停连板、高位赛道估值三项偏高（7~7.5分，结构性狂热）；杠杆水平（6.5）在升温但未极端；外围风险传导（6.0）因HY利差走阔+30Y高位+日元/韩国隐患而上修；信用/流动性（4.5）仍属正常（VIX 18.5、10Y-2Y +47bp未倒挂、无信贷问题）。<b>评分=结构热 + 外围险 + 信用尚稳</b>——典型"狂热早期"组合，正是黄灯纪律该提前布防的位置。</div>
+  </div>
+
+  <!-- 二、信号清单 -->
+  <div class="card">
+    <h2>二、关键信号逐项清单（当前值 / 分位 / 触发与否）</h2>
+    <table>
+      <tr><th style="width:20%;">信号</th><th style="width:34%;">当前值</th><th style="width:22%;">历史分位/参考</th><th>判定</th></tr>
+      <tr><td><b>A股成交额</b></td><td>8/7两市2.66万亿（+1359亿）；8/4~8/7连续4日&gt;2.5万亿</td><td>天量参考线3万亿</td><td><span class="amber">⚠️ 偏热未极致</span></td></tr>
+      <tr><td><b>两融余额</b></td><td>2.64万亿（8/6），连续3日净增+373亿；电子行业融资+3.04%居首</td><td>杠杆资金在回补，未创历史新高</td><td><span class="amber">⚠️ 升温中</span></td></tr>
+      <tr><td><b>涨停/连板</b></td><td>8/7涨停75家/跌停3；爱丽家居10连板（下半年首个10板）、宝鼎6天5板</td><td>情绪活跃，未到百股涨停极端</td><td><span class="amber">⚠️ 偏热</span></td></tr>
+      <tr><td><b>新基金/开户</b></td><td>爆款基金、单日开户暴增记录未验证</td><td>全民参与度信号缺失</td><td><span class="down">✅ 未触发</span></td></tr>
+      <tr><td><b>高位赛道PE分位</b></td><td>AI算力/存储/创新药/PCB局部高位（北方华创PE98倍历史99%分位、药明新高）</td><td>板块级泡沫特征初现</td><td><span class="up">🔴 已触发（板块级）</span></td></tr>
+      <tr><td><b>VIX恐慌指数</b></td><td>约18.5（8月初18.77→18.58，周跌1%）</td><td>正常区间15~20；&gt;30恐慌、&gt;40危机</td><td><span class="down">✅ 未触发</span></td></tr>
+      <tr><td><b>HY信用利差</b></td><td>2.80%（8月初268→280bp，周内走阔12bp）；IG 77→79bp</td><td>警戒线3%；2008雷曼前1%→6%</td><td><span class="amber">⚠️ 边缘（差20bp）</span></td></tr>
+      <tr><td><b>30Y美债</b></td><td>5.16%（本周+8.8bp）</td><td>2007年危机前水平；站稳5%是底层信号</td><td><span class="amber">⚠️ 边缘（已破5%）</span></td></tr>
+      <tr><td><b>10Y-2Y利差</b></td><td>+47bp（正利差，未倒挂）</td><td>倒挂才预警衰退</td><td><span class="down">✅ 未触发</span></td></tr>
+      <tr><td><b>美元/日元</b></td><td>约160~164（日元40年低位区）；日央行7月"鹰派暂停"（利率1%）、8票1反对、最快10月加息至1.25%</td><td>日元净空头116.5亿美元近两年高位；史上最大干预528亿美元仅短线提振</td><td><span class="amber">⚠️ 隐患未消（carry trade）</span></td></tr>
+      <tr><td><b>韩国杠杆</b></td><td>KOSPI 8/7约6310（8/6 -4.58%后企稳）；SK海力士8/7 -4.88%续跌、三星+0.22%</td><td>韩股广义杠杆271万亿韩元；每30人1人收追保、20-30岁爆仓占62%；韩央行7/16加息至2.75%</td><td><span class="amber">⚠️ 全球最脆弱杠杆点</span></td></tr>
+      <tr><td><b>美股AI叙事</b></td><td>标普7757创新高（本月+3.12%、市值+2.1万亿）；费半8/7 +2.56%但存储链续跌（闪迪-3.68%/希捷-4.71%/西数-3.8%）；谷歌-0.96%、AMD-1.21%逆势跌</td><td>85%财报超预期 vs 存储"涨价斜率放缓"担忧；AI资本开支（SpaceX单季158亿）泡沫争论</td><td><span class="amber">⚠️ 内部分化</span></td></tr>
+      <tr><td><b>比特币/风险资产</b></td><td>6.46万美元（本月+2%，明显弱于美股）；USDT供应量降至1830亿、USDC 720亿（2025来最低）</td><td>稳定币外流=加密资金面收缩；"四年周期底部或10月"</td><td><span class="down">✅ 未跟涨（背离信号）</span></td></tr>
+      <tr><td><b>黄金</b></td><td>COMEX 4401美元（+2.37%，周涨7%+）；央行购金、美元信用松动叙事</td><td>历史高位；30年首超美债成第一储备资产</td><td><span class="amber">⚠️ 避险需求强</span></td></tr>
+      <tr><td><b>油价</b></td><td>WTI周跌7.67%（美伊和平进展）；但胡塞袭沙特、伊朗扣油轮反复（8/1霍尔木兹通行量-77%）</td><td>波动率极高，双向风险</td><td><span class="amber">⚠️ 地缘反复</span></td></tr>
+      <tr><td><b>美联储路径</b></td><td>9月加息概率44%（一周前67%）；7月FOMC 9:3按兵不动、3票反对要求加息；核心PCE 3.0%；沃什拟减少议息会议频率</td><td>内部鹰派声音强，路径高度不确定</td><td><span class="amber">⚠️ 8/12 CPI定调</span></td></tr>
+      <tr><td><b>中国社融/M1</b></td><td>7月数据未公布（8月中旬出）；6月口径缺增量证据</td><td>国内"钱"流向不明</td><td><span class="flat">➖ 待数据</span></td></tr>
+    </table>
+    <div class="danger"><b>计数：狂热信号（A股）已触发/偏热约5项</b>（成交放量、两融连增、连板高度、指数新高、高位赛道估值），但<b>均未到极端</b>（无3万亿天量、无爆款基金、无开户暴增）；<b>信用/外围硬信号0项触发</b>（VIX正常、利差未倒挂、无信贷问题），但HY利差与30Y美债两项已贴"边缘线"。<b>黄灯触发条件：狂热信号≥3项极端化 或 信用利差破3% 或 外围传导（日元平仓/KOSPI再暴跌/存储背离修复）——当前差2~3条。</b></div>
+  </div>
+
+  <!-- 三、三档判定 -->
+  <div class="card">
+    <h2>三、三档判定结果（对照《危机信号分级监测表》）</h2>
+    <div class="ok"><span class="dot" style="background:#0a9c6d;"></span><b>绿灯（维持现有计划）——当前判定</b>：财报/盈利强劲（标普85%超预期）、利率未失控（VIX 18.5、10Y-2Y +47bp）、无流动性危机。<b>动作：维持今日开盘研判计划（兑现富联/中兴/招商、留35%现金），不追高。</b></div>
+    <div class="warn"><span class="dot" style="background:#b0762a;"></span><b>黄灯（防御加强）——距离最近，差2~3条</b>：① HY信用利差 2.80% 破3%（周内已走阔12bp）；② 外围传导：日元套利平仓、KOSPI单日-5%级、SK海力士续跌带A股存储背离修复（当前存储链日韩续跌3日+背离3日，是最近的一条）；③ A股狂热极端化：3万亿天量、爆款基金、开户暴增。<b>触发动作：减仓到位、停止新开仓、现金≥45%。</b></div>
+    <div class="danger"><span class="dot" style="background:#d9382f;"></span><b>红灯（清仓线）——需系统性事件</b>：信贷骤停（银行集体大跌）、全球股市单周-10%级别（美日韩共振）、上证放量破3800、日元carry trade崩盘/韩国杠杆爆仓传导/美债流动性危机。<b>触发动作：仅留防御底仓（白药/中车/南瑞/歌尔），其余清仓等右侧。</b>当前无任何红灯信号。</div>
+    <div class="note">三档监测表完整版见文末附表。</div>
+  </div>
+
+  <!-- 四、与上次差异 -->
+  <div class="card">
+    <h2>四、与上次研判差异（首次基线）</h2>
+    <div class="plan"><b>本次为【提示词E】首次执行，无历史对比，建立基线如下：</b>评分6.5/10、阶段"升温→局部狂热"、档位"绿灯偏黄"、黄灯差2~3条。基线将作为后续每次复检的对照锚（评分变化、新触发信号、档位迁移）。<b>下次复检：8/12美国CPI公布后，或狂热事件（天量3万亿/爆款基金/开户暴增）出现后24小时内。</b>若8/12 CPI 反弹→9月加息概率回升→评分预计+0.5~1、档位可能升级黄灯。</div>
+  </div>
+
+  <!-- 五、持仓动作 -->
+  <div class="card">
+    <h2>五、持仓7只动作建议（绿灯偏黄·执行今日计划）</h2>
+    <table>
+      <tr><th>持仓</th><th>成本</th><th>8/7收盘</th><th>浮盈亏</th><th>动作 + 触发价位 + 防守位</th></tr>
+      <tr><td><b>工业富联</b> 2手</td><td>51.066</td><td>68.18</td><td class="up">+33.5%</td><td><b>减1手</b>：68.5~70（高开兑现优先）；<b>防守65</b>（破位减剩余1手）。AI高位+存储背离，浮盈落袋</td></tr>
+      <tr><td><b>中兴通讯</b> 3手</td><td>33.309</td><td>34.70</td><td class="up">+4.2%</td><td><b>减1手</b>：35.0~35.5；<b>防守33.5</b>（破33清仓）。20日主力净流出77亿全组合最弱</td></tr>
+      <tr><td><b>招商证券</b> 6手</td><td>19.613</td><td>18.20</td><td class="down">-7.2%</td><td><b>减2手</b>：18.5~18.6；<b>防守17.7</b>（再减1手）。券商弹性弱，反弹即减</td></tr>
+      <tr><td><b>歌尔股份</b> 1手</td><td>4.045</td><td>23.29</td><td class="up">+476%</td><td><b>底仓持有</b>：守22.8，破位离场；不加仓</td></tr>
+      <tr><td><b>中国中车</b> 5手</td><td>5.870</td><td>5.88</td><td class="flat">+0.2%</td><td><b>持有</b>：守5.5；反弹6.0~6.1减1~2手。破净+股息5.4%防御</td></tr>
+      <tr><td><b>国电南瑞</b> 2手</td><td>24.125</td><td>24.12</td><td class="flat">0.0%</td><td><b>持有</b>：守23.9；破位减1手</td></tr>
+      <tr><td><b>云南白药</b> 4手</td><td>50.685</td><td>50.76</td><td class="flat">+0.1%</td><td><b>持有（压舱石）</b>：49.5~50补1手仅克制；破49观察</td></tr>
+    </table>
+    <div class="verdict" style="border:2px solid #b0762a; border-radius:12px; padding:16px 20px; margin-top:12px; background:linear-gradient(135deg,#fdf8ef,#faeeda);">
+      <h3 style="color:#633806;">综合：绿灯偏黄 → 执行"兑现+控仓"，现金提到40%</h3>
+      <ul style="margin-left:20px; font-size:13px;">
+        <li>今日回收约1.4万（富联1手+中兴1手+招商2手），叠加既有现金，<b>总现金升至40%</b>——临界档位多留5%保险，覆盖8/12 CPI 的不确定性。</li>
+        <li>低吸只做首仓试探（单笔≤1手）：白药49.5~50 / 宁德355~360（等不再创新低）/ 迈瑞138~145 / 中海油30.0~30.4（油价回踩）。<b>存储链三剑客与双汇（延期披露）不接。</b></li>
+        <li>若下周出现黄灯触发（HY利差破3% / SK海力士续跌带背离修复 / 天量3万亿）：<b>减仓到位、停止新开仓、现金45%+</b>，无需等红灯。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 六、大家没想到的点 -->
+  <div class="card">
+    <h2>六、大家没想到的7个点（狂热期盲区）</h2>
+
+    <div class="idea"><b>1. 美股创新高，比特币却不涨——"AI独牛"不是全面风险偏好回升。</b>标普本月+3.12%、市值+2.1万亿美元创新高，比特币仅+2%且稳定币持续外流（USDT 1900→1830亿）。<b>说明这轮上涨是结构性增量而非全面水涨船高：一旦AI叙事逆转，没有第二层资产对冲，全球共振下跌更陡。</b></div>
+
+    <div class="idea"><b>2. 债市在悄悄预警，股市还在创新高——股债背离。</b>30Y美债5.16%站上2007年危机前水平、HY利差周内走阔12bp至2.80%，这是"市场对美债偿债能力信心动摇"的底层信号（雪球：突破3%就该警惕）。<b>股市定价的是"AI未来"，债市定价的是"债务现实"——两个市场总有一个是错的。</b></div>
+
+    <div class="idea"><b>3. 全球最脆弱的杠杆点不在美国、不在中国，在韩国。</b>韩股广义杠杆271万亿韩元、三星+SK海力士贡献超七成指数涨幅、<b>每30名适龄人口就有1人收追保、20-30岁爆仓占62%</b>。<b>韩国散户爆仓→抛三星/海力士→存储链→A股存储"时差背离"修复——这是今天离你最近的一条风险传导链。</b></div>
+
+    <div class="idea"><b>4. 日元：史上最大干预（约528亿美元）治标不治本。</b>干预后日元又贬回160+，只要美日利差在，套息交易就继续（净空头116.5亿美元近两年高位）。<b>日央行"鹰派暂停"+最早10月加息至1.25%——这是下一根导火索的计时器，2024年8月崩盘剧本的引信还在。</b></div>
+
+    <div class="idea"><b>5. A股两融在加杠杆，且加在电子（AI/存储）上——杠杆与情绪的共振放大。</b>8/6两融2.64万亿、3日+373亿，电子行业融资+3.04%居首。<b>杠杆资金集中在最热的板块，一旦回调，融资盘强平会成为下跌放大器——2015年的教训。高位赛道（北方华创PE98倍99%分位）是"涨停潮"的另一面。</b></div>
+
+    <div class="idea"><b>6. 存储链背离3日未修复，是"迟早要还"的账。</b>A股深科技/长电/中芯8/7逆势上涨，但SK海力士-4.88%、闪迪-3.68%、希捷-4.71%续跌，伯恩斯坦称Q3合约价涨幅收窄至20%（涨价斜率放缓）。<b>要么日韩企稳、要么A股补跌——赌单边的人，赔率都不好。今天高开兑现是正确的方向。</b></div>
+
+    <div class="idea"><b>7. 中国7月社融/M1还没出——国内"钱"的真相未知。</b>8月中旬公布前，A股这轮上涨的增量资金性质存疑（外资回流? 内资存量轮动? 两融杠杆?）。<b>若M1继续偏弱，"存量博弈"格局不变，高位板块靠情绪不靠增量，回撤会更快——这也是留40%现金的理由之一。</b></div>
+  </div>
+
+  <!-- 七、纪律 -->
+  <div class="card">
+    <h2>七、纪律与哨点日历</h2>
+    <ul style="margin-left:22px; font-size:13px; line-height:2;">
+      <li><b>狂热是过程，破裂是结果——在黄灯就动手，不等红灯；宁可卖早，不可卖晚。</b></li>
+      <li>危机监测只做"提示与分级"，不代做交易决定；但红灯触发时，防守位执行不加犹豫。</li>
+      <li>不因"还没发生"而轻视信号：指标是慢变量，市场是快变量，狂热顶点往往与指标见顶同步或略早。</li>
+      <li><b>本月哨点（标注北京时间）</b>：8/9-10 中国7月CPI/PPI → <b>8/12 20:30 美国7月CPI（复检节点）</b> → 8/12 EIA/OPEC月报 → 8/13-14 美联储官员讲话 → 8/14 美国PPI → 8/21-23 杰克逊霍尔（鲍威尔）→ 9/15-16 FOMC；日央行10月加息窗口。</li>
+    </ul>
+  </div>
+
+  <!-- 附表：三档监测表 -->
+  <div class="card">
+    <h2>附表：三档监测表（本次判定标注）</h2>
+    <table>
+      <tr><th style="width:14%;">档位</th><th style="width:44%;">监测信号</th><th>动作</th></tr>
+      <tr>
+        <td><span class="down"><b>🟢 绿灯</b></span><br><span style="font-size:11px;">当前判定</span></td>
+        <td>标普85%财报超预期 ✅｜失业率4.1%低位 ✅｜VIX 18.5正常 ✅｜10Y-2Y +47bp未倒挂 ✅｜无信贷/流动性问题 ✅</td>
+        <td>维持今日计划：兑现富联/中兴/招商，留35~40%现金，不追高</td>
+      </tr>
+      <tr>
+        <td><span class="amber"><b>🟡 黄灯</b></span><br><span style="font-size:11px;">差2~3条</span></td>
+        <td>狂热极端化（3万亿天量/爆款基金/开户暴增）｜HY信用利差破3%（当前2.80%，走阔中）｜外围传导：日元carry trade平仓、KOSPI单日-5%级、<b>SK海力士续跌→A股存储背离修复（最近的一条）</b></td>
+        <td>减仓到位、停止新开仓、现金≥45%——黄灯触发即执行，不等红灯</td>
+      </tr>
+      <tr>
+        <td><span class="up"><b>🔴 红灯</b></span><br><span style="font-size:11px;">当前0条</span></td>
+        <td>信贷骤停（银行集体大跌）｜全球股市单周-10%级别（美日韩共振）｜上证放量破3800｜日元carry trade崩盘/韩国杠杆爆仓传导/美债流动性危机</td>
+        <td>仅留防御底仓（白药/中车/南瑞/歌尔），其余清仓，等右侧企稳再回</td>
+      </tr>
+    </table>
+    <div class="disc">
+      数据说明：A股行情/两融来自证券时报/中国基金报/上证报（8/6~8/7）；美股/美债/信用利差/VIX来自FRED、govspending、雪球、环球市场播报（截至8/7）；日韩来自今日头条/搜狐/东方财富周报；比特币来自环球市场播报（8/6~8/7）。判断基于《长期观察池_55标的_20260804》《买入.md（区间校验v2）》《每日操作提示词.md》提示词E框架。<b>仅供研究参考，不构成投资建议。投资有风险，决策需谨慎。</b>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// 狂热度雷达图（6维度，0~10）
+echarts.init(document.getElementById('chartRadar')).setOption({
+  tooltip: {},
+  radar: {
+    indicator: [
+      { name: '成交量能', max: 10 }, { name: '杠杆水平', max: 10 },
+      { name: '涨停/连板情绪', max: 10 }, { name: '高位赛道估值', max: 10 },
+      { name: '外围风险传导', max: 10 }, { name: '信用/流动性', max: 10 }
+    ],
+    radius: '62%', center: ['50%', '54%'],
+    axisName: { color: '#1f4e79', fontSize: 12 },
+    splitArea: { areaStyle: { color: ['#fdf8ef', '#fafbfd'] } }
+  },
+  series: [{
+    type: 'radar',
+    data: [{ value: [7.0, 6.5, 7.0, 7.5, 6.0, 4.5], name: '狂热度/风险度', areaStyle: { color: 'rgba(176,118,42,0.25)' }, lineStyle: { color: '#b0762a', width: 2 }, itemStyle: { color: '#b0762a' } }]
+  }]
+});
+</script>
+
+</body>
+</html>
