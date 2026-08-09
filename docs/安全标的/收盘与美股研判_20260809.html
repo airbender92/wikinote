@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>收盘与美股研判·下周一策略（2026-08-09 周日盘后）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #1a2332; line-height: 1.65; padding-bottom: 60px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .header { background: linear-gradient(135deg, #1a3a1a 0%, #2a6a2a 55%, #3a9a3a 100%); color: #fff; padding: 34px 0 28px; margin-bottom: 24px; }
+  .header h1 { font-size: 25px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { opacity: .85; font-size: 13px; margin-top: 8px; }
+  .header .tags { margin-top: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-right: 8px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(20,40,80,.06); }
+  .card h2 { font-size: 19px; color: #16324f; margin-bottom: 14px; padding-left: 11px; border-left: 4px solid #2a6aa5; }
+  .card h3 { font-size: 15px; color: #1f4e79; margin: 14px 0 8px; }
+  .tldr { background: #eef4fb; border: 1px solid #c9ddf2; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .tldr h2 { color: #16324f; font-size: 18px; margin-bottom: 10px; }
+  .tldr ul { margin: 10px 0 0 20px; }
+  .tldr li { margin-bottom: 6px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 10px 0 4px; }
+  .stat { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .stat .num { font-size: 21px; font-weight: 700; }
+  .stat .lbl { font-size: 12px; color: #6b7a8e; margin-top: 2px; }
+  .up { color: #d9382f; }
+  .down { color: #0a9c6d; }
+  .flat { color: #6b7a8e; }
+  .amber { color: #b0762a; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th { background: #16324f; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #edf1f6; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafbfd; }
+  .chartbox { width: 100%; height: 460px; margin-top: 8px; }
+  .chartbox-sm { width: 100%; height: 300px; margin-top: 8px; }
+  .chartbox-tall { width: 100%; height: 640px; margin-top: 8px; }
+  .note { font-size: 12px; color: #8a97a8; margin-top: 6px; }
+  .warn { background: #fdf6ec; border: 1px solid #f0dcb8; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .danger { background: #fdecec; border: 1px solid #f3c4c4; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .ok { background: #eef8f3; border: 1px solid #c5e6d6; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .disc { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 14px 18px; font-size: 12px; color: #6b7a8e; margin-top: 8px; }
+  .idea { border-left: 3px solid #b0762a; background: #fdf8ef; padding: 10px 14px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+  .idea b { color: #8a5a14; }
+  .plan { border-left: 3px solid #2a6aa5; padding: 8px 14px; margin: 8px 0; background: #f8fafc; }
+  .alarm { display:inline-block; background:#fdecec; border:1px solid #f3c4c4; color:#a32d2d; border-radius:6px; padding:1px 8px; font-size:12px; }
+  .oktag { display:inline-block; background:#eef8f3; border:1px solid #c5e6d6; color:#0a6b45; border-radius:6px; padding:1px 8px; font-size:12px; }
+  .lowbuy { border: 1px solid #c5d8f0; border-radius: 10px; padding: 10px 14px; margin: 6px 0; background: #f7fafe; font-size: 13px; }
+  @media (max-width: 760px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <h1>收盘与美股研判：全球齐新高后的"周五变盘周"（2026-08-09 周日盘后）</h1>
+    <div class="sub">数据时点：2026-08-09 17:30（北京时间）｜A股/日韩取8/7收盘、美股取美东8/7收盘、中国7月CPI/PPI取8/9统计局公布｜行情来源：腾讯行情；消息来源：财联社/央视/新华社/华尔街见闻/申万宏观/同花顺iFinD/陆家嘴财经早餐</div>
+    <div class="tags"><span class="tag">美股三大指数齐创收盘新高</span><span class="tag">费半周涨9.25%</span><span class="tag">存储背离第4日</span><span class="tag">中国7月出口+23.9%芯片+117%</span><span class="tag">7月CPI+0.5%温和</span><span class="tag">四条警报线均未触发</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>核心结论（TL;DR）</h2>
+    <ul>
+      <li><b>美东8/7（周五）收盘：美股三大指数齐创收盘历史新高</b>——道指54036.93 <span class="up">+0.28%</span>、标普7757.64 <span class="up">+0.62%</span>（周+3.58%）、纳指26690.62 <span class="up">+1.30%</span>（周+5.19%，三个多月最大周涨幅）；费半12356.79 <span class="up">+2.56%</span>（周+9.25%）、英伟达周涨超10%。<b>但存储链全球继续下跌</b>：西数-3.81%、希捷-4.71%、美光-0.44%、SK海力士-4.88%——"指数新高"与"存储续跌"并存，A股存储（深科技/长电/中芯8/7逆势涨2.4~3.5%）的<b>背离已进入第4日，是当前第一大未出清风险</b>。</li>
+      <li><b>周末外围继续偏暖</b>：中国7月出口+23.9%（芯片出口+117%）、央行黄金储备21连增提速、7月CPI+0.5%/PPI+3.5%（8/9公布，温和非滞胀）、北京楼市松绑、光伏硅料巨头反内卷承诺；美国参议院通过临时拨款法案避免停摆、财政部或削减长债供给（引导长端利率下行）、美伊霍尔木兹协议接近但反复。<b>8/12美国CPI + 8/13-14美联储讲话是本周真正的变盘点。</b></li>
+      <li><b>四条警报线周五对照（8/7收盘后）：全部未触发，维持"绿灯偏黄"。</b>①10Y日债2.789%（周回落8.6bp，距3%还差21bp）；②美元/日元约155（非农后日元升逾1%、日财相威胁干预，距178~180警报线很远）；③HY利差2.80%（差20bp，最需盯的慢变量）；④A股存储背离第4日未修复（最接近触发的一条）。<b>结论：不升级黄灯，维持"兑现高位科技+现金30~35%"，8月内通过反弹兑现逐步向40~45%靠拢，不用恐慌性砍仓。</b></li>
+      <li><b>下周一（8/10）策略=借高开兑现，不追高。</b>基准情景（~50%）：高开0.5~1%后高位震荡（上证3950~4010），CXO/创新药延续但内部分化，存储链补跌压力最大，资源/贵金属冲高回落；偏多（~30%）：全球共振+出口超预期+AI硬件涨价（7月计算机/平板价格同比+17%）→放量突破4000；偏空（~20%）：存储补跌+中报"延期披露"雷扩散+CPI前避险→高开低走。<b>持仓动作：富联68.5~70减1手（8/12 CPI前清剩余）→ 中兴35+减1手 → 招商18.5减2手，白药/中车/南瑞/歌尔防御持有不动。</b></li>
+      <li><b>周五/数据日前夜的纪律重申：8/12 CPI在A股收盘后公布（北京20:30），本周一到周三盘中是"盲猜期"，真正变盘在8/13周四。</b>周三前只做"卖的时间窗口"操作（兑现高位科技增厚现金），不做买入决策；低吸仅挂深跌错杀位（迈瑞138~145/宁德355~360等回踩），严禁在CPI落地前新增任何仓位。</li>
+    </ul>
+    <div class="note">数据来源：腾讯行情接口（A股/美股收盘2026-08-07）、国家统计局（7月CPI/PPI，2026-08-09）、财联社/华尔街见闻/申万宏观/同花顺iFinD/陆家嘴财经早餐（周末消息面）。判断基于《长期观察池_55标的_20260804》《买入.md（区间校验v2）》《8月操作总纲_20260809》《金融危机研判_20260808》。仅供研究参考，不构成投资建议。</div>
+  </div>
+
+  <!-- 一、全球指数对比图 -->
+  <div class="card">
+    <h2>一、全球主要指数涨跌对比（8/7收盘）</h2>
+    <div class="chartbox" id="chartGlobal"></div>
+    <div class="note">红=涨、绿=跌（A股惯例）。数据来源：腾讯行情（2026-08-07收盘，美股为美东8/7收盘、日韩为8/7收盘）。费半12356.79 +2.56%（同花顺iFinD）。</div>
+    <table>
+      <tr><th style="width:18%;">市场</th><th style="width:20%;">收盘点位</th><th style="width:14%;">当日涨跌</th><th>备注</th></tr>
+      <tr><td><b>道琼斯</b></td><td>54036.93</td><td class="up">+0.28%</td><td>创收盘历史新高；本周累涨+2.96%</td></tr>
+      <tr><td><b>标普500</b></td><td>7757.64</td><td class="up">+0.62%</td><td>创收盘历史新高；本周累涨+3.58%（三个多月最大周涨幅）</td></tr>
+      <tr><td><b>纳斯达克</b></td><td>26690.62</td><td class="up">+1.30%</td><td>本周累涨+5.19%；英伟达+2.27%周涨超10%</td></tr>
+      <tr><td><b>费城半导体</b></td><td>12356.79</td><td class="up">+2.56%</td><td>本周累涨+9.25%；但存储个股续跌（西数-3.81%/希捷-4.71%）</td></tr>
+      <tr><td><b>上证指数</b></td><td>3940.04</td><td class="up">+1.02%</td><td>阶段新高3940.93；两市成交2.66万亿（+1359亿）</td></tr>
+      <tr><td><b>深证成指</b></td><td>14311.01</td><td class="up">+1.42%</td><td>—</td></tr>
+      <tr><td><b>创业板指</b></td><td>3563.12</td><td class="up">+1.35%</td><td>—</td></tr>
+      <tr><td><b>科创50</b></td><td>1744.02</td><td class="up">+2.51%</td><td>科技最强</td></tr>
+      <tr><td><b>日经225</b></td><td>65606.71</td><td class="down">-0.12%</td><td>日元非农后升值压制</td></tr>
+      <tr><td><b>韩国KOSPI</b></td><td>6258.77</td><td class="down">-0.60%</td><td><b>SK海力士-4.88%续跌</b>（存储全球镜像）</td></tr>
+      <tr><td><b>恒生指数</b></td><td>25668.03</td><td class="up">+0.54%</td><td>恒生科技+0.78%</td></tr>
+      <tr><td><b>欧洲STOXX600</b></td><td>660.25</td><td class="up">+0.31%</td><td>DAX+0.69%、CAC+0.17%</td></tr>
+    </table>
+    <div class="danger"><b>全球结构诊断：</b>这是一轮"指数级新高、内部分化加剧"的行情——美股靠AI算力（英伟达/费半/光通信Coherent周涨40%）拉指数，<b>存储链（西数/希捷/美光/海力士）全球续跌</b>；A股靠CXO/创新药/PCB/半导体拉指数，防御（双汇/美的/福耀）被抛售。<b>"指数新高"掩盖了板块裂痕，全球存储链是共同的未出清风险。</b></div>
+  </div>
+
+  <!-- 二、A股复盘 -->
+  <div class="card">
+    <h2>二、A股8/7收盘复盘：结构诊断（资金轮动方向）</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num up">3940.04</div><div class="lbl">上证 +1.02%（阶段新高3940.93）</div></div>
+      <div class="stat"><div class="num up">2.66万亿</div><div class="lbl">两市成交（+1359亿放量）</div></div>
+      <div class="stat"><div class="num up">2856/2536</div><div class="lbl">上涨/下跌家数（涨停75/跌停3）</div></div>
+      <div class="stat"><div class="num up">+2.51%</div><div class="lbl">科创50 1744.02（科技最强）</div></div>
+    </div>
+    <table>
+      <tr><th style="width:22%;">方向</th><th>8/7表现</th><th>性质</th></tr>
+      <tr><td><b>CXO/创新药（主线）</b></td><td class="up"><b>CRO +10.63%</b>、医疗服务+8.4%、生物制品+6.06%；药明康德<b>+8.49%</b>（A股5年新高、中报净利110.8亿上调指引至605亿）、恒瑞+4.82%、百济神州A股+11.28%</td><td><b>业绩驱动而非情绪</b>：六大龙头中报超预期，CXO产业趋势行情（非8/6超跌反抽）——但5日累计涨幅大，短线超买</td></tr>
+      <tr><td><b>PCB/元件</b></td><td class="up">元件+6.74%，宝鼎6天5板、华正新材4天3板；主力净流入118.5亿居首</td><td>AI服务器/算力PCB景气传导，5日+23.95%短线超买</td></tr>
+      <tr><td><b>半导体</b></td><td class="up">板块+3.29%，主力净流入106.7亿；观察池：中芯+3.50%、长电+2.48%、深科技+2.36%、北方华创+1.28%</td><td>资金回流，但<b>与日韩存储暴跌（SK海力士-4.88%）背离进入第4日</b>——A股独涨，迟早修复一个方向</td></tr>
+      <tr><td><b>光伏（午后异动）</b></td><td class="up">阳光电源<b>+6.99%</b>（收盘114.16）；硅料链午后拉升</td><td>周末"八大硅料巨头承诺售价不低于成本"反内卷政策预期抢跑——<b>政策托底≠需求反转</b>，追高风险大</td></tr>
+      <tr><td><b>资源/贵金属</b></td><td class="up">紫金+1.88%、中国铝业+2.50%、洛阳钼业+2.26%、中国海油+1.20%、广发+1.16%</td><td>金价周涨7.2%+铜铝涨价传导；油价全周仍跌7.7%（美伊和平进展）</td></tr>
+      <tr><td><b>消费/防御（被抛售）</b></td><td class="down"><b>双汇-4.37%</b>（8/6晚公告半年报延期披露→联想五粮液前例）、美的-2.13%、福耀-1.16%、三一-0.91%、海尔-0.86%</td><td>资金弃防御追进攻；双汇属个股雷（延期披露），中报季尾部风险案例</td></tr>
+      <tr><td><b>AI硬件午后分化</b></td><td class="down">中际旭创午后跳水</td><td>高位算力分歧加剧，注意PCB/光模块短线兑现压力</td></tr>
+      <tr><td><b>券商</b></td><td class="flat">招商+1.11%、广发+1.16%、中信+0.11%</td><td>跟随大盘修复，弹性仍弱</td></tr>
+    </table>
+    <div class="warn"><b>结构诊断：</b>资金轮动主线=「CXO/创新药（业绩兑现）＋PCB/半导体（AI景气）＋光伏（政策博弈）」三线进攻，防御板块被持续抽血。<b>赚钱效应集中在少数方向（涨停75家但上涨/下跌=2856/2536），属结构性普涨而非全面牛市。</b>核心矛盾：进攻主线短期涨幅过大（CRO/PCB均5日涨超20%），叠加存储背离4日未修复、8/12 CPI临近——<b>周一高开是兑现窗口，不是加仓窗口。</b></div>
+  </div>
+
+  <!-- 三、美股与外围 -->
+  <div class="card">
+    <h2>三、美股美东8/7收盘 + 周末消息面 + 本周日程</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num up">54036.93</div><div class="lbl">道指 +0.28%（收盘新高）</div></div>
+      <div class="stat"><div class="num up">7757.64</div><div class="lbl">标普 +0.62%（收盘新高）</div></div>
+      <div class="stat"><div class="num up">+9.25%</div><div class="lbl">费半周涨幅（12356.79）</div></div>
+      <div class="stat"><div class="num up">4.65%</div><div class="lbl">10Y美债（周-8bp）</div></div>
+    </div>
+    <table>
+      <tr><th style="width:22%;">数据/事件</th><th style="width:40%;">最新值</th><th>对A股含义</th></tr>
+      <tr><td><b>美股8/7收盘</b></td><td class="up">道指+0.28%、标普+0.62%、纳指+1.30%齐创收盘新高；<b>费半+2.56%（周+9.25%）</b>；英伟达+2.27%（周+10%+）、特斯拉+2.83%、超微+5.96%、AMAT+2.21%</td><td>AI算力强势，周一A股科技高开预期；但<b>存储个股续跌（西数-3.81%/希捷-4.71%/美光-0.44%）</b>，谷歌-0.96%、微软+0.03%涨不动</td></tr>
+      <tr><td><b>7月非农后续</b></td><td class="down">-2.3万（预期+8万）；失业率4.1%（逾一年低位）；<b>9月加息概率从58%降至不足50%</b>；"新美联储通讯社"：非农没给清晰答案，<b>9月是否加息看8/12 CPI</b></td><td>鸽派预期已部分定价；CPI反弹则预期反转。特朗普称"希望利率下调"+"重启罢免美联储理事库克"→<b>美联储独立性博弈升级，美元信用松动</b></td></tr>
+      <tr><td><b>中国7月出口/进口</b></td><td class="up"><b>出口+23.9%</b>、进口+27.5%；<b>芯片出口同比+117%</b>、半导体出口按值近翻番；原油进口环比+22%</td><td><b>重大利好</b>：外需极强+国产替代加速，直接支撑电子/半导体/出口链（8/7 A股大涨的宏观注脚）</td></tr>
+      <tr><td><b>中国7月CPI/PPI（8/9）</b></td><td class="flat">CPI同比+0.5%（环比-0.1%，2月来首降1%下）；核心CPI+0.9%；<b>PPI同比+3.5%</b>（环比-0.7%，涨幅回落0.6pct）；<b>计算机/平板/手机价格同比+17.4%/+17.2%/+8.5%</b>（AI消费电子涨价）</td><td>温和通胀非滞胀；AI硬件涨价证实景气（利好电子链）；煤炭/有色PPI高企（煤+27.1%、有色冶炼+20.2%）</td></tr>
+      <tr><td><b>美债/美元</b></td><td class="down">10Y 4.65%（周-8bp）、2Y 4.20%（周-9bp）；<b>美元指数99.6（周跌）</b>；离岸人民币6.7435（三年新高）</td><td>长端利率回落+美元走弱=全球风险偏好支撑；<b>美国财政部或削减长债供给</b>（引导长端下行）——若落实，直接缓解"美债病根"叙事</td></tr>
+      <tr><td><b>中东/油价</b></td><td class="flat">WTI 78.18（周-7.67%）、布油83.55（周-4.98%）；伊朗-阿曼霍尔木兹协议"接近但反复"（伊外长：重开还取决于美方弥补）</td><td>油价全周下跌压制通胀，但协议反复随时反弹；周五盘中曾因封锁消息涨近2%</td></tr>
+      <tr><td><b>黄金/央行</b></td><td class="up">现货金约4342（周+7.2%）、COMEX金4401；<b>中国央行黄金储备21连增（7月+64万盎司提速）</b></td><td>央行购金+美元信用松动叙事强化，贵金属链（紫金已+1.88%）周一或续强但短线超买</td></tr>
+      <tr><td><b>国内政策</b></td><td class="up">北京楼市松绑（非京籍五环内社保满1年）；光伏硅料八巨头反内卷承诺；多家A股收到美国关税退税；16只ETF集中申报算力/金融科技</td><td>政策底明确：地产+光伏托底+关税缓释；关注周一光伏链能否延续（阳光+6.99%已抢跑）</td></tr>
+    </table>
+    <div class="warn"><b>本周日程（北京时间）——变盘点排序：</b>①<b>8/12（周三）20:30 美国7月CPI</b>（9月加息与否的分水岭，非农后最重磅）；②8/13-14 美联储官员密集讲话；③8/10-15 中国7月社融/M1/金融数据（随时公布，M1能否回升是关键）；④8/21-23 杰克逊霍尔年会。<b>周一至周三盘中=盲猜期，周四（8/13）A股才对CPI做出实质反应。</b></div>
+  </div>
+
+  <!-- 四、四条警报线 -->
+  <div class="card">
+    <h2>四、周五纪律检查：危机监测·四条警报线（8/7收盘后对照）</h2>
+    <table>
+      <tr><th style="width:20%;">警报线</th><th style="width:20%;">当前值</th><th style="width:18%;">警报线</th><th style="width:14%;">状态</th><th>判定与动作</th></tr>
+      <tr><td><b>①10Y日债收益率</b></td><td><b>2.789%</b>（周回落8.6bp）</td><td>突破3%</td><td><span class="oktag">未触发</span></td><td>周内回落，警报解除迹象；距3%还差21bp，Q4窗口前持续盯</td></tr>
+      <tr><td><b>②美元/日元</b></td><td><b>约155</b>（非农后日元升逾1%、日财相称必要时"毫不犹豫干预"）</td><td>站稳178~180</td><td><span class="oktag">未触发</span></td><td>离警报线很远；但注意<b>干预=套息盘高位离场窗口，日元若快速升破150是2024.8.5剧本预演</b></td></tr>
+      <tr><td><b>③HY信用利差</b></td><td><b>2.80%</b>（周走阔12bp）</td><td>突破3%</td><td><span class="amber">⚠️ 边缘</span></td><td>差20bp，最需盯的慢变量；若美国削减长债供给落地，或缓解而非恶化</td></tr>
+      <tr><td><b>④A股存储背离</b></td><td><b>背离第4日</b>（SK海力士-4.88%续跌 vs A股存储逆势涨）</td><td>海力士续跌→A股存储补跌</td><td><span class="amber">⚠️ 最接近</span></td><td>全球存储链（西数/希捷/美光/海力士）共振下跌未止，A股深科技/长电/中芯"独涨"难持续，<b>周一存储高开=兑现窗口</b></td></tr>
+    </table>
+    <div class="ok"><b>判定：四条警报线全部未触发 → 维持"绿灯偏黄"（与8/8金融危机研判一致）。</b>仓位动作：维持既定计划——兑现高位科技（富联/中兴/招商）、留现金30~35%，8月内通过反弹兑现逐步向40~45%靠拢；<b>不触发黄灯升级（不要求一步到位砍到45%现金），但触发动作随时待命：任一警报线触发→黄灯升级（减仓到位+停新开仓+现金≥45%）。</b></div>
+  </div>
+
+  <!-- 五、55只分层 -->
+  <div class="card">
+    <h2>五、观察池55只收盘表现与分层（8/7收盘）</h2>
+    <div class="chartbox-tall" id="chart55"></div>
+    <div class="note">55只长期观察池8/7收盘涨跌幅（%）。红=涨、绿=跌。数据来源：腾讯行情接口（2026-08-07收盘）。</div>
+    <h3>分层结论（按8/7收盘与区间状态）</h3>
+    <table>
+      <tr><th style="width:18%;">分层</th><th style="width:50%;">标的</th><th>动作</th></tr>
+      <tr><td><b>补跌风险（存储背离）</b></td><td class="down">深科技+2.36%（40.85）、长电+2.48%（77.75）、中芯国际+3.50%（128.50）——均逆势上涨但全球存储续跌</td><td>高开兑现，不接飞刀；SK海力士企稳前不加仓</td></tr>
+      <tr><td><b>惯性冲高（勿追）</b></td><td class="up">亨通+6.00%（59.52）、阳光电源+6.99%（114.16）、药明+8.49%（154.82）、恒瑞+4.82%（54.62）、汇川+1.91%、立讯+1.95%</td><td>涨出区间/暴涨后，只减不追；药明/阳光/亨通短线超买</td></tr>
+      <tr><td><b>超跌反抽（验证中）</b></td><td class="up">泸州老窖+1.87%（88.64，回区间上沿）、万华+1.00%、洛阳钼业+2.26%、紫金+1.88%、中铝+2.50%、广发+1.16%</td><td>反抽未确认趋势，不追；回踩区间再考虑</td></tr>
+      <tr><td><b>双杀压制（等企稳）</b></td><td class="down">双汇-4.37%（24.27，延期披露雷）、美的-2.13%、福耀-1.16%、三一-0.91%、建行-0.40%、交行-0.43%、长城-0.89%</td><td>双汇等中报落地；消费/防御被抽血，等资金回流信号</td></tr>
+      <tr><td><b>防御持有/低吸带内</b></td><td class="flat">中国中车-0.84%（5.88）、国电南瑞-0.21%（24.12）、云南白药+0.14%（50.76）、海天-0.36%（36.42）、伊利-0.42%（26.21）、华能-0.29%（6.99）、长电27.75、川投14.97、国投14.23、中国建筑4.52、福耀55.40、长江电力、神华43.94</td><td>区间内或接近区间，防御底仓持有；回踩分批低吸</td></tr>
+    </table>
+    <div class="warn"><b>55只整体状态：约30只在低吸区间内或上沿，约20只已涨出区间（高位），存储/光伏/创新药三类涨出最明显。</b>周一若高开，涨出区间的标的是兑现而非加仓对象；真正值得低吸的仍是防御高分红的回踩位。</div>
+  </div>
+
+  <!-- 六、持仓 -->
+  <div class="card">
+    <h2>六、持仓7只：8/7收盘浮盈亏 + 下周一操作计划</h2>
+    <div class="chartbox" id="chartPos"></div>
+    <div class="note">持仓浮盈亏（元/手，按8/7收盘价×100股计算，成本为用户口径）。红=盈、绿=亏。总市值约6.54万、合计浮盈约+4,951。</div>
+    <table>
+      <tr><th>持仓</th><th>成本</th><th>8/7收盘</th><th>浮盈亏</th><th>权重</th><th>下周一动作（触发价/防守位）</th></tr>
+      <tr><td><b>工业富联</b> 2手</td><td>51.066</td><td>68.18 <span class="flat">(-0.13%)</span></td><td class="up">+33.5%（+3,423）</td><td>20.9%</td><td><b>减仓</b>：冲68.5~70减1手；<b>8/12 CPI前清剩余1手</b>（AI=危机放大器首选冲击对象，8月总纲目标≤1手）；<b>破65防守清仓</b></td></tr>
+      <tr><td><b>中兴通讯</b> 3手</td><td>33.309</td><td>34.70 <span class="flat">(0.00%)</span></td><td class="up">+4.2%（+417）</td><td>15.9%</td><td><b>减仓</b>：反弹<b>35.0~35.5减1手</b>（8/7盘中已触35.38，未减的周一优先）；守33.5，<b>破33清仓</b></td></tr>
+      <tr><td><b>招商证券</b> 6手</td><td>19.613</td><td>18.20 <span class="flat">(+1.11%)</span></td><td class="down">-7.2%（-848）</td><td>16.7%</td><td><b>减仓</b>：反弹<b>18.5~18.6减2手</b>（8/7冲高18.32未到，继续挂单）；<b>破17.7再减1手</b>；8月目标3~4手</td></tr>
+      <tr><td><b>云南白药</b> 4手</td><td>50.685</td><td>50.76 <span class="flat">(+0.14%)</span></td><td class="flat">+0.1%（+30）</td><td>31.1%</td><td><b>观望（防御核心持有）</b>：股息5%+分红率90%避风港；49.5~50补1手仅克制；<b>破49观察</b></td></tr>
+      <tr><td><b>中国中车</b> 5手</td><td>5.870</td><td>5.88 <span class="flat">(-0.84%)</span></td><td class="flat">+0.2%（+5）</td><td>4.5%</td><td><b>观望（持有）</b>：破净+股息5.4%防御；守5.5，反弹6.0~6.1减1~2手波段（非清仓）</td></tr>
+      <tr><td><b>国电南瑞</b> 2手</td><td>24.125</td><td>24.12 <span class="flat">(-0.21%)</span></td><td class="flat">≈0%（-1）</td><td>7.4%</td><td><b>观望（持有）</b>：区间22~24.5内；守23.9，<b>破位减1手</b></td></tr>
+      <tr><td><b>歌尔股份</b> 1手</td><td>4.045</td><td>23.29 <span class="flat">(-0.64%)</span></td><td class="up">+476%（+1,924）</td><td>3.6%</td><td><b>观望（底仓持有）</b>：守22.8破位离场；浮盈+476%不贪、不加仓</td></tr>
+    </table>
+    <div class="warn"><b>一句话执行清单：周一先挂单=富联68.5减1手＋中兴35.0减1手＋招商18.5减2手（三笔兑现增厚现金）；防御四只（白药/中车/南瑞/歌尔）不动；</b>若高开冲高到上述价位，按单执行不犹豫；若低开（存储补跌情景），富联破65、中兴破33.5、招商破17.7按防守位执行。</div>
+  </div>
+
+  <!-- 七、三情景 -->
+  <div class="card">
+    <h2>七、下周一（8/10）三情景推演</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num" style="font-size:18px;">3950~4010</div><div class="lbl">基准：高位震荡</div></div>
+      <div class="stat"><div class="num down" style="font-size:18px;">存储补跌</div><div class="lbl">背离第4日，高开是兑现窗口</div></div>
+      <div class="stat"><div class="num up" style="font-size:18px;">出口+23.9%</div><div class="lbl">偏多：放量突破4000</div></div>
+      <div class="stat"><div class="num" style="font-size:18px;">30~35%</div><div class="lbl">建议保留现金（CPI前）</div></div>
+    </div>
+    <table>
+      <tr><th style="width:16%;">情景</th><th style="width:12%;">概率</th><th style="width:44%;">路径</th><th>操作含义</th></tr>
+      <tr><td><b>① 基准（高位震荡）</b></td><td>~50%</td><td>高开0.5~1%：美股三大指数新高+CXO延续+出口数据消化，但存储补跌压力、PCB/CRO短线兑现，量能2.6~2.8万亿；上证3950~4010</td><td><b>高开不追，兑现为主</b>：富联/中兴/招商三笔减仓单执行；防御持有；低吸仅挂深跌位</td></tr>
+      <tr><td><b>② 偏多（放量突破）</b></td><td>~30%</td><td>全球共振（标普/道指新高+费半周+9.25%）+出口+23.9%证实外需+AI硬件涨价（7月计算机价格+17%）→放量突破4000，科技成长全面走强</td><td>借冲高继续兑现高位科技（不因涨而改主意）；可小仓试探深跌错杀位（迈瑞138~145/宁德355~360），严禁追涨出区间的票</td></tr>
+      <tr><td><b>③ 偏空（高开低走）</b></td><td>~20%</td><td>存储补跌（SK海力士续跌带崩深科技/长电/中芯）+CXO高位兑现+双汇式中报雷扩散+8/12 CPI前避险→高开低走，科技回吐</td><td><b>防守位无条件执行</b>：富联破65、中兴破33.5、招商破17.7；现金直接到40%+，不接飞刀</td></tr>
+    </table>
+    <div class="danger"><b>风险优先级（本周落地）：</b>① <b>8/12美国CPI</b>（若反弹→"9月不加息"定价被推翻，周五追高的AI仓位被埋）；② 存储补跌（背离第4日，全球共振下跌未止）；③ 中报季"延期披露"雷扩散（双汇前例，茅台/伊利等下周陆续出中报）；④ 油价与霍尔木兹反复（协议破裂则通胀回升）；⑤ 光伏"政策托底"被当"需求反转"炒作（阳光+6.99%已抢跑）。</div>
+  </div>
+
+  <!-- 八、低吸清单 -->
+  <div class="card">
+    <h2>八、低吸挂单清单（下周一，CPI落地前极度克制）</h2>
+    <div class="lowbuy"><b>原则：数据日前只挂深跌错杀位，不追涨出区间的强势股；每笔≤1手试探；CPI落地前不开新仓。</b></div>
+    <table>
+      <tr><th style="width:20%;">标的</th><th style="width:20%;">挂单价位</th><th style="width:16%;">现价(8/7)</th><th>触发条件</th></tr>
+      <tr><td><b>云南白药</b>（持仓）</td><td>49.5~50 补1手</td><td>50.76</td><td>回踩50以下分批；防御核心，黄灯触发时反而可加</td></tr>
+      <tr><td><b>迈瑞医疗</b></td><td>138~145 首仓≤1手</td><td>151.41</td><td>回踩145以下分批；分位16.6%深跌区，等"不再创新低"</td></tr>
+      <tr><td><b>宁德时代</b></td><td>355~360 首仓≤1手</td><td>388.07</td><td>回踩360以下+等"不再创新低"；400亿回购+花旗趁低吸纳逻辑未变</td></tr>
+      <tr><td><b>泸州老窖</b></td><td>86~88 小仓≤1手</td><td>88.64</td><td>回踩88以下；股息6.8%+分位19%，8/7已回区间上沿</td></tr>
+      <tr><td><b>华能国际</b></td><td>6.8~7.0 首仓</td><td>6.99</td><td>区间6.6~7.1内；股息5.6%，油价回落受益，防御低吸优先</td></tr>
+      <tr><td><b>中国建筑</b></td><td>4.2~4.5 首仓</td><td>4.52</td><td>PB 0.4破净，等地产企稳信号（北京新政落地观察）</td></tr>
+      <tr><td><b>双汇发展</b></td><td>暂不挂单</td><td>24.27</td><td>延期披露雷未落地，等中报（8/29前）出清再看，勿抢</td></tr>
+      <tr><td><b>中国神华/长江电力</b></td><td>39~42.5 / 26.5~28</td><td>43.94 / 27.75</td><td>防御回踩分批，现价略高，不追</td></tr>
+    </table>
+    <div class="warn"><b>本周低吸纪律：8/12 CPI 是分水岭——CPI落地前（周一~周三），低吸挂单全部视为"可撤单的观察单"而非必成交单；</b>若CPI反弹引发全球回调，反而等更低的错杀位（迈瑞135/宁德350下方）再出手。宁可错过，不可买早。</div>
+  </div>
+
+  <!-- 九、大家没想到的点 -->
+  <div class="card">
+    <h2>九、大家没想到的9个点（市场盲区·周末更新）</h2>
+
+    <div class="idea"><b>1. 出口+23.9%、芯片出口+117%——宏观数据极强，但这是"7月的数据"，市场按"利好A股"定价，却忽略了它同时意味着"美国对华芯片封锁的紧迫感"。</b>芯片出口翻倍+关税退税（多家A股收到美国退税）说明中美贸易正在"边打边退"，但特朗普同步宣布关键矿产投资30亿美元、重启芯片关税——<b>出口越强，新一轮博弈反制来得越快，半导体链是高景气与高波动并存，不是无风险资产。</b></div>
+
+    <div class="idea"><b>2. 比非农更重要的信号被忽略：美国财政部"削减长债供给"。</b>非农-2.3万只影响9月一次加息，但财政部表态"可能削减长债发行、引导长端利率下行"，是<b>美国第一次主动管理长端收益率</b>——若落实，10Y/30Y下行会同时缓解"美债病根"（危机主逻辑）和科技股估值压力。<b>但另一面：这印证了"长债需求不足"的现实，美联储独立性正被政治化（特朗普罢免库克），美元信用在加速松动，黄金的逻辑反而更强。</b>两套定价并行：风险资产欢腾、黄金白银齐涨（银周+10%）。</div>
+
+    <div class="idea"><b>3. 存储背离第4日——"费半涨"被误读为"存储企稳"。</b>8/7费半+2.56%（靠英伟达/设备/光通信拉），但西数-3.81%、希捷-4.71%、美光-0.44%、SK海力士-4.88%——<b>美股自己都在分化：算力链涨、存储链跌。</b>A股周五却把深科技/长电/中芯拉红（+2.4~3.5%），这是"把别人的指数涨当成自己的板块安全"。<b>高盛明说：存储核心矛盾是"预期过度领先现实"，不是基本面恶化——但预期修正的下跌，A股迟早要补。</b></div>
+
+    <div class="idea"><b>4. 光伏"反内卷"不是"需求反转"——阳光电源+6.99%是政策博弈盘。</b>八大硅料巨头承诺"售价不低于成本"是供给侧托底，但7月PPI里电气机械制造仅+5.7%、光伏需求端并无爆发证据。<b>政策托底只能止血，不能造血；追"反内卷"概念的资金，周一若高开就是自己的出货窗口。</b>类比参考：煤炭"限产保价"曾托底煤价，但也没能阻止2024-2025煤价中枢下移。</div>
+
+    <div class="idea"><b>5. 茅台自营店飞天零售价涨至1753元——"提价幻觉" vs "需求疲软"的预期差。</b>消息看似利好白酒，但①这是自营渠道调价（出厂价/经销商体系未动），②7月CPI里酒类仍是下拉项（食品-1.5%）、白酒动销未见起色，③山西汾酒/泸州老窖中报利润均下滑。<b>茅台8/7只涨0.05%已经说明市场不信这个提价——别因为一个标题去买白酒反弹。</b></div>
+
+    <div class="idea"><b>6. 头部私募在跑，散户在追——景林Q2清仓英伟达/META、美股持仓缩水43%。</b>千亿私募二季度大幅兑现美股AI，而A股散户/游资正在AI算力/PCB/CXO里追逐最后一段。<b>历史上这种"聪明钱离场+情绪钱进场"的错位，往往出现在板块主升段的尾部。</b>当然私募也可能看错，但至少说明：这个位置加仓AI的赔率已经变差，兑现浮盈的赔率在变好。</div>
+
+    <div class="idea"><b>7. 时差补跌的另一面：8/7 A股大涨是"抢跑非农"，但周末美股已把利好走完。</b>A股周五（15:00收盘）在非农公布前就大涨（CXO/PCB/半导体），赌的是"非农弱→鸽派"；美股周五确实新高。但注意：<b>A股已经把"鸽派利好"提前定价了一天，周一高开=利好兑现日；而存储补跌这个"利空"却还没定价。</b>利好在price in、利空在路上一——这就是周一"高开兑现"逻辑的根源。</div>
+
+    <div class="idea"><b>8. 日元干预的"狼来了"：日财相说"必要时毫不犹豫干预"，但方向是阻止日元升值。</b>非农后日元涨超1%，USD/JPY回到155附近，日本财相再次口头干预——<b>这和2024年8月剧本高度相似：干预把日元砸回去=套息盘的高位离场窗口，干预失效=日元急升的全球恐慌日。</b>现在日元每升值一步，全球套息盘就恐慌一分；8月盯着155~150这个区间，<b>一旦日元快速升破150，当天就是全球风险资产的"2024.8.5重演日"，任何高位科技仓位都该无条件执行防守位。</b></div>
+
+    <div class="idea"><b>9. 中国"黄金21连增+外储34188亿"被市场当成贵金属利好，其实它是"美元信用撤离"的注脚。</b>央行连续21个月增持黄金（7月还提速到64万盎司），叠加美元指数跌到99.6、离岸人民币升破6.74创三年新高——<b>这是全球去美元化的系统性信号，不是一次贵金属波段。</b>对A股的映射：黄金股（紫金/山金）可以持有吃趋势，但别用短线思维追涨；真正要理解的是——<b>全球资金正在从"美元资产"向"人民币资产+黄金"再平衡，这可能是A股中期慢牛的底层逻辑之一。</b></div>
+  </div>
+
+  <!-- 十、仓位与纪律 -->
+  <div class="card">
+    <h2>十、仓位建议与纪律（数据日前夜·周日晚间版）</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num" style="font-size:18px;">30~35%</div><div class="lbl">当前现金目标（CPI前）</div></div>
+      <div class="stat"><div class="num" style="font-size:18px;">40~45%</div><div class="lbl">8月内目标（布防月总纲）</div></div>
+      <div class="stat"><div class="num up" style="font-size:18px;">+4,951</div><div class="lbl">持仓浮盈（总市值6.54万）</div></div>
+      <div class="stat"><div class="num amber" style="font-size:18px;">绿灯偏黄</div><div class="lbl">危机档位（四线均未触发）</div></div>
+    </div>
+    <div class="ok"><b>本周现金路径：</b>当前现金约30~35% → 周一执行三笔兑现（富联68.5减1手≈6,800元、中兴35.0减1手≈3,500元、招商18.5减2手≈3,700元，合计约1.4万元）→ 现金升至约42~45%。<b>即：不需要主动砍防御股，只需按计划兑现高位科技，8月布防目标就自然达成。</b></div>
+    <div class="danger"><b>纪律红线（本周不可逾越）：</b>① 8/12 CPI 落地前（周一~周三），<b>不新增任何买入仓位</b>，低吸挂单=可撤观察单；② 存储链（深科技/长电/中芯）<b>高开即兑现，绝不接飞刀</b>；③ 周五"盲猜日"教训延续：本周三CPI在A股收盘后公布，周四才是A股真实变盘日；④ 任一警报线触发（日债3%/日元178~180/HY利差3%/存储背离修复）→ 黄灯升级：减仓到位+停新开仓+现金≥45%；⑤ 不因"全球新高"放松日本引信警惕——新高与警报可以同时存在，2024.8.5前一周美股也刚创新高。</div>
+    <div class="disc"><b>免责声明：</b>以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</div>
+  </div>
+
+</div>
+
+<script>
+// ===== 图1：全球指数涨跌对比 =====
+var gNames = ["道指","标普","纳指","费半","上证","深成","创业板","科创50","日经225","KOSPI","恒指","STOXX600"];
+var gVals  = [0.28,0.62,1.30,2.56,1.02,1.42,1.35,2.51,-0.12,-0.60,0.54,0.31];
+var gColors = gVals.map(function(v){ return v>=0 ? "#d9382f" : "#0a9c6d"; });
+var chartGlobal = echarts.init(document.getElementById('chartGlobal'));
+chartGlobal.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: 70, right: 30, top: 20, bottom: 30 },
+  xAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
+  yAxis: { type: 'category', data: gNames, inverse: true },
+  series: [{
+    name: '涨跌幅',
+    type: 'bar',
+    data: gVals.map(function(v,i){ return { value: v, itemStyle: { color: gColors[i] } }; }),
+    label: { show: true, position: 'right', formatter: '{c}%', color: '#333' },
+    barWidth: '55%'
+  }]
+});
+
+// ===== 图2：55只涨跌条形图 =====
+var sNames = ["工业富联","亨通光电","海康威视","立讯精密","北方华创","豪威集团","中芯国际","中科曙光","长电科技","深科技","水晶光电",
+  "中国中车","国电南瑞","三一重工","歌尔股份","贵州茅台","山西汾酒","泸州老窖","伊利股份","双汇发展","海天味业","万华化学",
+  "美的集团","格力电器","海尔智家","恒瑞医药","迈瑞医疗","云南白药","片仔癀","药明康德","中国平安","中信证券","广发证券","建设银行","交通银行",
+  "宁德时代","比亚迪","阳光电源","福耀玻璃","长城汽车","长江电力","中国神华","陕西煤业","中国海油","中国石化","华能国际","川投能源","国投电力",
+  "紫金矿业","中国铝业","洛阳钼业","中兴通讯","牧原股份","中国建筑","汇川技术"];
+var sVals = [-0.13,6.00,-0.56,1.95,1.28,0.12,3.50,1.10,2.48,2.36,1.13,
+  -0.84,-0.21,-0.91,-0.64,0.05,0.52,1.87,-0.42,-4.37,-0.36,1.00,
+  -2.13,-0.37,-0.86,4.82,1.11,0.14,0.88,8.49,-0.22,0.11,1.16,-0.40,-0.43,
+  0.02,0.66,6.99,-1.16,-0.89,0.00,-0.07,0.64,1.20,0.39,-0.29,-0.27,-0.97,
+  1.88,2.50,2.26,0.00,0.26,-1.09,1.91];
+var sColors = sVals.map(function(v){ return v>=0 ? "#d9382f" : "#0a9c6d"; });
+var chart55 = echarts.init(document.getElementById('chart55'));
+chart55.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: 95, right: 50, top: 10, bottom: 20 },
+  xAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
+  yAxis: { type: 'category', data: sNames, inverse: true, axisLabel: { fontSize: 10 } },
+  series: [{
+    name: '涨跌幅',
+    type: 'bar',
+    data: sVals.map(function(v,i){ return { value: v, itemStyle: { color: sColors[i] } }; }),
+    label: { show: true, position: 'right', formatter: '{c}%', fontSize: 9, color: '#555' },
+    barWidth: '70%'
+  }]
+});
+
+// ===== 图3：持仓浮盈亏 =====
+var pNames = ["工业富联","中兴通讯","招商证券","云南白药","中国中车","国电南瑞","歌尔股份"];
+var pVals  = [3423,417,-848,30,5,-1,1924];
+var pColors = pVals.map(function(v){ return v>=0 ? "#d9382f" : "#0a9c6d"; });
+var chartPos = echarts.init(document.getElementById('chartPos'));
+chartPos.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: 90, right: 60, top: 20, bottom: 30 },
+  xAxis: { type: 'value', axisLabel: { formatter: '¥{value}' } },
+  yAxis: { type: 'category', data: pNames, inverse: true },
+  series: [{
+    name: '浮盈亏(元)',
+    type: 'bar',
+    data: pVals.map(function(v,i){ return { value: v, itemStyle: { color: pColors[i] } }; }),
+    label: { show: true, position: 'right', formatter: function(p){ return (p.value>0?'+':'') + p.value + '元'; }, color: '#333' },
+    barWidth: '55%'
+  }]
+});
+
+window.addEventListener('resize', function(){
+  chartGlobal.resize();
+  chart55.resize();
+  chartPos.resize();
+});
+</script>
+</body>
+</html>
