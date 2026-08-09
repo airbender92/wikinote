@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8月操作总纲：日本引信×持仓×观察池（2026-08-09）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #1a2332; line-height: 1.65; padding-bottom: 60px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .header { background: linear-gradient(135deg, #4a3a1a 0%, #7a5a1a 55%, #b07a1a 100%); color: #fff; padding: 34px 0 28px; margin-bottom: 24px; }
+  .header h1 { font-size: 25px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { opacity: .85; font-size: 13px; margin-top: 8px; }
+  .header .tags { margin-top: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-right: 8px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(20,40,80,.06); }
+  .card h2 { font-size: 19px; color: #16324f; margin-bottom: 14px; padding-left: 11px; border-left: 4px solid #2a6aa5; }
+  .card h3 { font-size: 15px; color: #1f4e79; margin: 14px 0 8px; }
+  .tldr { background: #fdf8ef; border: 1px solid #f0dcb8; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .tldr h2 { color: #633806; font-size: 18px; margin-bottom: 10px; }
+  .tldr ul { margin: 10px 0 0 20px; }
+  .tldr li { margin-bottom: 6px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 10px 0 4px; }
+  .stat { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .stat .num { font-size: 21px; font-weight: 700; }
+  .stat .lbl { font-size: 12px; color: #6b7a8e; margin-top: 2px; }
+  .up { color: #d9382f; }
+  .down { color: #0a9c6d; }
+  .flat { color: #6b7a8e; }
+  .amber { color: #b0762a; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th { background: #16324f; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #edf1f6; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafbfd; }
+  .chartbox { width: 100%; height: 380px; margin-top: 8px; }
+  .note { font-size: 12px; color: #8a97a8; margin-top: 6px; }
+  .warn { background: #fdf6ec; border: 1px solid #f0dcb8; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .danger { background: #fdecec; border: 1px solid #f3c4c4; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .ok { background: #eef8f3; border: 1px solid #c5e6d6; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .disc { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 14px 18px; font-size: 12px; color: #6b7a8e; margin-top: 8px; }
+  .idea { border-left: 3px solid #b0762a; background: #fdf8ef; padding: 10px 14px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+  .idea b { color: #8a5a14; }
+  .alarm { display:inline-block; background:#fdecec; border:1px solid #f3c4c4; color:#a32d2d; border-radius:6px; padding:1px 8px; font-size:12px; }
+  @media (max-width: 760px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <h1>8月操作总纲：日本引信 × 持仓 × 观察池（2026-08-09）</h1>
+    <div class="sub">结合《8.日本：下一场危机的起点？》学习笔记 + 8/8金融危机研判基线（狂热度6.5/10、绿灯偏黄）｜行情基准：8/7收盘</div>
+    <div class="tags"><span class="tag">8月=布防月</span><span class="tag">高危窗口2026Q4~2027H1</span><span class="tag">双警报：日债3%/日元178~180</span><span class="tag">兑现高位科技</span><span class="tag">现金40~45%</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>核心结论（TL;DR）</h2>
+    <ul>
+      <li><b>日本分析的落地结论：日本是"引信"不是"炸药库"，炸药库是美债。</b>它通过"套息平仓（1~3万亿美元）+减持美债（1.2万亿）"两条通道引爆并放大危机。<b>高危窗口=2026年10月~2027年6月，不是8月</b>——所以你8月的任务不是"逃亡"，是"布防"：把仓位调到Q4窗口能扛住的状态。</li>
+      <li><b>两个硬警报指标（每周五对照，触发任一=黄灯升级）</b>：①10Y日债收益率<b>破3%</b>（现2.79%）；②美元兑日元<b>站稳178~180</b>（现155~158）。叠加8/8研判的HY利差破3%（现2.80%）、A股存储背离修复——<b>共4条警报线，触发即防御动作</b>。</li>
+      <li><b>持仓7只8月动作=兑现+控仓+布防</b>：富联（AI=危机放大器首选冲击对象）8月内逢高减至0~1手；中兴（资金面最弱）反弹减1手；招商（高β）反弹减2手、破位再减；<b>白药/中车/南瑞=防御核心持有不动</b>（这正是危机情景的避风港）；歌尔守22.8。<b>现金目标40~45%。</b></li>
+      <li><b>观察池55只分层：防御低吸（神华/华能/建行/长电/川投/国投等回踩分批建仓）＞回踩首仓（宁德/迈瑞/老窖等≤1手试探）＞高位勿追（药明/北方华创/阳光/海康/美的）＞存储不接（深科技/长电/中芯，SK海力士企稳前）。</b></li>
+      <li><b>别把"干预反弹"当利好：</b>日元在美日联合干预（530亿美元）下的反弹，很可能是套息盘的高位离场窗口，不是趋势反转——<b>日元急升当天往往是全球风险资产的恐慌日（2024.8.5剧本）</b>。8月持仓以"不怕日元急升"为标准。</li>
+    </ul>
+    <div class="note">数据基准：《8.日本：下一场危机的起点？》（信息截至2026-08-09）、《金融危机研判_20260808.html》（首次基线）、《买入.md（区间校验v2）》、《长期观察池_55标的_20260804.md》。仅供研究参考，不构成投资建议。</div>
+  </div>
+
+  <!-- 一、核心判断 -->
+  <div class="card">
+    <h2>一、核心判断：8月是"布防月"，不是"逃亡月"</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num amber">2026Q4~2027H1</div><div class="lbl">日本危机高危窗口（共识）</div></div>
+      <div class="stat"><div class="num amber">2.79%→3%</div><div class="lbl">10Y日债（现价→警报线）</div></div>
+      <div class="stat"><div class="num amber">155~158→178~180</div><div class="lbl">美元/日元（现价→警报线）</div></div>
+      <div class="stat"><div class="num up">1~3万亿美元</div><div class="lbl">日元套息规模（引爆弹药）</div></div>
+    </div>
+    <table>
+      <tr><th style="width:22%;">分析结论</th><th style="width:40%;">依据</th><th>对8月操作的落地含义</th></tr>
+      <tr><td><b>日本=导火索/放大器</b></td><td>债务/GDP 211~260%全球之巅 + 利率正常化刚起步（0.75%→1%→1.25%预期）+ 套息堰塞湖1~3万亿美元 + 财政货币打架（加息月发18.3万亿补充预算）</td><td>真正病根是美债；日本随时可能点火。<b>8月不赌日本没事，按"会点火"布防</b></td></tr>
+      <tr><td><b>传导路径明确</b></td><td>日元急升→套息平仓→全球股市暴跌（美股科技首当其冲，2024.8已预演）→美债被抛售→全球资产定价锚动摇→AI泡沫/欧洲/新兴市场干柴</td><td><b>A股高位科技（富联/中兴/存储链）是传导第一站</b>；防御高股息与黄金是避风港</td></tr>
+      <tr><td><b>2024.8.5前车之鉴</b></td><td>日央行仅加息15bp→全球股市数日蒸发6.4万亿美元、日经-12.4%；且当时平仓仅59%~60%，2026年套息规模更大</td><td><b>日元急升当天=全球恐慌日</b>；8月持仓标准="不怕日元急升"（防御底仓+现金）</td></tr>
+      <tr><td><b>反对观点成立但不够</b></td><td>93%国债国内持有+本币债务+央行兜底→主权违约概率低</td><td>但危机不必以"日本违约"出现，<b>以"套息踩踏流动性危机"出现即可引爆全球</b>——8月按后者布防</td></tr>
+      <tr><td><b>干预反弹是陷阱</b></td><td>美日联合干预530亿美元（史上最大）后日元155~158；ESF可用仅385亿美元，不可持续</td><td><b>日元反弹=套息盘高位离场窗口，非趋势反转</b>；不因日元企稳就放松警惕</td></tr>
+    </table>
+    <div class="warn"><b>一句话：8月（布防月）的任务清单</b>= ① 兑现高位科技浮盈（富联/中兴/招商）② 现金提到40~45% ③ 防御底仓（白药/中车/南瑞）持有不动 ④ 每周五对照日本双警报+HY利差+存储背离 ⑤ 观察池按"防御低吸＞回踩首仓＞高位勿追＞存储不接"分层执行。 <b>8月把子弹备好，Q4窗口才有底气。</b></div>
+  </div>
+
+  <!-- 二、双警报监测 -->
+  <div class="card">
+    <h2>二、日本双警报 + 危机监测线（每周五对照）</h2>
+    <table>
+      <tr><th style="width:20%;">监测线</th><th style="width:18%;">当前值(8/9)</th><th style="width:20%;">警报线</th><th>触发后的动作</th></tr>
+      <tr><td><b>10Y日债收益率</b></td><td>2.79%（30年新高区）</td><td><span class="alarm">突破3%</span></td><td>情景A"利息爆炸"启动→<b>黄灯升级</b>：减仓到位、停新开仓、现金≥45%</td></tr>
+      <tr><td><b>美元/日元</b></td><td>155~158（干预后）</td><td><span class="alarm">站稳178~180</span></td><td>情景B"套息踩踏"倒计时→<b>黄灯升级</b>；若日元从该位急升，当天=全球恐慌日，防守位无条件执行</td></tr>
+      <tr><td><b>HY信用利差</b></td><td>2.80%（周内+12bp）</td><td><span class="alarm">突破3%</span></td><td>美国信贷预警→<b>黄灯升级</b>（与8/8研判联动）</td></tr>
+      <tr><td><b>A股存储背离</b></td><td>背离3日未修复（SK海力士-4.88%续跌）</td><td><span class="alarm">海力士续跌→A股存储补跌</span></td><td>存储链高开即兑现；富联破65防守</td></tr>
+      <tr><td><b>美债/美元流动性</b></td><td>30Y 5.16%、10Y-2Y +47bp、VIX 18.5</td><td><span class="alarm">30Y站稳5.3%+ / VIX&gt;30</span></td><td>红灯逼近：仅留防御底仓，其余清仓等右侧</td></tr>
+    </table>
+    <div class="danger"><b>升级路径：</b>任一警报线触发→黄灯（减仓到位+现金45%+）；<b>两条警报线+信贷信号同时触发→红灯（仅留白药/中车/南瑞/歌尔防御底仓，其余清仓）</b>。8月的核心是：在警报触发前把仓位布防好，警报触发后只执行、不犹豫。</div>
+  </div>
+
+  <!-- 三、持仓操作 -->
+  <div class="card">
+    <h2>三、持仓7只 · 8月操作计划</h2>
+    <div class="chartbox" id="chartPos"></div>
+    <div class="note">仓位调整图：当前权重（8/7收盘，现金未计入）→ 8月目标权重（含现金40%）。"兑现+控仓+布防"。</div>
+    <table>
+      <tr><th>持仓</th><th>成本</th><th>8/7收盘</th><th>浮盈亏</th><th>当前权重</th><th>8月动作（触发价/防守位）</th><th>目标</th></tr>
+      <tr><td><b>工业富联</b> 2手</td><td>51.066</td><td>68.18</td><td class="up">+33.5%</td><td>20.9%</td><td><b>8月内逢高减至0~1手</b>：68.5~70减1手→冲72+或8/12 CPI前清剩余；<b>破65防守清仓</b>。AI=危机放大器首选冲击对象（甲骨文降级/席勒PE 38-40倍），浮盈+33.5%落袋为安</td><td>≤8%</td></tr>
+      <tr><td><b>中兴通讯</b> 3手</td><td>33.309</td><td>34.70</td><td class="up">+4.2%</td><td>15.9%</td><td><b>反弹减1手（35.0~35.5）</b>；守33.5，<b>破33清仓</b>。20日主力净流出77亿全组合最弱+降级观察池逻辑，8月减至2手</td><td>10%</td></tr>
+      <tr><td><b>招商证券</b> 6手</td><td>19.613</td><td>18.20</td><td class="down">-7.2%</td><td>16.7%</td><td><b>反弹18.5~18.6减2手</b>；<b>破17.7再减1手</b>。券商高β+弱市弹性差，危机窗口前降杠杆，8月目标3~4手</td><td>8%</td></tr>
+      <tr><td><b>云南白药</b> 4手</td><td>50.685</td><td>50.76</td><td class="flat">+0.1%</td><td>31.1%</td><td><b>持有不动（防御核心）</b>：股息5%+分红率90%+现金流46亿，危机避风港；49.5~50补1手仅克制（日本警报触发时反而可加）</td><td>20%</td></tr>
+      <tr><td><b>中国中车</b> 5手</td><td>5.870</td><td>5.88</td><td class="flat">+0.2%</td><td>4.5%</td><td><b>持有</b>：破净+股息5.4%防御；守5.5，反弹6.0~6.1减1~2手波段（非清仓）</td><td>5%</td></tr>
+      <tr><td><b>国电南瑞</b> 2手</td><td>24.125</td><td>24.12</td><td class="flat">0.0%</td><td>7.4%</td><td><b>持有</b>：电网防御，区间22~24.5内；守23.9，破位减1手</td><td>6%</td></tr>
+      <tr><td><b>歌尔股份</b> 1手</td><td>4.045</td><td>23.29</td><td class="up">+476%</td><td>3.6%</td><td><b>底仓持有</b>：守22.8破位离场；浮盈+476%不贪，不加仓</td><td>3%</td></tr>
+    </table>
+    <div class="ok"><b>组合转型逻辑：</b>当前是"进攻型"（科技+券商约54%），8月目标转为"防御型"（<b>现金40% + 防御底仓白药/中车/南瑞约31% + 科技残余约18% + 歌尔3%</b>）。<b>这是"不怕日元急升、不怕存储补跌、不怕CPI反弹"的组合</b>——8月就调到位，Q4窗口无论来不来都从容。</div>
+    <div class="danger"><b>执行节奏：</b>① 8/10-8/12 高开/反弹窗口完成富联减1手+中兴减1手+招商减2手（回收约1.4万）；② 8/12 CPI 后复检一次，若CPI反弹→继续减富联剩余1手；③ 8/13-14美联储讲话后评估是否触发黄灯升级（现金45%+）；④ 8月底前完成全部布防。<b>全部减仓"逢高"，不因恐慌市割肉；破防守位才"无条件"执行。</b></div>
+  </div>
+
+  <!-- 四、观察池操作 -->
+  <div class="card">
+    <h2>四、观察池55只 · 8月分层操作（结合日本危机视角）</h2>
+    <table>
+      <tr><th style="width:14%;">分层</th><th style="width:42%;">标的（低吸区间依据买入.md v2）</th><th>8月操作要点</th></tr>
+      <tr>
+        <td class="down"><b>① 防御低吸</b><br><span style="font-size:11px;">危机避风港</span></td>
+        <td><b>中国神华</b>39~42.5、<b>长江电力</b>26.5~28、<b>华能国际</b>6.6~7.1（油价跌利好火电）、<b>川投能源</b>14~15.2、<b>国投电力</b>13.5~14.5、<b>建设银行</b>9.0~9.8、<b>交通银行</b>6.2~6.8、<b>中国海油</b>30.0~30.4、<b>中国石化</b>4.85~4.93、<b>紫金矿业</b>30~33（金价4410避险，等回踩）</td>
+        <td>高股息+公用+黄金+破净资源——<b>危机情景资金流入方向</b>。回踩区间内分批建仓（单笔≤1手），警报触发后是加仓方向而非减仓方向</td>
+      </tr>
+      <tr>
+        <td class="flat"><b>② 回踩首仓</b><br><span style="font-size:11px;">等触发≤1手</span></td>
+        <td><b>宁德时代</b>355~360（<b>等不再创新低</b>）、<b>迈瑞医疗</b>138~145（深跌首仓）、<b>泸州老窖</b>86~88（股息6.7%）、<b>恒瑞医药</b>47~52、<b>片仔癀</b>120~132（小仓）、<b>贵州茅台</b>1200~1300（回踩）、<b>格力</b>37~40、<b>伊利</b>24~26</td>
+        <td>错杀/低估值但未到极端恐慌——<b>只在区间内触发才买，单笔≤1手</b>；8/12 CPI 前不加重仓</td>
+      </tr>
+      <tr>
+        <td class="amber"><b>③ 高位勿追</b><br><span style="font-size:11px;">8月不碰</span></td>
+        <td><b>药明康德</b>（154.82新高、118~128区间远超）、<b>北方华创</b>（PE98倍99%分位）、<b>阳光电源</b>（+6.99%涨出区间）、<b>海康威视</b>32~35（分位83.6%）、<b>美的</b>75~80（分位81.5%）、<b>立讯</b>50~55、<b>比亚迪</b>82~90、<b>福耀</b>52~56、<b>中科曙光</b>78~85、<b>豪威</b>78~86、<b>水晶光电</b>23~25.5</td>
+        <td>估值/位置双高，<b>任何反弹都是兑现窗口不是买入窗口</b>——尤其CXO/创新药短线涨速已透支（CRO单日+10.63%）</td>
+      </tr>
+      <tr>
+        <td class="up"><b>④ 存储不接</b><br><span style="font-size:11px;">海力士企稳前</span></td>
+        <td><b>深科技</b>33~36.5、<b>长电科技</b>65~72、<b>中芯国际</b>105~118</td>
+        <td><b>与日本危机直接联动</b>：SK海力士是套息平仓+存储调整的交叉点，美股存储连跌（闪迪-3.68%/希捷-4.71%）+伯恩斯坦"涨价斜率放缓"——<b>SK海力士企稳前一律不低吸</b>，A股逆势上涨=背离，高开即兑现</td>
+      </tr>
+      <tr>
+        <td class="flat"><b>⑤ 风险暂停</b><br><span style="font-size:11px;">等信号</span></td>
+        <td><b>双汇发展</b>（<b>半年报延期8/12→8/29，暂停</b>）、<b>牧原</b>33~36（猪价）、<b>中国建筑</b>4.2~4.7（地产）、<b>汇川</b>54~60（毛利率）</td>
+        <td>等中报落地/产业信号；"延期披露"=降级信号纪律</td>
+      </tr>
+    </table>
+    <div class="warn"><b>观察池8月纪律：</b>① 防御低吸（神华/建行/华能等）是<b>警报触发后的加仓方向</b>，但仓位总上限≤总组合15%；② 所有低吸挂单单笔≤1手、只在区间内触发；③ 存储链与高位科技（药明/北方华创）8月不碰；④ 8/12 CPI 与日本双警报是分层切换的开关——<b>警报触发，低吸单全部暂停，只留防御底仓</b>。</div>
+  </div>
+
+  <!-- 五、8月日历 -->
+  <div class="card">
+    <h2>五、8月事件日历（按对操作的紧急性排序）</h2>
+    <table>
+      <tr><th style="width:16%;">时间</th><th style="width:34%;">事件</th><th>操作含义</th></tr>
+      <tr><td><b>8/10（周一）</b></td><td>央行逆回购到期9,255亿；寒武纪等中报</td><td>流动性扰动；中报季个股雷区</td></tr>
+      <tr><td><b>8/12（周三）20:30</b></td><td class="danger"><b>美国7月CPI</b>（+EIA/OPEC/IEA月报）</td><td><b>8月最大变量</b>：CPI反弹→"9月不加息"定价被推翻→黄灯升级风险；<b>此日复检危机研判</b></td></tr>
+      <tr><td><b>8/13~14</b></td><td>美联储官员密集讲话（巴尔金/博斯蒂克/古尔斯比）+美国PPI</td><td>加息预期来回修正；评估是否触发黄灯（现金45%+）</td></tr>
+      <tr><td><b>8/15前</b></td><td>中国7月社融/M1</td><td>国内增量资金真相；M1弱=存量博弈延续</td></tr>
+      <tr><td><b>8/20</b></td><td>SpaceX下一轮解禁（每轮约3.19亿股）</td><td>AI泡沫叙事扰动源；美股科技波动传导</td></tr>
+      <tr><td><b>8/21~23</b></td><td>杰克逊霍尔央行年会（鲍威尔）</td><td>全球利率定价中枢；政策转向信号窗口</td></tr>
+      <tr><td><b>8月底前</b></td><td><b>完成全部8月布防</b>：现金40~45%、防御底仓到位</td><td>为2026Q4~2027H1高危窗口备好弹药</td></tr>
+    </table>
+  </div>
+
+  <!-- 六、纪律 -->
+  <div class="card">
+    <h2>六、纪律与升级触发</h2>
+    <ul style="margin-left:22px; font-size:13px; line-height:2;">
+      <li><b>8月=布防月：逢高兑现、不追高、现金40~45%。</b>减仓"逢高"，防守位"无条件"。</li>
+      <li><b>日本双警报（10Y日债3%/日元178~180）+ HY利差3% + 存储背离</b>：每周五对照；<b>触发任一→黄灯</b>（减仓到位+停新开仓+现金45%+）；<b>两线+信贷→红灯</b>（仅留白药/中车/南瑞/歌尔，其余清仓）。</li>
+      <li><b>不把"干预反弹"当利好</b>：日元反弹是套息盘离场窗口；日元急升当天=全球恐慌日，防守位无条件执行（2024.8.5剧本）。</li>
+      <li><b>危机不是预测出来的，是信号验证出来的</b>：先定规则再谈情绪；宁可卖早，不可卖晚。</li>
+      <li><b>8/12 CPI 后执行第二次危机研判复检</b>（提示词E），对照基线评分6.5/10看升降。</li>
+    </ul>
+  </div>
+
+  <div class="disc">
+    数据基准：《8.日本：下一场危机的起点？》（截至2026-08-09，Kitco/路透/彭博/明镜/日财务省/BIS/花旗/摩根大通/CFTC）、《金融危机研判_20260808.html》、《买入.md（区间校验v2）》、《长期观察池_55标的_20260804.md》；行情为8/7收盘（腾讯行情）。<b>仅供研究参考，不构成投资建议。投资有风险，决策需谨慎。</b>
+  </div>
+
+</div>
+
+<script>
+// 仓位调整图：当前权重 vs 8月目标权重
+var names = ['现金', '云南白药', '工业富联', '中兴通讯', '招商证券', '国电南瑞', '中国中车', '歌尔股份'];
+var now = [0, 31.1, 20.9, 15.9, 16.7, 7.4, 4.5, 3.6];
+var target = [40, 20, 8, 10, 8, 6, 5, 3];
+echarts.init(document.getElementById('chartPos')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(ps){ return ps[0].name + '<br/>' + ps[0].seriesName + '：' + ps[0].value + '%'; } },
+  legend: { data: ['当前权重(8/7)', '8月目标权重'], bottom: 0 },
+  grid: { left: 50, right: 20, top: 20, bottom: 50 },
+  xAxis: { type: 'category', data: names, axisLabel: { fontSize: 11 } },
+  yAxis: { type: 'value', name: '权重%', max: 50 },
+  series: [
+    { name: '当前权重(8/7)', type: 'bar', barMaxWidth: 30, itemStyle: { color: '#b0762a' }, label: { show: true, position: 'top', fontSize: 10, formatter: '{c}%' },
+      data: now },
+    { name: '8月目标权重', type: 'bar', barMaxWidth: 30, itemStyle: { color: '#2a6aa5' }, label: { show: true, position: 'top', fontSize: 10, formatter: '{c}%' },
+      data: target }
+  ]
+});
+</script>
+
+</body>
+</html>
