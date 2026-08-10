@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分批建仓与做T操作手册（2026-08-10）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #1a2332; line-height: 1.65; padding-bottom: 60px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .header { background: linear-gradient(135deg, #1c3a5c 0%, #2a6aa5 55%, #3b82c4 100%); color: #fff; padding: 34px 0 28px; margin-bottom: 24px; }
+  .header h1 { font-size: 25px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { opacity: .85; font-size: 13px; margin-top: 8px; }
+  .header .tags { margin-top: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-right: 8px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(20,40,80,.06); }
+  .card h2 { font-size: 19px; color: #16324f; margin-bottom: 14px; padding-left: 11px; border-left: 4px solid #2a6aa5; }
+  .card h3 { font-size: 15px; color: #1f4e79; margin: 16px 0 8px; }
+  .tldr { background: #fdf8ef; border: 1px solid #f0dcb8; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .tldr h2 { color: #633806; font-size: 18px; margin-bottom: 10px; }
+  .tldr ul { margin: 10px 0 0 20px; }
+  .tldr li { margin-bottom: 6px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 10px 0 4px; }
+  .stat { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .stat .num { font-size: 20px; font-weight: 700; }
+  .stat .lbl { font-size: 12px; color: #6b7a8e; margin-top: 2px; }
+  .up { color: #d9382f; }
+  .down { color: #0a9c6d; }
+  .flat { color: #6b7a8e; }
+  .amber { color: #b0762a; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th { background: #16324f; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #edf1f6; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafbfd; }
+  .chartbox { width: 100%; height: 340px; margin-top: 8px; }
+  .note { font-size: 12px; color: #8a97a8; margin-top: 6px; }
+  .warn { background: #fdf6ec; border: 1px solid #f0dcb8; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .danger { background: #fdecec; border: 1px solid #f3c4c4; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .ok { background: #eef8f3; border: 1px solid #c5e6d6; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 12px; }
+  .disc { background: #f8fafc; border: 1px solid #e4eaf1; border-radius: 10px; padding: 14px 18px; font-size: 12px; color: #6b7a8e; margin-top: 8px; }
+  .idea { border-left: 3px solid #b0762a; background: #fdf8ef; padding: 10px 14px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+  .idea b { color: #8a5a14; }
+  .alarm { display:inline-block; background:#fdecec; border:1px solid #f3c4c4; color:#a32d2d; border-radius:6px; padding:1px 8px; font-size:12px; }
+  .formula { background: #f0f5fb; border: 1px dashed #9db8d4; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin: 8px 0; font-family: Consolas, monospace; }
+  @media (max-width: 760px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <h1>分批建仓与做T操作手册（2026-08-10）</h1>
+    <div class="sub">基于真实资金口径：总资产约9.8万（股票约4.8万 + 现金约5.0万）｜权限：仅沪深主板｜数据基准：《买入.md（区间校验v2）》《长期观察池_55标的_20260804.md》</div>
+    <div class="tags"><span class="tag">三批建仓法</span><span class="tag">首仓最小</span><span class="tag">一手门槛</span><span class="tag">做T当日闭环</span><span class="tag">手续费陷阱</span><span class="tag">8月布防期降档</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>核心结论（TL;DR）</h2>
+    <ul>
+      <li><b>建仓铁律：三批法 + 首仓最小。</b>每只票的建仓资金=单票仓位上限（防御15%≈1.5万 / 成长10%≈1万 / 试探5%≈0.5万），分三批：<b>首批25%~30%（进区间试仓）→ 二批30%~35%（区间中段）→ 三批35%~45%（下沿/错杀区或右侧确认）</b>。永不一笔买满。</li>
+      <li><b>首仓手数 = 计划仓位 × 25% ÷ 股价 ÷ 100，向下取整。</b>但你的资金体量下，<b>股价决定一切</b>：&lt;10元股可买6~8手精确分批；10~30元股每批1手；40~90元股首仓被迫=1手（比例被动抬到33%~50%）；<b>&gt;100元股（茅台1250/北方华创615/汾酒111/片仔癀126/药明123）当前资金买不起1手或1手即严重超配 → 一律只观察、不建仓</b>。</li>
+      <li><b>做T先算账：往返成本 = 佣金（每边最低5元）+ 印花税0.05% + 过户费。</b>小仓低价做T是"给券商送钱"——<b>中车1手往返成本率1.78%，白做；中兴1手0.35%，要振幅&gt;1%才有肉；招商6手仅0.14%，最适合做T</b>。做T最低门槛：预计价差收益≥往返成本的3倍，否则不做。</li>
+      <li><b>做T铁律：只做有底仓的熟票、T仓≤底仓1/3~1/2、单日≤1次、当日必须闭环（不留T仓过夜）、方向错了1%即认错。</b>你的持仓里：招商6手=首选（倒T兼降杠杆）、中兴2手=可正T、中车/白药/南瑞/歌尔=不做。</li>
+      <li><b>首仓1手≠没操作空间——想做T的票按"3手起步"规划：</b>首仓25%是"试错上车"比例，不是"做T底仓"。做T最低2手（1手T仓+留1手底仓），推荐≥3手。按你的资金：≤20元的票够凑4手+（歌尔/南瑞/中车=做T主力）、40元+的票凑不满3手别硬T；当前持仓里<b>招商6手=唯一常态T标的、中兴2手=顺减仓做正T，其余不做T</b>（详见第五章）。</li>
+      <li><b>8月布防期降档执行：</b>新开仓只允许完成首批（≤计划的1/3），二批三批等8/12 CPI落地、四条警报线（日债3%/日元178~180/HY利差3%/存储背离）未触发再推进；黄灯触发→停新开仓、做T只做倒T；红灯→全停。<b>现金始终≥40%（布防期目标45%）</b>。</li>
+    </ul>
+    <div class="note">测算基准：总资产≈98,350元（8/10尾盘口径）；若资金变化，用文内公式重算，勿机械套用手数。仅供研究参考，不构成投资建议。</div>
+  </div>
+
+  <!-- 一、分批建仓总框架 -->
+  <div class="card">
+    <h2>一、分批建仓总框架：三批法</h2>
+    <div class="grid4">
+      <div class="stat"><div class="num">25~30%</div><div class="lbl">首批（试仓）·进区间</div></div>
+      <div class="stat"><div class="num">30~35%</div><div class="lbl">二批（主仓）·区间中段</div></div>
+      <div class="stat"><div class="num">35~45%</div><div class="lbl">三批（补齐）·下沿/错杀/右侧</div></div>
+      <div class="stat"><div class="num up">0</div><div class="lbl">永不一把梭</div></div>
+    </div>
+    <h3>1. 单票仓位上限（先定上限，再谈买多少）</h3>
+    <table>
+      <tr><th>标的类型</th><th>单票仓位上限</th><th>按总资产≈10万折算</th><th>适用对象</th></tr>
+      <tr><td><b>防御型</b></td><td>≤15%</td><td>≤1.5万元</td><td>白药/中车/南瑞/长电/神华/建行/华能/川投/国投等低波动高股息</td></tr>
+      <tr><td><b>成长型</b></td><td>≤10%</td><td>≤1.0万元</td><td>立讯/深科技/歌尔/比亚迪/福耀等有弹性的标的</td></tr>
+      <tr><td><b>试探型</b></td><td>≤5%</td><td>≤0.5万元</td><td>降级观察（中兴/牧原/中国建筑）、高位回踩首仓、逻辑待验证</td></tr>
+    </table>
+    <div class="warn"><b>为什么首仓最小：</b>进区间≠见底。区间上沿附近买的首批，如果直接买满，跌到区间下沿就没了补仓子弹，成本全在上沿。首仓只解决"上不上车"的问题，<b>剩下的子弹留给更低的价</b>。确定性越差（试探型/高位回踩），首批比例越低（取20%）。</div>
+
+    <h3>2. 首仓手数公式</h3>
+    <div class="formula">首仓手数 = 取整向下[ 单票计划仓位 × 首批比例(25%) ÷ 股价 ÷ 100 ]　｜　若结果 = 0 手 → 该股对你"一手门槛过高"，见下文分档表</div>
+    <div class="danger"><b>最关键的约束——"一手门槛"：</b>1手=100股。若 <b>1手金额（股价×100）＞ 单票计划仓位 × 首批比例</b>，你的"首批1/3"根本买不出来，实际首仓被迫=1手（比例被动抬高）。若 <b>1手金额 ＞ 单票计划仓位甚至＞总资产的10%</b>，则该股在当前资金体量下不适合建仓。这不是技巧问题，是资金量级的硬约束。</div>
+  </div>
+
+  <!-- 二、分股价档位速查 -->
+  <div class="card">
+    <h2>二、分股价档位 · 首仓手数速查表（总资产≈10万基准）</h2>
+    <div class="chartbox" id="chartTier"></div>
+    <div class="note">横轴=单手金额（股价×100），柱内标"代表标的 · 首仓手数"。绿色=可精细分批，黄色=粒度受限，红色=不建议建仓。</div>
+    <table>
+      <tr><th style="width:13%;">档位</th><th style="width:26%;">代表标的（买入.md区间）</th><th style="width:13%;">单手金额</th><th style="width:16%;">防御型首仓（1.5万×25%）</th><th style="width:16%;">成长型首仓（1.0万×25%）</th><th>结论</th></tr>
+      <tr><td rowspan="2"><b class="down">A档 低价<br>&lt;10元</b></td><td>中车5.5~6.0、石化4.85~4.93、交行6.2~6.8、华能6.6~7.1</td><td>485~710元</td><td class="down">6~8手（约3,500~4,700元）</td><td>—</td><td rowspan="2"><b>可精确三批</b>：手数粒度细，能真正做到25%/35%/40%递进</td></tr>
+      <tr><td>建行9.0~9.8、中铝8.2~9.0（中国建筑4.2~4.7降级观察）</td><td>820~980元</td><td class="down">3~4手（约3,000~3,900元）</td><td>—</td></tr>
+      <tr><td rowspan="2"><b class="amber">B档 中价<br>10~30元</b></td><td>南瑞22~24.5、歌尔20.5~22.8、海尔20.5~22.2、伊利24~26、双汇22.5~25、长电26.5~28、陕煤23~25</td><td>2,000~2,800元</td><td class="amber">1手（2,200~2,800元，占15~19%）</td><td class="amber">1手（2,200~2,800元，占22~28%）</td><td rowspan="2"><b>粒度一般</b>：每批≈1手，三批=3~4手，勉强满足递进；区间要设细档位</td></tr>
+      <tr><td>三一16.5~18.3、广发18.5~20.5、国投13.5~14.5、川投14~15.2、长城14~15.8、洛钼18.5~20.5、中信24.5~27.5</td><td>1,350~2,750元</td><td class="amber">1~2手</td><td class="amber">1~2手</td></tr>
+      <tr><td rowspan="2"><b class="amber">C档 中高价<br>30~60元</b></td><td>白药47~51、平安47~52、恒瑞47~52、海油30~30.4、紫金30~33、深科技33~36.5、海天33~36.5</td><td>3,000~5,200元</td><td class="amber">1手（4,700~5,200元，占31~35%→首仓被动抬升）</td><td>—</td><td rowspan="2"><b>首仓被迫=1手</b>（占计划1/3~1/2）："首仓最小"纪律失效，只能靠"二批三批各1手"补救；或降为两批（1手+1手）</td></tr>
+      <tr><td>格力37~40、神华39~42.5、立讯50~55、福耀52~56、亨通48~56（已清仓）</td><td>3,700~5,600元</td><td class="amber">1手</td><td class="amber">1手（占计划37~56%）</td></tr>
+      <tr><td rowspan="2"><b class="up">D档 高价<br>60~100元</b></td><td>万华66~72、长电科技65~72、中科曙光78~85、豪威78~86、泸州老窖78~88、比亚迪82~90、美的75~80（高位下修）</td><td>6,500~9,000元</td><td class="up">1手即占计划43~60%→降为两批或放弃</td><td class="up">1手即占计划65~90%→严重超配，<b>不建议建仓</b></td><td rowspan="2"><b>手数粒度太粗</b>：1手=总资产6~9%，对10万资金是重仓。除非是防御核心且计划降到1手，否则回避</td></tr>
+      <tr><td>中芯105~118（不可交易）、海康32~35（高位下修）</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><b class="up">E档 超高<br>&gt;100元</b></td><td>茅台1200~1300、北方华创580~650、汾酒105~118、片仔癀120~132、药明118~128（高位勿追）</td><td>≥10,500元<br>（茅台1手=12.5万）</td><td class="up">1手＞单票上限甚至＞总资产</td><td class="up">1手＞总资产10%</td><td><b>当前资金量级下一律只观察、不建仓</b>。茅台1手12.5万＞你的总资产10万；北方华创1手6.15万=总资产62%。等资金量级扩大再议</td></tr>
+    </table>
+    <div class="ok"><b>落地判断：</b>按你当前的资金量，观察池55只里真正适合建仓的是<b>A/B档+部分C档防御股（约35只）</b>；C档进攻股（立讯/福耀）与D档个股需要降档或放弃；E档5只+5只不可交易（创业板/科创板）基本与你无关。<b>低价≠便宜，但低价=手数自由=分批纪律能真正执行</b>。</div>
+  </div>
+
+  <!-- 三、三批价位设计示例 -->
+  <div class="card">
+    <h2>三、三批价位设计：三个实战案例（用买入.md区间三等分）</h2>
+    <table>
+      <tr><th style="width:14%;">案例</th><th style="width:22%;">区间三等分</th><th style="width:22%;">首批（25%~30%）</th><th style="width:22%;">二批（30%~35%）</th><th>三批（35%~45%）</th></tr>
+      <tr>
+        <td><b>中国中车</b>（防御）<br>区间5.5~6.0</td>
+        <td>上沿6.0 / 中5.75 / 下沿5.5</td>
+        <td class="down">6手@5.95~6.0<br>≈3,570元（占计划24%）</td>
+        <td class="down">8手@5.70~5.75<br>≈4,580元（占计划31%）</td>
+        <td class="down">10手@5.50~5.60<br>≈5,550元（占计划37%）</td>
+      </tr>
+      <tr>
+        <td><b>国电南瑞</b>（成长）<br>区间22~24.5</td>
+        <td>上沿24.5 / 中23.25 / 下沿22</td>
+        <td class="amber">1手@24.0~24.5<br>≈2,430元（占计划24%）</td>
+        <td class="amber">1手@23.0~23.3<br>≈2,300元（占计划23%）</td>
+        <td class="amber">1~2手@22.0~22.2<br>≈2,200~4,400元（占计划22~44%）</td>
+      </tr>
+      <tr>
+        <td><b>云南白药</b>（防御·新开仓视角）<br>区间47~51</td>
+        <td>上沿51 / 中49 / 下沿47</td>
+        <td class="amber">1手@50.0~51.0<br>≈5,050元（占计划34%→首仓被动抬升）</td>
+        <td class="amber">1手@48.5~49.5<br>≈4,900元（占计划33%）</td>
+        <td class="amber">1手@47.0~47.5<br>≈4,720元（占计划31%）</td>
+      </tr>
+    </table>
+    <div class="warn"><b>批次触发纪律：</b>① 各批必须<b>逐级触发</b>，第二批的价位没到，就宁可空仓等着，不提前"预支"；② 跌破下沿且<b>3%内不能收复 → 停止加仓</b>，重新区分"错杀 vs 逻辑破坏"（低吸区间校验v2规则）；③ 如果首批买入后股价反而<b>涨出区间上沿≥5%</b>（区间上修情形）→ 停止追批，等回踩，严禁越涨越买。</div>
+  </div>
+
+  <!-- 四、做T指南 -->
+  <div class="card">
+    <h2>四、做T降低成本指南</h2>
+    <h3>1. 先算账：你的往返成本是多少（铁律：价差≥成本×3才做T）</h3>
+    <div class="chartbox" id="chartCost"></div>
+    <div class="note">单次T（一买一卖）往返成本率 vs 持仓金额。灰色虚线=0.5%参考线。低价小仓（左端）成本率高得离谱。</div>
+    <table>
+      <tr><th>持仓情形</th><th>持仓金额</th><th>往返成本（买佣5+卖佣5+印花0.05%+过户）</th><th>成本率</th><th>最小有效振幅（成本×3）</th><th>适合做T吗</th></tr>
+      <tr><td>中车 1手（5.8×100）</td><td>580元</td><td>≈10.3元</td><td class="up">1.78%</td><td class="up">5.3%</td><td class="up"><b>完全不适合</b>（中车日均振幅常&lt;2%）</td></tr>
+      <tr><td>中车 3手（≈1,740元）</td><td>1,740元</td><td>≈10.7元</td><td class="up">0.61%</td><td class="up">1.8%</td><td class="amber">勉强，需日内大波动才做</td></tr>
+      <tr><td>中车 5手（≈2,900元）</td><td>2,900元</td><td>≈11.5元</td><td class="amber">0.40%</td><td class="amber">1.2%</td><td class="amber">性价比一般，防御股波动小，不做</td></tr>
+      <tr><td>南瑞 1手（23×100）</td><td>2,300元</td><td>≈11.2元</td><td class="amber">0.49%</td><td class="amber">1.5%</td><td class="amber">低波动防御股，不做</td></tr>
+      <tr><td>中兴 1手（34×100）</td><td>3,400元</td><td>≈11.8元</td><td class="down">0.35%</td><td class="down">1.05%</td><td class="down">可做（正T），需振幅&gt;1.2%才有肉</td></tr>
+      <tr><td>白药 1手（50×100）</td><td>5,000元</td><td>≈12.6元</td><td class="down">0.25%</td><td class="down">0.76%</td><td class="amber">防御核心，波动小，不做</td></tr>
+      <tr><td><b>招商 6手（18.2×600）</b></td><td>10,920元</td><td>≈15.7元</td><td class="down">0.14%</td><td class="down">0.43%</td><td class="down"><b>首选做T标的</b>（且倒T=顺便执行减仓计划）</td></tr>
+    </table>
+    <div class="danger"><b>手续费真相：</b>散户佣金普遍"万2.5但最低5元"，这5元对低价小仓是灾难。往返成本 ≈ <b>10~16元固定 + 成交金额×0.05%</b>。固定成本必须靠"手数/金额"摊薄——<b>1手低价股做T，一半收益喂了券商</b>。</div>
+
+    <h3>2. 两种T模式（T+1制度下）</h3>
+    <table>
+      <tr><th style="width:18%;">模式</th><th style="width:34%;">操作</th><th style="width:24%;">适用</th><th>风险</th></tr>
+      <tr><td><b>正T</b>（先买后卖）</td><td>低开/急跌到支撑位<b>先买入T仓</b>，当日反弹后<b>卖出等量底仓</b> → 底仓数量不变、成本下降</td><td>底仓被套想降本；看好中期但短期震荡（如中兴）</td><td>买入后不反弹 → T仓变加仓（必须当日止损闭环）</td></tr>
+      <tr><td><b>倒T</b>（先卖后买）</td><td>高开/急拉到压力位<b>先卖出底仓</b>，当日回落<b>接回等量</b> → 落袋差价、成本下降</td><td>仓位过重想减（如招商6手）；高位高波动期</td><td>卖出后不回落 → 踏空（必须当日追回或认错）</td></tr>
+    </table>
+
+    <h3>3. 做T信号（分时+量能）</h3>
+    <ul style="margin:8px 0 0 20px; font-size:13px;">
+      <li><b>买点（正T）</b>：低开急跌至<b>低吸区间下沿</b> + 分时<b>缩量企稳</b>（不再创新低）→ 挂单接；大盘恐慌急杀后V反，个股跟T。</li>
+      <li><b>卖点（倒T）</b>：高开冲高至<b>压力位/前高</b> + 分时<b>放量滞涨</b>（量在价不涨）→ 挂单抛；或指数冲关乏力个股跟卖。</li>
+      <li><b>不做T的信号</b>：缩量阴跌（无波动=白做）、单边下跌趋势（正T越T越套）、单边上涨趋势（倒T必然T飞）、事件日（CPI/非农/财报/解禁前一日停手——8/12美国CPI前尤其注意）。</li>
+      <li><b>工具</b>：分时均价线（股价站上/跌破均价线为强弱切换点）、开盘15分钟高低点（日内波动框）、挂单不用市价（防滑点）。</li>
+    </ul>
+
+    <h3>4. 做T铁律（违反任何一条=停止做T）</h3>
+    <div class="danger">
+      ① <b>T仓≤底仓的1/3~1/2</b>（如招商6手，一次只T 2手以内；中兴2手，一次只T 1手）；<br>
+      ② <b>单日最多1次</b>，做完收手，不追加；<br>
+      ③ <b>当日必须闭环</b>：正T当天卖出等量、倒T当天买回等量——<b>绝不把T仓留过夜</b>（留过夜=性质变成加减仓，纪律就破了）；<br>
+      ④ <b>止损无例外</b>：方向错了1%（或跌穿设定支撑）立即认错平仓，T仓不拖、不摊；<br>
+      ⑤ 只做<b>有底仓的熟票</b>，不T新标的；<br>
+      ⑥ 事件日/警报线触发日/数据公布前一天<b>不做T</b>。
+    </div>
+
+    <h3>5. 结合你的持仓：谁能T、怎么T</h3>
+    <table>
+      <tr><th>持仓</th><th>做T判定</th><th>具体建议</th></tr>
+      <tr><td><b>招商证券 6手</b>@19.6（-7.2%）</td><td class="down"><b>首选·倒T为主</b></td><td>反弹18.5+先卖1~2手（顺带执行8月减仓计划），回落18.1~18.3接回等量；价差0.4~0.6元/手≈40~60元，往返成本≈16元，净赚可覆盖。既降本又降杠杆，一箭双雕</td></tr>
+      <tr><td><b>中兴通讯 2手</b>@33.3（+3%）</td><td class="down">可·正T</td><td>8/12 CPI前停手；CPI落地后低开34下方分批接回（若已34.26减1手），反弹34.8~35卖出T仓；价差1~1.5元/手=100~150元，成本≈12元，肉够。守33.5/破33.0清短线纪律不变</td></tr>
+      <tr><td><b>中国中车 5手</b>@5.87</td><td class="up">不做T</td><td>1手成本率1.78%白做；5手整仓成本率虽降到0.40%，但防御股日振幅常&lt;1.2%，赚不到。等6.0~6.1波段减1~2手即可（那是波段，不是T）</td></tr>
+      <tr><td><b>白药 4手 / 南瑞 2手 / 歌尔 1手</b></td><td class="up">不做T</td><td>防御核心不动仓（白药是危机避风港，动它=破坏布防）；南瑞低波动；歌尔仅1手无T空间</td></tr>
+    </table>
+    <h3>6. 做T实战教学：两个完整案例（时间线逐笔演练）</h3>
+    <div class="chartbox" id="chartT2"></div>
+    <div class="note">模拟分时：红色=正T案例（中兴，买33.55→卖34.10）；蓝色=倒T案例（招商，卖18.50→买18.18）。▲=卖点，▼=买点。注意两条线各用各自的坐标轴（左轴=中兴价格，右轴=招商价格）。</div>
+
+    <h4 style="margin-top:14px;">案例A：倒T（先卖后买）· 招商证券 6手 —— 降本 + 顺便执行减仓计划</h4>
+    <table>
+      <tr><th style="width:18%;">时间</th><th style="width:22%;">动作</th><th style="width:16%;">价位</th><th>逻辑</th></tr>
+      <tr><td>9:25 集合竞价</td><td>观察：券商板块异动高开+0.8%，招商竞价18.38</td><td>—</td><td>先不动手，等分时确认</td></tr>
+      <tr><td>9:30~9:50</td><td>冲高18.52，但<b>分时量能逐笔递减（量价背离）</b></td><td>—</td><td>判断冲高乏力，不追</td></tr>
+      <tr><td>9:52</td><td><b>挂卖单 2手</b>（倒T开仓）</td><td class="up">18.50</td><td>= 顺带执行8月计划"反弹18.5减2手"——一单两用</td></tr>
+      <tr><td>10:30~14:00</td><td>大盘冲高回落，招商回到18.2附近<b>缩量企稳</b></td><td>18.15~18.25</td><td>等待回补点，不抢</td></tr>
+      <tr><td>14:05</td><td><b>挂买单 2手</b>（T仓闭环）</td><td class="down">18.18</td><td>缩量不创新低=承接确认，接回</td></tr>
+      <tr><td>收盘核算</td><td>价差 0.32元×200股=64元 − 往返成本15.7元</td><td><b class="down">≈净赚48元</b></td><td>底仓仍6手；成本摊薄48÷600≈0.08元/股，19.613→约19.53</td></tr>
+      <tr><td>失败预案</td><td>若尾盘没回踩到18.18（≥18.35不划算）</td><td>—</td><td>那2手=正式减仓（仓位变4手，本就符合8月目标）——<b>倒T有"减仓计划"兜底，卖飞也不亏逻辑</b></td></tr>
+    </table>
+
+    <h4>案例B：正T（先买后卖）· 中兴通讯 2手 —— 被套降本 / 浮盈增厚</h4>
+    <table>
+      <tr><th style="width:18%;">时间</th><th style="width:22%;">动作</th><th style="width:16%;">价位</th><th>逻辑</th></tr>
+      <tr><td>9:25 集合竞价</td><td>大盘低开，中兴竞价33.65（-1.3%）</td><td>—</td><td>盯防守位33.5，破33.5按纪律减仓而不是做T</td></tr>
+      <tr><td>9:40</td><td>急跌至33.52<b>缩量止跌（33.5未破）</b></td><td>—</td><td>防守位+缩量=企稳信号，准备接</td></tr>
+      <tr><td>9:42</td><td><b>挂买单 1手</b>（正T开仓，此时持仓3手）</td><td class="down">33.55</td><td>只买1手：T仓=底仓1/2以内，留余地</td></tr>
+      <tr><td>10:45</td><td>大盘V反，中兴拉回34.0上方</td><td>—</td><td>浮盈扩大，盯压力位34.1~34.2</td></tr>
+      <tr><td>11:20</td><td>冲高34.15<b>放量滞涨（分时走平+量柱萎缩）</b></td><td>—</td><td>滞涨=上攻乏力，卖点</td></tr>
+      <tr><td>11:22</td><td><b>挂卖单 1手</b>（卖出的是底仓，T仓闭环，持仓回到2手）</td><td class="up">34.10</td><td>价差 0.55元×100股=55元 − 往返成本11.8元 ≈ <b>净赚43元</b>；成本摊薄43÷200≈0.22元/股，33.309→约33.09</td></tr>
+      <tr><td>失败预案</td><td>买入后跌破33.3（止损1%）且午后不收回33.5</td><td class="up">收盘前卖T仓@33.2</td><td>认错亏约47元，<b>绝不把T仓留过夜变成3手持仓</b>——T仓过夜=变相加仓，纪律即破</td></tr>
+    </table>
+    <div class="ok"><b>两个案例的共同点：</b>① 买卖点都在"支撑/压力 + 量能确认"处，不是拍脑袋；② 全程挂单、到价成交、不追价；③ 都建立在"本来就想买/想卖"的价位附近（招商18.5本就是减仓计划、中兴33.5本就是防守位）——<b>做T是顺手降本，不是凭空多交易</b>；④ 失败预案比成功更重要，正T失败=认错卖出、倒T失败=接受减仓，都有台阶下。</div>
+
+    <div class="warn"><b>做T的本质：</b>赚的是<b>波动</b>，不是赚<b>方向</b>。它的唯一目的是"降低持仓成本"，不是"预测涨跌"。当你发现自己开始赌"明天会涨还是会跌"时，那已经不是做T了，是短线投机——在8月布防期尤其危险。</div>
+  </div>
+
+  <!-- 五、首仓1手破局 -->
+  <div class="card">
+    <h2>五、首仓1手没操作空间？——想做T就按"3手起步"规划</h2>
+    <div class="warn"><b>先正面回答你的疑问：对，首仓只有1手时确实没有做T空间。</b>做T最低需要2手（1手T仓 + 至少留1手底仓），推荐≥3手（2手底仓 + 1手T仓）。但关键要分清两个概念：<b>首仓25%是"试错上车"用的，不是为做T准备的</b>——它的职责是"用最小的钱确认这只票能不能拿"。所以正确的问法不是"首仓买几手"，而是先问：<b>这只票，我打算做T吗？</b></div>
+    <table>
+      <tr><th style="width:14%;">打算</th><th style="width:44%;">建仓设计</th><th>典型标的（你的池子）</th></tr>
+      <tr><td><b>不T</b>（纯防御/吃股息）</td><td>维持三批法，首仓1手完全OK——分批只是为了降低买入均价，不需要T空间</td><td>白药/长电/神华/建行/中车（低波动，本就T不动）</td></tr>
+      <tr><td><b>想T</b></td><td>按"<b>底仓≥3手</b>"规划：单票计划仓位必须≥3手金额；<b>首仓直接买足2手</b>（1手试错+1手T仓基础），二批补到第3手，之后"第三批"不再死等更低价，而是作为<b>T仓弹药滚动高抛低吸</b></td><td>歌尔/南瑞/深科技等20~33元票；或现有大仓票（招商6手）</td></tr>
+      <tr><td><b>仓位凑不满3手</b></td><td>该股自动失去"做T资格"，只做波段/持有——硬T=每笔都在喂手续费</td><td>万华（2手）/比亚迪（1手）/40元+的票</td></tr>
+    </table>
+    <h3>按你的资金（总资产≈10万）快速判定"够不够3手"</h3>
+    <table>
+      <tr><th style="width:20%;">单票上限</th><th style="width:34%;">股价≤多少才够3手</th><th>实际含义</th></tr>
+      <tr><td>防御型 1.5万</td><td>股价 ≤ 50元（15,000÷3÷100）</td><td>白药50→刚好3手（可T下限）；神华40.8→3手✓；平安49.5→3手✓；万华69→2手✗</td></tr>
+      <tr><td>成长型 1.0万</td><td>股价 ≤ 33元（10,000÷3÷100）</td><td>南瑞23→4手✓；歌尔21.6→4手✓；深科技34.8→2手✗；立讯52.5→1手✗</td></tr>
+      <tr><td>试探型 0.5万</td><td>股价 ≤ 16元</td><td>试探仓本就不该T，是"等信号"的观察位</td></tr>
+    </table>
+    <div class="ok"><b>落地结论：</b>你的资金体量下，<b>做T的主力 = 20元以下的低价活跃票 + 现有大仓票（招商6手）</b>。歌尔若回补到3~4手（约6,500~8,700元）就是理想T标的；白药/中车/南瑞即使手数够也不T（波动太小）；40元以上的票（平安/万华/比亚迪）凑不满3手，直接告别日内T。<b>"没有T空间"不是坏事——它自动帮你淘汰了不该做T的票，省下的手续费就是收益。</b></div>
+  </div>
+
+  <!-- 六、与8月布防衔接 -->
+  <div class="card">
+    <h2>六、与8月布防 + 危机监测的衔接（降档执行）</h2>
+    <table>
+      <tr><th style="width:20%;">情景</th><th style="width:28%;">建仓动作</th><th>做T动作</th></tr>
+      <tr><td><b>绿灯</b>（当前：财报强/失业率4.1%/10Y 4.62%可控/无流动性危机）</td><td>允许新开仓，但<b>8月内每只只完成首批（≤计划的1/3）</b>；二批三批等8/12 CPI落地、警报线未触发再推进</td><td>正常执行，但单日仍≤1次</td></tr>
+      <tr><td><b>黄灯</b>（四条警报线任一触发：日债3%/日元178~180/HY利差3%/存储背离修复）</td><td class="amber"><b>停新开仓</b>；已开仓的首批不动，二批三批暂停；现金≥45%</td><td class="amber">只做<b>倒T</b>（实质=减仓），停正T</td></tr>
+      <tr><td><b>红灯</b>（信贷骤停/全球-10%级/上证破3800/个股集体破防守位）</td><td class="up"><b>全部停止</b>；只留白药/中车/南瑞/歌尔防御底仓，等右侧企稳再谈建仓</td><td class="up"><b>全停</b>，防守位执行不加犹豫</td></tr>
+    </table>
+    <div class="ok"><b>一句话：</b>8月是布防月——<b>建仓只做"首批试仓"，做T只为"降本+降杠杆"，现金40~45%是总目标</b>。任何一次买入（无论建仓还是正T）都会占用现金，先问自己：买完之后现金还在45%吗？不在→不买。</div>
+  </div>
+
+  <!-- 六、大家没想到的点 -->
+  <div class="card">
+    <h2>七、"大家没想到的点"</h2>
+    <div class="idea"><b>① 一手门槛是最大隐形约束：</b>10万资金下，100元+的股票（茅台/北方华创/汾酒/片仔癀/药明）<b>根本无法精细分批，甚至买不起1手</b>。很多人研究"茅台低吸区间"，却忽略了自己连1手都买不起——<b>先算单手金额，再谈建仓方案</b>。</div>
+    <div class="idea"><b>② 最低5元佣金 = 低价小仓做T的死穴：</b>1手中车做T往返成本率1.78%，意味着你得赌它单日波动5.3%才刚回本——这不是做T，是送钱。散户做T失败的第一个原因不是技术，是<b>没算手续费</b>。</div>
+    <div class="idea"><b>③ 高价股"首仓最小"纪律自动失效：</b>公式想让你首仓买1/3，但白药1手=5,000元=计划的34%，比亚迪1手=计划86%——<b>股价越高，你越买不出"小仓试错"，第一笔就是重仓</b>。所以10万资金正确的打法：低价股做精细分批，高价股要么放弃要么只买1手当底仓。</div>
+    <div class="idea"><b>④ T仓过夜 = 变相加仓：</b>做T的铁律"当日闭环"反过来说就是：<b>一旦T仓过了夜，你的"做T"已经变质成一次没有计划的加仓/减仓</b>——那才是套牢和踏空真正的来源。留过夜的T仓，等于给自己留了一个仓位炸弹。</div>
+    <div class="idea"><b>⑤ 分批建仓≠越跌越买：</b>三批法的前提是"区间下沿=错杀不是逻辑破坏"。如果跌下去的原因是基本面变坏（如中兴利润连降、双汇延期披露），<b>跌破下沿3%不收就是纪律，不是胆小</b>——低吸区间校验v2的"错杀vs逻辑破坏"判断要先于一切加仓。</div>
+    <div class="idea"><b>⑥ 8月的特殊规则优先级最高：</b>所有建仓/做T建议，都要先过"布防期"这一关：<b>警报线触发→降档；现金低于45%→不动</b>。宁可少赚，不可重仓进入Q4窗口（2026Q4~2027H1日本高危窗口）。</div>
+  </div>
+
+  <div class="disc">免责声明：本手册为个人操作框架总结，测算基于2026-08-10资金口径与《买入.md（区间校验v2）》区间，仅供研究参考，不构成投资建议。市场有风险，入市需谨慎。数据与规则以《每日操作提示词.md》《买入.md》最新版为准。</div>
+
+</div>
+
+<script>
+// 图1：分档速查（单手金额 vs 首仓手数）
+var tierChart = echarts.init(document.getElementById('chartTier'));
+tierChart.setOption({
+  title: { text: '分股价档位 · 首仓手数与可执行性', left: 'center', textStyle: { fontSize: 14, color: '#1a2332' } },
+  tooltip: { trigger: 'axis', formatter: function(ps){ return ps[0].name + '<br/>单手金额：' + ps[0].value + '元' + '<br/>' + ps[0].data.desc; } },
+  grid: { left: 70, right: 30, top: 50, bottom: 60 },
+  xAxis: { type: 'category', data: ['A档 低价<10元\n(中车/石化/华能)', 'B档 中价10~30元\n(南瑞/歌尔/长电)', 'C档 中高价30~60元\n(白药/平安/神华)', 'D档 高价60~100元\n(万华/曙光/比亚迪)', 'E档 超高>100元\n(茅台/北方华创/汾酒)'], axisLabel: { interval: 0, fontSize: 11, color: '#556' } },
+  yAxis: { type: 'value', name: '单手金额(元)', axisLabel: { formatter: function(v){ return v>=10000 ? (v/10000)+'万' : v; } } },
+  series: [{
+    type: 'bar',
+    data: [
+      { value: 580, itemStyle: { color: '#0a9c6d' }, desc: '首仓6~8手，可精确三批 ✓' },
+      { value: 2300, itemStyle: { color: '#b0762a' }, desc: '首仓1手，三批=3~4手，粒度一般' },
+      { value: 5000, itemStyle: { color: '#b0762a' }, desc: '首仓被迫=1手(占计划34%)，两批补救' },
+      { value: 8600, itemStyle: { color: '#d9382f' }, desc: '1手=总资产8.6%，成长型严重超配 ✗' },
+      { value: 125000, itemStyle: { color: '#d9382f' }, desc: '茅台1手12.5万>总资产，只观察不建仓 ✗' }
+    ],
+    barWidth: 52,
+    label: { show: true, position: 'top', formatter: function(p){ var m={0:'6~8手',1:'1手',2:'1手',3:'✗放弃',4:'✗观察'}; return m[p.dataIndex]; }, fontSize: 12, fontWeight: 700 }
+  }]
+});
+
+// 图2：做T往返成本率 vs 持仓金额
+var costChart = echarts.init(document.getElementById('chartCost'));
+costChart.setOption({
+  title: { text: '单次T往返成本率 vs 持仓金额（越低越好）', left: 'center', textStyle: { fontSize: 14, color: '#1a2332' } },
+  tooltip: { trigger: 'axis' },
+  grid: { left: 60, right: 30, top: 50, bottom: 40 },
+  xAxis: { type: 'category', data: ['中车1手\n580元', '中车3手\n1740元', '中车5手\n2900元', '南瑞1手\n2300元', '中兴1手\n3400元', '白药1手\n5000元', '招商6手\n10920元'], axisLabel: { interval: 0, fontSize: 11, color: '#556' } },
+  yAxis: { type: 'value', name: '往返成本率(%)', axisLabel: { formatter: function(v){ return v+'%'; } } },
+  series: [{
+    type: 'line',
+    data: [
+      { value: 1.78, itemStyle: { color: '#d9382f' } },
+      { value: 0.61, itemStyle: { color: '#d9382f' } },
+      { value: 0.40, itemStyle: { color: '#b0762a' } },
+      { value: 0.49, itemStyle: { color: '#b0762a' } },
+      { value: 0.35, itemStyle: { color: '#0a9c6d' } },
+      { value: 0.25, itemStyle: { color: '#0a9c6d' } },
+      { value: 0.14, itemStyle: { color: '#0a9c6d' } }
+    ],
+    symbolSize: 10,
+    lineStyle: { width: 3, color: '#2a6aa5' },
+    markLine: { data: [{ yAxis: 0.5, name: '0.5%参考线' }], lineStyle: { type: 'dashed', color: '#999' }, label: { formatter: '0.5%参考', fontSize: 11 } }
+  }]
+});
+
+// 图3：做T实战模拟（正T vs 倒T）
+var t2 = echarts.init(document.getElementById('chartT2'));
+t2.setOption({
+  title: { text: '做T实战模拟：正T（中兴·红）vs 倒T（招商·蓝）', left: 'center', textStyle: { fontSize: 14, color: '#1a2332' } },
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['正T·中兴(左轴)', '倒T·招商(右轴)'], top: 32 },
+  grid: { left: 50, right: 55, top: 75, bottom: 40 },
+  xAxis: { type: 'category', data: ['9:30','9:45','10:00','10:30','11:00','11:30','13:30','14:00','14:30','15:00'], axisLabel: { fontSize: 10 } },
+  yAxis: [
+    { type: 'value', name: '中兴(元)', min: 33.4, max: 34.3, splitLine: { lineStyle: { type: 'dashed' } } },
+    { type: 'value', name: '招商(元)', min: 18.0, max: 18.6, splitLine: { show: false } }
+  ],
+  series: [
+    { name: '正T·中兴(左轴)', type: 'line', yAxisIndex: 0, color: '#d9382f', smooth: true, symbolSize: 5,
+      data: [33.65, 33.55, 33.70, 33.95, 34.10, 34.05, 33.95, 33.90, 33.98, 34.00],
+      markPoint: { data: [
+        { name: '买点', coord: ['9:45', 33.55], symbol: 'pin', symbolSize: 42, itemStyle: { color: '#0a9c6d' }, label: { formatter: '买33.55', fontSize: 10 } },
+        { name: '卖点', coord: ['11:00', 34.10], symbol: 'pin', symbolSize: 42, itemStyle: { color: '#d9382f' }, label: { formatter: '卖34.10', fontSize: 10 } }
+      ] } },
+    { name: '倒T·招商(右轴)', type: 'line', yAxisIndex: 1, color: '#2a6aa5', smooth: true, symbolSize: 5,
+      data: [18.38, 18.50, 18.45, 18.35, 18.25, 18.20, 18.22, 18.18, 18.15, 18.20],
+      markPoint: { data: [
+        { name: '卖点', coord: ['9:45', 18.50], symbol: 'pin', symbolSize: 42, itemStyle: { color: '#d9382f' }, label: { formatter: '卖18.50', fontSize: 10 } },
+        { name: '买点', coord: ['14:00', 18.18], symbol: 'pin', symbolSize: 42, itemStyle: { color: '#0a9c6d' }, label: { formatter: '买18.18', fontSize: 10 } }
+      ] } }
+  ]
+});
+
+window.addEventListener('resize', function(){ tierChart.resize(); costChart.resize(); t2.resize(); });
+</script>
+
+</body>
+</html>
