@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>午盘研判_20260811｜A股午间分析报告</title>
+<style>
+  :root{
+    --red:#e03131; --green:#087f5b; --amber:#e8590c; --blue:#1971c2;
+    --bg:#f8f9fa; --card:#ffffff; --border:#dee2e6; --text:#212529; --muted:#6c757d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;}
+  .wrap{max-width:960px;margin:0 auto;padding:20px 16px 60px;}
+  header{background:linear-gradient(135deg,#1c2e4a,#2b4a7a);color:#fff;border-radius:12px;padding:26px 28px;margin-bottom:18px;}
+  header h1{font-size:24px;margin-bottom:6px;}
+  header .sub{font-size:13px;opacity:.85;}
+  header .tags{margin-top:12px;}
+  header .tag{display:inline-block;background:rgba(255,255,255,.15);border-radius:20px;padding:3px 12px;font-size:12px;margin-right:8px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:16px;}
+  h2{font-size:18px;color:#1c2e4a;border-left:5px solid #2b4a7a;padding-left:10px;margin-bottom:14px;}
+  h3{font-size:15px;margin:14px 0 8px;color:#343a40;}
+  .tldr{background:#fff8e6;border:1px solid #ffd43b;border-radius:10px;padding:16px 18px;margin-bottom:16px;}
+  .tldr h2{color:#b08900;border-left-color:#f0b429;}
+  .tldr ul{margin-left:18px;}
+  .tldr li{margin:5px 0;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;}
+  th{background:#eef2f7;font-weight:600;}
+  .up{color:var(--red);font-weight:600;}
+  .down{color:var(--green);font-weight:600;}
+  .flat{color:var(--muted);}
+  .badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:12px;font-weight:600;margin-right:6px;}
+  .b-red{background:#ffe3e3;color:#c92a2a;}
+  .b-green{background:#e6fcf5;color:#087f5b;}
+  .b-amber{background:#fff3bf;color:#b08900;}
+  .b-blue{background:#d0ebff;color:#1864ab;}
+  .b-gray{background:#e9ecef;color:#495057;}
+  .note{font-size:13px;color:var(--muted);margin:6px 0;}
+  .src{font-size:11.5px;color:var(--muted);}
+  .pos-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;border-bottom:1px dashed var(--border);padding:12px 0;}
+  .pos-row:last-child{border-bottom:none;}
+  .pos-name{font-weight:700;min-width:200px;}
+  .pos-act{font-size:14px;}
+  .sell{color:var(--green);font-weight:700;}
+  .hold{color:var(--blue);font-weight:700;}
+  .buy{color:var(--red);font-weight:700;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr;}}
+  .signal li{margin:6px 0;}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;border-top:1px solid var(--border);padding-top:16px;}
+  .warnbox{background:#fff5f5;border:1px solid #ffa8a8;border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13.5px;}
+  .okbox{background:#ebfbee;border:1px solid #8ce99a;border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13.5px;}
+  .kpi{display:inline-block;background:#eef2f7;border-radius:8px;padding:4px 12px;margin:4px 6px 4px 0;font-size:13.5px;}
+  .kpi b{color:#1c2e4a;}
+  .svgbox{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px;margin:12px 0;text-align:center;}
+  .cmp{font-size:13px;color:var(--muted);}
+  .cmp b{color:#343a40;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>📈 午盘研判｜2026年8月11日（周二）</h1>
+  <div class="sub">报告时间：2026-08-11 11:42（北京时间）｜数据截至：8/11 11:30 A股午盘｜浅色主题 · 红涨绿跌</div>
+  <div class="tags">
+    <span class="tag">CPI前夜 · 只减不追</span>
+    <span class="tag">日元警报反转</span>
+    <span class="tag">低吸5只均未触发</span>
+    <span class="tag">半日缩量-2153亿</span>
+  </div>
+</header>
+
+<!-- TL;DR -->
+<div class="tldr">
+  <h2>⚡ 结论先行（TL;DR）</h2>
+  <ul>
+    <li><b>开盘预判精准验证：低开3950.71（预判3950~3960 ✓），低开高走</b>，午盘上证3964.79（-0.05%）几乎收复昨收，5日线3940守住；但<b>创业板+1.41%大超预期</b>（预判科技承压，实际MLCC/创新药/存储/CPO全线反弹），<b>贵金属高开低走低于预期</b>（金价4448新高但赤峰黄金-5%、紫金-3.0%）。</li>
+    <li><b>结构背离：指数抗跌、个股普跌</b>——全市场2141涨/3194跌、50涨停/0跌停，<b>半日成交1.52万亿较昨日同期缩量约2153亿</b>；权重（石油/银行）+题材（MLCC/创新药/影视）两头强，中间地带个股失血。</li>
+    <li><b>⚠️ 最大意外：日元警报隔夜反转</b>——8/10预判"USD/JPY失守148套息警报"，实际隔夜美元兑日元<b>回到159.24（+0.95%）</b>：日本砸8.45万亿日元干预（美日28年来首次联合）两周后汇价回吐一半涨幅，干预失灵。<b>套息平仓压力短期解除，今日午后跳水风险显著下降</b>；但植田和男暗示9月加息，警报只是延后未解除。</li>
+    <li><b>持仓7只：无一只触发减仓/加仓</b>——中兴34.8~35.2未到（高34.57）、招商18.6~18.8未到（高18.34）、南瑞23.5~23.8未到（低23.89）；唯一接近的是<b>中车盘中最高6.06已触及6.0~6.1减仓带</b>（总纲口径），午后再冲6.05+可减1手兑现。</li>
+    <li><b>低吸挂单5只全部未到价</b>：华能/长电/比亚迪/泸州老窖/平安均未触发；最接近的是<b>中国平安（最低52.50，挂单51.5~52还差0.5元）</b>与<b>国电南瑞（23.5~23.8加仓带）</b>。宁德394元距355~360区间-9%，不触发。富联66.99（-3.17%）盘中最低65.52虽进修正区间60~66上沿，但<b>CPI前夜纪律：不接飞刀，等8/12 CPI落地+回踩60~62</b>。</li>
+    <li><b>午后基调：只减不追</b>。缩量+普跌的结构下，上证冲3970~3990是兑现窗口不是加仓窗口；明晚CPI前不加仓、不满仓，现金50.8%维持。</li>
+  </ul>
+</div>
+
+<!-- 一、上午大盘复盘 -->
+<div class="card">
+  <h2>一、上午大盘复盘（11:30午盘）</h2>
+  <table>
+    <tr><th>指数</th><th>午盘</th><th>涨跌幅</th><th>今开</th><th>最高</th><th>最低</th><th>备注</th></tr>
+    <tr><td><b>上证指数</b></td><td>3964.79</td><td class="down">-0.05%</td><td class="down">3950.71（低开-0.4%）</td><td>3966.39</td><td>3942.75</td><td>低开高走，5日线3940守住，逼近昨收3966.59</td></tr>
+    <tr><td>深证成指</td><td>14410.34</td><td class="up">+0.65%</td><td>14266.44</td><td>14447.10</td><td>14201.29</td><td>深强于沪</td></tr>
+    <tr><td><b>创业板指</b></td><td>3587.24</td><td class="up"><b>+1.41%</b></td><td>3533.89</td><td>3601.59</td><td>3517.57</td><td>大超预期，盘中站上3600后回落</td></tr>
+    <tr><td>科创50</td><td>1740.62</td><td class="up">+0.16%</td><td>1713.26</td><td>1753.14</td><td>1699.92</td><td>低开高走，振幅3.06%</td></tr>
+    <tr><td>沪深300</td><td>4709.10</td><td class="up">+0.15%</td><td>4689.45</td><td>4715.88</td><td>4679.16</td><td>权重抗跌</td></tr>
+    <tr><td>中证500</td><td>8062.88</td><td class="up">+0.40%</td><td>7979.28</td><td>8078.36</td><td>7947.67</td><td>中盘修复</td></tr>
+  </table>
+
+  <div class="grid2">
+    <div>
+      <h3>📊 半日量能与家数</h3>
+      <ul class="signal">
+        <li><b>半日成交额：约1.52万亿（15,193.55亿）</b>，较昨日同期<b class="down">缩量约2,153亿</b>（昨日半日1.75万亿）——预判"缩量"✓，全天预计2.4~2.6万亿区间</li>
+        <li>涨跌家数：<b class="up">2,141涨</b> / <b class="down">3,194跌</b> / 50涨停 / <b>0跌停</b></li>
+        <li>沪市口径：1,688涨 / 582跌 / 41平——<b>沪强深弱内部结构</b></li>
+        <li>量比1.20（上证），换手率0.70%——量能温和</li>
+      </ul>
+      <div class="src">来源：界面新闻/财联社/人民财讯午评（11:33），2026-08-11</div>
+    </div>
+    <div>
+      <h3>🔀 板块轮动主线</h3>
+      <ul class="signal">
+        <li class="up"><b>领涨：</b>MLCC +4.56%（主力净流入35.99亿，全市场第8）｜创新药 +1.92%（主力+9.48亿）｜石油天然气（海油+4.0%）｜CPO反弹（新易盛+4.1%/中际旭创+2.7%/中瓷电子涨停）｜存储反弹（深科技+1.1%/太极实业涨停）｜影视（北京文化2连板）｜CRO/CMO、减肥药</li>
+        <li class="down"><b>领跌：</b>商业航天（中国卫星-6%/斯瑞新材-9%，朱雀三号遥二发射推迟）｜贵金属（赤峰黄金-5%、紫金-3.0%高开低走）｜有色/稀土/小金属（洛钼-3.4%）｜发电设备（南瑞承压）｜军工装备</li>
+      </ul>
+      <div class="src">来源：新浪午评/证券时报/东方财富板块数据（11:30）</div>
+    </div>
+  </div>
+
+  <h3>📐 开盘预判对照表（验证度评估）</h3>
+  <table>
+    <tr><th>开盘预判（8/11 08:08）</th><th>上午实际</th><th>结论</th></tr>
+    <tr><td>低开3950~3960（-0.2%~-0.4%）</td><td>今开3950.71（-0.40%）</td><td><span class="badge b-green">✅ 精准验证</span></td></tr>
+    <tr><td>全天区间3930~3990，守3940则低开高走</td><td>午盘3964.79，最低3942.75未破3940</td><td><span class="badge b-green">✅ 验证</span></td></tr>
+    <tr><td>科技/半导体/光通信承压（费半-2.94%）</td><td>创业板+1.41%、MLCC+4.56%、CPO/存储/创新药全线反弹；仅富联-3.17%、亨通-2.15%兑现</td><td><span class="badge b-amber">⚠️ 板块层面超预期修复</span></td></tr>
+    <tr><td>油价+5%利好石油煤炭</td><td>海油+4.0%、石化+0.6%；神华/陕煤平淡（+0.0%/+0.2%）</td><td><span class="badge b-green">✅ 石油兑现、煤炭平淡</span></td></tr>
+    <tr><td>金价4390新高利好贵金属</td><td>贵金属高开低走，赤峰黄金-5%、紫金-3.0%</td><td><span class="badge b-red">❌ 错位（利好兑现即出货）</span></td></tr>
+    <tr><td>缩量（&lt;2.3万亿）冲高回落风险</td><td>半日1.52万亿（-2153亿），缩量确认</td><td><span class="badge b-green">✅ 验证</span></td></tr>
+    <tr><td>USD/JPY失守148，套息警报</td><td>隔夜USD/JPY回159.24（+0.95%），干预失灵</td><td><span class="badge b-red">❌ 反转（警报短期解除）</span></td></tr>
+    <tr><td>航天题材情绪扰动（长征七号失利）</td><td>商业航天领跌（朱雀三号推迟+发射失利发酵）</td><td><span class="badge b-green">✅ 验证</span></td></tr>
+  </table>
+  <p class="note"><b>上午复盘一句话：</b>预判七成验证，两大超预期（创业板科技修复、贵金属错位）+ 一大反转（日元警报解除）。指数靠权重与题材两头撑住，但缩量+个股普跌说明<b>增量资金不足，仍是存量高低切</b>。</p>
+</div>
+
+<!-- 二、持仓午盘图与指令 -->
+<div class="card">
+  <h2>二、持仓7只 · 午盘表现与午后指令</h2>
+
+  <div class="svgbox">
+    <svg viewBox="0 0 680 320" width="100%" style="max-width:660px;font-family:'Microsoft YaHei'">
+      <text x="340" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#1c2e4a">持仓7只 午盘涨跌幅（截至11:30，红涨绿跌）</text>
+      <text x="340" y="42" text-anchor="middle" font-size="11" fill="#868e96">涨跌幅% × 放大50倍展示相对强弱｜富联0手·参考</text>
+      <!-- 0轴 -->
+      <line x1="380" y1="55" x2="380" y2="300" stroke="#adb5bd" stroke-width="1.5"/>
+      <text x="370" y="53" text-anchor="end" font-size="11" fill="#6c757d">0%</text>
+      <!-- 网格 -->
+      <g stroke="#f1f3f5" stroke-width="1">
+        <line x1="280" y1="55" x2="280" y2="300"/>
+        <line x1="180" y1="55" x2="180" y2="300"/>
+        <line x1="480" y1="55" x2="480" y2="300"/>
+        <line x1="580" y1="55" x2="580" y2="300"/>
+      </g>
+      <!-- 行 -->
+      <!-- 中车 +0.34% -->
+      <text x="200" y="82" font-size="12.5" fill="#212529" text-anchor="end">中国中车</text>
+      <rect x="380" y="70" width="17" height="16" fill="#e03131"/>
+      <text x="402" y="82" font-size="12" fill="#e03131" font-weight="bold">+0.34%</text>
+      <text x="150" y="82" font-size="11" fill="#6c757d" text-anchor="end">5.99</text>
+      <!-- 中兴 +0.15% -->
+      <text x="200" y="112" font-size="12.5" fill="#212529" text-anchor="end">中兴通讯</text>
+      <rect x="380" y="100" width="8" height="16" fill="#e03131"/>
+      <text x="393" y="112" font-size="12" fill="#e03131" font-weight="bold">+0.15%</text>
+      <text x="150" y="112" font-size="11" fill="#6c757d" text-anchor="end">34.35</text>
+      <!-- 白药 -0.23% -->
+      <text x="200" y="142" font-size="12.5" fill="#212529" text-anchor="end">云南白药</text>
+      <rect x="380" y="130" width="-12" height="16" fill="#087f5b"/>
+      <text x="362" y="142" font-size="12" fill="#087f5b" font-weight="bold">-0.23%</text>
+      <text x="150" y="142" font-size="11" fill="#6c757d" text-anchor="end">51.07</text>
+      <!-- 歌尔 -0.04% -->
+      <text x="200" y="172" font-size="12.5" fill="#212529" text-anchor="end">歌尔股份</text>
+      <rect x="380" y="160" width="-2" height="16" fill="#087f5b"/>
+      <text x="372" y="172" font-size="12" fill="#087f5b" font-weight="bold">-0.04%</text>
+      <text x="150" y="172" font-size="11" fill="#6c757d" text-anchor="end">22.82</text>
+      <!-- 招商 +0.16% -->
+      <text x="200" y="202" font-size="12.5" fill="#212529" text-anchor="end">招商证券</text>
+      <rect x="380" y="190" width="8" height="16" fill="#e03131"/>
+      <text x="393" y="202" font-size="12" fill="#e03131" font-weight="bold">+0.16%</text>
+      <text x="150" y="202" font-size="11" fill="#6c757d" text-anchor="end">18.24</text>
+      <!-- 南瑞 -0.79% -->
+      <text x="200" y="232" font-size="12.5" fill="#212529" text-anchor="end">国电南瑞</text>
+      <rect x="380" y="220" width="-40" height="16" fill="#087f5b"/>
+      <text x="334" y="232" font-size="12" fill="#087f5b" font-weight="bold">-0.79%</text>
+      <text x="150" y="232" font-size="11" fill="#6c757d" text-anchor="end">23.95</text>
+      <!-- 富联 -3.17% -->
+      <text x="200" y="262" font-size="12.5" fill="#212529" text-anchor="end">工业富联(0手)</text>
+      <rect x="380" y="250" width="-159" height="16" fill="#087f5b"/>
+      <text x="214" y="262" font-size="12" fill="#087f5b" font-weight="bold">-3.17%</text>
+      <text x="150" y="262" font-size="11" fill="#6c757d" text-anchor="end">66.99</text>
+      <!-- 图例 -->
+      <text x="200" y="295" font-size="11" fill="#868e96" text-anchor="end">沪指 -0.05% ｜ 深成 +0.65% ｜ 创业板 +1.41% ｜ 半日成交1.52万亿</text>
+    </svg>
+  </div>
+
+  <h3>逐只午后指令（观望/减仓/清仓/加仓 + 价位 + 防守位）</h3>
+
+  <div class="pos-row"><div class="pos-name">中国中车 5手 @5.870</div>
+    <div class="pos-act"><span class="hold">【持有偏减 · 触发边缘】</span>午盘5.99（+0.34%），盘中最高6.06已触及总纲减仓带6.0~6.1<br>
+      <b>午后：若再冲6.05~6.10，减1手兑现</b>（5手→4手，CPI前夜落袋）｜回落5.9以下不动｜防守位：<b>5.60</b>｜加仓：回踩5.75~5.80补1手</div></div>
+
+  <div class="pos-row"><div class="pos-name">中兴通讯 2手 @33.309</div>
+    <div class="pos-act"><span class="hold">【持有 · 反弹减仓待触发】</span>午盘34.35（+0.15%），最高34.57，<b>未到34.8减仓位</b>；今日CPO板块反弹（中际旭创+2.7%）是顺势减仓窗口<br>
+      <b>午后：反弹34.8~35.2 减1手</b>（今晚Lumentum/超微/CoreWeave财报是变量，先减后看）｜防守位：<b>32.00</b>｜28~31降级区间不接飞刀</div></div>
+
+  <div class="pos-row"><div class="pos-name">云南白药 4手 @50.685</div>
+    <div class="pos-act"><span class="hold">【持有观望】</span>午盘51.07（-0.23%），医药今日领涨（CRO/减肥药/创新药）而中药防御滞涨属正常<br>防守位：<b>49.50</b>（不破持有）｜不加不减，不做T</div></div>
+
+  <div class="pos-row"><div class="pos-name">歌尔股份 1手 @4.045（用户口径）</div>
+    <div class="pos-act"><span class="hold">【持有观望】</span>午盘22.82（-0.04%），平盘；苹果链未大跌、AI眼镜逻辑独立<br>防守位：<b>22.00</b>（跌破减仓）｜仓位轻不追加</div></div>
+
+  <div class="pos-row"><div class="pos-name">招商证券 6手 @19.613</div>
+    <div class="pos-act"><span class="hold">【持有 · 首选倒T】</span>午盘18.24（+0.16%），最高18.34，<b>倒T卖点18.6~18.8未到</b>；券商板块今日平淡（中信-0.18%）+缩量制约弹性<br>
+      <b>午后：18.6~18.8 减1手倒T，回落18.2以下接回</b>（价差≥0.4元才做）｜防守位：<b>18.00</b>（跌破减1手）</div></div>
+
+  <div class="pos-row"><div class="pos-name">国电南瑞 2手 @24.125</div>
+    <div class="pos-act"><span class="buy">【持有 · 回踩可加】</span>午盘23.95（-0.79%），最低23.89，<b>加仓带23.5~23.8未到</b>；发电设备板块跌幅居前拖累<br>
+      <b>午后：触及23.5~23.8 加1手</b>（低吸区间22~24.5内、CPI前夜小仓）｜若放量破23.5则暂停加仓，等8/12 CPI落地｜防守位：<b>22.80</b></div></div>
+
+  <div class="pos-row"><div class="pos-name">工业富联 0手（8/10已清仓）</div>
+    <div class="pos-act"><span class="hold">【空仓不回购 · 不接飞刀】</span>午盘66.99（-3.17%），盘中最低65.52已进入修正区间60~66上沿<br>
+      <b>但纪律优先：CPI前夜不加仓、等8/12 CPI落地</b>；回落60~62且企稳才评估首仓，今日不买</div></div>
+</div>
+
+<!-- 三、低吸挂单检查 -->
+<div class="card">
+  <h2>三、低吸挂单检查（开盘预判5只 + 特殊观察）</h2>
+  <table>
+    <tr><th>标的</th><th>挂单价</th><th>午盘</th><th>盘中最低</th><th>是否触发</th><th>午后指令</th></tr>
+    <tr><td>华能国际(600011)</td><td class="buy">6.80~6.90</td><td>7.02 <span class="up">+0.43%</span></td><td>6.97</td><td><span class="badge b-gray">未触发</span></td><td>继续挂单，等回踩6.90以下</td></tr>
+    <tr><td>长江电力(600900)</td><td class="buy">27.00~27.30</td><td>28.33 <span class="up">+1.00%</span></td><td>27.96</td><td><span class="badge b-gray">未触发（反涨）</span></td><td>今天等不到，撤单或保留明日</td></tr>
+    <tr><td>比亚迪(002594)</td><td class="buy">86~88</td><td>90.40 <span class="down">-0.82%</span></td><td>89.93</td><td><span class="badge b-gray">未触发</span></td><td>继续挂单，还差约2元</td></tr>
+    <tr><td>泸州老窖(000568)</td><td class="buy">82~84</td><td>90.05 <span class="down">-0.77%</span></td><td>89.38</td><td><span class="badge b-gray">未触发</span></td><td>距区间甚远，维持挂单</td></tr>
+    <tr><td><b>中国平安(601318)</b></td><td class="buy"><b>51.5~52.0</b></td><td>52.68 <span class="down">-1.20%</span></td><td><b>52.50</b></td><td><span class="badge b-amber">最接近 · 差0.5元</span></td><td><b>午后重点盯：跌破52.0即触发挂单</b>（分位25%低、防御属性）</td></tr>
+  </table>
+
+  <div class="warnbox"><b>⚠️ 宁德时代355~360"等不再创新低"检查（8/11午盘）：</b>宁德午盘394.04（+0.04%），今开395、最低389.52——<b>距355~360挂单区间还有约-9%，未到价</b>，今日更谈不上"不再创新低"（价格尚未进入区间）；且宁德为创业板<b>【🔒不可交易】</b>，仅观察。结论：<b>不触发、不挂单</b>，等价格先到355~360再评估止跌形态。</div>
+  <div class="warnbox"><b>⚠️ 纪律复核（8/11午盘）：</b>①双汇发展（000895）半年报延期8/29，<b>暂停低吸不接飞刀</b>（午盘24.27，未列挂单）；②深科技40.63（+1.07%）已涨出v2区间（33~36.5），存储基本面强（江波龙中报+715倍/摩根大通上调）但<b>等不创新低企稳再接，勿追高</b>；③药明康德164.25（+1.80%）续创新高区，高位勿追（v2区间118~128仅回踩有意义）。</div>
+</div>
+
+<!-- 四、午后盯盘信号 -->
+<div class="card">
+  <h2>四、午后重点盯盘信号与风险</h2>
+  <div class="grid2">
+    <div>
+      <h3>📈 指数关口（上证）</h3>
+      <ul class="signal">
+        <li><b>3940（5日线）</b>：已守住，午后继续守住=低开高走成立</li>
+        <li><b>3966（昨收）</b>：午后若能翻红站上=空翻多信号</li>
+        <li><b>3970→3990</b>：<b>缩量冲上是兑现窗口，不是加仓窗口</b></li>
+        <li><b>3930</b>：跌破=转弱，触发"停止低吸"纪律</li>
+      </ul>
+      <h3>📉 个股关键价</h3>
+      <ul class="signal">
+        <li><b>中国平安：跌破52.0 → 低吸挂单51.5~52触发</b>（5只里唯一接近）</li>
+        <li><b>国电南瑞：23.5~23.8 加仓触发</b>（破23.5暂停）</li>
+        <li><b>中兴通讯：34.8~35.2 减仓触发</b>（CPO反弹窗口）</li>
+        <li><b>中国中车：6.05~6.10 减1手</b>（已触及6.06）</li>
+        <li><b>招商证券：18.6~18.8 倒T卖点</b></li>
+      </ul>
+    </div>
+    <div>
+      <h3>🚨 午后风险清单</h3>
+      <ul class="signal">
+        <li class="down"><b>存储/半导体主力流出：</b>半导体主力净流出13.7亿（全市场121/124）但板块翻红——散户接盘、机构减仓，<b>午后谨防冲高回落</b>；深科技40.85上方勿追</li>
+        <li class="down"><b>贵金属连锁：</b>赤峰黄金-5%、紫金-3%若午后继续走弱，警惕资源股补跌带动指数</li>
+        <li class="down"><b>缩量陷阱：</b>半日1.52万亿（-2153亿），午后若不补量，创业板+1.41%的成色存疑</li>
+        <li><b>明晚20:30美国7月CPI</b>：预期3.4%（前3.5%），油价+5%是超预期最大隐患——<b>数据公布前不加仓</b></li>
+        <li><b>今晚美股财报</b>：CoreWeave/Lumentum/超微电脑（美东8/11盘后）——光通信/算力链验证，影响中兴/富联明日方向</li>
+        <li><b>日元警报（延后未解除）</b>：USD/JPY现159.2（8/11 11:39），虽短期解除，但植田和男暗示9月加息+10Y日债高位——<b>本周五对照四条警报线照常执行</b></li>
+        <li><b>商业航天/题材降温：</b>朱雀三号推迟+发射失利，题材股午后或加速退潮</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 五、大家没想到的点 -->
+<div class="card">
+  <h2>五、💡 大家没想到的点（午盘版）</h2>
+  <ol class="signal">
+    <li><b>最吓人的警报，隔夜自己先反转了。</b>开盘预判把"USD/JPY失守148、套息平仓引信"列为最危险暗线——结果隔夜美元兑日元<b>回到159.24（+0.95%）</b>：日本砸8.45万亿日元（美日28年来首次联合干预）两周后汇价回吐一半，干预失灵。市场情绪被"昨天的日元"主导，而"今天的日元"已经变向。套息压力短期解除（今天A股午后才没跳水），但植田和男暗示9月加息——<b>警报只是延后，不是解除</b>。</li>
+    <li><b>"指数抗跌、个股普跌"的缩量背离是最强信号。</b>50涨停/0跌停 vs 3194只下跌——权重（石油/银行/海油）撑指数，题材（MLCC/创新药/影视）撑情绪，中间地带个股普遍失血。这种结构下追题材=接最后一棒，<b>缩量普涨不真，缩量普跌才是真相的一半</b>。</li>
+    <li><b>半导体板块翻红，但主力净流出13.7亿（全市场121/124名）。</b>板块+0.43%是情绪修复（散户/游资），MLCC（+36亿）和创新药（+9.5亿）才是主力真金白银流入的方向——<b>钱在往涨价链和盈利链搬家，不在芯片</b>。</li>
+    <li><b>富联-3.17%已在为8/12 CPI"先跌为敬"。</b>昨收69.18→今低65.52，跌回修正区间60~66上沿。但<b>别把"跌得多"当"买点"</b>——CPI前夜只减不追，等落地+回踩60~62再谈首仓。8/10在70/67.82清仓的3,196元落袋，正在兑现它的价值。</li>
+    <li><b>贵金属是今天最大的预期差。</b>COMEX金4448美元新高、白银+3.75%，但A股赤峰黄金-5%、紫金-3.0%——"利好兑现即出货"，开盘预判提示的"汇添富黄金LOF限购100元=过热散户化信号"当天应验。<b>金价涨≠A股金矿股涨</b>，两套定价体系。</li>
+    <li><b>韩国杠杆在缩、亚洲风险在缓释。</b>韩国单股杠杆ETF规模从19.4万亿韩元峰值缩减96%至8000亿（8/11财长表态）——对危机监测是加分项；叠加日元回到159，<b>外围系统性风险短期让位</b>，但10Y日债收益率（现约2.8~2.9%高位）与明晚CPI仍悬顶，<b>本周五四条警报线照常对照</b>。</li>
+  </ol>
+</div>
+
+<!-- 免责 -->
+<div class="foot">
+  <p><b>免责声明：</b>本报告基于公开信息整理，数据来源：腾讯行情接口、财联社、界面新闻、人民财讯、证券时报、新浪财经、东方财富、陆家嘴财经早餐、易汇通等，仅供个人研究参考，不构成任何投资建议。股市有风险，投资需谨慎，盈亏自负。</p>
+  <p>报告期：2026-08-11 11:42 北京时间｜行情截至8/11 11:30午盘｜外围消息均已标注时间与来源｜持仓口径以《每日操作提示词.md》为准（中国中车5手/中兴2手/白药4手/歌尔1手/招商6手/南瑞2手，富联0手）</p>
+</div>
+
+</div>
+</body>
+</html>
