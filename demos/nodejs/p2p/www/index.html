@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Messages:
+    <div id="messages"></div>
+    <form id="msgForm">
+        <input type="text" placeholder="Send a message" id="msgBox">
+        <input type="submit" value="Send">
+    </form>
+
+    <script>
+        const ws = new WebSocket(`ws://${window.document.location.host}`)
+        ws.onmessage = async function (message){
+            const msgDiv = document.createElement('div')
+            if(message.data instanceof Blob){
+                const text = await message.data.text();
+                msgDiv.innerHTML = text;
+            } else {
+                msgDiv.innerHTML = message.data
+            }
+            document.getElementById('messages').appendChild(msgDiv)
+        }
+        const form = document.getElementById('msgForm')
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const message = document.getElementById('msgBox').value;
+            ws.send(message);
+            document.getElementById('msgBox').value = ''
+        })
+    </script>
+
+</body>
+</html>
