@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>55只观察池 · 低吸区间全面校验（2026-08-13 v3）</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --line:#e4e7ec;
+    --ink:#1f2329; --sub:#6b7280; --mut:#9aa0a8;
+    --red:#d4342c; --redBg:#fdecea; --green:#0a9b5c; --greenBg:#e7f6ef;
+    --blue:#2563eb; --blueBg:#eaf1fe; --amber:#b45309; --amberBg:#fdf3e3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;padding:28px 16px;}
+  .wrap{max-width:1160px;margin:0 auto;}
+  .head{background:linear-gradient(135deg,#1f2937,#374151);color:#fff;border-radius:14px;padding:26px 30px;margin-bottom:20px;}
+  .head h1{font-size:22px;font-weight:700;}
+  .head .sub{margin-top:6px;font-size:13px;color:#c7cdd6;}
+  .head .tagline{margin-top:12px;font-size:13px;color:#e5e7eb;border-left:3px solid #f59e0b;padding-left:10px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:18px;}
+  .card h2{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .card h2 .num{background:var(--blue);color:#fff;font-size:12px;border-radius:6px;padding:1px 8px;font-weight:600;}
+  .tl{background:linear-gradient(135deg,#fef3e2,#fdf6ec);border:1px solid #f3d9a4;border-radius:12px;padding:18px 22px;margin-bottom:18px;}
+  .tl h2{font-size:15px;color:var(--amber);margin-bottom:8px;}
+  .tl li{margin:6px 0;padding-left:20px;position:relative;list-style:none;font-size:13.5px;}
+  .tl li::before{content:"\25B8";position:absolute;left:2px;color:var(--amber);}
+  table{width:100%;border-collapse:collapse;font-size:12.4px;}
+  th{background:#f8fafc;font-size:11.5px;color:var(--sub);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;}
+  td{padding:6px 8px;border-bottom:1px solid #f0f2f5;vertical-align:top;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  .up{color:var(--red);font-weight:600;}
+  .down{color:var(--green);font-weight:600;}
+  .flat{color:var(--sub);}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:20px;white-space:nowrap;}
+  .t-ok{background:var(--redBg);color:var(--red);}
+  .t-warn{background:var(--amberBg);color:var(--amber);}
+  .t-bad{background:var(--greenBg);color:var(--green);}
+  .t-mid{background:#eef1f5;color:var(--sub);}
+  .fix{background:var(--redBg);color:var(--red);font-weight:600;}
+  .keys li{margin:6px 0;padding-left:20px;position:relative;list-style:none;font-size:13.5px;}
+  .keys li::before{content:"\25C6";position:absolute;left:2px;color:var(--blue);font-size:10px;top:3px;}
+  .risk li{margin:6px 0;padding-left:20px;list-style:none;position:relative;font-size:13.5px;}
+  .risk li::before{content:"\26A0";position:absolute;left:0;top:0;font-size:12px;}
+  .src{color:var(--sub);font-size:11.5px;}
+  .chart{width:100%;height:430px;}
+  .foot{text-align:center;color:var(--mut);font-size:11.5px;padding:10px 0 20px;}
+  .scroll{overflow-x:auto;}
+  .chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:20px;margin:3px 4px 3px 0;}
+  .chip-ok{background:var(--greenBg);color:var(--green);}
+  .chip-warn{background:var(--amberBg);color:var(--amber);}
+  .chip-bad{background:var(--redBg);color:var(--red);}
+  .diff li{margin:6px 0;padding-left:20px;list-style:none;position:relative;font-size:13.5px;}
+  .diff li::before{content:"\21C4";position:absolute;left:0;top:0;color:var(--blue);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <h1>55只观察池 · 低吸区间全面校验（v3）</h1>
+    <div class="sub">校验时点：2026-08-13（周四）收盘｜数据源：腾讯行情接口+腾讯K线（52周高低，qfq前复权）｜基准：《长期观察池_55标的_20260804》《买入.md v2》</div>
+    <div class="tagline">一句话结论：<b style="color:#fbbf24">本周三大变化：①海康威视分位83.6→69.1%从"高位勿追"回落至低吸区边缘；②国投电力76.6→63.2%重回低吸区（持仓可补）；③科技/存储/白酒批量涨出原区间（12只上修），药明康德94.7%继续高位勿追，长江电力/陕煤/川投分位破70%降级"等回踩"。</b></div>
+  </div>
+
+  <div class="tl">
+    <h2>&#127919; 校验结论（先看这里）</h2>
+    <ul>
+      <li><b>本周新增可低吸（回落进区间）</b>：<b class="fix">国投电力13.5~14.5（持仓补摊位）、海康威视32~35（回踩35以下）、紫金矿业30~33（今日回落30~31挂单）</b>。</li>
+      <li><b>区间上修12只</b>：美的80~85、建行9.5~10.3、长电70~78、中芯115~130、深科技36~40、中科曙光82~92、牧原36~40、山西汾酒115~130、阳光105~120、水晶24.5~27.5、海油30.5~32.5、中兴32~36（已清仓观察）。</li>
+      <li><b>高位勿追维持1只</b>：药明康德（分位94.7%、距高点-2.6%，回踩118~128才有意义）。</li>
+      <li><b>降级"等回踩"3只</b>（分位>70%）：长江电力、陕西煤业、川投能源；另有美的/建行虽上修但分位>70%同样不追高。</li>
+      <li><b>持仓提醒</b>：国投电力重回低吸区（13.5~14.0挂单）、洛钼跌回下沿18.5附近（12手约27%只减不追）、歌尔尾盘破22.27加速线（加仓计划待定夺）、中兴已清仓。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">01</span>校验方法论（3道过滤，同v2）</h2>
+    <div class="keys">
+      <ul>
+        <li><b>过滤① 52周分位</b>：现价在一年价格区间的位置（qfq前复权口径）。&gt;85%＝顶部区域（勿低吸）；70~85%＝中高位（区间需下修或放弃）；&lt;70%＝低吸候选区。</li>
+        <li><b>过滤② 距52周高点距离</b>：距高点&lt;6%＝情绪高位，回调第一波不接；距高点&gt;30%＝深跌区，但要区分"错杀"vs"逻辑破坏"。</li>
+        <li><b>过滤③ 估值交叉验证</b>：PE处于自身历史区间中位数以上且位置&gt;70%的，双重过滤直接移除（药明94.7%分位+新高边缘即此例）。</li>
+      </ul>
+    </div>
+    <p class="src" style="margin-top:8px;">数据口径：现价/涨跌/PE/PB取自2026-08-13收盘腾讯行情；52周高/低取自腾讯日K线前复权（2025-08-13~2026-08-13），与8/6 v2口径一致（海康39.18、富联84.30验证通过）。分位=(现价−52周低)/(52周高−52周低)。</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">02</span>55只52周分位全景图（红=高位，绿=低吸区）</h2>
+    <div id="chartPos" class="chart"></div>
+    <p class="src" style="margin-top:6px;">按52周分位降序；红虚线=85%顶部线，绿虚线=70%低吸线。本周&gt;85%仅药明1只；70~85%共5只（美/建行/长电/陕煤/川投）；其余49只&lt;70%。</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">03</span>逐只校验明细（55只）</h2>
+    <div class="scroll">
+    <table>
+      <tr><th>标的</th><th>现价</th><th>今日%</th><th>52周分位</th><th>距高点</th><th>PE</th><th>原区间(v2)</th><th>新区间(v3)</th><th>结论</th><th>备注</th></tr>
+<tr><td>药明康德</td><td>162.33</td><td class='up'>+2.07</td><td class='up'>94.7%</td><td class='up'>-2.6%</td><td>22.4</td><td>118~128</td><td>118~128</td><td><span class="tag t-bad">高位勿追</span></td><td>分位94.7%新高边缘；回踩才有意义</td></tr>
+<tr><td>美的集团</td><td>84.19</td><td class='down'>-0.18</td><td class='warn'>76.6%</td><td class='up'>-5.9%</td><td>14.5</td><td>75~80</td><td>80~85</td><td><span class="tag t-bad">涨出上修-等回踩</span></td><td>分位76.6%仍>70%不追高</td></tr>
+<tr><td>建设银行</td><td>10.30</td><td class='up'>+0.59</td><td class='warn'>76.3%</td><td class='flat'>-6.2%</td><td>7.9</td><td>9.0~9.8</td><td>9.5~10.3</td><td><span class="tag t-bad">涨出上修-等回踩</span></td><td>分位64.8→76.3%升至中高位</td></tr>
+<tr><td>长江电力</td><td>28.24</td><td class='up'>+0.79</td><td class='warn'>74.4%</td><td class='up'>-4.5%</td><td>19.1</td><td>26.5~28</td><td>26.5~28</td><td><span class="tag t-warn">降级等回踩</span></td><td>分位62.4→74.4%+距高点仅-4.5%情绪高位</td></tr>
+<tr><td>陕西煤业</td><td>25.08</td><td class='down'>-0.48</td><td class='warn'>73.9%</td><td class='flat'>-8.1%</td><td>15.0</td><td>23~25</td><td>23~25</td><td><span class="tag t-warn">降级等回踩</span></td><td>分位69.9→73.9%>70%</td></tr>
+<tr><td>川投能源</td><td>15.20</td><td class='up'>+0.93</td><td class='warn'>73.4%</td><td class='up'>-4.9%</td><td>15.7</td><td>14~15.2</td><td>14~15.2</td><td><span class="tag t-warn">降级等回踩</span></td><td>分位64.6→73.4%+距高点-4.9%</td></tr>
+<tr><td>海康威视</td><td>35.66</td><td class='down'>-2.22</td><td class='down'>69.1%</td><td class='flat'>-9.0%</td><td>19.9</td><td>32~35</td><td>32~35</td><td><span class="tag t-ok">回落近低吸区</span></td><td>分位83.6→69.1%重大回落；回踩35以下可关注</td></tr>
+<tr><td>宁德时代</td><td>396.30</td><td class='up'>+0.60</td><td class='down'>66.5%</td><td class='flat'>-15.2%</td><td>21.6</td><td>355~380</td><td>370~400</td><td><span class="tag t-bad">涨出上修-不可交易</span></td><td>分位66.5%；400亿回购支撑；创业板不可交易</td></tr>
+<tr><td>北方华创</td><td>738.60</td><td class='down'>-2.82</td><td class='down'>64.2%</td><td class='flat'>-23.6%</td><td>96.1</td><td>580~650</td><td>650~750</td><td><span class="tag t-bad">涨出上修-勿追</span></td><td>PE96倍历史99%分位，严禁追高</td></tr>
+<tr><td>国投电力</td><td>13.95</td><td class='down'>-0.36</td><td class='down'>63.2%</td><td class='flat'>-6.8%</td><td>15.0</td><td>13.5~14.5</td><td>13.5~14.5</td><td><span class="tag t-ok">回落重回低吸区</span></td><td>分位76.6→63.2%重大回落；持仓4手@13.970可补</td></tr>
+<tr><td>中国神华</td><td>44.34</td><td class='up'>+0.61</td><td class='down'>61.1%</td><td class='flat'>-11.6%</td><td>18.6</td><td>39~42.5</td><td>39~42.5</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿4.3%</td></tr>
+<tr><td>工业富联</td><td>65.23</td><td class='down'>-0.56</td><td class='down'>58.8%</td><td class='flat'>-22.6%</td><td>27.6</td><td>60~66</td><td>60~66</td><td><span class="tag t-ok">维持-区间内</span></td><td>8/10已清仓，纯观察；分位58.8%</td></tr>
+<tr><td>交通银行</td><td>6.93</td><td class='up'>+0.29</td><td class='down'>58.6%</td><td class='flat'>-6.9%</td><td>6.3</td><td>6.2~6.8</td><td>6.2~6.8</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿1.9%</td></tr>
+<tr><td>长电科技</td><td>77.82</td><td class='down'>-0.46</td><td class='down'>54.6%</td><td class='down'>-31.7%</td><td>84.3</td><td>65~72</td><td>70~78</td><td><span class="tag t-bad">涨出上修</span></td><td>PE84偏高；等回踩</td></tr>
+<tr><td>中信证券</td><td>27.84</td><td class='up'>+0.51</td><td class='down'>52.9%</td><td class='flat'>-12.5%</td><td>12.9</td><td>24.5~27.5</td><td>24.5~27.5</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿1.2%</td></tr>
+<tr><td>贵州茅台</td><td>1355.29</td><td class='up'>+0.92</td><td class='down'>52.5%</td><td class='flat'>-12.0%</td><td>20.5</td><td>1200~1300</td><td>1200~1300</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿4.3%</td></tr>
+<tr><td>广发证券</td><td>21.24</td><td class='up'>+0.43</td><td class='down'>52.5%</td><td class='flat'>-14.8%</td><td>10.6</td><td>18.5~20.5</td><td>18.5~20.5</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿3.6%</td></tr>
+<tr><td>紫金矿业</td><td>32.21</td><td class='down'>-4.08</td><td class='down'>50.5%</td><td class='flat'>-27.7%</td><td>13.9</td><td>30~33</td><td>30~33</td><td><span class="tag t-ok">维持-区间内</span></td><td>今日-4.08%回落；30~31挂单</td></tr>
+<tr><td>中芯国际</td><td>129.44</td><td class='up'>+1.16</td><td class='down'>46.9%</td><td class='flat'>-26.6%</td><td>219.6</td><td>105~118</td><td>115~130</td><td><span class="tag t-bad">涨出上修-不可交易</span></td><td>PE219倍极高；科创板不可交易</td></tr>
+<tr><td>洛阳钼业</td><td>18.41</td><td class='down'>-3.11</td><td class='down'>46.5%</td><td class='down'>-35.4%</td><td>16.3</td><td>18.5~20.5</td><td>18.5~20.5</td><td><span class="tag t-warn">回落至下沿</span></td><td>分位59.7→46.5%；持仓12手约27%只减不追</td></tr>
+<tr><td>海天味业</td><td>36.20</td><td class='down'>-0.11</td><td class='down'>45.8%</td><td class='flat'>-13.1%</td><td>29.1</td><td>33~36.5</td><td>33~36.5</td><td><span class="tag t-ok">维持-区间内</span></td><td>舆情关注</td></tr>
+<tr><td>伊利股份</td><td>25.89</td><td class='down'>-0.08</td><td class='down'>44.0%</td><td class='flat'>-9.5%</td><td>13.6</td><td>24~26</td><td>24~26</td><td><span class="tag t-ok">维持-区间内</span></td><td>区间内上沿附近</td></tr>
+<tr><td>深科技</td><td>39.55</td><td class='down'>-1.98</td><td class='down'>43.8%</td><td class='down'>-40.3%</td><td>51.9</td><td>33~36.5</td><td>36~40</td><td><span class="tag t-bad">涨出上修</span></td><td>存储封测；等回踩</td></tr>
+<tr><td>格力电器</td><td>40.24</td><td class='up'>+0.02</td><td class='down'>43.7%</td><td class='flat'>-11.3%</td><td>7.7</td><td>37~40</td><td>37~40</td><td><span class="tag t-ok">维持-区间内</span></td><td>股息7.4%</td></tr>
+<tr><td>中国海油</td><td>32.63</td><td class='down'>-0.67</td><td class='down'>42.3%</td><td class='flat'>-25.9%</td><td>12.4</td><td>首仓30.0~30.4</td><td>30.5~32.5</td><td><span class="tag t-bad">涨出上修</span></td><td>等回踩30.5~31</td></tr>
+<tr><td>立讯精密</td><td>56.06</td><td class='down'>-2.25</td><td class='down'>42.0%</td><td class='down'>-31.3%</td><td>25.2</td><td>50~55</td><td>50~55</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿1.9%；距高点-31%深跌区</td></tr>
+<tr><td>双汇发展</td><td>24.67</td><td class='up'>+0.16</td><td class='down'>38.0%</td><td class='flat'>-14.4%</td><td>16.2</td><td>22.5~25</td><td>22.5~25</td><td><span class="tag t-warn">维持-暂停低吸</span></td><td>8/29中报延期披露，按纪律暂停</td></tr>
+<tr><td>万华化学</td><td>73.11</td><td class='down'>-2.60</td><td class='down'>37.8%</td><td class='flat'>-23.6%</td><td>17.4</td><td>66~72</td><td>66~72</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿1.5%</td></tr>
+<tr><td>亨通光电</td><td>57.25</td><td class='down'>-3.46</td><td class='down'>37.2%</td><td class='down'>-54.2%</td><td>43.7</td><td>48~56</td><td>48~56</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿2.2%；距高点-54%深跌；8/7已清仓</td></tr>
+<tr><td>中科曙光</td><td>89.63</td><td class='up'>+3.71</td><td class='down'>35.4%</td><td class='flat'>-29.8%</td><td>54.1</td><td>78~85</td><td>82~92</td><td><span class="tag t-bad">涨出上修</span></td><td>现价89.63；等回踩</td></tr>
+<tr><td>云南白药</td><td>50.46</td><td class='down'>-0.18</td><td class='down'>35.3%</td><td class='flat'>-13.1%</td><td>17.1</td><td>47~51</td><td>47~51</td><td><span class="tag t-ok">维持-区间内</span></td><td>持仓4手@50.685；50以下补</td></tr>
+<tr><td>比亚迪</td><td>89.71</td><td class='down'>-0.77</td><td class='down'>32.0%</td><td class='flat'>-22.8%</td><td>29.7</td><td>82~90</td><td>82~90</td><td><span class="tag t-ok">维持-区间内</span></td><td>持仓1手@89.88</td></tr>
+<tr><td>牧原股份</td><td>40.15</td><td class='up'>+0.55</td><td class='down'>31.4%</td><td class='down'>-31.2%</td><td>23.7</td><td>33~36</td><td>36~40</td><td><span class="tag t-bad">涨出上修-等信号</span></td><td>H1预亏57-67亿</td></tr>
+<tr><td>中国中车</td><td>5.90</td><td class='down'>-0.17</td><td class='down'>30.0%</td><td class='flat'>-26.2%</td><td>12.5</td><td>5.5~6.0</td><td>5.5~6.0</td><td><span class="tag t-ok">维持-区间内</span></td><td>持仓4手@5.728；8/13当日XD除息</td></tr>
+<tr><td>恒瑞医药</td><td>53.76</td><td class='down'>-1.10</td><td class='down'>29.7%</td><td class='flat'>-27.2%</td><td>44.0</td><td>47~52</td><td>47~52</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿3.4%；8/13午盘55.15后回落</td></tr>
+<tr><td>福耀玻璃</td><td>54.87</td><td class='down'>-1.01</td><td class='down'>29.4%</td><td class='flat'>-24.3%</td><td>15.9</td><td>52~56</td><td>52~56</td><td><span class="tag t-ok">维持-区间内</span></td><td>分位29.4%</td></tr>
+<tr><td>三一重工</td><td>18.72</td><td class='down'>-1.00</td><td class='down'>29.2%</td><td class='flat'>-22.4%</td><td>20.4</td><td>16.5~18.3</td><td>16.5~18.3</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿2.3%</td></tr>
+<tr><td>国电南瑞</td><td>23.69</td><td class='down'>-1.54</td><td class='down'>29.0%</td><td class='flat'>-25.0%</td><td>22.9</td><td>22~24.5</td><td>22~24.5</td><td><span class="tag t-ok">维持-区间内</span></td><td>持仓4手@23.970</td></tr>
+<tr><td>海尔智家</td><td>21.79</td><td class='up'>+0.18</td><td class='down'>28.0%</td><td class='flat'>-23.0%</td><td>10.9</td><td>20.5~22.2</td><td>20.5~22.2</td><td><span class="tag t-ok">维持-区间内</span></td><td>分位28%</td></tr>
+<tr><td>中国建筑</td><td>4.44</td><td class='down'>-1.33</td><td class='down'>27.9%</td><td class='flat'>-20.1%</td><td>4.8</td><td>4.2~4.7</td><td>4.2~4.7</td><td><span class="tag t-ok">维持-区间内</span></td><td>PB0.38破净，等地产企稳</td></tr>
+<tr><td>山西汾酒</td><td>126.55</td><td class='up'>+3.46</td><td class='down'>27.1%</td><td class='down'>-38.5%</td><td>14.1</td><td>105~118</td><td>115~130</td><td><span class="tag t-bad">涨出上修</span></td><td>现价126.55；等回踩</td></tr>
+<tr><td>阳光电源</td><td>118.13</td><td class='up'>+0.51</td><td class='down'>26.7%</td><td class='down'>-43.5%</td><td>20.5</td><td>95~104</td><td>105~120</td><td><span class="tag t-bad">涨出上修-不可交易</span></td><td>创业板不可交易</td></tr>
+<tr><td>片仔癀</td><td>133.66</td><td class='down'>-1.05</td><td class='down'>26.3%</td><td class='down'>-38.0%</td><td>42.4</td><td>120~132</td><td>120~132</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿1.3%</td></tr>
+<tr><td>泸州老窖</td><td>91.78</td><td class='up'>+0.76</td><td class='down'>25.9%</td><td class='down'>-36.5%</td><td>13.6</td><td>78~88</td><td>78~88</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿4.3%；股息6.7%</td></tr>
+<tr><td>中国铝业</td><td>9.38</td><td class='down'>-5.63</td><td class='down'>25.2%</td><td class='down'>-40.8%</td><td>11.0</td><td>8.2~9.0</td><td>8.2~9.0</td><td><span class="tag t-warn">等回踩</span></td><td>今日-5.63%大跌；超上沿4.2%</td></tr>
+<tr><td>水晶光电</td><td>26.96</td><td class='down'>-2.14</td><td class='down'>25.1%</td><td class='down'>-38.9%</td><td>31.3</td><td>23~25.5</td><td>24.5~27.5</td><td><span class="tag t-bad">涨出上修</span></td><td>等回踩</td></tr>
+<tr><td>中国平安</td><td>52.80</td><td class='up'>+0.38</td><td class='down'>22.5%</td><td class='flat'>-27.8%</td><td>7.2</td><td>47~52</td><td>47~52</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿1.5%</td></tr>
+<tr><td>华能国际</td><td>6.92</td><td class='down'>-0.43</td><td class='down'>21.3%</td><td class='flat'>-26.1%</td><td>7.8</td><td>6.6~7.1</td><td>6.6~7.1</td><td><span class="tag t-ok">维持-区间内</span></td><td>油价暴跌受益，分位21.3%</td></tr>
+<tr><td>迈瑞医疗</td><td>153.39</td><td class='down'>-0.14</td><td class='down'>18.6%</td><td class='down'>-39.3%</td><td>23.7</td><td>138~150</td><td>138~150</td><td><span class="tag t-warn">等回踩-不可交易</span></td><td>超上沿2.3%；创业板不可交易</td></tr>
+<tr><td>中国石化</td><td>4.99</td><td class='down'>-1.19</td><td class='down'>15.7%</td><td class='down'>-37.6%</td><td>17.0</td><td>首仓4.85~4.93</td><td>4.85~4.93</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿1.2%</td></tr>
+<tr><td>中兴通讯</td><td>35.08</td><td class='down'>-1.43</td><td class='down'>15.3%</td><td class='down'>-36.7%</td><td>37.5</td><td>28~31</td><td>32~36</td><td><span class="tag t-bad">涨出上修-已清仓</span></td><td>8/13清仓纯观察；毛利率企稳才回补</td></tr>
+<tr><td>汇川技术</td><td>61.07</td><td class='down'>-3.29</td><td class='down'>11.3%</td><td class='down'>-32.5%</td><td>34.9</td><td>54~60</td><td>54~60</td><td><span class="tag t-warn">等回踩-不可交易</span></td><td>创业板不可交易</td></tr>
+<tr><td>长城汽车</td><td>15.51</td><td class='down'>-1.52</td><td class='down'>9.8%</td><td class='down'>-41.5%</td><td>14.7</td><td>14~15.8</td><td>14~15.8</td><td><span class="tag t-warn">维持-等信号</span></td><td>基本面弱，分位9.8%</td></tr>
+<tr><td>歌尔股份</td><td>22.12</td><td class='down'>-1.95</td><td class='down'>9.4%</td><td class='down'>-45.2%</td><td>19.8</td><td>20.5~22.8</td><td>20.5~22.8</td><td><span class="tag t-ok">维持-区间内</span></td><td>持仓1手@4.045；分位9.5%深跌错杀；尾盘破22.27加速线</td></tr>
+<tr><td>豪威集团</td><td>90.02</td><td class='down'>-1.64</td><td class='down'>7.5%</td><td class='down'>-42.7%</td><td>30.8</td><td>78~86</td><td>78~86</td><td><span class="tag t-warn">等回踩</span></td><td>超上沿4.7%；分位7.5%极低但Q1净利-42%业绩待验证</td></tr>
+    </table>
+    </div>
+    <p class="src" style="margin-top:8px;">"维持-区间内"=现价落于新区间内且分位<70%（可低吸）；"等回踩"=现价略超上沿（<5%）或分位>70%，回落才考虑；"涨出上修"=现价超原上沿≥5%，区间上移并等回踩；不可交易=创业板/科创板（仅观察）。</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">04</span>三张清单</h2>
+    <p style="font-weight:700;margin:8px 0 6px;">&#9312; 已进低吸区间（现价在区间内+分位<70%，可低吸/挂单）</p>
+    <div><span class="chip chip-ok">工业富联</span><span class="chip chip-ok">紫金矿业</span><span class="chip chip-ok">海天味业</span><span class="chip chip-ok">伊利股份</span><span class="chip chip-ok">格力电器</span><span class="chip chip-ok">云南白药</span><span class="chip chip-ok">比亚迪</span><span class="chip chip-ok">中国中车</span><span class="chip chip-ok">福耀玻璃</span><span class="chip chip-ok">国电南瑞</span><span class="chip chip-ok">海尔智家</span><span class="chip chip-ok">中国建筑</span><span class="chip chip-ok">华能国际</span><span class="chip chip-ok">歌尔股份</span></div>
+    <p style="font-weight:700;margin:14px 0 6px;">&#9313; 接近区间（现价超上沿<5%，等回踩进区间）</p>
+    <div><span class="chip chip-warn">中国神华</span><span class="chip chip-warn">交通银行</span><span class="chip chip-warn">中信证券</span><span class="chip chip-warn">贵州茅台</span><span class="chip chip-warn">广发证券</span><span class="chip chip-warn">立讯精密</span><span class="chip chip-warn">万华化学</span><span class="chip chip-warn">亨通光电</span><span class="chip chip-warn">恒瑞医药</span><span class="chip chip-warn">三一重工</span><span class="chip chip-warn">片仔癀</span><span class="chip chip-warn">泸州老窖</span><span class="chip chip-warn">中国铝业</span><span class="chip chip-warn">中国平安</span><span class="chip chip-warn">迈瑞医疗</span><span class="chip chip-warn">中国石化</span><span class="chip chip-warn">汇川技术</span><span class="chip chip-warn">豪威集团</span></div>
+    <p style="font-weight:700;margin:14px 0 6px;">&#9314; 勿追（分位>70%/距高点<6%/涨出区间未回踩/估值极高）</p>
+    <div><span class="chip chip-bad">药明康德</span><span class="chip chip-bad">美的集团</span><span class="chip chip-bad">建设银行</span><span class="chip chip-bad">宁德时代</span><span class="chip chip-bad">北方华创</span><span class="chip chip-bad">长电科技</span><span class="chip chip-bad">中芯国际</span><span class="chip chip-bad">深科技</span><span class="chip chip-bad">中国海油</span><span class="chip chip-bad">中科曙光</span><span class="chip chip-bad">牧原股份</span><span class="chip chip-bad">山西汾酒</span><span class="chip chip-bad">阳光电源</span><span class="chip chip-bad">水晶光电</span><span class="chip chip-bad">中兴通讯</span></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">05</span>与上次校验（8/6 v2）差异点</h2>
+    <ul class="diff">
+      <li><b>海康威视</b>：分位83.6%→<b class="fix">69.1%</b>，结论从"高位下修·今日不买"→"回落近低吸区"——8/3创39.18新高后连跌，32~35重新可关注（重大变化，下次开盘研判重点提示）。</li>
+      <li><b>国投电力</b>：分位76.6%→<b class="fix">63.2%</b>，从"中高位下修"→"重回低吸区"，13.5~14.5可挂单（持仓，重大变化）。</li>
+      <li><b>洛阳钼业</b>：分位59.7%→46.5%，现价20.63→18.41跌回区间下沿，深跌错杀区（持仓12手约27%，纪律只减不追）。</li>
+      <li><b>建设银行</b>：分位64.8%→<b class="fix">76.3%</b>，从中性→中高位，区间9.0~9.8上修9.5~10.3但不追高（银行走强）。</li>
+      <li><b>长江电力/川投能源/陕西煤业</b>：分位分别62.4/64.6/69.9%→74.4/73.4/73.9%，全部破70%降级"等回踩"（防御资金抱团推升）。</li>
+      <li><b>药明康德</b>：分位91.6%→94.7%，继续高位勿追（新高边缘）。</li>
+      <li><b>科技/存储/白酒批量涨出区间（12只上修）</b>：中科曙光、深科技、水晶、长电、山西汾酒、阳光、海油、牧原、中兴、美的、建行、宁德——8/6之后板块反弹明显。</li>
+      <li><b>歌尔股份</b>：分位16.1%→<b class="fix">9.5%</b>创年内新低区域，深跌错杀区但尾盘破22.27加速线，加仓计划待定夺。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">06</span>纪律提示（记录与提示，不代做交易决定）</h2>
+    <ul class="risk">
+      <li><span class="warn">区间是"记录与提示"不是"买卖指令"</span>：上修/下修仅反映当前位置与安全边际，实际挂单须结合《每日操作提示词.md》持仓表与当日盘面。</li>
+      <li><span class="warn">持仓新增/退出区间提示</span>：国投电力（持仓）重回低吸区13.5~14.5、洛钼（持仓）回下沿、海康分位大幅回落——<b>需在下一次开盘研判中重点提示</b>。</li>
+      <li><span class="warn">双汇延期披露纪律不变</span>：8/29中报落地前暂停低吸。</li>
+      <li><span class="warn">8/13资金纪律（用户确认）</span>：现金约23%已破40~45%布防线，后续只减不追、不再新开仓/大幅加仓——低吸清单仅作观察，实际执行以现金纪律为先。</li>
+      <li><span class="warn">下周校验</span>：2026-08-14（周五）收盘后按提示词D重算确认本次v3区间。</li>
+    </ul>
+  </div>
+
+  <div class="foot">数据来源：腾讯行情接口 + 腾讯K线前复权（2026-08-13收盘）；区间基准《长期观察池_55标的_20260804.md》《买入.md》；仅供研究参考，不构成投资建议。</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+var items = [
+{n:'药明康德',v:94.7},
+  {n:'美的集团',v:76.6},
+  {n:'建设银行',v:76.3},
+  {n:'长江电力',v:74.4},
+  {n:'陕西煤业',v:73.9},
+  {n:'川投能源',v:73.4},
+  {n:'海康威视',v:69.1},
+  {n:'宁德时代',v:66.5},
+  {n:'北方华创',v:64.2},
+  {n:'国投电力',v:63.2},
+  {n:'中国神华',v:61.1},
+  {n:'工业富联',v:58.8},
+  {n:'交通银行',v:58.6},
+  {n:'长电科技',v:54.6},
+  {n:'中信证券',v:52.9},
+  {n:'贵州茅台',v:52.5},
+  {n:'广发证券',v:52.5},
+  {n:'紫金矿业',v:50.5},
+  {n:'中芯国际',v:46.9},
+  {n:'洛阳钼业',v:46.5},
+  {n:'海天味业',v:45.8},
+  {n:'伊利股份',v:44.0},
+  {n:'深科技',v:43.8},
+  {n:'格力电器',v:43.7},
+  {n:'中国海油',v:42.3},
+  {n:'立讯精密',v:42.0},
+  {n:'双汇发展',v:38.0},
+  {n:'万华化学',v:37.8},
+  {n:'亨通光电',v:37.2},
+  {n:'中科曙光',v:35.4},
+  {n:'云南白药',v:35.3},
+  {n:'比亚迪',v:32.0},
+  {n:'牧原股份',v:31.4},
+  {n:'中国中车',v:30.0},
+  {n:'恒瑞医药',v:29.7},
+  {n:'福耀玻璃',v:29.4},
+  {n:'三一重工',v:29.2},
+  {n:'国电南瑞',v:29.0},
+  {n:'海尔智家',v:28.0},
+  {n:'中国建筑',v:27.9},
+  {n:'山西汾酒',v:27.1},
+  {n:'阳光电源',v:26.7},
+  {n:'片仔癀',v:26.3},
+  {n:'泸州老窖',v:25.9},
+  {n:'中国铝业',v:25.2},
+  {n:'水晶光电',v:25.1},
+  {n:'中国平安',v:22.5},
+  {n:'华能国际',v:21.3},
+  {n:'迈瑞医疗',v:18.6},
+  {n:'中国石化',v:15.7},
+  {n:'中兴通讯',v:15.3},
+  {n:'汇川技术',v:11.3},
+  {n:'长城汽车',v:9.8},
+  {n:'歌尔股份',v:9.4},
+  {n:'豪威集团',v:7.5}
+];
+echarts.init(document.getElementById('chartPos')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(ps){ var p=ps[0]; return p.name+'：52周分位 '+p.value+'%'; } },
+  grid: { left: 50, right: 20, top: 20, bottom: 140 },
+  xAxis: { type: 'category', data: items.map(function(d){ return d.n; }), axisLabel: { rotate: 60, fontSize: 10, interval: 0 } },
+  yAxis: { type: 'value', name: '52周分位%', min: 0, max: 100, axisLabel: { formatter: '{value}%' } },
+  series: [{
+    type: 'bar', barMaxWidth: 14,
+    markLine: {
+      data: [ { yAxis: 85, lineStyle: { color: '#d4342c', type: 'dashed' } }, { yAxis: 70, lineStyle: { color: '#0a9b5c', type: 'dashed' } } ],
+      label: { formatter: function(p){ return p.value + '%'; }, fontSize: 10 }
+    },
+    data: items.map(function(d){
+      var c = d.v >= 85 ? '#d4342c' : (d.v >= 70 ? '#f59e0b' : '#0a9b5c');
+      return { value: d.v, itemStyle: { color: c, borderRadius: [2,2,0,0] } };
+    })
+  }]
+});
+</script>
+</body>
+</html>

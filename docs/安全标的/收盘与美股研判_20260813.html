@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>收盘与美股研判（2026-08-13）</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --line:#e4e7ec; --ink:#1f2329; --sub:#6b7280; --mut:#9aa0a8;
+    --red:#d4342c; --redBg:#fdecea; --green:#0a9b5c; --greenBg:#e7f6ef; --blue:#2563eb; --amber:#b45309;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;padding:28px 16px;}
+  .wrap{max-width:1120px;margin:0 auto;}
+  .head{background:linear-gradient(135deg,#1f2937,#374151);color:#fff;border-radius:14px;padding:26px 30px;margin-bottom:20px;}
+  .head h1{font-size:22px;font-weight:700;}
+  .head .sub{margin-top:6px;font-size:13px;color:#c7cdd6;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:18px;}
+  .card h2{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .card h2 .num{background:var(--blue);color:#fff;font-size:12px;border-radius:6px;padding:1px 8px;font-weight:600;}
+  .tl{background:linear-gradient(135deg,#fef3e2,#fdf6ec);border:1px solid #f3d9a4;border-radius:12px;padding:18px 22px;margin-bottom:18px;}
+  .tl h2{font-size:15px;color:var(--amber);margin-bottom:8px;}
+  .tl li{margin:6px 0;padding-left:20px;position:relative;list-style:none;font-size:13.5px;}
+  .tl li::before{content:"\25B8";position:absolute;left:2px;color:var(--amber);}
+  table{width:100%;border-collapse:collapse;font-size:12.8px;}
+  th{background:#f8fafc;font-size:11.5px;color:var(--sub);text-align:left;padding:6px 9px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;}
+  td{padding:6px 9px;border-bottom:1px solid #f0f2f5;vertical-align:top;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  .up{color:var(--red);font-weight:600;}
+  .down{color:var(--green);font-weight:600;}
+  .flat{color:var(--sub);}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:20px;white-space:nowrap;}
+  .t-ok{background:var(--redBg);color:var(--red);}
+  .t-warn{background:#fdf3e3;color:var(--amber);}
+  .t-bad{background:var(--greenBg);color:var(--green);}
+  .chart{width:100%;height:380px;}
+  .chart-sm{width:100%;height:330px;}
+  .idea{border-left:3px solid var(--amber);background:#fdf8ef;padding:10px 14px;margin:10px 0;border-radius:0 8px 8px 0;font-size:13.5px;}
+  .idea b{color:#8a5a14;}
+  .keys li{margin:6px 0;padding-left:20px;position:relative;list-style:none;font-size:13.5px;}
+  .keys li::before{content:"\25C6";position:absolute;left:2px;color:var(--blue);font-size:10px;top:3px;}
+  .risk li{margin:6px 0;padding-left:20px;list-style:none;position:relative;font-size:13.5px;}
+  .risk li::before{content:"\26A0";position:absolute;left:0;top:0;font-size:12px;}
+  .src{color:var(--sub);font-size:11.5px;}
+  .scroll{overflow-x:auto;}
+  .foot{text-align:center;color:var(--mut);font-size:11.5px;padding:10px 0 20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <h1>收盘与美股研判（2026-08-13 周四）</h1>
+    <div class="sub">A股数据时点：8/13收盘｜美股：8/12（美东）收盘+8/13盘前｜日韩：8/13收盘｜来源：腾讯行情/每经/澎湃/证券时报/华尔街见闻</div>
+  </div>
+
+  <div class="tl">
+    <h2>&#127919; 核心结论（TL;DR）</h2>
+    <ul>
+      <li><b>A股放量普跌、冲高回落</b>：沪指3926.96（-0.50%）、深成-0.87%、创业板-0.45%、科创50 -1.11%；成交2.55万亿（+3985亿）但<b>4309家下跌、62涨停/4跌停</b>——<b>量在放大、价在回落 = 高位出货特征</b>；热点切医药/电力/银行（防御化），贵金属/工业金属领跌。</li>
+      <li><b>外围利好集中兑现</b>：美国7月CPI 3.4%温和/核心2.5%五个月最低 → <b>9月"按兵不动"概率升至60%+</b>；费半+2.49%、SK海力士+9%、美光+5%、英伟达+3%；KOSPI+3.56%重回技术牛市、日经+1.16%——<b>存储警报线④向上修复解除</b>。</li>
+      <li><b>四条警报线对照：0条触发</b>（10Y日债2.86%差14bp/日元159.4差19点/HY利差2.8%差20bp/存储背离已向上修复）——<b>仍为绿灯，但A股内部顶部特征+30Y美债5.256%新高是慢变量预警</b>。</li>
+      <li><b>持仓8只明日操作（绿灯·回补现金优先）</b>：洛钼反弹<b>18.8~19.2减1/3</b>（27%重仓+破区间下沿）、招商反弹<b>18.5~18.6减2手</b>、中车<b>6.0~6.1再减1手</b>；歌尔/比亚迪守纪律；白药/南瑞/国投防御持有。<b>现金目标23%→40%</b>。</li>
+      <li><b>明日（周五）定性：数据盲猜日+变盘前置日</b>。今晚20:30美国PPI、周五盘中无A股增量数据——<b>周五是卖的时间窗口不是买的</b>；真正变盘看下周一。低吸仅挂防御小仓（白药49.5~50/国投13.5~14.0/海康回踩35以下）。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">01</span>全球指数对比（8/13 A股/日韩 + 8/12美股）</h2>
+    <div id="chartGlobal" class="chart"></div>
+    <p class="src">A股/日韩为8/13收盘涨跌幅；美股为8/12（美东）收盘涨跌幅。红涨绿跌。</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">02</span>今日复盘：结构诊断（谁拉指数谁在跌）</h2>
+    <div class="keys">
+      <ul>
+        <li><b>指数面</b>：沪指早盘高开冲高（最高约3960+）午后翻绿收3926.96；创业板/科创50跌幅更大——<b>高位成长杀估值</b>。</li>
+        <li><b>资金轮动方向</b>：算力/存储/半导体退潮 → 医药（CRO/创新药，誉衡5天4板/万邦3天2板）、电力（大唐/华电涨停，广东电网负荷创新高）、银行（沪农商行/中行领涨）逆势走强——<b>从进攻转向防御+低位补涨</b>。</li>
+        <li><b>下跌方向</b>：贵金属（招金/湖南白银跌超7%）、工业金属（天山铝业/中孚跌超5%）、房地产、光伏——<b>获利盘集中兑现</b>（有色/贵金属前期涨幅大）。</li>
+        <li><b>量能结构</b>：2.55万亿放量3985亿、ETF成交4551亿（+554亿）——<b>换手充分但方向向下，典型"派发"结构</b>；主力资金净流入中国AI50(+57.6亿)/英伟达概念(+53亿)/算力租赁(+47亿)但指数收绿=承接盘在科技、抛压在周期。</li>
+        <li><b>观察池55只分层</b>（详见附图）：惯性冲高=中科曙光+3.71%/山西汾酒+3.46%；超跌反抽=药明+2.07%；双杀压制=中国铝业-5.63%/紫金-4.08%/洛钼-3.11%（有色系集体回吐）；防御持有=银行/电力/白酒温和。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">03</span>55只观察池涨跌全景（8/13）</h2>
+    <div id="chart55" class="chart-sm"></div>
+    <p class="src">红=涨（正），绿=跌（负），按涨跌幅降序。今日大涨标的集中在科技/白酒（中科曙光/汾酒），大跌集中在有色资源（中铝/紫金/洛钼）。</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">04</span>持仓8只浮盈亏（收盘口径）</h2>
+    <div id="chartHold" class="chart-sm"></div>
+    <p class="src">歌尔+447%（成本4.045极低）为最大浮盈；招商-8.0%为最大浮亏；洛钼12手-0.6%浮亏约-130元但体量最大。</p>
+    <div class="scroll" style="margin-top:10px;">
+    <table>
+      <tr><th>持仓</th><th>手数</th><th>成本</th><th>8/13收盘</th><th>浮盈亏%</th><th>浮盈亏额</th><th>关键操作位</th></tr>
+      <tr><td>洛阳钼业</td><td>12</td><td>18.522</td><td class="down">18.41</td><td class="down">-0.6%</td><td class="down">-134元</td><td>反弹18.8~19.2减1/3；防守18.0~18.3；破18减1/3~1/2</td></tr>
+      <tr><td>招商证券</td><td>5</td><td>19.840</td><td class="flat">18.24</td><td class="down">-8.1%</td><td class="down">-800元</td><td>反弹18.5~18.6减2手；防守17.7再减1手</td></tr>
+      <tr><td>中国中车</td><td>4</td><td>5.728</td><td class="flat">5.90</td><td class="up">+3.0%</td><td class="up">+688元</td><td>反弹6.0~6.1减1手；防守5.5</td></tr>
+      <tr><td>云南白药</td><td>4</td><td>50.685</td><td class="down">50.46</td><td class="down">-0.4%</td><td class="down">-90元</td><td>防御持有；守49；49.5~50补1手仅克制</td></tr>
+      <tr><td>歌尔股份</td><td>1</td><td>4.045</td><td class="down">22.12</td><td class="up">+447%</td><td class="up">+18075元</td><td>已破22.27加速线；反弹22.8~23.2减；跌破20.5重估</td></tr>
+      <tr><td>比亚迪</td><td>1</td><td>89.88</td><td class="down">89.71</td><td class="down">-0.2%</td><td class="down">-17元</td><td>新开仓观察；守88.5；破88止损</td></tr>
+      <tr><td>国电南瑞</td><td>4</td><td>23.970</td><td class="down">23.69</td><td class="down">-1.2%</td><td class="down">-112元</td><td>防御持有；守23.5；破位减1手</td></tr>
+      <tr><td>国投电力</td><td>4</td><td>13.970</td><td class="down">13.95</td><td class="down">-0.1%</td><td class="down">-8元</td><td>防御持有；守13.5；v3重回低吸区13.5~14.0</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">05</span>明日（8/14 周五）三情景预判</h2>
+    <div class="scroll">
+    <table>
+      <tr><th>情景</th><th>概率</th><th>条件</th><th>操作含义</th></tr>
+      <tr><td><b>基准：低开或平开、冲高回落、量能2.2~2.5万亿</b></td><td class="up">50%</td><td>PPI符合预期、外围平稳；A股延续"高位震荡+热点轮动"，医药/电力接力但科技/周期继续兑现</td><td>按计划执行减仓：洛钼/招商/中车反弹即减；低吸仅防御小仓；<b>不加仓</b></td></tr>
+      <tr><td><b>偏空：低开下探、沪指测试3900~3915</b></td><td class="down">30%</td><td>美国PPI超预期→加息概率回升、或日韩存储高开低走、或A股获利盘加速（有色/科技双杀）</td><td>防守位执行：洛钼破18减1/3、歌尔破20.5减、招商破17.7减1手；<b>现金尽快回到40%</b></td></tr>
+      <tr><td><b>偏多：高开高走、重新站上3940</b></td><td>20%</td><td>PPI温和+费半续涨+A股医药/电力主线扩散带动情绪修复、缩量企稳</td><td>反弹兑现不减量：洛钼19+减1/3、中车6.1减1手；<b>仍不追高、不加新仓</b></td></tr>
+    </table>
+    </div>
+    <div class="risk" style="margin-top:10px;">
+      <ul>
+        <li><b>周五定性：数据盲猜日</b>。今晚20:30美国PPI（北京时间）在A股收盘后公布，周五盘中无增量数据——<b>周五是卖的时间窗口不是买的，真正变盘在下周一</b>。</li>
+        <li><b>四条警报线对照（周五收盘必查）</b>：①10Y日债2.86%（差14bp破3%）②美元/日元159.4（差19点站稳178）③HY利差2.8%（差20bp破3%）④存储背离（已向上修复，转盯SK海力士是否掉头）——<b>当前0条触发，仍绿灯</b>。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">06</span>低吸挂单清单（明日，仅防御小仓）</h2>
+    <div class="scroll">
+    <table>
+      <tr><th>标的</th><th>挂单价位</th><th>触发条件</th><th>依据（v3区间）</th></tr>
+      <tr><td>云南白药（持仓）</td><td>49.5~50.0</td><td>到价即补1手（仅克制，现金优先）</td><td>47~51区间内、分位35.3%</td></tr>
+      <tr><td>国投电力（持仓）</td><td>13.5~14.0</td><td>到价可补1手摊薄</td><td>重回低吸区、分位63.2%</td></tr>
+      <tr><td>海康威视</td><td>33~35</td><td><b>回踩35以下才考虑</b>（现35.66略超上沿）</td><td>分位回落69.1%、重大变化</td></tr>
+      <tr><td>紫金矿业</td><td>30.0~31.0</td><td>今日-4.08%回落，等不再创新低</td><td>30~33区间内</td></tr>
+      <tr><td>中国海油</td><td>30.5~31.0</td><td>回踩进v3新区间</td><td>30.5~32.5（上修后）</td></tr>
+      <tr><td>华能国际</td><td>6.7~6.8</td><td>到价首仓（油价回落受益）</td><td>6.6~7.1区间内</td></tr>
+    </table>
+    </div>
+    <p class="src">注意：现金仅≈23%严重低于纪律线，低吸清单仅作"到价预案"；实际执行以"先减后买、现金优先"为序——<b>未完成减仓前，低吸一律不触发</b>。存储链三剑客与双汇（延期披露）不接。</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">07</span>大家没想到的点（市场盲区）</h2>
+    <div class="idea"><b>1. 放量2.55万亿 + 4309家下跌——量是"出货量"不是"进攻量"。</b>今日成交放量3985亿但指数收绿、超4300家下跌，主力资金却净流入中国AI50/英伟达概念/算力租赁——<b>承接盘在科技高位、抛压在有色周期，资金一边倒向少数拥挤板块，这是轮动末段的特征。</b></div>
+    <div class="idea"><b>2. 存储"向上修复"当天，A股存储反而逆势跌。</b>SK海力士+5.92%/三星+4.89%大涨，A股深科技-1.98%/长电-0.46%却下跌——<b>日韩大涨被A股当成兑现窗口而非共振信号</b>；一旦SK海力士掉头（月内印第安纳工厂动工+股东回报方案落地=利好兑现窗口），A股存储补跌风险仍在。</div>
+    <div class="idea"><b>3. 30Y美债5.256%再创2007年前新高——债市慢变量没解除，只是没引爆。</b>CPI温和让股市松口气，但长端利率+HY利差2.8%仍在累积；<b>股债背离继续：股市定价"暂缓加息"，债市定价"赤字+通胀黏性"，两者迟早有一个错。</b></div>
+    <div class="idea"><b>4. 有色/贵金属"利好兑现式"大跌——中铝-5.63%/紫金-4.08%/洛钼-3.11%。</b>前期涨幅大（铜金价格高位），今日集体回吐；<b>持仓洛钼12手是第一重仓，正好撞上周期兑现窗口——18.5下方不是"低吸机会"而是"重仓风险"，纪律是减不是加。</b></div>
+    <div class="idea"><b>5. 日本首相公开支持央行9/10月加息——日元159.4离178很远，但引信在计时。</b>套息平仓不会匀速预警，日元急升当天就是全球恐慌日（2024.8.5剧本）；<b>当前全球risk-on越是顺畅，越要记得这个引信的存在。</b></div>
+    <div class="idea"><b>6. 两融新开户环比-22% + 科创板两融回落——散户增量退潮，存量抱团防御。</b>热点缩圈到医药/电力/银行，正是"增量不足、存量博弈"的典型表现；<b>没有增量资金支撑的高位板块，回撤会比想象快。</b></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">08</span>仓位建议与纪律</h2>
+    <ul class="risk">
+      <li><b>当前现金≈23% → 明日目标 40%</b>（洛钼反弹减1/3≈0.7万 + 招商减2手≈0.37万 + 中车6.0上方减1手≈0.6万 ≈ 回收1.6~1.7万）。周五是数据盲猜日——<b>先减后看，现金为王。</b></li>
+      <li>周五（8/14）收盘后：对照四条警报线（日债3%/日元178~180/HY利差3%/存储掉头），触发任一 → 黄灯升级：现金≥45%、停止一切新开仓。</li>
+      <li>下一哨点：今晚20:30美国PPI → 8/21-23杰克逊霍尔 → 8月底三星/海力士股东回报落地 → 9/9-10日央行 → 9/15-16 FOMC。</li>
+      <li>纪律重申：狂热是过程，破裂是结果——在黄灯就动手，不等红灯；宁可卖早，不可卖晚。</li>
+    </ul>
+  </div>
+
+  <div class="foot">数据来源：腾讯行情接口（8/13收盘）、每日经济新闻/澎湃/证券时报（A股收评）、华尔街见闻/证券时报/财联社（美股+CPI）、新浪财经/格隆汇（日韩）。仅供研究参考，不构成投资建议。投资有风险，决策需谨慎。</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+// 01 全球指数对比
+echarts.init(document.getElementById('chartGlobal')).setOption({
+  tooltip: { trigger:'axis', axisPointer:{type:'shadow'}, formatter:function(ps){ var p=ps[0]; return p.name+'：'+p.value+'%'; } },
+  grid:{left:50,right:20,top:20,bottom:60},
+  xAxis:{type:'category',data:['上证','深成','创业板','科创50','日经225','KOSPI','道指','标普','纳指','费半'],axisLabel:{rotate:30,fontSize:10}},
+  yAxis:{type:'value',name:'涨跌%',axisLabel:{formatter:'{value}%'}},
+  series:[{type:'bar',barMaxWidth:34,label:{show:true,position:'top',formatter:'{c}%',fontSize:10},
+    data:[
+      {value:-0.50,itemStyle:{color:'#0a9b5c'}},{value:-0.87,itemStyle:{color:'#0a9b5c'}},
+      {value:-0.45,itemStyle:{color:'#0a9b5c'}},{value:-1.11,itemStyle:{color:'#0a9b5c'}},
+      {value:1.16,itemStyle:{color:'#d4342c'}},{value:3.56,itemStyle:{color:'#d4342c'}},
+      {value:-0.04,itemStyle:{color:'#0a9b5c'}},{value:0.26,itemStyle:{color:'#d4342c'}},
+      {value:0.54,itemStyle:{color:'#d4342c'}},{value:2.49,itemStyle:{color:'#d4342c'}}
+    ]}]
+});
+
+// 03 55只涨跌条形图
+var d55 = [{"n": "中科曙光", "v": 3.71}, {"n": "山西汾酒", "v": 3.46}, {"n": "药明康德", "v": 2.07}, {"n": "中芯国际", "v": 1.16}, {"n": "川投能源", "v": 0.93}, {"n": "贵州茅台", "v": 0.92}, {"n": "长江电力", "v": 0.79}, {"n": "泸州老窖", "v": 0.76}, {"n": "中国神华", "v": 0.61}, {"n": "宁德时代", "v": 0.6}, {"n": "建设银行", "v": 0.59}, {"n": "牧原股份", "v": 0.55}, {"n": "中信证券", "v": 0.51}, {"n": "阳光电源", "v": 0.51}, {"n": "广发证券", "v": 0.43}, {"n": "中国平安", "v": 0.38}, {"n": "交通银行", "v": 0.29}, {"n": "海尔智家", "v": 0.18}, {"n": "双汇发展", "v": 0.16}, {"n": "格力电器", "v": 0.02}, {"n": "伊利股份", "v": -0.08}, {"n": "海天味业", "v": -0.11}, {"n": "迈瑞医疗", "v": -0.14}, {"n": "中国中车", "v": -0.17}, {"n": "美的集团", "v": -0.18}, {"n": "云南白药", "v": -0.18}, {"n": "国投电力", "v": -0.36}, {"n": "华能国际", "v": -0.43}, {"n": "长电科技", "v": -0.46}, {"n": "陕西煤业", "v": -0.48}, {"n": "工业富联", "v": -0.56}, {"n": "中国海油", "v": -0.67}, {"n": "比亚迪", "v": -0.77}, {"n": "三一重工", "v": -1.0}, {"n": "福耀玻璃", "v": -1.01}, {"n": "片仔癀", "v": -1.05}, {"n": "恒瑞医药", "v": -1.1}, {"n": "中国石化", "v": -1.19}, {"n": "中国建筑", "v": -1.33}, {"n": "中兴通讯", "v": -1.43}, {"n": "长城汽车", "v": -1.52}, {"n": "国电南瑞", "v": -1.54}, {"n": "豪威集团", "v": -1.64}, {"n": "歌尔股份", "v": -1.95}, {"n": "深科技", "v": -1.98}, {"n": "水晶光电", "v": -2.14}, {"n": "海康威视", "v": -2.22}, {"n": "立讯精密", "v": -2.25}, {"n": "万华化学", "v": -2.6}, {"n": "北方华创", "v": -2.82}, {"n": "洛阳钼业", "v": -3.11}, {"n": "汇川技术", "v": -3.29}, {"n": "亨通光电", "v": -3.46}, {"n": "紫金矿业", "v": -4.08}, {"n": "中国铝业", "v": -5.63}];
+echarts.init(document.getElementById('chart55')).setOption({
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(ps){var p=ps[0];return p.name+'：'+p.value+'%';}},
+  grid:{left:90,right:50,top:10,bottom:30},
+  xAxis:{type:'value',axisLabel:{formatter:'{value}%'}},
+  yAxis:{type:'category',data:d55.map(function(x){return x.n;}),axisLabel:{fontSize:10}},
+  series:[{type:'bar',barMaxWidth:10,label:{show:true,position:'right',formatter:'{c}%',fontSize:9},
+    data:d55.map(function(x){return {value:x.v,itemStyle:{color:x.v>=0?'#d4342c':'#0a9b5c'}};})}]
+});
+
+// 04 持仓浮盈亏
+var dh = [{"n": "洛阳钼业", "p": -0.6, "a": -134}, {"n": "招商证券", "p": -8.1, "a": -800}, {"n": "中国中车", "p": 3.0, "a": 69}, {"n": "云南白药", "p": -0.4, "a": -90}, {"n": "歌尔股份", "p": 446.8, "a": 1808}, {"n": "比亚迪", "p": -0.2, "a": -17}, {"n": "国电南瑞", "p": -1.2, "a": -112}, {"n": "国投电力", "p": -0.1, "a": -8}];
+echarts.init(document.getElementById('chartHold')).setOption({
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(ps){var p=ps[0];return p.name+'：'+p.value+'%';}},
+  grid:{left:60,right:50,top:20,bottom:30},
+  xAxis:{type:'category',data:dh.map(function(x){return x.n;}),axisLabel:{rotate:25,fontSize:10}},
+  yAxis:{type:'value',name:'浮盈亏%',axisLabel:{formatter:'{value}%'}},
+  series:[{type:'bar',barMaxWidth:30,label:{show:true,position:'top',formatter:'{c}%',fontSize:10},
+    data:dh.map(function(x){return {value:x.p,itemStyle:{color:x.p>=0?'#d4342c':'#0a9b5c'}};})}]
+});
+</script>
+</body>
+</html>
