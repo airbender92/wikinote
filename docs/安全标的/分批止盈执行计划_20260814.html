@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分批止盈执行计划_20260814</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --border:#e3e6ea; --text:#1f2328; --sub:#5c6470;
+    --red:#d92b2b; --red-bg:#fdecec; --green:#0a8f3c; --green-bg:#e8f7ee;
+    --blue:#1a66cc; --blue-bg:#eaf1fb; --amber:#b7791f; --amber-bg:#fdf3e0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;line-height:1.6;padding:24px 16px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  h1{font-size:24px;margin-bottom:4px;}
+  .date{color:var(--sub);font-size:13px;margin-bottom:18px;}
+  .tldr{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:8px;padding:16px 20px;margin-bottom:20px;}
+  .tldr h2{font-size:15px;margin-bottom:10px;color:var(--red);}
+  .tldr ol{padding-left:20px;}
+  .tldr li{margin-bottom:6px;font-size:14px;}
+  h2.sec{font-size:18px;margin:28px 0 12px;padding-left:10px;border-left:4px solid var(--blue);}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:16px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th{background:#eef1f5;text-align:left;padding:8px 10px;border:1px solid var(--border);font-weight:600;}
+  td{padding:8px 10px;border:1px solid var(--border);}
+  .up{color:var(--red);font-weight:600;}
+  .down{color:var(--green);font-weight:600;}
+  .tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:600;}
+  .tag-red{background:var(--red-bg);color:var(--red);}
+  .tag-green{background:var(--green-bg);color:var(--green);}
+  .tag-blue{background:var(--blue-bg);color:var(--blue);}
+  .tag-amber{background:var(--amber-bg);color:var(--amber);}
+  .stock{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:12px;}
+  .stock-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+  .stock-head .name{font-size:16px;font-weight:700;}
+  .stock-head .info{font-size:12.5px;color:var(--sub);}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
+  .tier{background:#fafbfc;border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-size:13px;}
+  .tier .t{font-size:11.5px;color:var(--sub);}
+  .tier .p{font-weight:700;font-size:14px;}
+  .tier .v{font-size:12px;color:var(--sub);}
+  .def{background:var(--green-bg);border-radius:6px;padding:6px 10px;font-size:12.5px;margin-top:6px;}
+  .def b{color:var(--green);}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px;}
+  .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12.5px;}
+  .bar-label{width:70px;text-align:right;flex-shrink:0;color:var(--sub);}
+  .bar-track{flex:1;background:#eef1f5;border-radius:4px;height:18px;position:relative;}
+  .bar-fill{height:18px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-size:11px;color:#fff;font-weight:600;}
+  .cash-flow{display:flex;align-items:flex-end;gap:0;margin:16px 0 6px;height:120px;}
+  .cf-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .cf-bar{width:60%;border-radius:4px 4px 0 0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11.5px;font-weight:600;}
+  .cf-label{font-size:11.5px;color:var(--sub);margin-top:4px;text-align:center;}
+  .rule{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:8px;padding:14px 18px;margin-bottom:12px;font-size:13.5px;}
+  .rule li{margin-bottom:5px;}
+  .disclaimer{background:var(--card);border:1px dashed var(--border);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--sub);margin-top:24px;}
+  .pill{display:inline-block;background:var(--blue-bg);color:var(--blue);border-radius:12px;padding:2px 10px;font-size:12px;font-weight:600;margin-right:6px;}
+  @media(max-width:700px){.grid3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>分批止盈执行计划</h1>
+<div class="date">2026-08-14（周五）收盘后制定 ｜ 数据基准：8/14收盘价 + 用户最新持仓口径（满仓）｜ 执行窗口：8/17（下周一）起</div>
+
+<div class="tldr">
+  <h2>TL;DR · 结论先行</h2>
+  <ol>
+    <li><b>满仓口径确认</b>：8只持仓、股票≈96%/现金≈3.6%（现金≈0.37万），加仓后<b>第一重仓=比亚迪 3手（26.8%）</b>、第二=洛钼 12手（22.2%），集中度风险上升，止盈优先级按此重排。</li>
+    <li><b>总体策略</b>：低位不割肉 ✅、反弹分批止盈 ✅。核心目标不是卖在最高点，而是<b>先把现金从3.6%恢复到30%+</b>——第一档止盈全部触发可回笼≈3.3万，现金→35%左右。</li>
+    <li><b>止盈优先级</b>：① 比亚迪（第一重仓、成本微套）→ ② 洛钼（第二重仓、弹性大）→ ③ 招商（浮亏最深-9.1%、回本减）→ ④ 歌尔（利润仓+440%）→ ⑤ 白药/南瑞/国投/中车防御梯度。</li>
+    <li><b>第一档触发位普遍贴近回本区</b>（比亚迪91.5~92.5、洛钼18.8~19.2、招商18.5~18.8、南瑞24.5~25），下周反弹即先落1/3仓位，不做"再等等"。</li>
+    <li><b>防守位并行</b>：不割肉≠无限期扛。洛钼破18减1/3、招商破17.7减1手、比亚迪破88.5减1手等破位线照常执行，作为止盈计划的保险丝。</li>
+    <li><b>待办</b>：本周末补跑提示词D（低吸区间v3→v4校验）与提示词E（危机四警报线对照），若区间重大变化，下周一开盘前微调本计划触发位。</li>
+  </ol>
+</div>
+
+<h2 class="sec">一、当前持仓全景（8/14 收盘口径）</h2>
+<div class="card">
+  <table>
+    <tr><th>标的</th><th>手数</th><th>成本</th><th>8/14收盘</th><th>当日涨跌</th><th>市值(元)</th><th>仓位占比</th><th>浮盈亏</th></tr>
+    <tr><td>比亚迪</td><td>3</td><td>89.187</td><td>88.90</td><td class="down">-0.90%</td><td>26,670</td><td>26.8%</td><td class="down">-0.3%</td></tr>
+    <tr><td>洛阳钼业</td><td>12</td><td>18.522</td><td>18.44</td><td class="up">+0.16%</td><td>22,128</td><td>22.2%</td><td class="down">-0.4%</td></tr>
+    <tr><td>云南白药</td><td>4</td><td>50.685</td><td>50.03</td><td class="down">-0.85%</td><td>20,012</td><td>20.1%</td><td class="down">-1.3%</td></tr>
+    <tr><td>国电南瑞</td><td>5</td><td>23.854</td><td>23.23</td><td class="down">-1.94%</td><td>11,615</td><td>11.7%</td><td class="down">-2.6%</td></tr>
+    <tr><td>招商证券</td><td>5</td><td>19.840</td><td>18.04</td><td class="down">-1.10%</td><td>9,020</td><td>9.1%</td><td class="down" style="font-weight:700">-9.1%</td></tr>
+    <tr><td>国投电力</td><td>4</td><td>13.970</td><td>13.78</td><td class="down">-1.22%</td><td>5,512</td><td>5.5%</td><td class="down">-1.4%</td></tr>
+    <tr><td>中国中车</td><td>4</td><td>5.728</td><td>5.88</td><td class="down">-0.34%</td><td>2,352</td><td>2.4%</td><td class="up">+2.7%</td></tr>
+    <tr><td>歌尔股份</td><td>1</td><td>4.045</td><td>21.88</td><td class="down">-1.08%</td><td>2,188</td><td>2.2%</td><td class="up" style="font-weight:700">+440%</td></tr>
+    <tr style="background:#f6f8fa;font-weight:600"><td colspan="4">合计（总资产≈10.3万）</td><td></td><td>99,497</td><td>≈96.4%</td><td class="up">+110</td></tr>
+  </table>
+  <div style="margin-top:12px;">
+    <div class="bar-row"><div class="bar-label">比亚迪</div><div class="bar-track"><div class="bar-fill" style="width:26.8%;background:#1a66cc;">26.8%</div></div></div>
+    <div class="bar-row"><div class="bar-label">洛阳钼业</div><div class="bar-track"><div class="bar-fill" style="width:22.2%;background:#1a66cc;">22.2%</div></div></div>
+    <div class="bar-row"><div class="bar-label">云南白药</div><div class="bar-track"><div class="bar-fill" style="width:20.1%;background:#1a66cc;">20.1%</div></div></div>
+    <div class="bar-row"><div class="bar-label">国电南瑞</div><div class="bar-track"><div class="bar-fill" style="width:11.7%;background:#1a66cc;">11.7%</div></div></div>
+    <div class="bar-row"><div class="bar-label">招商证券</div><div class="bar-track"><div class="bar-fill" style="width:9.1%;background:#1a66cc;">9.1%</div></div></div>
+    <div class="bar-row"><div class="bar-label">国投电力</div><div class="bar-track"><div class="bar-fill" style="width:5.5%;background:#1a66cc;">5.5%</div></div></div>
+    <div class="bar-row"><div class="bar-label">中车/歌尔</div><div class="bar-track"><div class="bar-fill" style="width:4.6%;background:#1a66cc;">4.6%</div></div></div>
+    <div class="bar-row"><div class="bar-label">现金</div><div class="bar-track"><div class="bar-fill" style="width:3.6%;background:#0a8f3c;">3.6%</div></div></div>
+  </div>
+</div>
+
+<h2 class="sec">二、分批止盈总框架</h2>
+<div class="card" style="font-size:14px;">
+  <p><b>原则：</b>① <b>先回笼现金，再谈更高梯度</b>——第一档止盈位贴近回本/小幅盈利，触发即减1/3左右，把现金从3.6%推向30%+；② <b>优先降集中度</b>——第一、第二重仓（比亚迪/洛钼）止盈优先级最高；③ <b>防守位与止盈并行</b>——破位线照常执行，不无条件死扛；④ <b>每只留底仓</b>——防御标的（白药/中车/国投）至少留1手，不卖光。</p>
+  <p style="margin-top:8px;"><b>现金恢复路线图（第一档全部触发）：</b></p>
+  <div class="cash-flow">
+    <div class="cf-col"><div class="cf-bar" style="height:3.6%;background:#0a8f3c;">3.6%</div><div class="cf-label">当前现金<br>≈0.37万</div></div>
+    <div class="cf-col"><div class="cf-bar" style="height:36%;background:#d92b2b;">≈35%</div><div class="cf-label">档1全触发后<br>≈3.6万</div></div>
+    <div class="cf-col"><div class="cf-bar" style="height:45%;background:#1a66cc;">40~45%</div><div class="cf-label">8月布防目标线<br>档2继续兑现</div></div>
+  </div>
+  <p style="font-size:12.5px;color:var(--sub);margin-top:4px;">测算口径：总资产≈10.3万（股票9.95万+现金≈0.37万）。档1全部触发回笼≈3.3万 → 现金≈3.6万/35%；档2再触发回笼≈2.4万 → 现金≈6万/58%（超布防线，可中途停手观察）。</p>
+</div>
+
+<h2 class="sec">三、逐只止盈计划（8只）</h2>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">① 比亚迪 <span class="tag tag-red">第一重仓 26.8%</span></span>
+    <span class="info">3手@89.187 ｜ 收88.90 ｜ 浮亏-0.3% ｜ 8/14加至3手</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">档1 · 回本区</div><div class="p">91.5 ~ 92.5</div><div class="v">减1手 回笼≈9,200</div></div>
+    <div class="tier"><div class="t">档2</div><div class="p">95 ~ 96</div><div class="v">减1手 回笼≈9,500</div></div>
+    <div class="tier"><div class="t">档3</div><div class="p">100+</div><div class="v">减1手 回笼≈10,000</div></div>
+  </div>
+  <div class="def">防守位：<b>破88.5 减1手</b>（降集中度优先）；破86 重估逻辑</div>
+  <div class="note">优先级第1：第一重仓+成本微套，档1回本即减，是"降集中度+回笼现金"的双重关键动作。</div>
+</div>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">② 洛阳钼业 <span class="tag tag-red">第二重仓 22.2%</span></span>
+    <span class="info">12手@18.522 ｜ 收18.44 ｜ 浮亏-0.4% ｜ 8/14唯一翻红</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">档1 · 反弹减1/3</div><div class="p">18.8 ~ 19.2</div><div class="v">减4手 回笼≈7,600</div></div>
+    <div class="tier"><div class="t">档2</div><div class="p">20.5 ~ 21.0</div><div class="v">减4手 回笼≈8,300</div></div>
+    <div class="tier"><div class="t">档3</div><div class="p">21.5 ~ 23.0</div><div class="v">减4手 回笼≈8,900</div></div>
+  </div>
+  <div class="def">防守位：<b>破18.0 减4~6手</b>；破17.5 再减或全清观察</div>
+  <div class="note">弹性最大的一只（铜钴双驱动），8/14早盘研判原计划"反弹18.8~19.2减1/3"，本计划沿用；反弹时先落1/3最优先。</div>
+</div>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">③ 招商证券 <span class="tag tag-amber">浮亏最深 -9.1%</span></span>
+    <span class="info">5手@19.840 ｜ 收18.04 ｜ 回本需+10%</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">档1 · 反弹即减</div><div class="p">18.5 ~ 18.8</div><div class="v">减2手 回笼≈3,700</div></div>
+    <div class="tier"><div class="t">档2 · 回本区</div><div class="p">19.5 ~ 20.0</div><div class="v">减2手 回笼≈3,900</div></div>
+    <div class="tier"><div class="t">档3</div><div class="p">21.0+</div><div class="v">减1手 回笼≈2,100</div></div>
+  </div>
+  <div class="def">防守位：<b>破17.7 减1手</b>（不等反弹，先止损1手降风险）</div>
+  <div class="note">券商弹性大，若下周大盘放量上攻（央行万亿逆回购利好大金融），招商反弹会快；但浮亏最深，回本优先，不赌反转。</div>
+</div>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">④ 歌尔股份 <span class="tag tag-blue">利润仓 浮盈+440%</span></span>
+    <span class="info">1手@4.045 ｜ 收21.88 ｜ 已破22.27加速线</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">止盈 · 反弹了结</div><div class="p">22.5 ~ 23.5</div><div class="v">减1手 回笼≈2,300</div></div>
+    <div class="tier"><div class="t">回撤止盈线</div><div class="p">跌破 21.0</div><div class="v">自高点回撤6% 全出</div></div>
+    <div class="tier"><div class="t">重估线</div><div class="p">跌破 20.5</div><div class="v">v3区间下沿，重估</div></div>
+  </div>
+  <div class="def">防守位：<b>破21.0 全出（回撤止盈），不等22.5目标位</b></div>
+  <div class="note">只有1手、成本4.045，任何价位都是大赚；8/13起已破22.27加速线，趋势转弱信号出现——利润仓落袋优先，不做"再创新高"博弈。</div>
+</div>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">⑤ 云南白药 <span class="tag tag-green">防御底仓</span></span>
+    <span class="info">4手@50.685 ｜ 收50.03 ｜ 浮亏-1.3%</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">档1</div><div class="p">52.5 ~ 53.5</div><div class="v">减1手 回笼≈5,300</div></div>
+    <div class="tier"><div class="t">档2</div><div class="p">55 ~ 56</div><div class="v">减1手 回笼≈5,500</div></div>
+    <div class="tier"><div class="t">档3</div><div class="p">57+</div><div class="v">减1手；留1手底仓</div></div>
+  </div>
+  <div class="def">防守位：<b>破49 减1手观察</b></div>
+  <div class="note">危机红灯时的防御底仓之一，至少保留1手（≈5,000市值）作为避险压舱石，不全部止盈。</div>
+</div>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">⑥ 国电南瑞 <span class="tag tag-green">防御+今日加仓</span></span>
+    <span class="info">5手@23.854 ｜ 收23.23 ｜ 浮亏-2.6% ｜ 8/14加至5手</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">档1 · 回本区</div><div class="p">24.5 ~ 25.0</div><div class="v">减1~2手 回笼≈2,500</div></div>
+    <div class="tier"><div class="t">档2</div><div class="p">26 ~ 27</div><div class="v">减2手 回笼≈5,300</div></div>
+    <div class="tier"><div class="t">档3</div><div class="p">28+</div><div class="v">减1手；留1手底仓</div></div>
+  </div>
+  <div class="def">防守位：<b>破23.0 减1手</b></div>
+  <div class="note">今日加仓摊低成本至23.854，回本区24.5~25即触发档1，兑现摊薄收益。</div>
+</div>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">⑦ 国投电力 <span class="tag tag-green">防御持有</span></span>
+    <span class="info">4手@13.970 ｜ 收13.78 ｜ 浮亏-1.4%</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">档1</div><div class="p">14.5 ~ 14.8</div><div class="v">减1手 回笼≈1,460</div></div>
+    <div class="tier"><div class="t">档2</div><div class="p">15.5 ~ 15.8</div><div class="v">减1手 回笼≈1,560</div></div>
+    <div class="tier"><div class="t">档3</div><div class="p">16.3+</div><div class="v">减1手；留1手底仓</div></div>
+  </div>
+  <div class="def">防守位：<b>破13.5 减1手</b></div>
+  <div class="note">防御公用事业属性，波动小、止盈节奏慢；留1手底仓。</div>
+</div>
+
+<div class="stock">
+  <div class="stock-head">
+    <span class="name">⑧ 中国中车 <span class="tag tag-green">防御持有</span></span>
+    <span class="info">4手@5.728 ｜ 收5.88 ｜ 浮盈+2.7%</span>
+  </div>
+  <div class="grid3">
+    <div class="tier"><div class="t">档1</div><div class="p">6.0 ~ 6.1</div><div class="v">减1手 回笼≈605</div></div>
+    <div class="tier"><div class="t">档2</div><div class="p">6.3 ~ 6.5</div><div class="v">减1手 回笼≈640</div></div>
+    <div class="tier"><div class="t">档3</div><div class="p">6.8+</div><div class="v">减1手；留1手底仓</div></div>
+  </div>
+  <div class="def">防守位：<b>破5.5 减1手</b></div>
+  <div class="note">8/12已在6.0~6.1减过1手（成本摊至5.728），本次同价位的档1是延续原计划。</div>
+</div>
+
+<h2 class="sec">四、执行纪律与风险提示</h2>
+<div class="rule">
+  <ul>
+    <li><b>触发即执行，不贪"再等等"</b>：档1是回笼现金的关键，到价就挂单减仓；宁可在档2少赚，不让现金一直趴着。</li>
+    <li><b>满仓禁新开仓/加仓</b>：本轮只做止盈与防守，任何低吸挂单一律取消，直到现金恢复到30%+。</li>
+    <li><b>防守位优先于止盈位</b>：若破位线与止盈位同周出现（先跌后反弹），先执行破位减仓，再视反弹重新挂档1。</li>
+    <li><b>危机四警报线（每周五对照）</b>：10Y日债破3% / 美元日元站稳178~180 / HY信用利差破3% / 存储背离修复——任一触发=黄灯升级，止盈档位整体下调一档、加速兑现；两条以上+信贷信号=红灯，仅留白药/中车/南瑞/歌尔底仓，其余清仓等右侧。</li>
+    <li><b>触发位为8/14收盘锚定</b>：下周一开盘前按实际行情微调±1~2%；本周末补跑提示词D（区间v3→v4）与提示词E后，若区间重大变化再校准一次。</li>
+    <li><b>单日纪律</b>：每只止盈单日≤1档，不连续追卖；回笼资金暂存现金，不立即再买入。</li>
+  </ul>
+</div>
+
+<div class="disclaimer">
+  免责声明：本计划仅供个人投资研究与操作参考，不构成任何投资建议。市场有风险，投资需谨慎；所有触发价位为基于8/14收盘数据的静态锚定，实际执行请以实时行情与自身风险承受能力为准。股市有风险，入市需谨慎。
+</div>
+
+</div>
+</body>
+</html>
