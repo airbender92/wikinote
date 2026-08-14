@@ -1,0 +1,19 @@
+{
+  "name": "zero",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "serve-handler": "^6.1.7",
+    "ws": "^8.21.3",
+    "yargs": "^18.1.0",
+    "zeromq": "^6.6.0"
+  }
+}
