@@ -1,0 +1,19 @@
+{
+  "name": "historysvc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "amqplib": "^2.0.1",
+    "JSONStream": "^1.3.5",
+    "level": "^10.0.0",
+    "monotonic-timestamp": "^0.0.9"
+  }
+}
