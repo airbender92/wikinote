@@ -3,6 +3,7 @@ import staticHandler from 'serve-handler'
 import { WebSocketServer, WebSocket  } from 'ws';
 import yargs from 'yargs';
 import zmq from 'zeromq'
+import { hideBin } from 'yargs/helpers'
 
 const server = createServer((req, res) => {
     return staticHandler(req, res, {public: 'www'})
@@ -10,12 +11,16 @@ const server = createServer((req, res) => {
 
 let pubSocket
 
+const argv = yargs(hideBin(process.argv)).parse()
+
+
+
 async function initializeSockets () {
     pubSocket = new zmq.Publisher();
-    await pubSocket.bind(`tcp://127.0.0.1:${yargs.argv.pub}`)
+    await pubSocket.bind(`tcp://127.0.0.1:${argv.pub}`)
 
     const subSocket = new zmq.Subscriber();
-    const subPorts = [].concat(yargs.argv.sub)
+    const subPorts = [].concat(argv.sub)
     for(const port of subPorts){
         console.log(`Subscribing to ${port}`)
         subSocket.connect(`tcp://127.0.0.1:${port}`)
@@ -24,7 +29,7 @@ async function initializeSockets () {
 
     for await (const [msg] of subSocket){
         console.log(`Message from another server: ${msg}`)
-        boradcast(msg.toString().split(' ')[1])
+        broadcast(msg.toString().split(' ')[1])
     }
 }
 
@@ -35,17 +40,18 @@ wss.on('connection', client => {
     console.log('Client connected')
     client.on('message', msg => {
         console.log(`Message: ${msg}`)
-        boradcast(msg)
+        broadcast(msg)
         pubSocket.send(`chat ${msg}`)
     })
 })
 
 function broadcast(msg){
-    for(const clinet of wss.clients){
+    for(const client of wss.clients){
        if(client.readyState === WebSocket.OPEN){
             client.send(msg);
         }
     }
 }
 
-server.listen(yargs.argv.http || 8080)
+// 之后使用 argv.http
+server.listen(argv.http || 8080)
