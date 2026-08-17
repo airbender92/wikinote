@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>午盘研判 2026-08-17（周一）</title>
+<style>
+  :root{
+    --up:#e03131; --down:#2f9e44; --flat:#666;
+    --bg:#f7f8fa; --card:#ffffff; --border:#e5e8ee;
+    --text:#1a2332; --sub:#6b7686; --accent:#1a56db;
+    --warn:#e8590c; --danger:#c92a2a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif; line-height:1.65; padding:20px;}
+  .wrap{max-width:1080px; margin:0 auto;}
+  .header{background:linear-gradient(135deg,#1a56db 0%,#1e3a8a 100%); color:#fff; border-radius:14px; padding:26px 30px; margin-bottom:20px;}
+  .header h1{font-size:26px; letter-spacing:1px;}
+  .header .meta{font-size:13px; opacity:.85; margin-top:8px;}
+  .badge{display:inline-block; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); border-radius:20px; padding:2px 12px; font-size:12px; margin-right:8px;}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:18px; box-shadow:0 1px 3px rgba(16,24,40,.04);}
+  .card h2{font-size:17px; margin-bottom:12px; padding-left:10px; border-left:4px solid var(--accent);}
+  .card h3{font-size:15px; margin:14px 0 8px;}
+  .up{color:var(--up); font-weight:700;}
+  .down{color:var(--down); font-weight:700;}
+  .flat{color:var(--flat);}
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:8px 0;}
+  th{background:#f0f3f8; text-align:left; padding:8px 10px; border:1px solid var(--border); font-weight:600; white-space:nowrap;}
+  td{padding:8px 10px; border:1px solid var(--border); vertical-align:top;}
+  .tag{display:inline-block; border-radius:4px; padding:1px 8px; font-size:12px; color:#fff; margin-right:4px;}
+  .t-red{background:var(--up);} .t-green{background:var(--down);} .t-gray{background:#8a94a3;} .t-blue{background:var(--accent);} .t-orange{background:var(--warn);}
+  .tldr{background:#fff8e6; border:1px solid #f3d98b; border-radius:10px; padding:14px 18px; margin-bottom:14px;}
+  .tldr li{margin:6px 0; font-size:14px;}
+  .alert{background:#fff5f5; border:1px solid #f5c2c2; border-radius:10px; padding:14px 18px;}
+  .warnbox{background:#fff9f0; border:1px solid #f3d9b8; border-radius:10px; padding:12px 16px; font-size:13.5px;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr;}}
+  ul.tight li{margin:5px 0; font-size:13.5px;}
+  .src{color:var(--sub); font-size:12px;}
+  .pos{display:inline-block; background:#eef2ff; color:#1a56db; border-radius:4px; padding:1px 8px; font-size:12px;}
+  .done{display:inline-block; background:#e6f7ee; color:#2b8a3e; border-radius:4px; padding:1px 8px; font-size:12px; font-weight:700;}
+  .kline svg{width:100%; height:auto;}
+  .foot{margin-top:20px; color:var(--sub); font-size:12px; text-align:center; border-top:1px solid var(--border); padding-top:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ 头部 ============ -->
+<div class="header">
+  <h1>📊 午盘研判 · 2026年8月17日（周一）</h1>
+  <div class="meta">
+    <span class="badge">A股 · 沪深主板</span>
+    <span class="badge">洛钼已减4手 ✅ 现金≈7.5%</span>
+    <span class="badge">生成 11:59 · 数据基准 8/17午盘</span>
+  </div>
+</div>
+
+<!-- ============ TL;DR ============ -->
+<div class="card">
+  <h2>一、TL;DR（结论先行）</h2>
+  <div class="tldr">
+    <ol>
+      <li><b>大盘超预期走强：上证午收 3960.19（+0.84%）</b>，一举突破MA5=3940、冲出开盘预判上沿3930，开盘预判"基准平开3880~3930"未兑现，实际兑现<b>偏多情景</b>；半日成交 1.50万亿、较昨日同期<b>放量1097亿</b>（全天或冲2.8万亿+）。</li>
+      <li><b>极致分化：科创50 +3.04% vs 白酒崩盘</b>——半导体/PCB/先进封装/存储/CPO狂欢（长鑫+9%、深科技+4.1%、长电+5.0%、太辰光20cm）；白酒被<b>茅台中报暴雷</b>带崩（H1净利<b>-1.95%</b>、汇金证金退出十大股东，-4.23%失守1300元）。全市场3853涨/1504跌、80涨停/1跌停。</li>
+      <li><b>持仓8只7红1绿，洛钼+2.98%最强</b>：<b>上午12手→8手档1止盈（18.8~19.2）已执行 ✅</b>，回笼现金≈7.5%，"分批止盈恢复现金"路径正式启动；中车5.99摸6.00档1触发边缘；招商18.16逼近18.5档1；南瑞站回MA60=23.40修复；白药-0.58%破20日低走弱。</li>
+      <li><b>今日引爆点不是7月宏观数据，而是个股雷</b>：10:00经济数据"供强需弱"（生产端强、消费端弱）已被市场消化；真正的炸弹是茅台周末业绩暴雷——白酒链低吸标的（汾酒/伊利/泸州老窖）<b>勿接飞刀</b>。</li>
+      <li><b>午后指令（只减不追）</b>：中车<b>6.00~6.10减1手</b>（触发在即）｜招商<b>18.5~18.8减2手</b>（挂单）｜洛钼今日档1已执行、<b>不再动</b>（单日单票1档纪律）｜白药守49、破位减1手｜其余观望，防守位不变。</li>
+      <li><b>低吸清单今日零到价零触发</b>：深科技/长电超区间10%勿追、药明创新高（分位91.4%）勿追、宁德395未回踩370以下（<b>355~360是8/6旧区间已上修</b>，"等不再创新低"条件不满足）、茅台到1300下方但属"逻辑恶化"不接。</li>
+    </ol>
+  </div>
+  <div class="alert">
+    ⚠️ <b>纪律提醒</b>：现金≈7.5%仍属高仓位，<b>禁止新开仓/加仓</b>；今日卖出唯一路径=档1止盈+防守位执行；午后不因踏空追高科技主线（半导体估值已透支）；15:00国新办发布会若有增量政策，尾盘可能异动，但不改"数据日不加仓"纪律。
+  </div>
+</div>
+
+<!-- ============ 上午行情总览 ============ -->
+<div class="card">
+  <h2>二、上午行情总览（截至11:30午盘）</h2>
+  <h3>1. 指数表现</h3>
+  <table>
+    <tr><th>指数</th><th>午盘价</th><th>涨跌幅</th><th>今开/高/低</th><th>量比</th><th>说明</th></tr>
+    <tr><td>上证指数</td><td>3960.19</td><td class="up">+0.84%</td><td>3930.10 / 3961.82 / 3924.47</td><td>1.17</td><td><b>突破MA5=3940</b>，逼近日内3961高点，距MA60=3986仅0.7%</td></tr>
+    <tr><td>深证成指</td><td>14534.46</td><td class="up">+1.26%</td><td>14399.20 / 14541.01 / 14348.47</td><td>1.23</td><td>科技权重带动</td></tr>
+    <tr><td>创业板指</td><td>3674.68</td><td class="up">+1.33%</td><td>3632.78 / 3678.84 / 3604.17</td><td>1.21</td><td>半导体/医药权重强</td></tr>
+    <tr><td>科创50</td><td>1769.93</td><td class="up">+3.04%</td><td>1721.55 / 1771.72 / 1718.61</td><td>1.27</td><td><b>领涨全场</b>——半导体/存储/先进封装狂欢</td></tr>
+    <tr><td>沪深300</td><td>4701.19</td><td class="up">+0.76%</td><td>4672.28 / 4703.03 / 4662.72</td><td>1.12</td><td>权重温和</td></tr>
+    <tr><td>上证50</td><td>2932.11</td><td class="up">+0.55%</td><td>2913.68 / 2933.81 / 2907.71</td><td>1.02</td><td>银行保险护盘式小涨</td></tr>
+  </table>
+
+  <h3>2. 量能与广度</h3>
+  <div class="grid2">
+    <div class="warnbox">
+      <b>半日成交额：约1.50万亿</b>（14971亿）<br>
+      较昨日同期<b>放量约1097亿（+7.9%）</b>｜昨日周五全天2.14万亿<br>
+      <b>推演</b>：午后若维持上午节奏，全天大概率 <b>2.7~3.0万亿</b>，满足开盘预判"放量上攻需≥2.5万亿"阈值 —— 量价配合，属有效放量而非缩量虚涨。
+    </div>
+    <div class="warnbox">
+      <b>涨跌家数：3853涨 / 1504跌 / 平盘若干</b><br>
+      <b>涨停80家 / 跌停1家</b>（界面新闻/每经 11:45口径，东财涨停池78家）<br>
+      普涨但<b>结构性分化</b>：涨集中在科技/农业/大消费题材，跌集中在白酒/影视/游戏/算力租赁。<br>
+      <b>情绪温度</b>：涨停80家属活跃偏热，但未到连板亢奋（最高板一鸣食品6天5板）。
+    </div>
+  </div>
+
+  <h3>3. 上午板块轮动主线（与开盘预判对照）</h3>
+  <table>
+    <tr><th>方向</th><th>板块/概念</th><th>代表标的</th><th>驱动</th></tr>
+    <tr><td rowspan="4" class="up">领涨</td><td>先进封装 / 半导体 / 电子化学品</td><td>德邦科技、通富微电（触板）、长鑫科技+9%（市值破4万亿）</td><td>国产替代+景气定价，科创50权重</td></tr>
+    <tr><td>PCB / CPO / 光模块</td><td>太辰光20cm涨停、中石科技2连板、华正新材2连板、亨通光电+2.18%</td><td>映射隔夜美股光通信（应用光电+15%）</td></tr>
+    <tr><td>存储芯片</td><td>普冉股份、盈方微涨停；深科技+4.13%、长电科技+4.97%</td><td>存储链情绪加速（今日韩国休市无外锚）</td></tr>
+    <tr><td>创新药/CRO</td><td>药明康德A+H<b>齐创历史新高</b>（+4.81%，市值破5000亿）、华森制药涨停</td><td>上半年License-out超1100亿美元</td></tr>
+    <tr><td class="flat">异动</td><td>农业种植 / 大消费</td><td>金健米业、农发种业、京粮控股涨停；一鸣食品6天5板</td><td>摩根大通警告全球粮食危机（霍尔木兹+厄尔尼诺）；8/18县域消费发布会预告</td></tr>
+    <tr><td rowspan="3" class="down">领跌</td><td>白酒</td><td><b>贵州茅台-4.23%失守1300元</b>、古井贡酒/迎驾贡酒-5%+</td><td>茅台H1净利<b>-1.95%</b>暴雷+汇金证金退出十大股东</td></tr>
+    <tr><td>影视院线 / 游戏</td><td>北京文化跌停、儒意电影/中国电影下挫</td><td>情绪退潮</td></tr>
+    <tr><td>算力租赁 / AI医疗</td><td>汇金股份、城地香江-7%+</td><td>上周热点退潮，资金切向硬件</td></tr>
+  </table>
+  <p class="src">数据来源：腾讯行情/东财push2接口（8/17 11:30午盘）；界面新闻、每日经济新闻 8/17 11:45；药明康德价格 usXYDK 口径。</p>
+</div>
+
+<!-- ============ 持仓午盘涨跌图 ============ -->
+<div class="card kline">
+  <h2>三、持仓8只 · 午盘涨跌图（红涨绿跌）</h2>
+  <svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei,sans-serif">
+    <rect x="0" y="0" width="1000" height="380" fill="#fafbfc"/>
+    <text x="20" y="30" font-size="16" font-weight="bold" fill="#1a2332">持仓午盘涨跌幅 vs 成本浮盈（数据：8/17 11:30）</text>
+    <!-- 0轴 -->
+    <line x1="320" y1="50" x2="320" y2="345" stroke="#8a94a3" stroke-width="1.5"/>
+    <text x="296" y="46" text-anchor="end" font-size="11" fill="#6b7686">0%</text>
+    <!-- 刻度 -->
+    <g font-size="10" fill="#6b7686">
+      <text x="130" y="46" text-anchor="middle">-1%</text>
+      <text x="425" y="46" text-anchor="middle">+1%</text>
+      <text x="530" y="46" text-anchor="middle">+2%</text>
+      <text x="635" y="46" text-anchor="middle">+3%</text>
+    </g>
+    <g font-size="12.5">
+      <!-- 函数：x = 320 + pct*105 (1% = 105px) -->
+      <!-- 洛钼 +2.98% -->
+      <text x="20" y="82" fill="#1a2332">洛阳钼业 8手</text>
+      <rect x="320" y="68" width="313" height="22" rx="4" fill="#e03131" opacity="0.85"/>
+      <text x="640" y="84" fill="#e03131" font-weight="bold">+2.98%　成本18.284 浮盈+3.9% <tspan font-weight="normal" fill="#2b8a3e">已减4手✅</tspan></text>
+      <!-- 中车 +1.87% -->
+      <text x="20" y="117" fill="#1a2332">中国中车 4手</text>
+      <rect x="320" y="103" width="196" height="22" rx="4" fill="#e03131" opacity="0.8"/>
+      <text x="522" y="119" fill="#e03131" font-weight="bold">+1.87%　摸6.00档1边缘</text>
+      <!-- 南瑞 +0.99% -->
+      <text x="20" y="152" fill="#1a2332">国电南瑞 5手</text>
+      <rect x="320" y="138" width="104" height="22" rx="4" fill="#e03131" opacity="0.75"/>
+      <text x="430" y="154" fill="#e03131" font-weight="bold">+0.99%　站回MA60</text>
+      <!-- 比亚迪 +0.98% -->
+      <text x="20" y="187" fill="#1a2332">比亚迪 3手</text>
+      <rect x="320" y="173" width="103" height="22" rx="4" fill="#e03131" opacity="0.75"/>
+      <text x="429" y="189" fill="#e03131" font-weight="bold">+0.98%　未到91.5档1</text>
+      <!-- 国投 +0.94% -->
+      <text x="20" y="222" fill="#1a2332">国投电力 4手</text>
+      <rect x="320" y="208" width="99" height="22" rx="4" fill="#e03131" opacity="0.75"/>
+      <text x="425" y="224" fill="#e03131" font-weight="bold">+0.94%</text>
+      <!-- 招商 +0.67% -->
+      <text x="20" y="257" fill="#1a2332">招商证券 5手</text>
+      <rect x="320" y="243" width="70" height="22" rx="4" fill="#e03131" opacity="0.7"/>
+      <text x="396" y="259" fill="#e03131" font-weight="bold">+0.67%　逼近18.5档1</text>
+      <!-- 歌尔 +0.37% -->
+      <text x="20" y="292" fill="#1a2332">歌尔股份 1手</text>
+      <rect x="320" y="278" width="39" height="22" rx="4" fill="#e03131" opacity="0.65"/>
+      <text x="365" y="294" fill="#e03131" font-weight="bold">+0.37%　缩量</text>
+      <!-- 白药 -0.58% -->
+      <text x="20" y="327" fill="#1a2332">云南白药 4手</text>
+      <rect x="259" y="313" width="61" height="22" rx="4" fill="#2f9e44" opacity="0.8"/>
+      <text x="190" y="329" text-anchor="end" fill="#2f9e44" font-weight="bold">-0.58%　破20日低</text>
+    </g>
+  </svg>
+  <p class="src">注：浮盈按8/17午盘价对持仓成本计算；洛钼成本已按用户口径更新为18.284（8手）。</p>
+</div>
+
+<!-- ============ 上午复盘 ============ -->
+<div class="card">
+  <h2>四、上午复盘：开盘预判验证情况</h2>
+  <table>
+    <tr><th>开盘预判</th><th>实际（午盘）</th><th>结论</th></tr>
+    <tr><td>平开 ±0.2%，区间 3880～3930（基准55%）</td><td>高开0.07%（3930.10），单边走强至3960.19，<b>突破MA5 3940</b></td><td><span class="tag t-red">未兑现</span> 实际走<b>偏多情景</b>（25%概率档），比预判强</td></tr>
+    <tr><td>7月经济数据定全天方向（10:00）</td><td>数据"供强需弱"：生产端强（半导体/高技制驱动）、消费弱——被市场定价为利好科技、利空白酒</td><td><span class="tag t-blue">基本验证</span> 但真正引爆点是<b>茅台个股雷</b>，非宏观数据本身</td></tr>
+    <tr><td>放量上攻需≥2.5万亿；昨日缩量2.14万亿属钝化</td><td>半日1.50万亿、放量1097亿 → 全天或2.8万亿+</td><td><span class="tag t-blue">超预期</span> 放量有效，量价配合</td></tr>
+    <tr><td>存储链只观察不追高（闪迪周+35%过热）</td><td>深科技+4.13%、长电+4.97%、长鑫+9%——<b>情绪加速但不追是对的</b>（均超低吸区间上沿）</td><td><span class="tag t-blue">验证</span> 未挂单=正确，追高即接盘</td></tr>
+    <tr><td>油气/军工/黄金高开（地缘）</td><td>中国海油+0.73%温和上涨，<b>未成主线</b>；农业涨停潮反而更抢眼</td><td><span class="tag t-orange">低于预期</span> 地缘溢价让位给科技/农业题材</td></tr>
+    <tr><td>持仓档1止盈为唯一路径：洛钼18.8~19.2减4手</td><td><b>洛钼上午最高19.05、收18.99（+2.98%），用户已执行减4手 ✅</b>（12手→8手）</td><td><span class="tag t-green">完美兑现</span> 首笔档1止盈落地，现金回笼≈7.5%</td></tr>
+    <tr><td>中车6.0~6.1减1手（触发边缘）</td><td>中车午收5.99、<b>最高6.00</b>——档1下沿已摸</td><td><span class="tag t-orange">待触发</span> 午后6.00~6.10区间内执行</td></tr>
+    <tr><td>招商18.5~18.8减2手</td><td>招商午收18.16（+0.67%），最高18.18</td><td><span class="tag t-orange">接近未触发</span> 距档1差0.34元</td></tr>
+  </table>
+
+  <h3>超预期 / 低于预期小结</h3>
+  <div class="grid2">
+    <div class="warnbox">
+      <b>✅ 超预期</b>
+      <ul class="tight">
+        <li>指数力度：突破3940后逼近平盘区上沿+量能放量，比预判强一档</li>
+        <li>科创50 +3.04%：半导体景气定价被彻底点燃</li>
+        <li>洛钼+2.98%：持仓最强，档1顺利执行</li>
+        <li>南瑞站回MA60=23.40：技术修复快于预期</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <b>❌ 低于预期</b>
+      <ul class="tight">
+        <li>茅台中报暴雷（净利-1.95%）带崩白酒——预判未纳入"个股业绩雷"路径</li>
+        <li>地缘油气未成主线（海油仅+0.73%），农业题材接棒</li>
+        <li>白药-0.58%破20日低49.94——防御仓在消费情绪杀跌中走弱</li>
+        <li>招商反弹力度不足（+0.67%），券商板块未启动</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 持仓逐只午后指令 ============ -->
+<div class="card">
+  <h2>五、持仓逐只 · 午后指令（观望/减仓/清仓/加仓 + 价位 + 防守位）</h2>
+  <table>
+    <tr><th>持仓</th><th>成本/午盘/浮盈</th><th>午后指令</th><th>触发价位</th><th>防守位（破位执行）</th><th>关键逻辑</th></tr>
+    <tr>
+      <td><b>洛阳钼业</b> 8手<br><span class="done">上午已减4手 ✅</span></td>
+      <td>18.284 / 18.99<br><span class="up">+3.9%</span></td>
+      <td><b>持</b>（今日档1已执行，<b>不再动</b>）</td>
+      <td class="up">下一档 20 元减3~4手（中报8/20前）</td>
+      <td class="down">18.0（破位减1/3~1/2=3~4手）</td>
+      <td>盘中高19.05已落在18.8~19.2档1区；中报H1预增79~90%为8/20催化剂；<b>单日单票1档纪律</b>——上午完成档1后午后无论怎么冲都不重复减</td>
+    </tr>
+    <tr>
+      <td><b>中国中车</b> 4手</td>
+      <td>5.728 / 5.99<br><span class="up">+4.6%</span></td>
+      <td><b>减仓</b>（触发在即）</td>
+      <td class="up">6.00~6.10 减1手（4→3手）</td>
+      <td class="down">5.5（破位减1手）</td>
+      <td>午收5.99已摸6.00整数关，量比1.49放量；8/20中报（预增60~80%）+大股东增持1.5~3亿，披露前冲高兑现</td>
+    </tr>
+    <tr>
+      <td><b>招商证券</b> 5手</td>
+      <td>19.840 / 18.16<br><span class="down">-8.5%</span></td>
+      <td><b>减仓</b>（挂单等待）</td>
+      <td class="up">18.5~18.8 减2手<br>19.5~20 再减2手</td>
+      <td class="down">17.7（破位减1手）</td>
+      <td>逼近档1仅差0.34元；今日券商板块未启动（中信+0.22%），弱β不恋战——<b>午后即使券商不异动，18.5附近也坚决执行</b>，等"解套"是错觉</td>
+    </tr>
+    <tr>
+      <td><b>云南白药</b> 4手</td>
+      <td>50.685 / 49.74<br><span class="down">-1.9%</span></td>
+      <td><b>观望偏防守</b></td>
+      <td class="up">反弹53/55/57 梯度减1手</td>
+      <td class="down">49（破位减1手）</td>
+      <td><b>破20日低49.94</b>，白酒崩盘拖累消费情绪；白药现占仓位≈19.8%为第二重仓，若午后破49须执行防守减仓（降集中度+控情绪扩散）</td>
+    </tr>
+    <tr>
+      <td><b>比亚迪</b> 3手</td>
+      <td>89.187 / 89.77<br><span class="up">+0.7%</span></td>
+      <td><b>观望</b></td>
+      <td class="up">91.5~92.5 减1手</td>
+      <td class="down">88.5（破位减1手）</td>
+      <td>反弹力度一般（高90.44），低88.61未破防守；H1+24.4%已披露，反弹到均线区（MA20=91.99附近）即兑现</td>
+    </tr>
+    <tr>
+      <td><b>国电南瑞</b> 5手</td>
+      <td>23.854 / 23.46<br><span class="down">-1.7%</span></td>
+      <td><b>观望</b></td>
+      <td class="up">25.5/27/28.5 梯度减1~2手</td>
+      <td class="down">23.0（破位减1~2手）</td>
+      <td><b>站回MA60=23.40</b>修复✅；回购5~10亿托底；距梯度减仓位还远，持</td>
+    </tr>
+    <tr>
+      <td><b>国投电力</b> 4手</td>
+      <td>13.970 / 13.91<br><span class="down">-0.4%</span></td>
+      <td><b>观望</b></td>
+      <td class="up">14.8/15.5/16.3 梯度减1手</td>
+      <td class="down">13.5（破位减1手）</td>
+      <td>小幅反弹（高14.05），未到档1；Q2发电量-14.75%，8/31中报或负增长，反弹即减</td>
+    </tr>
+    <tr>
+      <td><b>歌尔股份</b> 1手</td>
+      <td>4.045 / 21.96<br><span class="up">+443%</span></td>
+      <td><b>观望</b>（弱势反弹）</td>
+      <td class="up">22.5~23.5 减1手（清仓）<br>或自高点回撤8%止盈</td>
+      <td class="down">21.0（破位全出）</td>
+      <td>量比0.69缩量反抽，高22.00未到止盈区；8/21中报，弱势反弹即走，<b>不恋战</b></td>
+    </tr>
+  </table>
+  <div class="warnbox" style="margin-top:10px;">
+    <b>午后执行原则</b>：① 只减不追——现金≈7.5%不足以新开仓，且午后科技过热勿接力；② 触发价与防守价冲突时防守优先；③ 15:00国新办发布会前30分钟不挂新单（数据落地窗口）；④ 单日单票最多1档止盈（洛钼今日额度已用完）；⑤ 每笔卖出后现金继续沉淀，不急于再配置。
+  </div>
+</div>
+
+<!-- ============ 低吸挂单检查 ============ -->
+<div class="card">
+  <h2>六、低吸挂单检查：今日到价了吗？触发条件满足吗？</h2>
+  <div class="alert" style="margin-bottom:12px;">
+    ⚠️ <b>结论：今日低吸清单零到价、零触发</b>——即便到价，满仓无弹药也不构成买入指令（等止盈回笼后单独确认）。区间一律以《买入.md》v5（8/15校验）为准，<b>勿用8/6旧区间记忆挂单</b>。
+  </div>
+  <table>
+    <tr><th>标的</th><th>午盘价</th><th>v5区间</th><th>触发条件满足？</th><th>结论</th></tr>
+    <tr><td>宁德时代【🔒创业板不可交易】</td><td>395.46（+0.39%）</td><td>370~400（中低位观察，分位66.5%）</td><td><span class="tag t-red">不满足</span> 未回踩370以下；今日未创新低但谈不上"底部确认"</td><td><b>不挂</b>。用户记忆的355~360为8/6旧区间（v2），v5已上修——按旧区间挂单=永远成交不了的死单，且现价395离370还差6.4%</td></tr>
+    <tr><td>贵州茅台</td><td>1285.18（-4.23%）</td><td>1200~1300（分位49.1%）</td><td><span class="tag t-orange">到价但条件恶化</span> 跌破1300进入区间上沿</td><td><b>不接</b>。触发理由已变：H1净利-1.95%+汇金证金退出十大股东=逻辑恶化非错杀；"等回踩"须升级为"等企稳"（连续3日不创新低+白酒板块止跌）</td></tr>
+    <tr><td>深科技</td><td>41.89（+4.13%）</td><td>36~40</td><td><span class="tag t-red">不满足</span> 超上沿4.7%，存储过热</td><td><b>不追</b>。韩国休市无外锚，情绪加速段，量比1.87放量但风险收益比差</td></tr>
+    <tr><td>长电科技</td><td>82.62（+4.97%）</td><td>70~78（分位56.1%）</td><td><span class="tag t-red">不满足</span> 超上沿5.9%，PE85倍</td><td><b>不追</b>。存储链过热典型样本</td></tr>
+    <tr><td>药明康德</td><td>166.90（+4.81%）<b>历史新高</b></td><td>118~128（分位91.4%）</td><td><span class="tag t-red">不满足</span> 高位勿追</td><td><b>不追</b>。距现价跌回区间需-23%，纯观察</td></tr>
+    <tr><td>紫金矿业</td><td>33.26（+2.24%）</td><td>30~33</td><td><span class="tag t-orange">接近</span> 超上沿0.8%贴边</td><td>等回踩30~31（H1预增68%但今日不追）</td></tr>
+    <tr><td>中国海油</td><td>32.91（+0.73%）</td><td>30.5~32.5</td><td><span class="tag t-orange">接近</span> 超上沿1.3%</td><td>等回踩30.5~31；地缘溢价波动大，勿追</td></tr>
+    <tr><td>亨通光电</td><td>64.35（+2.18%）</td><td>52~62（上修后）</td><td><span class="tag t-red">不满足</span> 超上沿3.8%</td><td>CPO主线但已连涨，等回踩58~62</td></tr>
+    <tr><td>北方华创</td><td>760.67（+2.98%）</td><td>650~750（分位65%）</td><td><span class="tag t-red">不满足</span> 超上沿1.4%+PE96倍</td><td><b>严禁追高</b></td></tr>
+    <tr><td>中信证券</td><td>27.37（+0.22%）</td><td>24.5~27.5</td><td><span class="tag t-orange">区间内上沿</span></td><td>贴边，等回踩27以下再考虑</td></tr>
+    <tr><td>中科曙光</td><td>89.65（+0.32%）</td><td>82~92</td><td><span class="tag t-blue">区间内</span></td><td>区间中部，可等回踩85以下分批（回笼资金后）</td></tr>
+    <tr><td>山西汾酒/伊利股份</td><td>汾酒随白酒板块大跌 / 伊利25.23（-1.10%）</td><td>汾酒115~130 / 伊利24~26</td><td><span class="tag t-orange">区间内但情绪差</span></td><td>白酒崩盘情绪未止，<b>勿接飞刀</b>，等板块企稳</td></tr>
+  </table>
+  <p class="src">区间依据：《买入.md》v5（2026-08-15校验，数据截至8/14收盘）；宁德"355~360"为8/6 v2旧区间说明，已上修至370~400。</p>
+</div>
+
+<!-- ============ 午后盯盘 ============ -->
+<div class="card">
+  <h2>七、午后重点盯盘信号与风险</h2>
+  <div class="grid2">
+    <div>
+      <h3>📈 指数信号</h3>
+      <ul class="tight">
+        <li><b>上证3940（MA5）</b>：午后回踩3940不破=转强确认，持有档1不急于卖；跌破=冲高回落预警</li>
+        <li><b>3986（MA60）/ 4000整数关</b>：上方压力区，放量突破=主升，滞涨=兑现窗口</li>
+        <li><b>量能</b>：半日1.50万亿，午后若缩量至总量2.5万亿以下=动能衰减；若尾盘放量滞涨=警惕获利盘出逃</li>
+        <li><b>茅台走势</b>：午后是否止跌——权重股续跌会拖累指数尾盘</li>
+      </ul>
+    </div>
+    <div>
+      <h3>🎯 持仓关键价</h3>
+      <ul class="tight">
+        <li><b>中车</b>：6.00~6.10（档1，触发即减1手）｜5.5防守</li>
+        <li><b>招商</b>：18.5（档1挂单减2手）｜17.7防守</li>
+        <li><b>洛钼</b>：今日已执行档1不动；<b>18.0防守</b>（破位减3~4手）｜8/20中报前冲高可看20</li>
+        <li><b>白药</b>：<b>49关口</b>（破位减1手）——白酒情绪是否蔓延至医药</li>
+        <li><b>歌尔</b>：22.3~22.5（反弹压力）｜21.0全出线</li>
+        <li><b>比亚迪</b>：91.5~92.5（档1）｜88.5防守</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>⏰ 时间窗口</h3>
+      <ul class="tight">
+        <li><b>13:00~13:30</b>：午后开盘30分钟定午后方向，科技高位股易在此段跳水</li>
+        <li><b>15:00</b>：国新办发布会——7月经济数据官方解读，若有增量政策（降准/消费刺激）尾盘可能异动</li>
+        <li><b>14:30后</b>：尾盘权重护盘 vs 题材退潮切换</li>
+      </ul>
+    </div>
+    <div>
+      <h3>🔍 风险清单</h3>
+      <ul class="tight">
+        <li><b>存储/半导体过热回落</b>：韩国今日休市无外锚，深科技/长电/长鑫午后若放量跳水=情绪退潮第一信号，勿接</li>
+        <li><b>白酒蔓延</b>：茅台暴雷后白酒/消费/医药连锁杀跌风险（白药已破20日低）</li>
+        <li><b>农业题材退潮</b>：粮食危机为题材性炒作，午后炸板率高，勿追</li>
+        <li><b>8/19-20事件前</b>：美联储纪要+中车/洛钼中报+LPR——周中波动源，<b>披露前反弹到位即兑现，不赌利好</b></li>
+        <li><b>药明新高</b>：1260H地缘风险未消，历史新高位勿参与</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 大家没想到的点 ============ -->
+<div class="card">
+  <h2>八、💡 "大家没想到的点"</h2>
+  <ol class="tight">
+    <li><b>今日的炸弹不是7月宏观数据，而是茅台个股雷</b>：开盘预判把风险归为"7月数据偏弱→内需承压"，实际10:00数据"供强需弱"被市场顺利定价（科技涨、消费跌），<b>真正的杀跌源是周末茅台H1净利-1.95%+汇金/证金退出十大股东</b>——白酒崩盘（-4%~-5%）是"个股业绩雷→板块情绪扩散"，宏观数据反而成了背景板。这再次验证：中报季个股雷的杀伤力 > 宏观数据本身。</li>
+    <li><b>科创50 +3.04% vs 上证 +0.84%——极致分化的含金量要打问号</b>：半导体/PCB/存储狂欢发生在<b>韩国休市（无海力士/三星实时锚）</b>的真空期，纯情绪+题材驱动；深科技换手6.5%、长电换手6.6%、量比1.84~1.87——放量但无外锚，午后高位股随时可能跳水。你若按"放量突破"追进去，对手盘就是上午进场的获利盘。</li>
+    <li><b>洛钼是今天持仓里最强的，用户卖在了对的位置</b>：上午卖4手正好落在18.8~19.05档1区（午盘高19.05、收18.99），完美执行开盘预判"18.8~19.2减4手"。剩余8手@18.284浮盈+3.9%——<b>纪律的价值是"卖在计划内"，而不是"卖在最高点"</b>；午后冲20是下一档（8/20中报前），但今天不再动。</li>
+    <li><b>招商证券业绩翻倍（H1预增93~112%）今天只涨0.67%</b>：板块β（中信+0.22%）拖累个股α——业绩好≠股价涨，<b>等"解套"再卖是错觉，18.5档1触发必须执行</b>。这与比亚迪8/14"H1+24.4%仍破位"是同一课：利好落地≠支撑股价。</li>
+    <li><b>农业涨停潮的催化是摩根大通"粮食危机警告"</b>（霍尔木兹+厄尔尼诺推演明年粮食危机）——注意这是<b>题材</b>不是趋势：金健米业/农发种业/京粮控股涨停但基本面未变，炸板率高，跟风者大概率接盘；观察池内无对应标的，纯围观。</li>
+    <li><b>宁德"355~360等不再创新低"是8/6旧记忆，v5区间已上修到370~400</b>：现价395.46，按旧区间挂单=永远不成交的死单；按v5"回踩370以下+不再创新低"也不满足——<b>规则跟最新《买入.md》走，不跟记忆走</b>（8/11双汇纠错的同一条纪律）。</li>
+  </ol>
+</div>
+
+<div class="foot">
+  📌 数据基准：8/17午盘（11:30）腾讯行情/东财push2接口；外围消息标注北京时间与来源（界面新闻/每经/东财 8/17 11:45~12:00）。<br>
+  ⚠️ 免责声明：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。高仓位状态下严格执行"只减不追+档1止盈+防守位"纪律，不因踏空改变计划。
+</div>
+
+</div>
+</body>
+</html>
