@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btnPost">发送post请求</button>
+    <button id="btnGet">发送get请求</button>
+    <div id="result"></div>
+    <script>
+        const resultDom = document.getElementById('result');
+        document.getElementById('btnPost').onclick = function(){
+            const xhr = new XMLHttpRequest();
+            // 改动1：地址改为 /api
+            xhr.open('POST', 'http://localhost:8080/api', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            const sendData = 'name=张三&age=22'
+
+            xhr.onload = function(){
+                if(xhr.status >= 200 && xhr.status < 300){
+                    resultDom.innerHTML = 'POST响应：' + xhr.responseText
+                }
+            }
+
+            xhr.onerror = function(){
+                resultDom.innerText = '请求失败'
+            }
+
+            xhr.send(sendData)
+        }
+
+        document.getElementById('btnGet').onclick = function(){
+            const xhr = new XMLHttpRequest();
+            // 改动2：get请求地址改为 /api
+            xhr.open('GET', 'http://localhost:8080/api?nick=test&id=001', true);
+            xhr.onload = function(){
+                resultDom.innerText = 'GET响应：' + xhr.responseText
+            }
+            xhr.send()
+        }
+    </script>
+</body>
+</html>
