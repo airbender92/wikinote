@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "preinstall": "node preinstall.js",
     "dev": "npm run generate:menu && vite",
     "dev:watch": "concurrently \"npm run watch:menu\" \"vite\"",
     "build": "npm run generate:menu && vite build",
