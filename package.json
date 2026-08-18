@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "generate:menu": "node generateMenuConfig.cjs",
     "watch:menu": "nodemon --watch docs --ext md --exec \"npm run generate:menu\"",
-    "zip": "node zip-pack.js"
+    "zip": "node zip-pack.js",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "fuse.js": "^7.1.0",
@@ -22,11 +25,28 @@
     "vue": "^3.5.30"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
     "@vitejs/plugin-vue": "^6.0.5",
     "archiver": "^8.0.0",
     "concurrently": "^9.2.1",
     "cross-zip-cli": "^1.0.0",
+    "eslint": "^10.8.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "nodemon": "^3.1.14",
+    "prettier": "^3.9.6",
     "vite": "^8.0.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
