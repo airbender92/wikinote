@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交通银行数据中心 · 前端面试题库(详细解答版)</title>
+<style>
+:root{--bg:#f5f7fa;--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--primary:#1a56db;--primary-light:#e8eefc;--code-bg:#f8fafc;--ok:#067647;--accent:#b42318}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.8;padding-bottom:80px}
+header{background:linear-gradient(135deg,#123c8f,#1a56db 60%,#2e6bff);color:#fff;padding:36px 20px 30px;text-align:center}
+header h1{font-size:24px;margin-bottom:8px}
+header p{opacity:.92;font-size:13.5px;max-width:720px;margin:0 auto}
+.wrap{display:flex;max-width:1200px;margin:0 auto;padding:24px 16px;gap:24px;align-items:flex-start}
+.toc{position:sticky;top:16px;width:230px;flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;max-height:calc(100vh - 40px);overflow:auto;font-size:12.5px}
+.toc h4{font-size:13px;margin-bottom:8px;color:#123c8f}
+.toc a{display:block;color:#334155;text-decoration:none;padding:3px 6px;border-radius:6px}
+.toc a:hover{background:var(--primary-light);color:var(--primary)}
+.toc a.q{color:var(--muted);padding-left:16px;font-size:12px}
+main{flex:1;min-width:0}
+section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+.sec-title{font-size:19px;font-weight:700;color:#123c8f;padding-left:12px;border-left:4px solid var(--primary);margin-bottom:4px}
+.sec-desc{color:var(--muted);font-size:12.5px;margin-bottom:16px;padding-left:16px}
+.qtitle{font-size:15.5px;font-weight:700;margin:22px 0 8px;color:#1e293b;padding:10px 14px;background:var(--primary-light);border-radius:8px}
+.qtitle:first-of-type{margin-top:6px}
+.qtitle .no{color:var(--primary);margin-right:6px}
+.kp{font-size:13px;color:var(--muted);margin-bottom:8px}
+.a-body{font-size:14px;color:#334155}
+.a-body p{margin:8px 0}
+.a-body ul,.a-body ol{margin:6px 0 6px 22px}
+.a-body li{margin:3px 0}
+.a-body strong{color:#1e293b}
+.point{color:var(--ok);font-weight:700}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:12.5px;line-height:1.6;margin:10px 0;font-family:Consolas,"Courier New",monospace;color:#1e293b}
+code{font-family:Consolas,"Courier New",monospace;background:#eef2f7;border-radius:4px;padding:1px 5px;font-size:13px}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13px}
+th,td{border:1px solid var(--border);padding:7px 10px;text-align:left}
+th{background:var(--primary-light);color:#123c8f;font-weight:600}
+tr:nth-child(even){background:#fafbfd}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+@media print{.toc{display:none}.wrap{display:block}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <h1>交通银行数据中心 · 前端面试题库(详细解答版)</h1>
+  <p>每题含:考察点 / 详细解答 / 回答话术 / 追问准备。与"精简速背版"配套使用,先自答再对照。</p>
+</header>
+<div class="wrap">
+<div class="toc"><h4>目录</h4><a class="" href="#sec-1">一、往年真题(真实面经)</a><a class="q" href="#q-1-1">1. 笔试选择题考点速查</a><a class="q" href="#q-1-2">2. 简答1:useState / useRef 的使用与原理</a><a class="q" href="#q-1-3">3. 简答2:手写 sleep(1000) 函数</a><a class="q" href="#q-1-4">4. 简答3:webpack 页面体积分析</a><a class="q" href="#q-1-5">5. 论述题:ChatGPT / 大模型在银行业的应用</a><a class="q" href="#q-1-6">6. 面试1:埋点是怎么做的?用于什么业务?(交行高频)</a><a class="q" href="#q-1-7">7. 面试2:组件传值方式</a><a class="q" href="#q-1-8">8. 面试3:白屏怎么排查与优化</a><a class="q" href="#q-1-9">9. 面试4:Redis 和 Swagger 的缺点(简历写 Java 才问)</a><a class="q" href="#q-1-10">10. 面试5:HTTP 在哪一层?HTTP 和 HTTPS 的区别?</a><a class="q" href="#q-1-11">11. 面试6:Vue 数据双向绑定原理</a><a class="" href="#sec-2">二、Vue 核心高频题</a><a class="q" href="#q-2-1">1. 虚拟 DOM 是什么?为什么需要?</a><a class="q" href="#q-2-2">2. 生命周期钩子</a><a class="q" href="#q-2-3">3. computed 和 watch 的区别</a><a class="q" href="#q-2-4">4. Vue2 和 Vue3 的主要区别</a><a class="q" href="#q-2-5">5. 刷新页面后状态丢失怎么处理</a><a class="q" href="#q-2-6">6. 权限控制(银行必考)</a><a class="q" href="#q-2-7">7. nextTick 是什么?</a><a class="q" href="#q-2-8">8. 前端为什么有跨域问题?怎么解决?</a><a class="" href="#sec-3">三、JS 手写代码(笔试必考)</a><a class="q" href="#q-3-1">1. 防抖 debounce</a><a class="q" href="#q-3-2">2. 节流 throttle</a><a class="q" href="#q-3-3">3. 深拷贝(含循环引用)</a><a class="q" href="#q-3-4">4. Promise.all</a><a class="q" href="#q-3-5">5. new 操作符</a><a class="q" href="#q-3-6">6. bind / call / apply</a><a class="q" href="#q-3-7">7. 数组去重</a><a class="q" href="#q-3-8">8. 事件循环:宏任务和微任务</a><a class="q" href="#q-3-9">9. this 指向</a><a class="q" href="#q-3-10">10. 闭包</a><a class="" href="#sec-4">四、性能优化与工程化</a><a class="q" href="#q-4-1">1. 一次渲染 10 万条表格数据</a><a class="q" href="#q-4-2">2. 首屏加载优化</a><a class="q" href="#q-4-3">3. 浏览器缓存:强缓存与协商缓存</a><a class="q" href="#q-4-4">4. 从输入 URL 到页面渲染</a><a class="q" href="#q-4-5">5. 错误监控与异常上报</a><a class="q" href="#q-4-6">6. Vite 和 Webpack 的区别</a><a class="q" href="#q-4-7">7. Git 团队协作</a><a class="q" href="#q-4-8">8. 移动端适配方案</a><a class="" href="#sec-5">五、网络与前端安全(银行重点)</a><a class="q" href="#q-5-1">1. XSS 攻击与防御</a><a class="q" href="#q-5-2">2. CSRF 攻击与防御</a><a class="q" href="#q-5-3">3. 敏感数据脱敏</a><a class="q" href="#q-5-4">4. token 和 cookie 的区别?登录态维护</a><a class="q" href="#q-5-5">5. HTTPS 加密过程详解</a><a class="q" href="#q-5-6">6. 常见 HTTP 状态码</a><a class="q" href="#q-5-7">7. axios 拦截器封装</a><a class="q" href="#q-5-8">8. CSP 内容安全策略</a><a class="" href="#sec-6">六、银行业务场景题</a><a class="q" href="#q-6-1">1. 如果让你做一个&quot;转账&quot;页面</a><a class="q" href="#q-6-2">2. 银行系统和你做过的互联网系统有什么不同</a><a class="q" href="#q-6-3">3. 埋点上报为什么用 sendBeacon</a><a class="q" href="#q-6-4">4. ECharts 大数据量图表优化</a><a class="q" href="#q-6-5">5. 你了解金融科技 / 银行数字化转型吗</a><a class="q" href="#q-6-6">6. 如果给你一个不熟悉的技术,如何快速上手</a><a class="q" href="#q-6-7">7. 你和后端/测试/业务怎么协作?需求不清晰怎么办</a><a class="q" href="#q-6-8">8. 反问环节,可以问面试官什么</a><a class="" href="#sec-7">七、考前 Checklist</a></div>
+<main>
+
+<p>&gt; 适用岗位:外包驻场前端 | 地点:浦江镇联航路 | 主线技术栈:Vue</p>
+<p>&gt; 说明:本文件为&quot;详细理解版&quot;,每题含【考察点】【详细解答】【回答话术】【追问准备】,与精简速背版配套使用。</p>
+<p>&gt; 建议学习顺序:先看考察点 → 尝试自己回答 → 对照详细解答 → 背诵回答话术。</p>
+
+<hr>
+
+<section id="sec-1"><h2 class="sec-title">一、往年真题(真实面经)</h2>
+
+<h3 class="qtitle" id="q-1-1"><span class="no">1.1</span>1. 笔试选择题考点速查</h3>
+
+<p><strong>【考察点】</strong> 基础广度,覆盖 CSS 盒模型、JS 异步、React/Vue 框架基础。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>clientWidth / offsetWidth / scrollWidth</strong>(高频):</li></ul></div>
+<p>  - <code>clientWidth</code> = 内容宽 + padding,不含滚动条、border、margin</p>
+<p>  - <code>offsetWidth</code> = 内容宽 + padding + border(含滚动条)</p>
+<p>  - <code>scrollWidth</code> = 内容实际宽度(含被滚动隐藏的部分)</p>
+<p>  - 记忆:client 是&quot;看得见的客户区&quot;,offset 是&quot;占位偏移&quot;,scroll 是&quot;可滚动内容&quot;</p>
+<div class="a-body"><ul><li><strong>Promise</strong>:三种状态 pending/fulfilled/rejected,状态不可逆;<code>then</code> 返回新 Promise 支持链式</li><li><strong>this 指向</strong>:普通函数调用=window、对象方法=对象、new=实例、call/apply/bind=绑定对象;<strong>箭头函数没有自己的 this</strong></li><li><strong>宏任务 vs 微任务</strong>:同步 → 微任务全部 → 宏任务 → 微任务全部…循环;微任务(Promise.then、async/await 后续)、宏任务(setTimeout、setInterval)</li><li><strong>箭头函数特性</strong>:无 this/arguments/super,不能当构造函数(不能 new),没有 prototype</li><li><strong>redux 数据流</strong>:<code>dispatch(action) → reducer(纯函数) → 新 state → 订阅者更新视图</code>,单向数据流</li><li><strong>跨域</strong>:协议/域名/端口任一不同即跨域</li><li><strong>Vue 组件传值</strong>:props 下传、$emit 上抛、provide/inject 跨层</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;笔试覆盖比较基础,主要是 CSS 盒模型、JS 异步和框架基础,我平时都会用到,问题不大。&quot;</p>
+
+<p><strong>【追问准备】</strong> 面试官若追问:举例说明宏任务微任务执行顺序 —— 见本文&quot;事件循环&quot;一题。</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-2"><span class="no">1.2</span>2. 简答1:useState / useRef 的使用与原理</h3>
+
+<p><strong>【考察点】</strong> React Hooks 基础 + 对 Hook 内部机制的了解(简历写 React 才会深问,但交行笔试原题考过)。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<pre><code>// 使用
+const [count, setCount] = useState(0);   // 状态 + 更新函数
+const ref = useRef(null);                 // 返回可变 ref 对象
+
+ref.current = document.getElementById(&#x27;box&#x27;);  // 常用:拿 DOM
+const timer = useRef(null);                     // 常用:存定时器 ID
+// 注意:修改 ref.current 不会触发重新渲染</code></pre>
+
+<div class="a-body"><ul><li><strong>useState 原理</strong>:React 在 Fiber 节点上维护一个 <strong>memoizedState 链表</strong>,每个 Hook 按<strong>调用顺序</strong>对应链表中的一个节点;<code>useState</code> 首次渲染把初始值存入链表,之后渲染读取链表中的旧值。因此:</li></ul></div>
+<p>  - Hook 的调用顺序必须稳定 → <strong>不能写在条件、循环、嵌套函数里</strong>(顺序变了,状态就错位)</p>
+<p>  - <code>setState</code> 触发重新渲染,渲染时按顺序&quot;对号入座&quot;取回状态</p>
+<div class="a-body"><ul><li><strong>useRef 原理</strong>:本质上也是一个 Hook 节点,<code>ref.current</code> 就是链表里存的那个对象引用;它不参与渲染,所以改它不会触发更新,适合存&quot;不需要渲染的变量&quot;(定时器、DOM、上一次的值)</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;useState 用来声明组件状态,useRef 用来存可变引用(比如 DOM 和定时器)。useState 的原理是 React 把每个 Hook 的状态按调用顺序存在 Fiber 节点上,所以 Hook 不能写在条件里。&quot;</p>
+
+<p><strong>【追问准备】</strong> <code>setState</code> 是同步还是异步?—— React 事件处理中是<strong>异步批量</strong>更新(合并多次 setState),原生事件和 setTimeout 里是同步;React 18 的自动批处理在更多场景合并更新。</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-3"><span class="no">1.3</span>3. 简答2:手写 sleep(1000) 函数</h3>
+
+<p><strong>【考察点】</strong> Promise / async / generator 的掌握,笔试手写原题。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<pre><code>// ① Promise(最标准)
+const sleep = ms =&gt; new Promise(resolve =&gt; setTimeout(resolve, ms));
+
+// 使用
+async function demo() {
+  console.log(&#x27;开始&#x27;);
+  await sleep(1000);          // 阻塞 1 秒(不阻塞主线程)
+  console.log(&#x27;1秒后&#x27;);
+}
+
+// ② generator 版(考察 generator 掌握度)
+function* sleepGen(ms) {
+  yield new Promise(resolve =&gt; setTimeout(resolve, ms));
+}
+// 需要一个自执行器驱动(或借助 co 库)
+
+// ③ async/await 封装版
+async function sleep(ms) {
+  return new Promise(resolve =&gt; setTimeout(resolve, ms));
+}
+
+// ④ 同步阻塞版(面试时说明:会卡死主线程,不推荐)
+function sleepSync(ms) {
+  const end = Date.now() + ms;
+  while (Date.now() &lt; end) {}
+}</code></pre>
+
+<div class="a-body"><ul><li>使用场景:接口轮询间隔、动画播放间隔、限流节流、测试模拟延迟</li><li>关键:用 <code>setTimeout + Promise</code>,<strong>await 只是让当前 async 函数等待,不会阻塞浏览器渲染</strong></li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;我一般用 Promise 实现:<code>new Promise(resolve =&gt; setTimeout(resolve, ms))</code>;如果要考察 generator,可以用 <code>yield</code> 一个 Promise,再配合自执行器。&quot;</p>
+
+<p><strong>【追问准备】</strong> &quot;为什么不用 while 循环阻塞?&quot;—— 会阻塞主线程,页面直接卡死,setTimeout 是异步的,不会。</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-4"><span class="no">1.4</span>4. 简答3:webpack 页面体积分析</h3>
+
+<p><strong>【考察点】</strong> 工程化能力:能不能发现并解决&quot;项目越来越重&quot;的问题。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>分析步骤</strong>:</li></ul></div>
+<p>  1. 安装 <code>webpack-bundle-analyzer</code>,构建后生成依赖体积树状图:一眼看到最大的包是哪个、有没有重复打包</p>
+<p>  2. Network 面板看实际加载:Transfer Size(传输体积)、加载瀑布图、哪些资源阻塞首屏</p>
+<p>  3. Lighthouse / 浏览器 Performance 面板看性能指标</p>
+<div class="a-body"><ul><li><strong>常见优化手段</strong>:</li></ul></div>
+<p>  - <strong>路由级代码分割</strong>:<code>const Home = () =&gt; import(&#x27;@/views/Home.vue&#x27;)</code>,首屏只加载当前路由 chunk</p>
+<p>  - <strong>第三方库拆包</strong>:<code>splitChunks</code> 把 vue/echarts 等 vendor 单独抽 chunk,配合 contenthash 长效缓存,业务更新时 vendor 缓存不失效</p>
+<p>  - <strong>按需引入</strong>:echarts 按模块 <code>import { LineChart } from &#x27;echarts/charts&#x27;</code>;element-plus 用 unplugin 按需</p>
+<p>  - <strong>tree-shaking</strong>:ESModule 写法 + 生产模式,自动摇掉未用代码</p>
+<p>  - <strong>压缩</strong>:gzip(nginx 开启)/ brotli,静态资源体积普遍降 60%+</p>
+<p>  - <strong>图片</strong>:压缩、webp、雪碧图、iconfont 代替图片图标</p>
+<div class="a-body"><ul><li><strong>加分回答</strong>:先量化分析定位大头,再针对性优化,避免&quot;盲优化&quot;</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;先用 bundle-analyzer 看体积分布,再针对最大依赖做拆分:路由级懒加载、vendor 单独拆包、库按需引入,最后开启 gzip,体积能降一半以上。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-5"><span class="no">1.5</span>5. 论述题:ChatGPT / 大模型在银行业的应用</h3>
+
+<p><strong>【考察点】</strong> 技术敏感度 + 行业认知 + 表达能力,交行笔试压轴题。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>应用场景(选 3-4 个重点展开):</p>
+
+<div class="a-body"><ul><li><strong>智能客服与坐席助手</strong>:7×24 应答、理财咨询、业务办理引导;辅助坐席检索知识库、生成应答草稿,降低人力成本</li><li><strong>合规审查辅助</strong>:合同、公告、业务材料智能审阅,识别合规风险点(如利率、期限、免责条款),提升人工复核效率</li><li><strong>反洗钱/风控</strong>:分析可疑交易模式,辅助生成风险报告,提升异常识别效率</li><li><strong>研报/财报解读</strong>:自动摘要、问答式分析,辅助投研与客户经理</li><li><strong>信贷审批材料审核</strong>:OCR + 大模型提取关键信息并交叉校验,缩短审批链路</li><li><strong>研发辅助</strong>:代码生成、测试用例生成、技术文档编写,提升开发效率</li><li><strong>营销与产品</strong>:个性化理财推荐文案、产品说明自动生成</li></ul></div>
+
+<p>落地挑战与对策(展示思考深度):</p>
+
+<div class="a-body"><ul><li><strong>数据安全</strong>:银行数据敏感,必须私有化/隔离部署,<strong>数据不出行</strong></li><li><strong>幻觉问题</strong>:模型可能一本正经胡说,关键业务必须人工复核 + 答案溯源</li><li><strong>监管合规</strong>:输出内容需符合金融监管要求,需审计留痕</li><li><strong>成本</strong>:大模型推理成本高,建议低风险场景(客服、文档)先试点,逐步扩展</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;大模型在银行可以从客服、合规审查、反洗钱、研报分析这几个场景切入。但银行首先要解决数据安全和幻觉问题——必须私有化部署、数据不出行,关键输出要人工复核。建议从低风险场景试点,逐步推进。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-6"><span class="no">1.6</span>6. 面试1:埋点是怎么做的?用于什么业务?(交行高频)</h3>
+
+<p><strong>【考察点】</strong> 银行操作留痕与合规审计的落地能力,交行面试几乎必问。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<p><strong>怎么做(埋点体系设计):</strong></p>
+
+<div class="a-body"><ul><li><strong>埋点方式选择</strong>:</li></ul></div>
+<p>   - 代码埋点:业务事件处手动调用 SDK,精准但需人工维护</p>
+<p>   - 可视化埋点:后台圈选元素配置,运营友好</p>
+<p>   - 无埋点/全埋点:自动采集所有交互,数据全但噪音大、成本高</p>
+<p>   - 实际项目:核心业务事件用代码埋点,通用行为用自动采集</p>
+<div class="a-body"><ul><li><strong>采集内容</strong>:页面 PV/UV、点击/曝光/停留时长、业务事件(开户、转账、查询等)、JS 错误、性能指标</li><li><strong>上报策略</strong>:</li></ul></div>
+<p>   - 常规上报:队列攒批 + 节流,减少请求量</p>
+<p>   - 页面卸载:用 <code>navigator.sendBeacon</code> 保证数据送达</p>
+<p>   - 失败重试、本地暂存(防丢)</p>
+<div class="a-body"><ul><li><strong>字段设计</strong>:用户 ID、会话 ID、事件名、时间戳、页面路由、设备 UA、版本号;前后端约定字段规范</li><li><strong>数据链路</strong>:前端采集 → 上报网关 → 日志/大数据平台 → 分析报表 → 业务决策</li></ul></div>
+
+<p><strong>用于什么业务:</strong></p>
+
+<div class="a-body"><ul><li>用户行为分析:功能使用率、转化漏斗、留存分析,指导产品迭代</li><li>异常监控:错误率、白屏率告警,快速定位线上问题</li><li><strong>操作留痕与合规审计(银行重点)</strong>:敏感操作(转账、修改资料、导出数据)必须可追溯&quot;谁、何时、做了什么&quot;</li><li>风控辅助:异常操作模式识别</li></ul></div>
+
+<p><strong>银行注意事项</strong>:埋点遵循<strong>最小化采集 + 脱敏 + 合规</strong>,不采集与业务无关的敏感信息。</p>
+
+<p><strong>【回答话术】</strong> &quot;我们埋点分两层:通用行为自动采集,核心业务事件代码埋点。上报用队列批量加节流,页面卸载时用 sendBeacon 兜底。主要服务于用户行为分析和线上异常监控,在银行场景还承担操作留痕的合规审计作用。埋点设计会注意最小化采集和数据脱敏。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-7"><span class="no">1.7</span>7. 面试2:组件传值方式</h3>
+
+<p><strong>【考察点】</strong> 框架基本功,必考题。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>Vue 体系:</p>
+
+<pre><code>&lt;!-- 父传子:props --&gt;
+&lt;Child :title=&quot;msg&quot; /&gt;
+
+&lt;!-- 子传父:$emit --&gt;
+&lt;button @click=&quot;$emit(&#x27;update&#x27;, value)&quot;&gt;
+
+&lt;!-- v-model 语法糖(value + input) --&gt;
+&lt;input v-model=&quot;search&quot; /&gt;
+
+&lt;!-- 跨层级:provide / inject --&gt;
+&lt;!-- 任意组件:EventBus(mitt)、Pinia 全局状态 --&gt;
+&lt;!-- $refs 直接调用子组件方法 --&gt;
+&lt;!-- $attrs 透传、插槽 slot 传模板 --&gt;</code></pre>
+
+<div class="a-body"><ul><li><strong>适用场景选择</strong>:</li></ul></div>
+<p>  - 简单父子:props / $emit</p>
+<p>  - 跨多层:provide / inject</p>
+<p>  - 兄弟或复杂共享:Pinia(状态多、多处用)</p>
+<p>  - 少量临时通信:EventBus(mitt),记得组件卸载时 off 防泄漏</p>
+<div class="a-body"><ul><li><strong>单向数据流</strong>:props 只读,子组件不能直接改,要改就 $emit 通知父组件改(便于追踪数据来源,利于维护和调试)</li></ul></div>
+
+<p>React 体系(对照):props、回调函数、Context、Redux、ref。</p>
+
+<p><strong>【回答话术】</strong> &quot;Vue 里父子用 props 和 $emit,跨层级用 provide/inject,复杂共享状态用 Pinia。遵循单向数据流,子组件不直接改 props,通过事件通知父组件。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-8"><span class="no">1.8</span>8. 面试3:白屏怎么排查与优化</h3>
+
+<p><strong>【考察点】</strong> 线上问题排查思路,银行项目上线后最常遇到。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<p><strong>排查步骤(按顺序):</strong></p>
+
+<div class="a-body"><ul><li><strong>看 Console</strong>:有没有 JS 报错(最常见原因,如变量未定义、接口数据字段不对)</li><li><strong>看 Network</strong>:HTML/JS/CSS 是否 404 或加载失败(CDN 挂了、部署路径错、路由 history 模式刷新 404)</li><li><strong>看接口</strong>:首屏接口是否很慢/报错,导致页面一直 loading 或渲染失败</li><li><strong>看打包产物</strong>:是否有构建报错、路由懒加载 chunk 加载失败</li><li><strong>建立白屏监控</strong>:监听 DOMContentLoaded 后检查根节点是否为空,上报白屏率,主动发现</li></ul></div>
+
+<p><strong>优化手段:</strong></p>
+
+<div class="a-body"><ul><li>骨架屏:加载中先展示占位,体验好</li><li>首屏资源瘦身:拆包、压缩、按需引入(见 webpack 题)</li><li>资源加速:CDN、DNS 预解析、preload 关键资源</li><li>首屏接口优化:合并、加缓存、后端降级</li><li>错误边界 + 兜底页:Vue 的 <code>errorCaptured</code> / React 的 <code>ErrorBoundary</code>,出错不白屏而是展示友好页面</li><li>极端场景:SSR / 预渲染</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;先按 控制台报错 → 资源加载 → 首屏接口 → 构建产物 的顺序定位,再针对性优化:骨架屏、拆包瘦身、CDN 加速、错误兜底页。同时会上白屏监控主动发现线上问题。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-9"><span class="no">1.9</span>9. 面试4:Redis 和 Swagger 的缺点(简历写 Java 才问)</h3>
+
+<p><strong>【考察点】</strong> 技术栈广度,答不上来也不致命,但别乱编。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<p><strong>Redis 缺点:</strong></p>
+<div class="a-body"><ul><li>纯内存存储,硬件成本高;数据量大时成本压力大</li><li>持久化:RDB 可能丢最后一次快照之后的数据,AOF 也非绝对强一致,极端情况可能丢少量数据</li><li>缓存淘汰策略(LRU/LFU)可能误删需要的数据</li><li>集群(Cluster/哨兵)运维复杂,扩缩容有成本</li><li>不适合存超大对象和复杂查询,没有关系型能力</li></ul></div>
+
+<p><strong>Swagger 缺点:</strong></p>
+<div class="a-body"><ul><li>注解侵入业务代码,代码变&quot;脏&quot;</li><li>接口变更后文档容易与实现不一致,维护不及时就形同虚设</li><li>生产环境必须关闭(暴露接口信息有安全风险)</li><li>生成文档有序列化性能开销</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;Redis 主要缺点是纯内存成本高、持久化极端情况会丢少量数据、集群运维复杂;Swagger 主要是注解侵入代码、文档容易和实现不同步,而且生产环境必须关掉。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-10"><span class="no">1.10</span>10. 面试5:HTTP 在哪一层?HTTP 和 HTTPS 的区别?</h3>
+
+<p><strong>【考察点】</strong> 网络基础,必考题。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>TCP/IP 四层模型</strong>:应用层 / 传输层(TCP、UDP)/ 网络层(IP)/ 网络接口层</li><li><strong>HTTP 属于应用层</strong>,与 FTP、DNS、SMTP 同层,底层依赖 TCP 的可靠传输</li></ul></div>
+
+<p><strong>HTTP vs HTTPS 对比:</strong></p>
+
+<div class="a-body"><table><thead><tr><th>对比项</th><th>HTTP</th><th>HTTPS</th></tr></thead><tbody><tr><td>安全性</td><td>明文传输,可被截获篡改</td><td>SSL/TLS 加密 + 身份认证</td></tr><tr><td>默认端口</td><td>80</td><td>443</td></tr><tr><td>证书</td><td>不需要</td><td>需向 CA 申请证书</td></tr><tr><td>性能</td><td>快</td><td>多一次 TLS 握手,略慢</td></tr><tr><td>信任</td><td>无身份验证</td><td>可验证服务器身份</td></tr></tbody></table></div>
+
+<p><strong>HTTPS 加密流程</strong>(简述):</p>
+<div class="a-body"><ul><li>服务器向客户端发送证书(含公钥)</li><li>客户端验证证书合法性(CA 签名、域名、有效期)</li><li>客户端生成随机对称密钥,用服务器公钥加密后发送</li><li>服务器用私钥解密得到对称密钥</li><li>之后双方用对称密钥加密通信(兼顾安全与性能)</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;HTTP 在应用层,底层是 TCP。区别核心是安全:HTTP 明文,HTTPS 加了 SSL/TLS 加密,用非对称加密协商密钥、对称加密传输数据;HTTPS 需要 CA 证书,默认 443 端口。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-1-11"><span class="no">1.11</span>11. 面试6:Vue 数据双向绑定原理</h3>
+
+<p><strong>【考察点】</strong> Vue 核心原理,必考,要能画出流程图。</p>
+
+<p><strong>【详细解答】</strong></p>
+
+<p><strong>Vue2 实现:</strong></p>
+<div class="a-body"><ul><li><code>Observer</code>:通过 <code>Object.defineProperty</code> 递归劫持 data 每个属性的 getter/setter</li><li><code>Dep</code>:每个响应式属性对应一个依赖收集器(发布者)</li><li><code>Watcher</code>:渲染 watcher、计算 watcher 等(订阅者)</li><li>依赖收集:渲染时访问属性触发 getter,把当前 watcher 收集进 Dep</li><li>派发更新:修改属性触发 setter,调用 <code>dep.notify()</code> 通知 watcher 更新视图</li><li>局限:无法监听新增/删除属性(需 <code>$set</code>/<code>$delete</code>)、无法监听数组下标修改(重写了 push/pop/splice 等 7 个数组方法)</li></ul></div>
+
+<p><strong>Vue3 实现:</strong></p>
+<div class="a-body"><ul><li>改用 <code>Proxy</code> 代理整个对象,天然支持新增属性、删除属性、数组下标修改</li><li>性能更好(惰性代理,不递归初始化)、拦截能力更全</li></ul></div>
+
+<p><strong>v-model 原理:</strong></p>
+<div class="a-body"><ul><li>表单元素:<code>value</code> + <code>input</code> 事件的语法糖</li><li>组件上:<code>modelValue</code> prop + <code>update:modelValue</code> 事件的语法糖</li><li>修饰符:<code>.trim</code>、<code>.number</code> 等</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;Vue2 用 Object.defineProperty 劫持属性的 getter/setter,配合 Dep 收集依赖、Watcher 通知更新,形成发布订阅;Vue3 改用 Proxy 代理整个对象,支持新增删除属性和数组下标。v-model 本质是 value + input 事件的语法糖。&quot;</p>
+
+<hr>
+
+</section>
+<section id="sec-2"><h2 class="sec-title">二、Vue 核心高频题</h2>
+
+<h3 class="qtitle" id="q-2-1"><span class="no">2.1</span>1. 虚拟 DOM 是什么?为什么需要?</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>虚拟 DOM(VNode):用 JS 对象描述真实 DOM 结构(标签、属性、子节点),是真实 DOM 的轻量级抽象</li><li>流程:render 函数生成 VNode → 新旧 VNode 通过 <strong>diff 算法</strong>对比 → 只对变化部分做真实 DOM 操作</li><li><strong>为什么需要</strong>:</li></ul></div>
+<p>  1. <strong>性能</strong>:直接操作 DOM 昂贵(触发重排重绘),diff 后最小化真实操作(注:不是比手动操作绝对快,而是保证在&quot;数据驱动视图&quot;的模型下可控)</p>
+<p>  2. <strong>跨平台</strong>:同一套 VNode 可渲染到浏览器、小程序、原生(uni-app、weex、React Native)</p>
+<p>  3. <strong>声明式开发</strong>:开发者只关心数据,不用手动操作 DOM</p>
+<div class="a-body"><ul><li><strong>diff 策略</strong>:同层对比(不跨层级比较)、key 复用节点、Vue3 快速 diff + 静态提升 + patchFlag</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;虚拟 DOM 是用 JS 对象描述 DOM,通过 diff 最小化真实 DOM 操作,带来跨平台能力和声明式开发体验。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-2-2"><span class="no">2.2</span>2. 生命周期钩子</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>Vue3 组合式 API 钩子顺序:</p>
+
+<pre><code>setup → onBeforeMount → onMounted → onBeforeUpdate → onUpdated → onBeforeUnmount → onUnmounted</code></pre>
+
+<div class="a-body"><ul><li><strong>setup / created</strong>:初始化数据、非 DOM 依赖的准备工作</li><li><strong>onMounted</strong>:DOM 就绪,适合:操作 DOM、绑定原生事件、初始化第三方库(echarts)、发首屏请求</li><li><strong>onUpdated</strong>:数据变化导致视图更新后;注意不要在它里面改数据(会死循环)</li><li><strong>onUnmounted</strong>:组件销毁,必须清理:定时器、事件监听、echarts 实例 dispose、取消请求——<strong>防止内存泄漏,银行项目必考</strong></li><li>父子组件顺序:父 beforeMount → 子 mounted(全部) → 父 mounted;销毁顺序相反(父 beforeUnmount → 子 unmounted → 父 unmounted)</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;mounted 做 DOM 初始化和发请求,unmounted 一定要清理定时器、事件和 echarts 实例防内存泄漏。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-2-3"><span class="no">2.3</span>3. computed 和 watch 的区别</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><table><thead><tr><th>对比</th><th>computed</th><th>watch</th></tr></thead><tbody><tr><td>用途</td><td>由已有数据<strong>派生</strong>新值</td><td>数据变化后执行<strong>副作用</strong></td></tr><tr><td>缓存</td><td>有,依赖不变不重算</td><td>无</td></tr><tr><td>返回值</td><td>必须返回一个值</td><td>不要求</td></tr><tr><td>同步/异步</td><td>同步</td><td>可异步(发请求)</td></tr><tr><td>其他</td><td>不能有副作用</td><td>deep 深度监听、immediate 立即执行</td></tr></tbody></table></div>
+
+<pre><code>// computed:依赖不变得缓存
+const total = computed(() =&gt; items.value.reduce((s, i) =&gt; s + i.price, 0));
+
+// watch:变化后做事
+watch(() =&gt; props.id, async (newId) =&gt; {
+  list.value = await fetchList(newId);
+}, { immediate: true, deep: true });</code></pre>
+
+<p><strong>口诀:派生用 computed,副作用用 watch。</strong></p>
+
+<p><strong>【回答话术】</strong> &quot;computed 有缓存、适合派生值;watch 适合数据变化后去做请求、异步这类副作用操作。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-2-4"><span class="no">2.4</span>4. Vue2 和 Vue3 的主要区别</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><table><thead><tr><th>维度</th><th>Vue2</th><th>Vue3</th></tr></thead><tbody><tr><td>响应式</td><td>Object.defineProperty(需 $set)</td><td>Proxy(新增/删除/下标都支持)</td></tr><tr><td>API</td><td>Options API</td><td>Composition API(逻辑复用 useXxx)</td></tr><tr><td>diff 性能</td><td>全量对比</td><td>静态提升、patchFlag、快速 diff</td></tr><tr><td>TypeScript</td><td>支持差</td><td>原生友好</td></tr><tr><td>状态管理</td><td>Vuex</td><td>Pinia(官方推荐)</td></tr><tr><td>体积</td><td>—</td><td>tree-shaking,更小</td></tr><tr><td>多根节点</td><td>不支持</td><td>支持</td></tr><tr><td>Teleport/片段</td><td>无</td><td>有</td></tr></tbody></table></div>
+
+<p><strong>【回答话术】</strong> &quot;Vue3 最大的变化是 Proxy 响应式、Composition API 和 Pinia,另外 diff 和打包体积都有优化,TS 支持更好。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-2-5"><span class="no">2.5</span>5. 刷新页面后状态丢失怎么处理</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>现象:Vuex/Pinia 存在内存,刷新即清空</li><li><strong>方案</strong>:</li></ul></div>
+<p>  1. <strong>持久化</strong>:vuex-persistedstate / pinia-plugin-persistedstate,自动同步到 localStorage</p>
+<p>  2. <strong>刷新后重拉</strong>:在入口(路由守卫/App mounted)重新请求用户信息、权限码,再恢复路由</p>
+<p>  3. <strong>会话级</strong>:仅单标签页需要时用 sessionStorage</p>
+<div class="a-body"><ul><li><strong>安全注意(银行)</strong>:token、敏感数据不要存 localStorage(有 XSS 窃取风险);token 可存内存 + 短时效,或 HttpOnly cookie</li><li>权限相关的状态丢失后,要重新走一遍&quot;拉权限 → 注册动态路由&quot;的流程</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;用持久化插件把关键状态同步到 localStorage,刷新后重新拉取用户信息和权限并恢复动态路由;敏感数据不落本地存储。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-2-6"><span class="no">2.6</span>6. 权限控制(银行必考)</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>完整方案分四层:</p>
+
+<div class="a-body"><ul><li><strong>登录认证</strong>:登录成功返回 token(短期) + 用户角色/权限码;token 存内存或 HttpOnly cookie</li><li><strong>路由级权限</strong>:</li></ul></div>
+<p>   - 方式A(动态路由):权限码过滤路由表,<code>router.addRoute()</code> 动态注册,刷新后需重新注册</p>
+<p>   - 方式B(静态 + meta):路由 meta 配 <code>requiresAuth</code> / <code>roles</code>,守卫里校验</p>
+<div class="a-body"><ul><li><strong>按钮级权限</strong>:自定义指令 <code>v-permission=&quot;[&#x27;btn:export&#x27;]&quot;</code>,无权限时移除元素</li><li><strong>接口级校验</strong>:后端对每个接口二次鉴权——<strong>前端控制只是体验,安全底线在后端</strong>(银行面试官最看重这句)</li></ul></div>
+
+<pre><code>// 路由守卫示例
+router.beforeEach((to, from, next) =&gt; {
+  const token = getToken();
+  if (to.meta.requiresAuth &amp;&amp; !token) {
+    next({ path: &#x27;/login&#x27;, query: { redirect: to.fullPath } });
+  } else {
+    next();
+  }
+});
+
+// 按钮级权限指令
+const vPermission = {
+  mounted(el, binding) {
+    const codes = store.state.permissionCodes;
+    if (!codes.includes(binding.value)) el.parentNode?.removeChild(el);
+  }
+};</code></pre>
+
+<div class="a-body"><ul><li>401 处理:axios 响应拦截器统一清 token、跳登录页</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;权限分三层:路由层用动态路由或守卫控制页面访问,按钮层用自定义指令控制操作,但最关键的是后端接口必须二次鉴权——前端只是体验层,安全底线在后端。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-2-7"><span class="no">2.7</span>7. nextTick 是什么?</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>背景</strong>:Vue 的 DOM 更新是<strong>异步批量</strong>的——数据改变后不会立刻更新 DOM,而是推入渲染队列,统一在下一轮执行</li><li><strong>作用</strong>:<code>nextTick</code> 的回调在 DOM 更新完成后执行,此时能拿到最新 DOM</li><li><strong>原理</strong>:内部把回调放入微任务队列(Promise.then 优先,降级 MutationObserver / setTimeout),在渲染 watcher 更新之后执行</li></ul></div>
+
+<pre><code>count.value++;
+await nextTick();
+console.log(el.value.offsetHeight);  // 拿到更新后的 DOM</code></pre>
+
+<div class="a-body"><ul><li><strong>使用场景</strong>:数据更新后立即测量 DOM(获取高度/宽度)、获取滚动位置、在 watch 里等 DOM 更新完</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;Vue 的 DOM 更新是异步批量的,nextTick 就是等这次更新完成后执行回调,拿到最新的 DOM。原理是内部用微任务队列排队执行。&quot;</p>
+
+<hr>
+
+<h3 class="qtitle" id="q-2-8"><span class="no">2.8</span>8. 前端为什么有跨域问题?怎么解决?</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>同源策略</strong>:浏览器安全机制,协议、域名、端口三者任一不同,请求就是&quot;跨域&quot;,浏览器会拦截响应(注意:请求发出去了,是响应被拦)</li><li><strong>解决方案</strong>:</li></ul></div>
+<p>  1. <strong>开发环境:代理转发</strong>(最常用)</p>
+<p>     - Vite:<code>server.proxy</code> 配置 <code>/api → http://backend:8080</code></p>
+<p>     - Webpack:<code>devServer.proxy</code> 同理</p>
+<p>  2. <strong>生产环境:Nginx 反向代理</strong>,前端后端同域,从根上避免跨域</p>
+<p>  3. <strong>CORS</strong>:后端配置响应头</p>
+<p>     ```</p>
+<p>     Access-Control-Allow-Origin: https://your.domain</p>
+<p>     Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS</p>
+<p>     Access-Control-Allow-Headers: Content-Type,Authorization</p>
+<p>     ```</p>
+<p>     携带 cookie 需 <code>Access-Control-Allow-Credentials: true</code> + 明确 Origin(不能是 *)</p>
+<p>  4. 了解即可:JSONP(仅 GET,script 标签不受同源限制)、postMessage(跨窗口)、iframe</p>
+
+<p><strong>【回答话术】</strong> &quot;同源是浏览器安全策略。开发环境用代理转发,生产环境用 Nginx 反代让前后端同域,跨域场景配合后端开 CORS 头。&quot;</p>
+
+<hr>
+
+</section>
+<section id="sec-3"><h2 class="sec-title">三、JS 手写代码(笔试必考)</h2>
+
+<h3 class="qtitle" id="q-3-1"><span class="no">3.1</span>1. 防抖 debounce</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>原理:触发事件后重置定时器,<strong>只执行最后一次</strong>;连续触发时前面的全部取消</li><li>应用:搜索框输入(停止输入后再请求)、窗口 resize、表单校验</li></ul></div>
+
+<pre><code>function debounce(fn, delay = 300) {
+  let timer = null;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() =&gt; fn.apply(this, args), delay);
+  };
+}
+
+// 进阶:立即执行版(第一次立即触发,之后防抖)
+function debounceImmediate(fn, delay = 300, immediate = true) {
+  let timer = null;
+  return function (...args) {
+    const callNow = immediate &amp;&amp; !timer;
+    clearTimeout(timer);
+    timer = setTimeout(() =&gt; { timer = null; }, delay);
+    if (callNow) fn.apply(this, args);
+  };
+}</code></pre>
+
+<p><strong>【追问准备】</strong> 问 this 为什么用 apply?—— 保证防抖后的函数 this 指向不变、参数透传。</p>
+
+<h3 class="qtitle" id="q-3-2"><span class="no">3.2</span>2. 节流 throttle</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>原理:固定时间间隔内只执行一次(时间戳版:间隔内不执行;<strong>定时器版</strong>:间隔结束后执行最后一次)</li><li>应用:滚动事件、resize、拖拽、按钮连点</li></ul></div>
+
+<pre><code>// 时间戳版:保证开始即执行
+function throttle(fn, interval = 300) {
+  let last = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - last &gt;= interval) {
+      last = now;
+      fn.apply(this, args);
+    }
+  };
+}
+
+// 定时器版:保证结束还会补一次
+function throttleTimer(fn, interval = 300) {
+  let timer = null;
+  return function (...args) {
+    if (timer) return;
+    timer = setTimeout(() =&gt; { fn.apply(this, args); timer = null; }, interval);
+  };
+}</code></pre>
+
+<p><strong>防抖 vs 节流一句话</strong>:防抖是&quot;只执行最后一次&quot;,节流是&quot;定期执行一次&quot;。</p>
+
+<h3 class="qtitle" id="q-3-3"><span class="no">3.3</span>3. 深拷贝(含循环引用)</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>面试考点:基本类型直接返回、Date/RegExp 特殊处理、<strong>循环引用用 WeakMap 记录</strong>、数组保持数组</li><li>对比方案 <code>JSON.parse(JSON.stringify())</code> 的缺点:丢失 undefined/函数/Symbol、Date 变字符串、<strong>循环引用直接报错</strong>、NaN/Infinity 变 null</li></ul></div>
+
+<pre><code>function deepClone(obj, map = new WeakMap()) {
+  if (obj === null || typeof obj !== &#x27;object&#x27;) return obj; // 基本类型
+  if (obj instanceof Date) return new Date(obj);
+  if (obj instanceof RegExp) return new RegExp(obj);
+  if (map.has(obj)) return map.get(obj);                   // 循环引用
+  const clone = Array.isArray(obj) ? [] : {};
+  map.set(obj, clone);
+  for (const key of Object.keys(obj)) {
+    clone[key] = deepClone(obj[key], map);
+  }
+  return clone;
+}</code></pre>
+
+<p><strong>【追问准备】</strong> 现代浏览器可用原生 <code>structuredClone(obj)</code>(支持循环引用、Date、Map 等)。</p>
+
+<h3 class="qtitle" id="q-3-4"><span class="no">3.4</span>4. Promise.all</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>特性:所有成功才成功(结果按传入顺序返回);<strong>一个失败立即整体失败</strong>(reject 第一个错误)</li><li>应用:并行请求多个接口后一起处理(如页面多个独立数据)</li></ul></div>
+
+<pre><code>Promise.myAll = function (promises) {
+  return new Promise((resolve, reject) =&gt; {
+    const results = [];
+    let count = 0;
+    promises.forEach((p, i) =&gt; {
+      Promise.resolve(p).then(
+        val =&gt; {
+          results[i] = val;                        // 保序
+          if (++count === promises.length) resolve(results);
+        },
+        reject                                    // 一个失败即失败
+      );
+    });
+  });
+};</code></pre>
+
+<p><strong>【追问准备】</strong> 对比:</p>
+<div class="a-body"><ul><li><code>allSettled</code>:全部返回结果(含失败),永不 reject</li><li><code>race</code>:第一个完成的结果</li><li><code>any</code>:第一个成功的结果,全失败才 reject</li></ul></div>
+
+<h3 class="qtitle" id="q-3-5"><span class="no">3.5</span>5. new 操作符</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>new 做了四件事:</p>
+<div class="a-body"><ul><li>创建空对象</li><li>空对象的原型指向构造函数 prototype</li><li>执行构造函数,this 绑定到新对象</li><li>构造函数返回对象则返回它,否则返回新对象</li></ul></div>
+
+<pre><code>function myNew(Fn, ...args) {
+  const obj = Object.create(Fn.prototype);      // 1、2
+  const result = Fn.apply(obj, args);           // 3
+  return (typeof result === &#x27;object&#x27; &amp;&amp; result !== null)
+      || typeof result === &#x27;function&#x27;
+    ? result : obj;                             // 4
+}</code></pre>
+
+<h3 class="qtitle" id="q-3-6"><span class="no">3.6</span>6. bind / call / apply</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>call:<code>fn.call(thisArg, a, b)</code> 立即执行,参数逐个</li><li>apply:<code>fn.apply(thisArg, [a, b])</code> 立即执行,参数数组</li><li>bind:<code>fn.bind(thisArg, a)</code> 返回新函数,不执行,支持柯里化</li></ul></div>
+
+<pre><code>Function.prototype.myBind = function (ctx, ...args) {
+  const fn = this;
+  return function (...rest) {
+    // 进阶:new 调用时 this 优先级高于 bind
+    if (new.target) return new fn(...args, ...rest);
+    return fn.apply(ctx, [...args, ...rest]);
+  };
+};</code></pre>
+
+<h3 class="qtitle" id="q-3-7"><span class="no">3.7</span>7. 数组去重</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<pre><code>const arr = [1, 2, 2, 3, 3, 4];
+
+// ① Set(最简单,推荐)
+[...new Set(arr)];
+
+// ② filter + indexOf
+arr.filter((v, i) =&gt; arr.indexOf(v) === i);
+
+// ③ Map
+[...new Map(arr.map(v =&gt; [v, v])).keys()];</code></pre>
+
+<div class="a-body"><ul><li>追问:对象数组去重 → 用唯一标识字段组合做 key,或 <code>JSON.stringify</code> 后去重</li></ul></div>
+
+<h3 class="qtitle" id="q-3-8"><span class="no">3.8</span>8. 事件循环:宏任务和微任务</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>执行顺序:<strong>同步代码 → 全部微任务 → 一个宏任务 → 全部微任务 → …循环</strong></li><li>微任务:Promise.then/catch/finally、async/await 之后的代码、queueMicrotask</li><li>宏任务:setTimeout、setInterval、I/O、UI 事件、requestAnimationFrame(通常归为宏任务)</li></ul></div>
+
+<pre><code>console.log(1);                                  // 同步
+setTimeout(() =&gt; console.log(2), 0);             // 宏任务
+Promise.resolve().then(() =&gt; console.log(3));    // 微任务
+async function f() { console.log(4); await 1; console.log(5); }
+f();                                             // 同步部分先执行
+// 输出:1, 4, 3, 5, 2</code></pre>
+
+<h3 class="qtitle" id="q-3-9"><span class="no">3.9</span>9. this 指向</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>普通函数调用:<code>window</code>(严格模式 undefined)</li><li>对象方法调用:该对象</li><li><code>new</code> 调用:新实例</li><li><code>call/apply/bind</code>:绑定的对象</li><li><strong>箭头函数:没有自己的 this</strong>,沿词法作用域向上找(定义时确定),call/apply/bind 也无法改变</li><li>优先级:new &gt; 显式绑定(call/apply/bind)&gt; 隐式绑定(对象方法)&gt; 默认绑定</li></ul></div>
+
+<h3 class="qtitle" id="q-3-10"><span class="no">3.10</span>10. 闭包</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>定义:函数 + 其词法作用域的引用,使内部函数能访问外部函数变量,且变量不随外部函数结束销毁</li><li>作用:封装私有变量、柯里化、模块化、防抖节流内部计时器</li><li>风险:<strong>内存常驻不释放 → 内存泄漏</strong>,用完注意置 null</li></ul></div>
+
+<pre><code>// 经典题:输出什么?
+for (var i = 0; i &lt; 3; i++) {
+  setTimeout(() =&gt; console.log(i), 0);   // 3,3,3(var 全局变量,回调共享)
+}
+// 解决:
+for (let i = 0; i &lt; 3; i++) { setTimeout(() =&gt; console.log(i), 0); }  // 0,1,2</code></pre>
+
+<hr>
+
+</section>
+<section id="sec-4"><h2 class="sec-title">四、性能优化与工程化</h2>
+
+<h3 class="qtitle" id="q-4-1"><span class="no">4.1</span>1. 一次渲染 10 万条表格数据</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>按复杂度分层:</p>
+
+<div class="a-body"><ul><li><strong>分页/懒加载</strong>:服务端分页或前端滚动分页,一次只渲染一页(银行报表最常用)</li><li><strong>虚拟滚动</strong>(核心方案):只渲染可视区内的行(如 30 行)+ 上下缓冲,滚动时用 transform 位移,DOM 数量恒定</li></ul></div>
+<p>   - 原理:容器固定高度 → 计算总高度撑开滚动条 → 根据 scrollTop 计算可视区起始索引 → 只渲染可视区数据</p>
+<p>   - 库:vue-virtual-scroller / react-window</p>
+<div class="a-body"><ul><li><strong>时间分片</strong>:<code>requestIdleCallback</code> 在浏览器空闲时批量插入节点,避免一次性阻塞主线程</li><li>配套:避免大列表内复杂组件、正确使用 key、开启虚拟滚动的表格组件</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;最常用分页,需要一次性展示全部数据时用虚拟滚动——只渲染可视区的几十行,配合固定容器高度和 transform 位移,10 万条也没问题。&quot;</p>
+
+<h3 class="qtitle" id="q-4-2"><span class="no">4.2</span>2. 首屏加载优化</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>构建层</strong>:路由懒加载(import())、第三方库按需引入、tree-shaking、代码压缩</li><li><strong>网络层</strong>:gzip/brotli、CDN 加速、强缓存(hash 文件长缓存)、HTTP/2、DNS 预解析、preload 关键资源</li><li><strong>图片</strong>:懒加载、webp、尺寸压缩、iconfont 代替图标</li><li><strong>请求层</strong>:首屏接口合并/精简字段、后端缓存、非关键请求延后、接口超时降级</li><li><strong>体验层</strong>:骨架屏、loading 态、错误兜底</li><li>极端场景:SSR / 静态预渲染(首屏直出)</li></ul></div>
+
+<h3 class="qtitle" id="q-4-3"><span class="no">4.3</span>3. 浏览器缓存:强缓存与协商缓存</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>强缓存</strong>:命中直接使用本地,不发请求(200 from cache)</li></ul></div>
+<p>  - <code>Cache-Control: max-age=3600</code>(HTTP/1.1,优先)</p>
+<p>  - <code>Expires</code>(HTTP/1.0,已淘汰)</p>
+<div class="a-body"><ul><li><strong>协商缓存</strong>:每次发请求,服务器判断</li></ul></div>
+<p>  - <code>ETag</code>(内容哈希,优先)/ <code>Last-Modified</code>(最后修改时间)</p>
+<p>  - 未变返回 304,变了返回 200 + 新资源</p>
+<div class="a-body"><ul><li><strong>工程实践</strong>:index.html 不缓存(或 no-cache 走协商),带 hash 的静态资源长缓存——解决&quot;发版后用户还是旧版本&quot;问题</li></ul></div>
+
+<h3 class="qtitle" id="q-4-4"><span class="no">4.4</span>4. 从输入 URL 到页面渲染</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>DNS 解析:域名 → IP</li><li>TCP 三次握手建立连接</li><li>HTTPS 则进行 TLS 握手</li><li>发送 HTTP 请求,服务器返回 HTML</li><li>解析 HTML 构建 <strong>DOM 树</strong>(遇 <code>&lt;script&gt;</code> 会<strong>阻塞解析</strong>,所以 script 放底部或用 defer/async)</li><li>解析 CSS 构建 <strong>CSSOM 树</strong>(CSS 阻塞渲染)</li><li>DOM + CSSOM 合并成 <strong>渲染树</strong></li><li>布局(Layout):计算几何位置</li><li>绘制(Paint):像素绘制</li><li>合成(Composite)显示</li></ul></div>
+
+<div class="a-body"><ul><li>事件:<code>DOMContentLoaded</code>(DOM 就绪,不等图片)vs <code>load</code>(所有资源加载完)</li></ul></div>
+
+<h3 class="qtitle" id="q-4-5"><span class="no">4.5</span>5. 错误监控与异常上报</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>采集</strong>:</li></ul></div>
+<p>  - <code>window.onerror</code>(脚本错误)</p>
+<p>  - <code>window.addEventListener(&#x27;unhandledrejection&#x27;)</code>(Promise 未处理)</p>
+<p>  - Vue:<code>app.config.errorHandler</code> / <code>errorCaptured</code></p>
+<div class="a-body"><ul><li><strong>上报内容</strong>:错误信息、堆栈、路由、用户/会话、UA、时间</li><li><strong>堆栈还原</strong>:线上代码压缩,需 <strong>sourcemap</strong> 还原行号;注意 sourcemap 不能公开部署(源码泄露风险),可内网存储</li><li><strong>量级控制</strong>:采样率、错误去重聚合、批量上报,防止刷爆接口</li><li>成熟方案:Sentry / 自研上报网关</li></ul></div>
+
+<h3 class="qtitle" id="q-4-6"><span class="no">4.6</span>6. Vite 和 Webpack 的区别</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>开发模式</strong>:Vite 基于原生 ESM,启动秒开、按需编译、HMR 快;Webpack 需全量打包,大项目启动慢</li><li><strong>构建</strong>:Vite 生产用 Rollup;Webpack 用自身打包器</li><li><strong>预构建</strong>:Vite 用 esbuild(Go 编写)预构建依赖,极快</li><li><strong>生态</strong>:Webpack 插件生态最成熟;Vite 已成为新项目主流,兼容大部分 webpack 生态</li><li>银行老项目多为 Webpack,新项目倾向 Vite;兼容老浏览器时注意 Vite 构建目标配置</li></ul></div>
+
+<h3 class="qtitle" id="q-4-7"><span class="no">4.7</span>7. Git 团队协作</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>冲突解决</strong>:<code>git pull --rebase</code> 保持线性 → 冲突文件手动合并(保留双方必要代码)→ <code>git add</code> → <code>git rebase --continue</code> → push</li><li><strong>分支规范</strong>:main(受保护,可发布)/ develop(开发集成分支)/ feature/xxx(功能分支)/ hotfix(紧急修复)/ release(发版)</li><li><strong>提交规范</strong>:Conventional Commits</li></ul></div>
+<p>  - <code>feat:</code> 新功能 / <code>fix:</code> 修复 / <code>docs:</code> 文档 / <code>style:</code> 格式 / <code>refactor:</code> 重构 / <code>test:</code> 测试 / <code>chore:</code> 杂项</p>
+<p>  - 配合 husky + commitlint 强制校验</p>
+<div class="a-body"><ul><li>原则:小步提交、提交信息清晰、不直接往 main 提交代码</li></ul></div>
+
+<h3 class="qtitle" id="q-4-8"><span class="no">4.8</span>8. 移动端适配方案</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>vw/vh 方案(主流)</strong>:<code>width: 375px</code> 设计稿 → <code>width: 100vw</code> 按视口等比例;配合 postcss 转换;边界:小屏需媒体查询兜底</li><li><strong>rem 方案</strong>:根字体随屏幕宽度变化(1rem = 设计稿 100px),配合 flexible.js / postcss-pxtorem;边界:字体和边框需单独处理</li><li><strong>响应式</strong>:媒体查询 + flex/grid 弹性布局</li><li>细节:1px 边框问题(0.5px / transform scale)、<code>viewport-fit=cover</code> 适配刘海屏安全区(<code>env(safe-area-inset-*)</code>)、图片 2x/3x</li></ul></div>
+
+<hr>
+
+</section>
+<section id="sec-5"><h2 class="sec-title">五、网络与前端安全(银行重点)</h2>
+
+<h3 class="qtitle" id="q-5-1"><span class="no">5.1</span>1. XSS 攻击与防御</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>定义:攻击者注入恶意脚本到页面执行,可窃取 cookie(会话劫持)、篡改页面、钓鱼</li><li><strong>类型</strong>:</li></ul></div>
+<p>  - 反射型:恶意链接参数带脚本,一次性</p>
+<p>  - 存储型:恶意脚本存服务器,所有访问用户中招(危害最大,如评论区)</p>
+<p>  - DOM 型:前端 JS 把不可信数据写入 DOM(innerHTML)</p>
+<div class="a-body"><ul><li><strong>防御</strong>:</li></ul></div>
+<p>  1. <strong>输出转义</strong>:渲染时编码 <code>&lt; &gt; &amp; &quot; &#x27;</code>(Vue 插值默认转义)</p>
+<p>  2. <strong>v-html 慎用</strong>:只用可信数据,或先白名单过滤</p>
+<p>  3. <strong>HttpOnly Cookie</strong>:脚本读不到 cookie</p>
+<p>  4. <strong>CSP</strong>:限制脚本来源</p>
+<p>  5. 输入校验:长度、格式、特殊字符</p>
+
+<h3 class="qtitle" id="q-5-2"><span class="no">5.2</span>2. CSRF 攻击与防御</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>定义:诱导用户访问恶意网站,利用用户<strong>已登录的 cookie</strong> 伪造请求执行操作(如转账、改密)</li><li>原理:浏览器自动携带 cookie,服务器无法区分请求是否用户本意</li><li><strong>防御</strong>:</li></ul></div>
+<p>  1. 校验 <strong>Origin / Referer</strong> 请求头(简单有效)</p>
+<p>  2. <strong>CSRF Token</strong>:请求携带随机 token,服务端校验(不匹配拒绝)</p>
+<p>  3. <strong>SameSite Cookie</strong>:<code>Set-Cookie: SameSite=Strict/Lax</code>,跨站请求不携带 cookie</p>
+<p>  4. <strong>关键操作二次验证</strong>:短信验证码、支付密码、人脸——银行系统标配</p>
+
+<h3 class="qtitle" id="q-5-3"><span class="no">5.3</span>3. 敏感数据脱敏</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>示例:手机号 <code>138<strong>**1234</code>、身份证 <code>310</strong><strong>*</strong>****1234</code>、卡号仅显示后四位</li><li><strong>原则:能后端脱敏就不前端做</strong>——数据在接口层脱敏,前端拿到的就是脱敏数据,更安全</li><li>前端兜底:展示层统一过滤器/指令(如 <code>v-mask</code>),防止某接口漏脱敏</li><li>配套:</li></ul></div>
+<p>  - 敏感信息不进日志、不存 localStorage</p>
+<p>  - 全程 HTTPS 加密传输</p>
+<p>  - 导出文件同样脱敏</p>
+<p>  - <strong>审计</strong>:记录&quot;谁在什么时候查看了什么敏感数据&quot;(银行合规要求)</p>
+
+<h3 class="qtitle" id="q-5-4"><span class="no">5.4</span>4. token 和 cookie 的区别?登录态维护</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><table><thead><tr><th>对比</th><th>Cookie</th><th>Token</th></tr></thead><tbody><tr><td>存储</td><td>浏览器,自动携带</td><td>前端存(localStorage/内存),手动放请求头</td></tr><tr><td>HttpOnly</td><td>支持,防脚本读取</td><td>不适用</td></tr><tr><td>跨域</td><td>受限(需配置)</td><td>无限制</td></tr><tr><td>服务端状态</td><td>会话状态(或 JWT)</td><td>无状态(JWT)或需刷新</td></tr></tbody></table></div>
+
+<div class="a-body"><ul><li><strong>银行常用方案</strong>:access token(短时效,如 30 分钟)+ refresh token(长时效)</li></ul></div>
+<p>  - axios 请求拦截器注入 access token</p>
+<p>  - 401 时用 refresh token 换新 access token 后重试原请求</p>
+<p>  - refresh 也失效 → 清登录态跳登录页</p>
+<div class="a-body"><ul><li>安全:token 存内存最安全(刷新即丢),次选 sessionStorage;敏感系统配合 HttpOnly cookie 方案</li></ul></div>
+
+<h3 class="qtitle" id="q-5-5"><span class="no">5.5</span>5. HTTPS 加密过程详解</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>客户端发起 HTTPS 请求</li><li>服务器返回<strong>数字证书</strong>(含公钥、域名、CA 签名、有效期)</li><li>客户端验证证书(信任链、域名匹配、是否过期;失败则告警)</li><li>客户端生成随机<strong>对称密钥</strong>(会话密钥),用服务器公钥加密后发送</li><li>服务器用私钥解密获得对称密钥</li><li>之后双方用对称密钥加密通信(速度快)</li><li>核心思想:<strong>非对称加密做密钥协商,对称加密做数据传输</strong>——兼顾安全与性能</li><li>TLS 握手可优化:会话复用(Resumption)、HTTP/2 多路复用减少握手开销</li></ul></div>
+
+<h3 class="qtitle" id="q-5-6"><span class="no">5.6</span>6. 常见 HTTP 状态码</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>2xx:200 OK、201 Created、204 No Content</li><li>3xx:301 永久重定向、302 临时重定向、304 协商缓存命中、307/308 保持方法重定向</li><li>4xx:400 参数错误、401 未认证、403 无权限、404 不存在、408 超时、429 请求过多</li><li>5xx:500 服务器内部错误、502 网关错误、503 服务不可用、504 网关超时</li><li><strong>重点区分 401 vs 403</strong>:401 = 没登录/凭证无效;403 = 已登录但没有权限</li><li>重点区分 502 vs 504:502 = 网关拿到无效响应;504 = 网关等待上游超时</li></ul></div>
+
+<h3 class="qtitle" id="q-5-7"><span class="no">5.7</span>7. axios 拦截器封装</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<pre><code>const http = axios.create({ baseURL: &#x27;/api&#x27;, timeout: 10000 });
+
+// 请求拦截:注入 token、加签名、防缓存
+http.interceptors.request.use(config =&gt; {
+  config.headers.Authorization = `Bearer ${getToken()}`;
+  return config;
+}, err =&gt; Promise.reject(err));
+
+// 响应拦截:统一业务码处理、401、错误提示
+http.interceptors.response.use(
+  res =&gt; {
+    const { code, data, message } = res.data;
+    if (code === 0) return data;              // 业务成功
+    if (code === 401) { clearAuth(); location.href = &#x27;/login&#x27;; }
+    ElMessage.error(message || &#x27;请求失败&#x27;);
+    return Promise.reject(new Error(message));
+  },
+  err =&gt; {
+    // 网络错误/超时统一提示;可做重试
+    ElMessage.error(&#x27;网络异常,请稍后重试&#x27;);
+    return Promise.reject(err);
+  }
+);</code></pre>
+
+<div class="a-body"><ul><li>加分:取消重复请求(AbortController)、接口耗时上报、失败重试、loading 统一管理</li></ul></div>
+
+<h3 class="qtitle" id="q-5-8"><span class="no">5.8</span>8. CSP 内容安全策略</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>定义:通过 HTTP 响应头或 meta 标签,声明页面允许加载的资源来源,浏览器强制执行</li><li>示例:</li></ul></div>
+<p>  ```</p>
+<p>  Content-Security-Policy: default-src &#x27;self&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; data: https:</p>
+<p>  ```</p>
+<div class="a-body"><ul><li>作用:即使攻击者注入脚本,浏览器也不执行非白名单来源的脚本 → 有效缓解 XSS</li><li>注意:配置过严可能误伤(内联脚本、CDN 资源),需灰度调整</li><li>其他安全实践:密码不明文存储/传输、接口幂等防重复提交、<code>X-Content-Type-Options: nosniff</code> 等安全头</li></ul></div>
+
+<hr>
+
+</section>
+<section id="sec-6"><h2 class="sec-title">六、银行业务场景题</h2>
+
+<h3 class="qtitle" id="q-6-1"><span class="no">6.1</span>1. 如果让你做一个&quot;转账&quot;页面</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>从前端到整体的完整考虑:</p>
+
+<div class="a-body"><ul><li><strong>防重复提交(重点)</strong>:</li></ul></div>
+<p>   - 前端:提交后按钮置灰 + loading,禁止二次点击</p>
+<p>   - 后端配合:幂等键(前端生成 UUID,转账接口以幂等键判重)——即使前端漏了,后端也能挡住重复转账</p>
+<div class="a-body"><ul><li><strong>表单校验</strong>:金额(&gt;0、两位小数、上限)、收款账号格式、收款人姓名、备注长度;提交前二次确认弹窗(展示完整信息让用户核对)</li><li><strong>安全验证</strong>:短信验证码 / 人脸 / U 盾 二次验证(银行转账标配);金额超过阈值触发更严格验证</li><li><strong>数据安全</strong>:HTTPS、卡号只显示后四位、不存敏感数据、转账凭证下载脱敏</li><li><strong>结果处理</strong>:转账是异步操作——轮询或服务端推送最终状态;成功展示回执,失败(余额不足/账号无效/风控拦截)给明确友好提示与处理建议</li><li><strong>合规审计</strong>:埋点记录操作留痕(谁、何时、转给谁、金额),满足审计要求</li><li><strong>异常场景</strong>:网络超时提示&quot;结果未知,请查询交易记录,切勿重复提交&quot;——银行系统对未知结果的经典处理</li></ul></div>
+
+<p><strong>【回答话术】</strong> &quot;转账页面核心是安全与防重:按钮置灰 + 后端幂等键防重复提交,金额账号严格校验,敏感操作二次验证,结果未知时提示用户先查交易记录而不是重复提交,全程埋点留痕满足审计。&quot;</p>
+
+<h3 class="qtitle" id="q-6-2"><span class="no">6.2</span>2. 银行系统和你做过的互联网系统有什么不同</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>稳定优先</strong>:不允许&quot;先上线再改&quot;;变更走审批、灰度发布、双人复核;变更窗口固定</li><li><strong>安全合规优先</strong>:数据脱敏、审计留痕、防攻击;数据不出行;敏感操作可追溯</li><li><strong>技术约束</strong>:内网环境无法访问公网 CDN;可能要求兼容老浏览器(如 IE/国产浏览器信创要求);依赖镜像源受限</li><li><strong>流程规范</strong>:需求评审 → 开发 → 自测 → 联调 → 测试(SIT/UAT)→ 上线窗口 → 回归;文档要求齐全</li><li><strong>存量系统多</strong>:常对接老系统、历史逻辑,不能随意重构,改动需评估影响面</li><li>表达要点:体现&quot;我理解并接受这种严谨文化&quot;,而不是抱怨流程多</li></ul></div>
+
+<h3 class="qtitle" id="q-6-3"><span class="no">6.3</span>3. 埋点上报为什么用 sendBeacon</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li>问题:页面跳转/关闭时,普通 fetch/ajax 请求会被浏览器<strong>中断</strong>,数据丢失</li><li>方案:<code>navigator.sendBeacon(url, data)</code>:</li></ul></div>
+<p>  - 异步发送,不影响页面性能</p>
+<p>  - 页面卸载时也能送达(浏览器负责送达)</p>
+<p>  - 适合:PV 统计、日志上报、用户离开页面的行为上报</p>
+<div class="a-body"><ul><li>局限:只能 POST、数据量有限(通常 64KB 内)、无响应回调——常规埋点仍用批量 fetch,只有卸载场景用 sendBeacon</li></ul></div>
+
+<h3 class="qtitle" id="q-6-4"><span class="no">6.4</span>4. ECharts 大数据量图表优化</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>降采样</strong>:<code>sampling: &#x27;lttb&#x27;</code> 保留趋势特征,减少绘制点(上万点时)</li><li><strong>大数据渲染</strong>:<code>large: true</code> 开启,折线图大数据量时用画布整体绘制,不再逐个画点</li><li><strong>按需引入</strong>:只引入用到的图表,<code>echarts/core</code> + 按需注册,包体积从 1MB 级降到几百 KB</li><li><strong>生命周期</strong>:图表不用时 <code>chart.dispose()</code>,组件卸载时一定要释放,防内存泄漏</li><li><strong>交互优化</strong>:<code>dataZoom</code> 只渲染可视区间;数据更新用 <code>setOption</code> 增量合并而非整体重建</li><li>大屏场景:背景用 CSS 渐变/图片,减少 DOM 层级;多个图表共用一个实例管理</li></ul></div>
+
+<h3 class="qtitle" id="q-6-5"><span class="no">6.5</span>5. 你了解金融科技 / 银行数字化转型吗</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>可谈方向(挑 2-3 个展开,体现做过功课):</p>
+
+<div class="a-body"><ul><li>交行&quot;数字化新交行&quot;战略;手机银行智能化升级</li><li><strong>大数据风控</strong>:反欺诈、智能审批、评分卡模型</li><li><strong>AI 应用</strong>:智能客服、OCR 票据识别、大模型合规助手(呼应 ChatGPT 论述题)</li><li><strong>信创与国产化</strong>:操作系统/数据库/中间件国产替代,前端要兼容国产浏览器(如麒麟、UOS + 360/奇安信浏览器)</li><li><strong>云原生</strong>:容器化、微服务改造、敏态交付</li><li><strong>开放银行</strong>:API 开放平台,与外部生态连接</li><li>前端视角:国产浏览器兼容适配、信创环境验证、旧系统前端重构、数据可视化大屏</li></ul></div>
+
+<h3 class="qtitle" id="q-6-6"><span class="no">6.6</span>6. 如果给你一个不熟悉的技术,如何快速上手</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>回答框架(展示学习能力):</p>
+
+<div class="a-body"><ul><li>先看<strong>官方文档</strong> + 跑一个最小 demo,建立整体印象</li><li>结合<strong>现有项目代码</strong>,找同类功能的写法照着写(项目规范优先)</li><li>遇到问题先自查:看报错信息、打断点、搜 issue,再考虑问同事(带着自己的分析去问)</li><li>边做边记笔记/沉淀文档,形成自己的知识体系</li><li>加分点:强调&quot;先理解项目现有约定再动手&quot;,银行项目老代码多,遵循规范比炫技重要</li></ul></div>
+
+<h3 class="qtitle" id="q-6-7"><span class="no">6.7</span>7. 你和后端/测试/业务怎么协作?需求不清晰怎么办</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<div class="a-body"><ul><li><strong>需求不清晰</strong>:先把疑问整理成清单(场景、边界、异常),找产品/业务逐条确认;关键逻辑(金额、权限、状态流转)<strong>白纸黑字确认</strong>避免返工;必要时画原型/时序图对齐</li><li><strong>前后端协作</strong>:开发前先对齐接口文档(字段、错误码、分页),联调前用 mock 自测;接口变动走文档同步,不口头传</li><li><strong>测试协作</strong>:明确验收标准,自测充分(正常流 + 异常流 + 边界值),测试提 bug 及时响应并说明修复方案</li><li>表达核心:主动沟通、文档留痕、对结果负责——银行最看重流程规范意识</li></ul></div>
+
+<h3 class="qtitle" id="q-6-8"><span class="no">6.8</span>8. 反问环节,可以问面试官什么</h3>
+
+<p><strong>【详细解答】</strong></p>
+
+<p>好问题 = 体现认真 + 帮你判断岗位:</p>
+
+<div class="a-body"><ul><li>团队目前的技术栈和主要负责的业务系统?</li><li>前端在这个项目中的职责边界,和行方怎么协作?</li><li>项目的开发流程和上线节奏?(了解加班情况,注意措辞别太直接)</li><li>入职后前 1-2 个月会接手什么任务?有没有老带新?</li><li>这个岗位后续的转正/晋升路径?</li><li>避免:一上来就问薪资福利(HR 面再说);避免问网上能查到的答案</li></ul></div>
+
+<hr>
+
+</section>
+<section id="sec-7"><h2 class="sec-title">七、考前 Checklist</h2>
+
+<div class="a-body"><ul><li>[ ] 自我介绍 1-2 分钟(技术栈 + 最拿手项目 + 为什么适合银行驻场)</li><li>[ ] 项目能讲 STAR:背景 / 负责模块 / 难点 / 解决 / 效果</li><li>[ ] 手写题:防抖、节流、深拷贝、Promise.all、sleep、bind、new、去重</li><li>[ ] Vue 三板斧:双向绑定原理、组件通信、权限控制</li><li>[ ] 埋点标准答案(怎么做 + 用于什么业务)</li><li>[ ] 白屏排查流程 + 优化手段</li><li>[ ] 安全三件套:XSS、CSRF、脱敏</li><li>[ ] 大表格渲染:分页 + 虚拟滚动</li><li>[ ] 转账页面设计要点(防重 + 二次验证 + 未知结果处理)</li><li>[ ] ChatGPT 银行应用:6 场景 + 2 挑战</li><li>[ ] 网络基础:跨域、缓存、状态码、事件循环、HTTPS</li><li>[ ] 准备 1-2 个反问问题</li></ul></div>
+
+<hr>
+
+<p><strong>核心表达:严谨、稳定、安全、合规。祝面试顺利!</strong></p>
+</section>
+</main>
+</div>
+<footer>核心表达:严谨、稳定、安全、合规。祝面试顺利!</footer>
+</body>
+</html>

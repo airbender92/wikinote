@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交通银行数据中心 · 前端驻场面试题库(精简版)</title>
+<style>
+  :root {
+    --bg:#f5f7fa; --card:#fff; --border:#e2e8f0; --text:#1e293b;
+    --muted:#64748b; --primary:#1a56db; --primary-light:#e8eefc;
+    --accent:#b42318; --code-bg:#f8fafc; --ok:#067647;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;padding-bottom:60px}
+  header{background:linear-gradient(135deg,#123c8f,#1a56db 60%,#2e6bff);color:#fff;padding:32px 20px 26px;text-align:center}
+  header h1{font-size:23px;margin-bottom:6px}
+  header p{opacity:.9;font-size:13px;max-width:680px;margin:0 auto}
+  nav{max-width:900px;margin:0 auto;padding:18px 16px 0;display:flex;flex-wrap:wrap;gap:8px}
+  nav a{text-decoration:none;font-size:12.5px;color:var(--primary);background:var(--card);border:1px solid var(--border);padding:4px 12px;border-radius:999px}
+  nav a:hover{background:var(--primary-light);border-color:var(--primary)}
+  main{max-width:900px;margin:0 auto;padding:20px 16px}
+  section{margin-bottom:32px}
+  .sec-title{font-size:18px;font-weight:700;color:#123c8f;padding-left:12px;border-left:4px solid var(--primary);margin-bottom:4px}
+  .sec-desc{color:var(--muted);font-size:12px;margin-bottom:14px;padding-left:16px}
+  details.qa{background:var(--card);border:1px solid var(--border);border-radius:9px;margin-bottom:9px;overflow:hidden}
+  summary{padding:12px 16px;font-weight:600;font-size:14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--primary);font-size:16px;font-weight:700;flex-shrink:0}
+  details[open] summary::after{content:"-"}
+  summary:hover{background:#fafbfd}
+  .tag{flex-shrink:0;font-size:11px;font-weight:500;color:var(--primary);background:var(--primary-light);border-radius:999px;padding:2px 10px}
+  .tag.hot{color:var(--accent);background:#fef3f2}
+  .a{padding:4px 16px 14px;border-top:1px dashed var(--border);color:#334155;font-size:13.5px}
+  .a p{margin:6px 0}
+  .a ul,.a ol{margin:4px 0 4px 18px}
+  .a li{margin:2px 0}
+  .point{color:var(--ok);font-weight:600}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12px;line-height:1.5;margin:6px 0;font-family:Consolas,"Courier New",monospace;color:#1e293b}
+  .btn-row{text-align:right;margin-bottom:14px}
+  .btn{border:1px solid var(--border);background:var(--card);color:var(--primary);font-size:13px;padding:5px 14px;border-radius:8px;cursor:pointer}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:16px}
+  @media print{body{background:#fff}.a{display:block!important}nav,.btn-row,footer{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>交通银行数据中心 · 前端驻场面试题库(精简版)</h1>
+  <p>点击题目即可展开/收起答案。答案均为得分要点,先自测再对照。</p>
+</header>
+
+<nav>
+  <a href="#past">一、往年真题</a>
+  <a href="#vue">二、Vue 核心</a>
+  <a href="#js">三、JS 手写代码</a>
+  <a href="#perf">四、性能与工程化</a>
+  <a href="#net">五、网络与安全</a>
+  <a href="#biz">六、银行场景题</a>
+  <a href="#check">七、考前 Checklist</a>
+</nav>
+
+<main>
+<div class="btn-row">
+  <button class="btn" onclick="setAll(true)">全部展开</button>
+  <button class="btn" onclick="setAll(false)">全部收起</button>
+</div>
+
+<!-- ============ 一、往年真题 ============ -->
+<section id="past">
+  <h2 class="sec-title">一、往年真题(真实面经)</h2>
+  <p class="sec-desc">笔试:单选20×2分 + 多选15×2分 + 3简答 + 1论述。面试约10-15分钟,自我介绍后直接开问。</p>
+
+  <details class="qa"><summary>笔试选择题考点</summary><div class="a"><ul><li>CSS:<code>clientWidth</code>、盒模型</li><li>JS:Promise、this 指向、宏/微任务、箭头函数</li><li>React:redux 数据流</li><li>网络:跨域</li><li>Vue:组件传值</li></ul></div></details>
+
+  <details class="qa"><summary>简答1:useState / useRef 使用与原理</summary><div class="a"><pre><code>const [n, setN] = useState(0);
+const ref = useRef(null); // 改 ref.current 不触发渲染</code></pre><p>原理:Fiber 节点链表按<b>调用顺序</b>存 Hook,故 Hook 不能写在条件/循环里。</p></div></details>
+
+  <details class="qa"><summary>简答2:手写 sleep(1000)</summary><div class="a"><pre><code>const sleep = ms =&gt; new Promise(r =&gt; setTimeout(r, ms));
+await sleep(1000);
+// generator 版:yield new Promise(r =&gt; setTimeout(r, ms))</code></pre></div></details>
+
+  <details class="qa"><summary>简答3:webpack 页面体积分析</summary><div class="a"><p>分析:webpack-bundle-analyzer + Network + Lighthouse。</p><p>优化:路由级 <code>import()</code> 拆包、splitChunks 抽 vendor、按需引入、tree-shaking、gzip。</p></div></details>
+
+  <details class="qa"><summary>论述:ChatGPT 在银行业的应用</summary><div class="a"><p>场景:智能客服、合规审查、反洗钱分析、财报研报解读、信贷材料审核、代码辅助、营销文案。</p><p>挑战:数据安全(私有化、数据不出行)、幻觉(人工复核)、监管合规。</p></div></details>
+
+  <details class="qa"><summary>面试1:埋点怎么做?用于什么业务?(高频)</summary><div class="a"><p><span class="point">怎么做:</span>代码埋点/无埋点;采集 PV、点击、业务事件、JS 错误;节流批量上报,卸载用 <code>sendBeacon</code>;字段含用户/会话/时间戳。</p><p><span class="point">用途:</span>行为分析、异常监控、<b>操作留痕审计</b>、风控辅助。</p></div></details>
+
+  <details class="qa"><summary>面试2:组件传值方式</summary><div class="a"><p>Vue:props、$emit、v-model、provide/inject、$refs、EventBus、Pinia、插槽。React:props、回调、Context、Redux。</p></div></details>
+
+  <details class="qa"><summary>面试3:白屏排查与优化</summary><div class="a"><p>排查:JS 报错、资源 404、首屏接口慢。</p><p>优化:骨架屏、拆包压缩、CDN、preload、错误兜底页。</p></div></details>
+
+  <details class="qa"><summary>面试4:Redis / Swagger 缺点</summary><div class="a"><p>Redis:纯内存贵、持久化非强一致、淘汰误删、集群运维复杂。</p><p>Swagger:注解侵入代码、文档易失真、生产须关闭、有性能开销。</p></div></details>
+
+  <details class="qa"><summary>面试5:HTTP 在哪层?HTTP/HTTPS 区别</summary><div class="a"><p>应用层。明文 vs SSL/TLS 加密、80 vs 443、HTTPS 需 CA 证书、多一次 TLS 握手。</p></div></details>
+
+  <details class="qa"><summary>面试6:Vue 双向绑定原理</summary><div class="a"><p>Vue2:<code>Object.defineProperty</code> 劫持 + Dep/Watcher 发布订阅;Vue3:<code>Proxy</code> 整对象代理。v-model = value + input 语法糖。</p></div></details>
+</section>
+
+<!-- ============ 二、Vue 核心 ============ -->
+<section id="vue">
+  <h2 class="sec-title">二、Vue 核心</h2>
+  <p class="sec-desc">以下 8 题覆盖外包技术面 80% 的 Vue 提问。</p>
+
+  <details class="qa"><summary>1. 虚拟 DOM 是什么</summary><div class="a"><p>JS 对象描述 DOM,diff 后最小化真实 DOM 操作;跨平台(uni-app);数据驱动视图。</p></div></details>
+
+  <details class="qa"><summary>2. 生命周期钩子</summary><div class="a"><p>setup → onMounted(DOM 就绪:初始化库/请求)→ onUpdated → onUnmounted(<b>清理定时器/事件/echarts,防泄漏</b>)。</p></div></details>
+
+  <details class="qa"><summary>3. computed 和 watch 区别</summary><div class="a"><p>computed:有缓存,派生值;watch:副作用(请求/异步),可 deep/immediate。口诀:派生用 computed,副作用用 watch。</p></div></details>
+
+  <details class="qa"><summary>4. Vue2 vs Vue3</summary><div class="a"><p>defineProperty→Proxy;Options→Composition;diff 优化;TS 友好;状态管理用 Pinia。</p></div></details>
+
+  <details class="qa"><summary>5. 刷新后状态丢失怎么办</summary><div class="a"><p>localStorage 持久化关键状态;刷新后重拉用户信息/权限;敏感数据不存本地。</p></div></details>
+
+  <details class="qa"><summary>6. 权限控制(银行必考)</summary><div class="a"><p>① 登录得 token + 权限码;② 路由守卫校验,无 token 跳登录;③ 动态路由 addRoute 或 meta 控制;④ 按钮级 <code>v-permission</code> 指令;⑤ <b>前端只是体验,安全底线在后端二次校验</b>。</p></div></details>
+
+  <details class="qa"><summary>7. nextTick 是什么</summary><div class="a"><p>DOM 更新是异步批量的;nextTick 在更新后回调拿到最新 DOM。原理:微任务队列。</p></div></details>
+
+  <details class="qa"><summary>8. 跨域怎么解决</summary><div class="a"><p>同源:协议/域名/端口。开发:proxy 代理;生产:Nginx 反代;CORS 配响应头。</p></div></details>
+</section>
+
+<!-- ============ 三、JS 手写 ============ -->
+<section id="js">
+  <h2 class="sec-title">三、JS 手写代码(笔试必考)</h2>
+  <p class="sec-desc">亲手敲 2 遍,面试官会要求边说边写。</p>
+
+  <details class="qa"><summary>1. 防抖(只执行最后一次)</summary><div class="a"><pre><code>function debounce(fn, d = 300) {
+  let t;
+  return function (...a) {
+    clearTimeout(t);
+    t = setTimeout(() =&gt; fn.apply(this, a), d);
+  };
+}</code></pre></div></details>
+
+  <details class="qa"><summary>2. 节流(定期执行)</summary><div class="a"><pre><code>function throttle(fn, d = 300) {
+  let last = 0;
+  return function (...a) {
+    const now = Date.now();
+    if (now - last &gt;= d) { last = now; fn.apply(this, a); }
+  };
+}</code></pre></div></details>
+
+  <details class="qa"><summary>3. 深拷贝(含循环引用)</summary><div class="a"><pre><code>function deepClone(o, map = new WeakMap()) {
+  if (o === null || typeof o !== 'object') return o;
+  if (o instanceof Date) return new Date(o);
+  if (map.has(o)) return map.get(o);
+  const c = Array.isArray(o) ? [] : {};
+  map.set(o, c);
+  for (const k of Object.keys(o)) c[k] = deepClone(o[k], map);
+  return c;
+}</code></pre></div></details>
+
+  <details class="qa"><summary>4. Promise.all</summary><div class="a"><pre><code>Promise.myAll = ps =&gt; new Promise((res, rej) =&gt; {
+  const r = []; let n = 0;
+  ps.forEach((p, i) =&gt; Promise.resolve(p).then(
+    v =&gt; { r[i] = v; if (++n === ps.length) res(r); }, rej));
+});</code></pre></div></details>
+
+  <details class="qa"><summary>5. new</summary><div class="a"><pre><code>function myNew(Fn, ...a) {
+  const o = Object.create(Fn.prototype);
+  const r = Fn.apply(o, a);
+  return (typeof r === 'object' &amp;&amp; r !== null) || typeof r === 'function' ? r : o;
+}</code></pre></div></details>
+
+  <details class="qa"><summary>6. bind</summary><div class="a"><pre><code>Function.prototype.myBind = function (ctx, ...a) {
+  const fn = this;
+  return function (...r) { return fn.apply(ctx, [...a, ...r]); };
+};</code></pre></div></details>
+
+  <details class="qa"><summary>7. 数组去重</summary><div class="a"><pre><code>[...new Set(arr)];
+arr.filter((v, i) =&gt; arr.indexOf(v) === i);</code></pre></div></details>
+
+  <details class="qa"><summary>8. 事件循环顺序</summary><div class="a"><p>同步 → 全部微任务 → 一个宏任务 → 全部微任务…。微任务:Promise.then;宏任务:setTimeout。</p><p>输出题:<code>1, 3, 2</code>(同步1、微任务3、宏任务2)。</p></div></details>
+
+  <details class="qa"><summary>9. this 指向</summary><div class="a"><p>普通调用→window;对象方法→对象;new→实例;call/apply/bind→绑定值。<b>箭头函数无 this</b>,定义时确定。</p></div></details>
+
+  <details class="qa"><summary>10. 闭包</summary><div class="a"><p>函数+词法作用域引用,变量不销毁。作用:封装私有变量。风险:内存泄漏;for+setTimeout(var) 输出 3,3,3,用 let 解决。</p></div></details>
+</section>
+
+<!-- ============ 四、性能 ============ -->
+<section id="perf">
+  <h2 class="sec-title">四、性能优化与工程化</h2>
+
+  <details class="qa"><summary>1. 一次渲染 10 万条表格数据</summary><div class="a"><p>分页/懒加载 → 虚拟滚动(只渲染可视区)→ 时间分片 requestIdleCallback。</p></div></details>
+
+  <details class="qa"><summary>2. 首屏加载优化</summary><div class="a"><p>路由懒加载、gzip+CDN+强缓存、按需引入、图片优化、接口合并、骨架屏、preload。</p></div></details>
+
+  <details class="qa"><summary>3. 浏览器缓存</summary><div class="a"><p>强缓存(Cache-Control,不发请求)+ 协商缓存(ETag,304)。index.html 短缓存,hash 资源长缓存。</p></div></details>
+
+  <details class="qa"><summary>4. URL 到渲染过程</summary><div class="a"><p>DNS → TCP 三次握手 → 请求 → DOM/CSSOM → 渲染树 → 布局 → 绘制。script 阻塞,放底部/defer。</p></div></details>
+
+  <details class="qa"><summary>5. 错误监控</summary><div class="a"><p>window.onerror + unhandledrejection + errorHandler;sourcemap 还原堆栈(不公开生产);采样去重批量上报。</p></div></details>
+
+  <details class="qa"><summary>6. Vite vs Webpack</summary><div class="a"><p>Vite:原生 ESM,秒开、HMR 快;Webpack:生态成熟。新项目主流 Vite。</p></div></details>
+
+  <details class="qa"><summary>7. Git 协作</summary><div class="a"><p>pull --rebase 保持线性;feature/develop/main 分支;commit 规范 feat:/fix: + commitlint。</p></div></details>
+
+  <details class="qa"><summary>8. 移动端适配</summary><div class="a"><p>vw/vh 方案(主流)、rem 方案、媒体查询、安全区适配。</p></div></details>
+</section>
+
+<!-- ============ 五、网络安全 ============ -->
+<section id="net">
+  <h2 class="sec-title">五、网络与前端安全(银行重点)</h2>
+
+  <details class="qa"><summary>1. XSS 及防御</summary><div class="a"><p>注入恶意脚本。防御:输出转义、v-html 慎用、HttpOnly cookie、CSP。</p></div></details>
+
+  <details class="qa"><summary>2. CSRF 及防御</summary><div class="a"><p>利用已登录 cookie 伪造请求。防御:校验 Origin、CSRF Token、SameSite、<b>关键操作二次验证</b>。</p></div></details>
+
+  <details class="qa"><summary>3. 敏感数据脱敏(银行必考)</summary><div class="a"><p>138****1234;<b>能后端脱敏就不前端做</b>;展示层过滤器兜底;敏感信息不进日志/localStorage。</p></div></details>
+
+  <details class="qa"><summary>4. token vs cookie</summary><div class="a"><p>cookie 自动携带、HttpOnly、跨域受限;token 请求头携带、无跨域。银行方案:access + refresh 双 token,401 拦截刷新。</p></div></details>
+
+  <details class="qa"><summary>5. HTTPS 加密流程</summary><div class="a"><p>服务器发证书(公钥)→ 客户端验证 → 生成对称密钥用公钥加密发送 → 私钥解密 → 对称加密通信。</p></div></details>
+
+  <details class="qa"><summary>6. HTTP 状态码</summary><div class="a"><p>200/301/304/400/401(未认证)/403(无权限)/404/500/502/504。</p></div></details>
+
+  <details class="qa"><summary>7. axios 拦截器封装</summary><div class="a"><p>请求拦截:注入 token;响应拦截:统一处理 code、401 跳登录、统一错误提示。加分:取消重复请求、耗时上报。</p></div></details>
+
+  <details class="qa"><summary>8. CSP 是什么</summary><div class="a"><p>内容安全策略,限制脚本来源缓解 XSS。例:<code>script-src 'self'</code>。</p></div></details>
+</section>
+
+<!-- ============ 六、银行场景 ============ -->
+<section id="biz">
+  <h2 class="sec-title">六、银行业务场景题</h2>
+
+  <details class="qa"><summary>1. 做"转账"页面考虑什么</summary><div class="a"><p>防重复提交(置灰+幂等号)、表单校验、二次验证(短信/人脸)、HTTPS+脱敏、操作埋点审计。精髓:<b>前端负责体验,资金安全靠后端事务+风控</b>。</p></div></details>
+
+  <details class="qa"><summary>2. 银行系统与互联网开发差异</summary><div class="a"><p>稳定优先(灰度/双人复核)、安全合规优先(脱敏/审计/数据不出行)、老浏览器兼容、流程规范文档齐全。</p></div></details>
+
+  <details class="qa"><summary>3. 为什么用 sendBeacon</summary><div class="a"><p>页面卸载时普通请求会被浏览器中断,sendBeacon 异步且卸载时也能送达,埋点不丢。</p></div></details>
+
+  <details class="qa"><summary>4. ECharts 大数据量优化</summary><div class="a"><p>sampling:'lttb' 降采样、large:true、按需引入、用后 dispose() 防泄漏、dataZoom。</p></div></details>
+
+  <details class="qa"><summary>5. 数字化转型了解吗</summary><div class="a"><p>交行"数字化新交行"战略、大数据风控、AI 应用、信创国产化(前端兼容国产浏览器)、云原生。</p></div></details>
+
+  <details class="qa"><summary>6. 不熟悉的技术怎么快速上手</summary><div class="a"><p>官方文档+最小 demo → 参考现有代码 → 自查(报错/断点)再问人 → 总结笔记。</p></div></details>
+
+  <details class="qa"><summary>7. 需求不清晰怎么办</summary><div class="a"><p>列疑问清单逐条确认,关键逻辑白纸黑字;先对接口文档再联调;体现主动沟通、文档留痕。</p></div></details>
+
+  <details class="qa"><summary>8. 反问环节问什么</summary><div class="a"><p>团队技术栈和负责系统?前端职责边界?开发/上线节奏?入职前 1-2 月接手什么?转正路径?</p></div></details>
+</section>
+
+<!-- ============ 七、Checklist ============ -->
+<section id="check">
+  <h2 class="sec-title">七、考前 Checklist</h2>
+  <details class="qa" open><summary>逐项确认</summary><div class="a"><ul>
+    <li>自我介绍 1-2 分钟(技术栈 + 最拿手项目 + 为什么适合银行驻场)</li>
+    <li>项目能讲 STAR:背景/负责模块/难点/解决/效果</li>
+    <li>手写题:防抖、节流、深拷贝、Promise.all、sleep、bind、new</li>
+    <li>Vue 三板斧:双向绑定、组件通信、权限控制</li>
+    <li>埋点标准答案 + 白屏排查流程</li>
+    <li>安全三件套:XSS、CSRF、脱敏</li>
+    <li>大表格渲染:分页 + 虚拟滚动</li>
+    <li>ChatGPT 银行应用:6 场景 + 2 挑战</li>
+    <li>准备 1-2 个反问问题</li>
+  </ul></div></details>
+</section>
+</main>
+
+<footer>核心表达:严谨、稳定、安全、合规。祝面试顺利!</footer>
+
+<script>
+function setAll(open) {
+  var list = document.querySelectorAll('.qa');
+  for (var i = 0; i < list.length; i++) { list[i].open = open; }
+}
+</script>
+</body>
+</html>
