@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh‑CN">
+<head>
+<meta charset="UTF‑8">
+<style>
+.flip-card {
+  width: 260px;
+  height: 360px;
+  perspective: 800px; /* 透视距离，越大3D效果越弱 */
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform‑style: preserve‑3d; /* 开启3D子元素空间 */
+}
+
+/* hover 翻转整个卡片 */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border‑radius: 12px;
+  display: flex;
+  align‑items: center;
+  justify‑content: center;
+  font‑size: 28px;
+  /* 隐藏背面，非常关键 */
+  backface‑visibility: hidden;
+}
+
+.flip-front {
+  background‑color: #409eff;
+  color: #fff;
+}
+
+.flip-back {
+  background‑color: #f56c6c;
+  color: #fff;
+  /* 背面初始旋转180度 */
+  transform: rotateY(180deg);
+}
+</style>
+</head>
+<body>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-front">正面</div>
+    <div class="flip-back">背面内容</div>
+  </div>
+</div>
+
+</body>
+</html>
