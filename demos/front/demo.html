@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="handlebtn()">按钮</button>
+    <script>
+
+        function handlebtn(){
+            console.log('click')
+        }
+
+//核心伪代码
+function createImg(text){
+  const canvas = document.createElement('canvas')
+  canvas.width = 220
+  canvas.height = 160
+  const ctx = canvas.getContext('2d')
+  ctx.rotate(-20 * Math.PI/180) //旋转
+  ctx.fillStyle = 'rgba(128,128,128,0.12)'
+  ctx.font = "14px sans-serif"
+  ctx.fillText(text,20,80)
+  return canvas.toDataURL()
+}
+// 蒙层
+const mask = document.createElement('div')
+mask.style.cssText = `
+position:fixed;top:0;left:0;right:0;bottom:0;
+z-index:9999;pointer-events:none;
+background-image:url(${createImg('张三 userId:10086')});
+background-repeat:repeat;
+`
+document.body.appendChild(mask)
+
+
+    </script>
+</body>
+</html>
