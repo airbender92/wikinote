@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>node-nginx</title>
+</head>
+<body>
+    <h1>nginx托管页面，调用nginx反向代理node接口</h1>
+    <button onclick="fetchApi()">请求接口</button>
+    <div id="res"></div>
+
+    <script>
+        async function fetchApi(){
+            const resp = await fetch('/api/getData');
+            const json = await resp.json();
+            document.getElementById('res').innerText = JSON.stringify(json)
+        }
+
+    </script>
+</body>
+</html>
