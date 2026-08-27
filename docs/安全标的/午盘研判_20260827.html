@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>午盘研判 2026-08-27（周四）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Microsoft YaHei","PingFang SC",sans-serif; background:#f5f6fa; color:#222; line-height:1.7; padding:20px; }
+  .wrap { max-width:1080px; margin:0 auto; }
+  .header { background:linear-gradient(135deg,#1a3a6b,#2a5aa8); color:#fff; border-radius:12px; padding:24px 28px; margin-bottom:18px; }
+  .header h1 { font-size:24px; margin-bottom:6px; }
+  .header .sub { font-size:13px; opacity:.85; }
+  .card { background:#fff; border-radius:10px; padding:20px 24px; margin-bottom:16px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+  .card h2 { font-size:18px; color:#1a3a6b; border-left:4px solid #c0392b; padding-left:10px; margin-bottom:14px; }
+  .card h3 { font-size:15px; color:#2c3e50; margin:14px 0 8px; }
+  .tldr { background:#fff8e6; border:1px solid #f0d48a; }
+  .tldr h2 { border-left-color:#e67e22; }
+  .tldr li { margin-bottom:8px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0; }
+  th,td { border:1px solid #dfe3ea; padding:7px 9px; text-align:center; }
+  th { background:#eef2f8; color:#1a3a6b; font-weight:600; }
+  tr:nth-child(even) td { background:#fafbfd; }
+  .up { color:#c0392b; font-weight:600; }
+  .down { color:#1e8449; font-weight:600; }
+  .flat { color:#666; }
+  .tag { display:inline-block; padding:1px 8px; border-radius:4px; font-size:12px; font-weight:600; }
+  .tag-red { background:#fdecea; color:#c0392b; }
+  .tag-green { background:#e8f8ef; color:#1e8449; }
+  .tag-orange { background:#fef3e2; color:#e67e22; }
+  .tag-blue { background:#e8f0fe; color:#2a5aa8; }
+  .note { font-size:12px; color:#888; margin-top:6px; }
+  .kbox { display:flex; gap:12px; flex-wrap:wrap; margin:10px 0; }
+  .kpi { flex:1; min-width:140px; background:#f8fafc; border:1px solid #e3e8f0; border-radius:8px; padding:10px 12px; text-align:center; }
+  .kpi .v { font-size:20px; font-weight:700; }
+  .kpi .l { font-size:12px; color:#888; }
+  .warn { background:#fdf2f2; border-left:4px solid #c0392b; padding:10px 14px; border-radius:6px; margin:10px 0; font-size:13px; }
+  .ok { background:#f0faf3; border-left:4px solid #1e8449; padding:10px 14px; border-radius:6px; margin:10px 0; font-size:13px; }
+  ul.tight li { margin-bottom:5px; }
+  .chart { width:100%; height:380px; margin:10px 0; }
+  .chart-sm { width:100%; height:330px; margin:10px 0; }
+  .src { font-size:11px; color:#999; margin-top:4px; }
+  .disc { font-size:12px; color:#999; border-top:1px dashed #ccc; padding-top:10px; margin-top:16px; }
+  @media (max-width:720px){ body{padding:10px;} .header{padding:16px;} .card{padding:14px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>📊 午盘研判 · 2026-08-27（周四）</h1>
+  <div class="sub">持仓5只 + 现金38.3%｜只做分批止盈与防守位执行，禁止新开仓/加仓｜数据时点：8/27 11:41（上午收盘）</div>
+</div>
+
+<!-- ============ TL;DR ============ -->
+<div class="card tldr">
+  <h2>🎯 TL;DR（结论先行）</h2>
+  <ul class="tight">
+    <li><b>指数验证开盘预判、但持仓全线踏空式下跌</b>：上证3935.99（+0.60%，盘中高3938.97逼近3945压力）、深成+1.19%、创业板+1.51%、<b>科创50 +3.45%</b>——英伟达财报利好兑现，CPO/算力/存储/半导体全面爆发（赛微电子20cm、长飞光纤/生益科技涨停、大普微20cm涨停、存储器板块+4.37%）。<b>但持仓5只全绿</b>：南瑞-2.39%⚠️破23.0、国投-1.71%、比亚迪-0.87%、白药-0.86%、招商-0.54%——资金从防御/价值（银行/白酒/公用/医药）单边流向科技，典型"指数涨、持仓跌"结构。</li>
+    <li><b>半日量能1.35万亿（沪6492亿+深7025亿），较昨日同期1.23万亿放量约10%</b>；按昨日实际比率（半日/全天=0.68）校准，全天≈1.99万亿（2万亿级但非突破级）——午后防量能不足、冲高回落（因子③）。</li>
+    <li><b>⚠️ 国电南瑞午盘破23.0防守位（低22.70）</b>——午后关键：收回23.0=空头陷阱（因子④，参照招商8/25案例）不执行；<b>收盘仍破23.0则按纪律减1手（5手→4手）</b>。</li>
+    <li><b>减仓触发：今日无一只触发</b>——招商18.48未到19.5~20（券商合并上会"见光死"，因子⑥命中）；比亚迪91.29未到95；白药/国投防守未破。</li>
+    <li><b>低吸挂单到价2只</b>：华能国际6.68（挂单6.70~6.75<span class="up">✅到价</span>，分位18.7%防御可挂）；恒瑞46.86（46.5~47.5<span class="up">✅到价</span>，盘中低46.50）。<b>深科技+4.06%已涨出"等不再创新低"逻辑，不追</b>；中科曙光+2.82%（86.63）未回踩82~84；宁德371.52贴370~400下沿但"不再创新低"未满足，继续等。</li>
+    <li><b>偏差因子对照</b>：✅命中⑤⑥（英伟达"抢筹冲高"兑现 + 券商合并"见光死"）；⚠️②KOSPI高开+2.8%已回落至+1.55%（海力士+5%→+2.84%）——午后A股存储防回吐；⚠️⑧背离修复中（存储器+4.37%主力净流入166亿）但韩杠杆压制未消；⚠️④南瑞破位待午后验证。命中≥2，午后不追高、防回吐。</li>
+  </ul>
+</div>
+
+<!-- ============ 上午大盘 ============ -->
+<div class="card">
+  <h2>📈 一、上午大盘复盘（11:30收盘）</h2>
+  <div class="kbox">
+    <div class="kpi"><div class="l">上证指数</div><div class="v up">3935.99</div><div class="l up">+0.60%（高3938.97）</div></div>
+    <div class="kpi"><div class="l">深证成指</div><div class="v up">14005.93</div><div class="l up">+1.19%</div></div>
+    <div class="kpi"><div class="l">创业板指</div><div class="v up">3466.40</div><div class="l up">+1.51%</div></div>
+    <div class="kpi"><div class="l">科创50</div><div class="v up">1688.38</div><div class="l up">+3.45%</div></div>
+    <div class="kpi"><div class="l">半日成交</div><div class="v">1.35万亿</div><div class="l up">较昨日同期+10%</div></div>
+  </div>
+  <div id="chart_index" class="chart"></div>
+  <div class="src">图：四大指数半日涨跌幅（红涨绿跌）｜数据：腾讯行情，8/27 11:41</div>
+  <table>
+    <tr><th>指标</th><th>数值</th><th>解读</th></tr>
+    <tr><td>涨跌家数</td><td><span class="up">涨≈2999家</span> / <span class="down">跌≈2181家</span> / 平164家</td><td>涨跌比1.37:1，普涨但权重弱（新浪午评"涨超3000只"一致）</td></tr>
+    <tr><td>涨停 / 跌停</td><td><span class="up">涨停≈113家</span> / <span class="down">跌停≈4家</span></td><td>情绪偏暖，主线集中算力/存储/黄金/种业</td></tr>
+    <tr><td>半日量能</td><td>沪6492亿 + 深7025亿 ≈ <b>1.35万亿</b></td><td>昨日同期1.23万亿，放量+10%；按昨日比率校准全天≈1.99万亿</td></tr>
+    <tr><td>开盘形态</td><td>沪指平开3911.89（-0.02%）后单边走高</td><td>开盘预判"高开0.3~0.6%"：方向对、形态偏（平开而非高开），午盘已站上预期区间上沿</td></tr>
+  </table>
+  <div class="src">涨跌家数/涨停：东方财富涨跌分布接口（8/27 11:30）；指数/量能：腾讯行情（8/27 11:41）</div>
+
+  <h3>板块主线：科技单极吸血，防御价值全绿</h3>
+  <table>
+    <tr><th>方向</th><th>板块</th><th>代表个股（半日）</th><th>驱动</th></tr>
+    <tr><td rowspan="4" class="up">领涨</td><td>CPO/光通信（板块+4.61%）</td><td>赛微电子+20.01%涨停、长飞光纤/生益科技涨停、亨通+8.24%、中际旭创+3.07%</td><td>英伟达2028财年指引+70%远超预期45%，主力净流入≈242亿</td></tr>
+    <tr><td>半导体（板块+4.30%）</td><td>大普微+20%涨停（34.91亿SSD订单+扭亏13.34亿）、澜起+9.38%、长鑫科技+5.26%、海光+6.51%</td><td>国产替代+国家统计局：1-7月高技术制造利润+50.1%、光纤制造+468.4%</td></tr>
+    <tr><td>存储（板块+4.37%）</td><td>深科技+4.06%、长电+3.98%、中芯+1.84%</td><td>英伟达毛利率下修=内存成本飙升=存储景气证据；铠侠投1万亿日元建NAND厂；<b>A股背离今日修复</b></td></tr>
+    <tr><td>黄金 / 种业</td><td>深中华A 6连板、招金黄金/湖南黄金涨停；新农开发等种业涨停</td><td>现货金破4600美元、SPDR上周+23.68吨；粮食概念延续</td></tr>
+    <tr><td rowspan="4" class="down">领跌</td><td>银行</td><td>常熟银行领跌、建行-1.87%</td><td>防御资金流出，风格切向科技</td></tr>
+    <tr><td>白酒</td><td>金种子酒领跌、泸州老窖-1.31%、茅台-0.89%</td><td>资金虹吸，消费弱</td></tr>
+    <tr><td>电力设备/公用</td><td><b>国电南瑞-2.39%⚠️</b>、国投电力-1.71%、长江电力-0.99%</td><td>电工电网/水务调整；特朗普变压器禁令情绪压制出口链</td></tr>
+    <tr><td>医药</td><td>悦康药业领跌、云南白药-0.86%、药明-0.30%</td><td>医药板块回调，白药被动</td></tr>
+  </table>
+  <div class="src">板块数据：东方财富/腾讯板块行情（8/27 11:30）；个股：腾讯行情（8/27 11:41）；消息：证券时报午评、新浪午评、中国证券报（8/27）</div>
+</div>
+
+<!-- ============ 开盘预判对照 ============ -->
+<div class="card">
+  <h2>⚖️ 二、开盘预判对照（昨日/今晨预判 vs 上午实际）</h2>
+  <table>
+    <tr><th>预判（来源）</th><th>结果</th><th>判定</th><th>备注</th></tr>
+    <tr><td>开盘研判：高开0.3~0.6%（3918~3935）</td><td>平开3911.89后走高，午盘3935.99</td><td class="tag tag-orange">±部分</td><td>方向对（走强）、形态偏（平开非高开）；午盘已进入预期区间上沿，盘中高3938.97逼近3945压力</td></tr>
+    <tr><td>开盘研判：算力/半导体冲高，量能承接决定高度</td><td>科创50 +3.45%、半导体+4.30%、CPO+4.61%</td><td class="tag tag-red">✅验证</td><td>英伟达财报"好于预期"分支兑现，量能1.35万亿够2万亿级</td></tr>
+    <tr><td>开盘研判：招商冲19.5~20减2手（最可能触发）</td><td>招商18.48（-0.54%），最高18.78</td><td class="tag tag-green">✗未触发</td><td>券商合并上会落地="利好兑现"（因子⑥），板块不涨反跌；高抛带留待午后</td></tr>
+    <tr><td>开盘研判：华能6.70~6.75区间内直接挂</td><td>华能6.68</td><td class="tag tag-red">✅到价</td><td>低吸区6.6~7.1内、分位18.7%，今日唯一直接触发单</td></tr>
+    <tr><td>开盘研判：深科技等"不再创新低"</td><td>深科技37.70（+4.06%）</td><td class="tag tag-orange">±部分</td><td>背离修复、大涨脱离挂单逻辑——转为不追，等回踩36~37</td></tr>
+    <tr><td>开盘研判：存储背离修复 vs 韩杠杆压制=今日最大分歧</td><td>上午修复方向占优（存储器板块+4.37%）</td><td class="tag tag-red">✅验证</td><td>但KOSPI高开+2.8%已回落至+1.55%，午后防回吐，分歧未消</td></tr>
+    <tr><td>开盘研判：半日&gt;1万亿=全天2万亿级可信</td><td>半日1.35万亿</td><td class="tag tag-red">✅触发</td><td>按昨日0.68比率校准全天≈1.99万亿——2万亿级但非2.2万亿突破级（因子③）</td></tr>
+    <tr><td>8/26收盘研判：比亚迪冲95减1手</td><td>比亚迪91.29（-0.87%）</td><td class="tag tag-green">✗未触发</td><td>高开92.18后回落，95止盈带未到</td></tr>
+  </table>
+  <div class="warn">⚠️ <b>超预期的地方</b>：① 科创50 +3.45%强于开盘研判"算力冲高"的常规预期——英伟达2028指引+70%的定价力度超预期；② 南瑞/国投随电力设备板块单日-2%级调整超出"持有"预期——板块性而非个股逻辑破坏。<b>低于预期的地方</b>：① 招商"见光死"——上会落地券商不涨，高抛窗口未开；② 持仓防御属性全绿，与指数背离明显。</div>
+</div>
+
+<!-- ============ 持仓逐只 ============ -->
+<div class="card">
+  <h2>💼 三、持仓5只午盘表现与午后指令</h2>
+  <div id="chart_holdings" class="chart"></div>
+  <div class="src">图：持仓5只半日涨跌幅（红涨绿跌）｜数据：腾讯行情，8/27 11:41</div>
+  <table>
+    <tr><th>持仓</th><th>成本</th><th>午盘价</th><th>半日涨跌</th><th>浮盈亏</th><th>午后指令</th><th>触发/防守</th></tr>
+    <tr>
+      <td><b>国电南瑞</b> 5手</td><td>23.854</td><td>22.86</td><td class="down">-2.39%</td><td class="down">-4.17%（-497元）</td>
+      <td><span class="tag tag-orange">⚠️破位待验</span> <b>午盘破23.0防守</b>：午后收回23.0=假破不动；<b>收盘仍破23.0→减1手（5→4手）</b></td><td>防守23.0（收盘判）；低22.70</td>
+    </tr>
+    <tr>
+      <td><b>国投电力</b> 3手</td><td>13.959</td><td>13.81</td><td class="down">-1.71%</td><td class="down">-1.07%（-45元）</td>
+      <td><span class="tag tag-blue">持有</span> 公用板块调整拖累，未破防守</td><td>防守13.5；止盈14.8/15.5</td>
+    </tr>
+    <tr>
+      <td><b>比亚迪</b> 2手</td><td>87.753</td><td>91.29</td><td class="down">-0.87%</td><td class="up">+4.03%（+707元）</td>
+      <td><span class="tag tag-blue">持有</span> 冲高92.18回落，95未触发</td><td>止盈95减1手；防守88.5</td>
+    </tr>
+    <tr>
+      <td><b>云南白药</b> 4手</td><td>50.685</td><td>49.82</td><td class="down">-0.86%</td><td class="down">-1.71%（-346元）</td>
+      <td><span class="tag tag-blue">持有</span> 医药回调，未破49；二级防守48.5</td><td>防守49（二级48.5）</td>
+    </tr>
+    <tr>
+      <td><b>招商证券</b> 5手</td><td>19.469</td><td>18.48</td><td class="down">-0.54%</td><td class="down">-5.08%（-495元）</td>
+      <td><span class="tag tag-blue">持有</span> 合并上会落地不涨（见光死）；<b>午后若冲19.5~20仍执行减2手</b></td><td>止盈19.5~20减2手；防守17.7</td>
+    </tr>
+  </table>
+  <div class="ok">✅ 组合核算（11:41）：5只市值≈62,999元 + 现金39,568元 = 总资产≈102,567元（较8/26晚103,301元，<b>-734元</b>）；5只合计浮亏≈-676元。持仓全绿但浮亏仅约-0.7%，属"指数涨、持仓跌"的风格跷跷板，非系统性风险。</div>
+  <div class="warn">⚠️ <b>南瑞破位是今日唯一需要决策的点</b>：本次下跌为板块性（电力设备/公用集体调整，长江电力-0.99%、建行-1.87%同步走弱），非个股利空。参照因子④"破位次日放量收回=空头陷阱"（招商8/25破17.7→8/26+5.21%案例）：<b>午盘破位≠执行，收盘破位才执行</b>。午后14:30后观察是否站回23.0。</div>
+</div>
+
+<!-- ============ 低吸挂单 ============ -->
+<div class="card">
+  <h2>🎣 四、低吸挂单到价检查（依据《买入.md》区间校验v5 · 分位&lt;55%才挂）</h2>
+  <table>
+    <tr><th>标的</th><th>挂单价位</th><th>午盘价</th><th>到价?</th><th>执行建议</th></tr>
+    <tr><td><b>华能国际</b>（600011）</td><td>6.70~6.75</td><td>6.68 <span class="down">-0.74%</span></td><td class="tag tag-red">✅到价</td><td><b>可挂可成交</b>：低吸区6.6~7.1内、分位18.7%、防御+油价回落受益；今天科技虹吸公用恰是低吸窗口</td></tr>
+    <tr><td><b>恒瑞医药</b>（600276）</td><td>46.5~47.5</td><td>46.86 <span class="up">+0.26%</span>（低46.50）</td><td class="tag tag-red">✅到价</td><td><b>可挂</b>：盘中低点46.50正好触及挂单下沿；中报"不派息"利空已消化+创新药政策利好，条件满足</td></tr>
+    <tr><td><b>深科技</b>（000021）</td><td>36附近企稳再议</td><td>37.70 <span class="up">+4.06%</span></td><td class="tag tag-orange">±涨出</td><td><b>不追</b>：背离修复大涨，已脱离"等不再创新低"逻辑；若午后回落至36~37企稳再看，追高=因子⑧风险</td></tr>
+    <tr><td><b>中科曙光</b>（603019）</td><td>82~84等回踩</td><td>86.63 <span class="up">+2.82%</span>（低84.90）</td><td class="tag tag-green">✗未到</td><td>不追：算力利好兑现，未回踩82~84</td></tr>
+    <tr><td><b>中国海油</b>（600938）</td><td>32.0~32.5</td><td>33.58 <span class="up">+0.75%</span></td><td class="tag tag-green">✗未到</td><td>超上沿等回踩</td></tr>
+    <tr><td><b>中信证券</b>（600030）</td><td>27.0以下</td><td>27.66 <span class="down">-0.40%</span></td><td class="tag tag-green">✗未到</td><td>合并催化勿追，等27以下</td></tr>
+    <tr><td><b>宁德时代</b>（300750）🔒观察</td><td>370~400（等回踩370以下）</td><td>371.52 <span class="down">-1.97%</span>（低370.69）</td><td class="tag tag-green">✗等条件</td><td>贴区间下沿但<b>"等不再创新低"未满足</b>（今日低370.69仍处下跌通道，8/15以来393.93→371.52）；创业板不可交易，纯观察</td></tr>
+    <tr><td><b>歌尔股份</b>（002241）观察</td><td>等回踩22.8以下</td><td>24.10 <span class="up">+1.18%</span></td><td class="tag tag-green">✗未到</td><td>已清仓，等回踩</td></tr>
+  </table>
+  <div class="warn">⚠️ <b>纪律提醒</b>：今日主线=科技单极行情，低吸挂单集中在防御/医药——华能、恒瑞到价属"逆向低吸"（买在风格切换的冷落区），符合"低吸只等区间内触发"纪律；<b>深科技/中科曙光等算力链一律不追</b>。明日杰克逊霍尔+周五警报线对照，今日挂单以小额、防御标的为主，不加仓科技。</div>
+</div>
+
+<!-- ============ 偏差因子对照 ============ -->
+<div class="card">
+  <h2>🧭 五、偏差因子清单对照（公共上下文4 · 上午实时）</h2>
+  <table>
+    <tr><th>因子</th><th>上午是否命中</th><th>说明与应对</th></tr>
+    <tr><td>① 美债长端新高共振</td><td class="flat">— 未触发</td><td>10Y 4.66%未破4.7%，费半+0.2%收涨；30Y 5.16~5.31%高压仍在，明日杰克逊霍尔前警惕</td></tr>
+    <tr><td>② KOSPI/海力士日内转向</td><td class="tag tag-orange">⚠️ 部分命中</td><td><b>KOSPI高开+2.8%（6996）已回落至+1.55%（6914）</b>、海力士+5%→+2.84%、三星+3%→+1.72%——冲高回落形态；A股存储今日跟涨（背离修复）但<b>午后防回吐</b>，存储链不追</td></tr>
+    <tr><td>③ 半日量能推算失真</td><td class="tag tag-orange">⚠️ 适用</td><td>半日1.35万亿（+10%），按昨日实际比率0.68校准全天≈1.99万亿——"2万亿级"但非"2.2万亿突破级"，午后若缩量=冲高回落确认</td></tr>
+    <tr><td>④ 破位次日放量收回=空头陷阱</td><td class="tag tag-orange">⚠️ 今日主角</td><td><b>南瑞午盘破23.0</b>——参照招商8/25案例：收回23.0=假破不动，收盘破=执行减1手；不盘中杀跌</td></tr>
+    <tr><td>⑤ 事件日历双情景</td><td class="tag tag-red">✅ 命中</td><td>英伟达财报落地日："抢筹冲高"分支兑现（科创50+3.45%）；反向分支=券商合并上会（见下）</td></tr>
+    <tr><td>⑥ 预期差定价</td><td class="tag tag-red">✅ 命中</td><td><b>券商合并上会落地=利好兑现，招商-0.54%不涨反跌</b>——开盘预判"招商最可能触发减仓"被证伪，正是"数据落地≠涨"（利好早已在8/26的+5.21%定价）</td></tr>
+    <tr><td>⑦ 官方干预=修复窗口</td><td class="flat">— 未触发</td><td>央行3860亿逆回购净投放为跨月呵护，弱化版</td></tr>
+    <tr><td>⑧ 杠杆资金退潮</td><td class="tag tag-orange">⚠️ 削弱/待证伪</td><td>A股存储今日大涨修复背离（存储器+4.37%、主力净流入166亿）——因子⑧阶段性削弱；但韩国芯片杠杆ETF月流出近10亿、KOSPI回落，压制未消，<b>追存储仍需谨慎</b></td></tr>
+  </table>
+  <div class="warn">⚠️ 命中⑤⑥+部分命中②③④⑧（≥2）→ <b>午后基准判断：科技惯性冲高但防回吐</b>——① 不追存储/算力；② 南瑞收尾验证；③ 明日杰克逊霍尔前资金观望，冲高即高抛窗口。</div>
+  <div class="ok">📝 <b>当场记录（供提示词F复盘）</b>：① <b>证伪</b>：开盘研判"招商19.5~20减2手最可能触发"——实际券商上会"见光死"未触发（根因=因子⑥预期差定价，利好已提前定价）；② <b>验证</b>："华能6.70~6.75到价"、"算力/半导体冲高"、"存储背离修复vs韩杠杆压制分歧"方向；③ <b>新增观察</b>：南瑞破位案例将进入因子④的候选样本，明日收盘验证。</div>
+</div>
+
+<!-- ============ 午后盯盘 ============ -->
+<div class="card">
+  <h2>👀 六、午后重点盯盘信号与风险</h2>
+  <table>
+    <tr><th>优先级</th><th>信号</th><th>触发含义与动作</th></tr>
+    <tr><td class="tag tag-red">1</td><td><b>南瑞能否收回23.0</b>（14:30后定盘）</td><td>收回=空头陷阱（因子④），不动；<b>收盘破23.0=执行减1手（5→4手）</b>；破22.5加速下跌则提前执行</td></tr>
+    <tr><td class="tag tag-red">2</td><td><b>招商证券19.5</b></td><td>券商午后若板块脉冲冲19.5~20=执行减2手（8/14分批止盈计划，不因"见光死"就放弃高抛带）</td></tr>
+    <tr><td class="tag tag-orange">3</td><td><b>存储/算力回吐</b>（KOSPI已回落至+1.55%）</td><td>午后深科技/长电/中科曙光若冲高回落=因子②/⑧确认，<b>一律不接飞刀</b>；持仓无敞口，仅观察</td></tr>
+    <tr><td class="tag tag-orange">4</td><td><b>量能</b>（半日1.35万亿→全天目标≈2万亿）</td><td>午后成交骤缩（全天&lt;1.9万亿）=冲高回落确认，高抛不恋战；放量站稳3930+可看3945</td></tr>
+    <tr><td class="tag tag-orange">5</td><td><b>明日杰克逊霍尔（沃什首秀）</b></td><td>今午后资金或提前避险，高位科技冲高即兑现窗口——<b>不追高是唯一答案</b></td></tr>
+    <tr><td>6</td><td>白药49 / 国投13.5 / 比亚迪88.5</td><td>防守位未破，收盘破位才执行（白药二级48.5）</td></tr>
+    <tr><td>7</td><td>美债10Y盘中是否破4.7%</td><td>破=因子①触发，偏空概率上调，明日计划防御</td></tr>
+  </table>
+  <div class="warn">⚠️ <b>今日风险排序</b>：① 科技午后回吐（KOSPI回落+杰克逊霍尔前置避险）→ 不追高；② 南瑞破位收盘确认 → 唯一可能执行的减仓动作；③ 持仓与指数背离扩大 → 防御股被虹吸属风格切换，非逻辑破坏，不恐慌；④ 明日数据日，周五收盘后四条警报线对照（10Y日债3%/日元178~180/HY利差3%/存储背离）。</div>
+</div>
+
+<!-- ============ 大家没想到的点 ============ -->
+<div class="card">
+  <h2>💡 七、"大家没想到的点"（市场盲区）</h2>
+  <ul class="tight">
+    <li><b>① "英伟达财报利好"只兑现给了硬科技，防御/价值被当作提款机</b>：科创50 +3.45%、银行白酒公用全绿——今天最赚钱的板块恰好是持仓最少的（科技已清零），而持仓5只全是防御/价值。这不是坏事：<b>风格跷跷板=轮动节奏，而非持仓逻辑被证伪</b>。真正要防的是"追科技+割防御"的双重错误（割在低位、追在高位）。</li>
+    <li><b>② 券商合并"上会"是利好出尽的标准剧本，但招商的高抛带逻辑没变</b>：8/26已+5.21%提前定价→今日上会落地不涨（因子⑥）——但19.5~20仍是8/14止盈计划的高抛带，<b>若午后券商板块再脉冲，执行减2手不是为了"看多"，是为了"按计划恢复现金"</b>（现金目标40~45%，现38.3%）。</li>
+    <li><b>③ 存储背离修复≠因子⑧证伪</b>：今天A股存储大涨是"英伟达毛利率下修=内存成本飙升"的直接映射，但韩国杠杆ETF仍在流出、KOSPI高开回落——<b>背离修复与杠杆退潮可以同时存在</b>，追高存储仍是在刀口舔血；深科技+4.06%后追入的性价比已远低于昨日36附近的"等不再创新低"。</li>
+    <li><b>④ 南瑞破位是"板块性错杀"而非"个股破位"</b>：电力设备/公用今日集体调整（长电-0.99%、建行-1.87%同步弱），南瑞22.86仅-4.17%浮亏——若因单日板块调整就减仓，可能正中空头陷阱（因子④）；但若收盘确认破23.0，纪律就是纪律，先减1手降风险敞口。</li>
+    <li><b>⑤ 明日杰克逊霍尔+周五警报线双悬顶，今天下午的每一次冲高都是"减仓窗口"而非"加仓理由"</b>——8/26午盘"放量抢跑午后回吐"的教训（因子③）仍然有效：1.35万亿的半日量能≠全天2.2万亿的突破。</li>
+  </ul>
+</div>
+
+<div class="disc">
+  <b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。<br>
+  报告生成时间：2026-08-27 11:50（北京时间）｜数据时点：8/27 11:41（上午收盘）｜来源：腾讯行情、东方财富涨跌分布接口、证券时报午评、新浪午评、中国证券报、每日经济新闻（均标注于各节）
+</div>
+
+</div>
+
+<script>
+// ===== 图1：四大指数半日涨跌幅 =====
+(function(){
+  var el = document.getElementById('chart_index');
+  if (!el) return;
+  var chart = echarts.init(el);
+  chart.setOption({
+    tooltip: { trigger:'axis', formatter: function(p){ return p[0].name + '<br/>涨跌幅：' + p[0].value + '%'; } },
+    title: { text:'四大指数半日涨跌幅（8/27 11:30）', left:'center', textStyle:{ fontSize:14, color:'#1a3a6b' } },
+    grid: { left:60, right:30, top:50, bottom:30 },
+    xAxis: { type:'category', data:['上证指数','深证成指','创业板指','科创50'], axisLabel:{ fontSize:12 } },
+    yAxis: { type:'value', name:'涨跌幅（%）', axisLabel:{ formatter:'{value}%' } },
+    series: [{
+      name:'涨跌幅', type:'bar', barWidth:46,
+      data: [
+        { value: 0.60, itemStyle:{ color:'#c0392b' } },
+        { value: 1.19, itemStyle:{ color:'#c0392b' } },
+        { value: 1.51, itemStyle:{ color:'#c0392b' } },
+        { value: 3.45, itemStyle:{ color:'#c0392b' } }
+      ],
+      label:{ show:true, position:'top', formatter:'{c}%', fontSize:12, fontWeight:600, color:'#c0392b' }
+    }]
+  });
+})();
+
+// ===== 图2：持仓5只半日涨跌幅 =====
+(function(){
+  var el = document.getElementById('chart_holdings');
+  if (!el) return;
+  var chart = echarts.init(el);
+  var names = ['国电南瑞','国投电力','比亚迪','云南白药','招商证券'];
+  var pct   = [-2.39, -1.71, -0.87, -0.86, -0.54];
+  chart.setOption({
+    tooltip: { trigger:'axis', formatter: function(p){ return p[0].name + '<br/>半日涨跌：' + p[0].value + '%'; } },
+    title: { text:'持仓5只半日涨跌幅（全部飘绿 · 南瑞破防守位⚠️）', left:'center', textStyle:{ fontSize:14, color:'#1a3a6b' } },
+    grid: { left:60, right:30, top:50, bottom:30 },
+    xAxis: { type:'category', data:names, axisLabel:{ fontSize:12 } },
+    yAxis: { type:'value', name:'涨跌幅（%）', axisLabel:{ formatter:'{value}%' } },
+    series: [{
+      name:'涨跌幅', type:'bar', barWidth:44,
+      data: pct.map(function(v){
+        return { value: v, itemStyle:{ color: v >= 0 ? '#c0392b' : '#1e8449' } };
+      }),
+      label:{ show:true, position:'top', formatter:'{c}%', fontSize:12, fontWeight:600, color:'#1e8449' }
+    }]
+  });
+})();
+</script>
+
+</body>
+</html>
