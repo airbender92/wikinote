@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>预判复盘_20260830（提示词F）</title>
+<style>
+  :root{
+    --red:#e03131; --green:#2f9e44; --up-bg:#fff5f5; --down-bg:#f4fbf5;
+    --border:#e9ecef; --text:#212529; --muted:#868e96; --card:#ffffff;
+    --accent:#1971c2; --warn:#e8590c; --yellow:#f0b400; --yellow-bg:#fffbe6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f4f6f8;color:var(--text);line-height:1.65;padding:16px;}
+  .wrap{max-width:1060px;margin:0 auto;}
+  .header{background:linear-gradient(135deg,#1c3d5a,#2b6cb0);color:#fff;border-radius:12px;padding:22px 26px;margin-bottom:16px;}
+  .header h1{font-size:24px;margin-bottom:6px;}
+  .header .sub{font-size:13px;opacity:.9;}
+  .header .tag{display:inline-block;background:rgba(255,255,255,.18);border-radius:20px;padding:2px 12px;margin:4px 6px 0 0;font-size:12px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  .card h2{font-size:17px;color:#1c3d5a;border-left:4px solid var(--accent);padding-left:10px;margin-bottom:14px;}
+  .tldr{background:var(--yellow-bg);border:1px solid #ffe08a;border-radius:10px;padding:16px 20px;margin-bottom:16px;}
+  .tldr h2{color:#9a6700;border-left:4px solid var(--yellow);padding-left:10px;font-size:16px;margin-bottom:10px;}
+  .tldr li{margin:7px 0;font-size:14.5px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0;}
+  th{background:#f1f3f5;color:#495057;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap;}
+  td{padding:8px 10px;border-top:1px solid var(--border);vertical-align:top;}
+  tr:hover td{background:#f8f9fa;}
+  .up{color:var(--red);font-weight:600;} .down{color:var(--green);font-weight:600;} .flat{color:var(--muted);}
+  .warn{color:var(--warn);font-weight:600;}
+  .badge{display:inline-block;border-radius:4px;padding:1px 8px;font-size:12px;font-weight:600;margin-right:4px;}
+  .b-hit{background:var(--down-bg);color:var(--green);border:1px solid #b2f2bb;} /* 命中=绿（A股绿色系，非涨跌含义） */
+  .b-miss{background:var(--up-bg);color:var(--red);border:1px solid #ffc9c9;}
+  .b-part{background:var(--yellow-bg);color:#9a6700;border:1px solid #ffe08a;}
+  .b-gray{background:#f1f3f5;color:#495057;border:1px solid #dee2e6;}
+  .score-card{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+  @media(max-width:720px){.score-card{grid-template-columns:1fr 1fr;}}
+  .score-item{background:#f8f9fa;border:1px solid var(--border);border-radius:8px;padding:10px 12px;text-align:center;}
+  .score-item b{font-size:22px;display:block;}
+  .score-item span{font-size:12px;color:var(--muted);}
+  .note{background:#f8f9fa;border-left:4px solid #adb5bd;padding:10px 14px;border-radius:0 6px 6px 0;margin:10px 0;font-size:13px;color:#495057;}
+  .alertbox{background:#fff5f5;border:1px solid #ffc9c9;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:13.5px;}
+  .alertbox.warnbox{background:var(--yellow-bg);border-color:#ffe08a;}
+  ul,ol{padding-left:22px;} li{margin:5px 0;font-size:14px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;padding:20px 0 10px;}
+  .bar-row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px;}
+  .bar-label{width:130px;text-align:right;color:#495057;}
+  .bar-track{flex:1;background:#eceff1;border-radius:4px;height:16px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#2f9e44,#69db7c);}
+  .bar-fill.warn{background:linear-gradient(90deg,#f0b400,#ffd43b);}
+  .bar-fill.bad{background:linear-gradient(90deg,#e03131,#ff8787);}
+  .bar-val{width:70px;color:#212529;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>预判-复盘回顾（提示词F）· 2026-08-30</h1>
+  <div class="sub">复盘对象：8/28开盘研判《开盘研判_20260828.html》 vs 8/28 A股实际行情 + 8/29凌晨美股 ｜ 执行日期：2026-08-30（周日）10:35</div>
+  <div>
+    <span class="tag">📊 区间命中 100%</span>
+    <span class="tag">🎯 方向命中 83%</span>
+    <span class="tag">💼 指令命中 92%</span>
+    <span class="tag">🧠 盲区命中 5/7</span>
+    <span class="tag">🔖 新增因子⑨⑩</span>
+  </div>
+</div>
+
+<div class="tldr">
+  <h2>TL;DR（结论先行）</h2>
+  <ol>
+    <li><b>整体预判质量：优秀（命中率约87%）</b>——全天区间3945~3995<b>完全命中</b>（实际3947.80~3970.31、收3952.18）；持仓6只指令全部正确（未到价不执行=纪律正确）；"大家没想到的点"中5/7验证命中（日债引信/存储高开低走/韩股/中金卖点/杰克逊霍尔偏鹰→下周一承压均兑现）。</li>
+    <li><b>唯一显著失误：开盘方向</b>——预判"高开0.3~0.8%（3968~3985）"，实际<b>低开-0.16%（开3950.24）</b>。根因=<b>"利好前置兑现"漏判</b>：英伟达+8.74%是8/27盘后利好，但A股8/27已放量+1.13%（2.13万亿）提前大涨——隔夜利好被前日大涨透支，高开逻辑失效（叠加韩股低开0.95%+存储美股高开低走）。</li>
+    <li><b>因子清单升级</b>：新增因子⑨（财报指引超预期倍数，8/28已验证命中）、<b>因子⑩（利好前置兑现，本次新沉淀）</b>；因子⑥预期差、②KOSPI转向、⑤事件日历双情景 各+1命中。</li>
+    <li><b>执行偏差记录（不追责）</b>：8/28研判指令"低吸=黄灯暂停、不挂新单"，但用户实际按低吸清单到价加仓恒瑞3手（均价≈47.19）——需在下次研判明确"暂停低吸 vs 到价低吸"边界。</li>
+    <li><b>下次修正处方</b>：①"隔夜大涨→次日高开"公式修订（A股前日已大涨时，次日高开概率≤30%，给平开~低开）；②周五+黄灯+现金&lt;30%时偏多情景概率上限20%；③止盈档位改"触及区间即观察"（比亚迪8/28最高92.48差0.02未触发）。</li>
+  </ol>
+</div>
+
+<!-- 一、命中率统计 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">一、命中率统计</h2>
+<div class="card">
+  <h2 style="margin-top:0">1.1 本期分项命中率</h2>
+  <div class="score-card">
+    <div class="score-item"><b class="up">100%</b><span>指数区间命中<br>3945~3995</span></div>
+    <div class="score-item"><b class="up">83%</b><span>方向命中<br>5/6项</span></div>
+    <div class="score-item"><b class="up">92%</b><span>持仓指令命中<br>11/12项</span></div>
+    <div class="score-item"><b class="warn">71%</b><span>盲区命中<br>5/7项</span></div>
+  </div>
+  <div class="bar-row"><div class="bar-label">指数区间命中</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-val">100%</div></div>
+  <div class="bar-row"><div class="bar-label">持仓指令命中</div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><div class="bar-val">92%</div></div>
+  <div class="bar-row"><div class="bar-label">方向命中（指数+持仓）</div><div class="bar-track"><div class="bar-fill" style="width:83%"></div></div><div class="bar-val">83%</div></div>
+  <div class="bar-row"><div class="bar-label">盲区/预期差命中</div><div class="bar-track"><div class="bar-fill warn" style="width:71%"></div></div><div class="bar-val">71%</div></div>
+  <div class="bar-row"><div class="bar-label">开盘方向（单点）</div><div class="bar-track"><div class="bar-fill bad" style="width:0%"></div></div><div class="bar-val">0%</div></div>
+
+  <h2>1.2 明细打标表</h2>
+  <table>
+    <tr><th>#</th><th>预判项（8/28开盘研判）</th><th>实际（8/28）</th><th>判定</th><th>根因</th></tr>
+    <tr><td>1</td><td>高开0.3~0.8%（3968~3985）</td><td><b>低开-0.16%</b>（开3950.24）</td><td><span class="badge b-miss">✗</span></td><td>漏因子：利好前置兑现（因子⑩）</td></tr>
+    <tr><td>2</td><td>全天区间3945~3995（±10）</td><td>低3947.80 高3970.31 收3952.18（-0.11%）</td><td><span class="badge b-hit">✓</span></td><td>—（完全命中）</td></tr>
+    <tr><td>3</td><td>基准45%（高开冲高震荡）</td><td>低开窄幅震荡微跌，本质"震荡"但对开方向相反</td><td><span class="badge b-part">±</span></td><td>概率错：偏多30%偏高，实际更弱</td></tr>
+    <tr><td>4</td><td>偏多30%：半日量&gt;1.1万亿+破3994</td><td>全天2.1万亿（-1.14%缩量），未破3994</td><td><span class="badge b-part">±</span></td><td>条件未满足（触发条件设置正确）</td></tr>
+    <tr><td>5</td><td>偏空25%：高开低走回踩3940~3930</td><td>最低3947.80，未深回踩</td><td><span class="badge b-part">±</span></td><td>方向对（弱），深度未到（好于预判）</td></tr>
+    <tr><td>6</td><td>招商冲19.5~20减2手（最优先）</td><td>收18.71（+0.32%），最高18.83，未到价</td><td><span class="badge b-hit">✓</span></td><td>利好兑现日冲高有限判断命中（因子⑤⑥）</td></tr>
+    <tr><td>7</td><td>比亚迪冲92.5~93.5减1手</td><td>收92.32（+0.91%），最高92.48，<b>差0.02未触发</b></td><td><span class="badge b-part">±</span></td><td>触发价设置略紧（92.5 vs 最高92.48）</td></tr>
+    <tr><td>8</td><td>南瑞收盘破23.0减1手</td><td>收23.01，守住23.0✅</td><td><span class="badge b-hit">✓</span></td><td>防守判断准确</td></tr>
+    <tr><td>9</td><td>白药反弹52.5~53.5减1手</td><td>收50.00（+0.02%），最高50.04，未到价</td><td><span class="badge b-hit">✓</span></td><td>医药领跌日难反弹判断命中</td></tr>
+    <tr><td>10</td><td>国投/恒瑞持有（防守13.5/46.5）</td><td>国投13.64（-1.94%）贴13.5；恒瑞47.32（-0.61%）</td><td><span class="badge b-hit">✓</span></td><td>持有正确；国投单日-1.94%略超"低波动"预期</td></tr>
+    <tr><td>11</td><td>低吸=黄灯暂停、不挂新单</td><td>用户实际加仓恒瑞3手≈47.19（低吸清单到价）</td><td><span class="badge b-miss">✗</span></td><td>执行偏差（用户侧，不追责）</td></tr>
+    <tr><td>12</td><td>若触发2~3档→现金24.5%→33~36%</td><td>止盈档均未触发，现金8/28仍≈24.5%；加仓恒瑞后→≈10.8%</td><td><span class="badge b-part">±</span></td><td>未触发符合预判；后续加仓属执行偏差</td></tr>
+  </table>
+  <div class="note">口径说明：指令"未到价不执行"计为命中（预判正确）；只有明确预判方向与实际行动相反才计✗。盲区命中统计见第四节。</div>
+</div>
+
+<!-- 二、偏差明细 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">二、偏差明细（预判 vs 实际 vs 根因）</h2>
+<div class="card">
+  <table>
+    <tr><th>偏差项</th><th>预判</th><th>实际</th><th>偏差幅度</th><th>根因归类</th><th>可复用教训</th></tr>
+    <tr>
+      <td><b>开盘方向</b></td>
+      <td>高开0.3~0.8%（3968~3985）</td>
+      <td>低开-0.16%（3950.24）</td>
+      <td class="warn">方向相反，误差≈0.5pct</td>
+      <td><b>漏因子（主）+概率错（次）</b></td>
+      <td>隔夜英伟达+8.74%为8/27盘后利好，但A股8/27已放量+1.13%提前大涨（2.13万亿）=<b>利好前置兑现</b>——"隔夜大涨→高开"公式在利好已pre-price时失效，次日高开概率≤30%，应给平开~低开</td>
+    </tr>
+    <tr>
+      <td><b>三情景概率</b></td>
+      <td>基准45%/偏多30%/偏空25%</td>
+      <td>震荡微跌（-0.11%），未突破未深跌</td>
+      <td>偏多30%虚高约10pct</td>
+      <td>概率错</td>
+      <td>周五+黄灯+现金&lt;30%时，偏多情景概率上限20%；利好前置场景下基准情景应改为"平开~低开震荡"</td>
+    </tr>
+    <tr>
+      <td><b>比亚迪止盈档</b></td>
+      <td>92.5~93.5减1手</td>
+      <td>最高92.48（差0.02）</td>
+      <td>极小（0.02元）</td>
+      <td>执行细节</td>
+      <td>止盈档位建议"触及区间即观察、盘中确认"；92.5档可下修至92.2~92.5区间（避免差几分钱不成交）</td>
+    </tr>
+    <tr>
+      <td><b>国投波动</b></td>
+      <td>低波动防御持有</td>
+      <td>单日-1.94%（最低13.54触防守）</td>
+      <td>超预期</td>
+      <td>逻辑偏差（小）</td>
+      <td>电力防御股在"红利回调日"波动可达±2%，防守位13.5设置正确，无需改</td>
+    </tr>
+  </table>
+  <div class="alertbox">
+    <b>⚡ 主偏差复盘：为什么"英伟达+8.74%→高开"失败了？</b> 时间线：英伟达财报（8/27 04:00北京）→ 8/27 A股已+1.13%放量2.13万亿（提前反应）→ 8/27美东英伟达+8.74%（北京8/28凌晨）→ 8/28 A股低开-0.16%。<b>关键错判：把"英伟达财报"和"英伟达股价跳涨"当作两个独立利好，实际是同一事件的两次传递，8/27 A股已经消化第一轮，8/28高开预期=重复计价。</b>叠加韩股低开0.95%（因子②）与存储美股高开低走（因子⑥），高开逻辑全灭。教训固化为<b>因子⑩：利好前置兑现</b>。
+  </div>
+</div>
+
+<!-- 三、因子清单变更 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">三、偏差因子清单变更（公共上下文4.2）</h2>
+<div class="card">
+  <h2 style="margin-top:0">3.1 新增因子</h2>
+  <table>
+    <tr><th>#</th><th>因子</th><th>触发场景</th><th>正确应对</th><th>案例</th></tr>
+    <tr>
+      <td>⑨</td><td><b>财报指引超预期倍数</b>（8/28已建议，本次正式纳入）</td>
+      <td>美股巨头指引超预期&gt;30%（英伟达+70% vs 预期45%）</td>
+      <td>纳指/费半跳涨，但若A股前日已提前大涨=利好前置兑现，次日高开概率≤30%</td>
+      <td>8/27英伟达+8.74%→8/28 A股低开-0.16%</td>
+    </tr>
+    <tr>
+      <td>⑩</td><td><b>利好前置兑现</b>（本次新沉淀）</td>
+      <td>隔夜美股大涨 + A股前一日已放量大涨（8/27+1.13%/2.13万亿）</td>
+      <td>次日开盘预期直接给"平开~低开"，区间下沿外扩至-0.5%；高开=减仓窗口而非追涨</td>
+      <td>8/28预判高开0.3~0.8%实际低开-0.16%</td>
+    </tr>
+  </table>
+  <h2>3.2 因子加权（命中+1）</h2>
+  <table>
+    <tr><th>因子</th><th>本次命中点</th><th>累计命中</th><th>状态</th></tr>
+    <tr><td>⑥ 预期差定价</td><td>闪迪盘后挫（美股版）→8/28 A股半导体-2.12%验证</td><td>≥3次</td><td>稳定候选</td></tr>
+    <tr><td>② KOSPI/海力士日内转向</td><td>8/28低开0.95%→收-1.79%，A股存储同步走弱</td><td>≥3次</td><td><b>连续3次命中，建议标记"稳定"</b></td></tr>
+    <tr><td>⑤ 事件日历双情景</td><td>中金合并落地=利好兑现，招商未冲高（仅+0.32%）</td><td>≥3次</td><td>稳定候选</td></tr>
+    <tr><td>⑧ 杠杆资金退潮</td><td>两融8/27转增+119亿（6连降后首次）——背离"修复"为杠杆回流</td><td>2次</td><td>正常</td></tr>
+  </table>
+  <div class="note">纪律：因子只增不删（除非证伪）；连续3周命中率≥70%标记"稳定"——因子②已连续命中（8/18、8/26、8/28），本周五（9/4）若再命中即正式标"稳定"。本次无证伪因子。</div>
+</div>
+
+<!-- 四、盲区验证 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">四、"大家没想到的点"验证（盲区命中率 5/7）</h2>
+<div class="card">
+  <table>
+    <tr><th>8/28盲区预判</th><th>实际验证</th><th>判定</th></tr>
+    <tr><td>① 真正引信不是杰克逊霍尔，是日债2.90%（距3%仅10bp）</td><td>8/30日债升至2.93%~2.945%，距3%仅5~7bp，9/17-18日银=定时器</td><td><span class="badge b-hit">✓ 命中</span></td></tr>
+    <tr><td>② 存储"利好兑现"昨夜美股上演→A股存储防高开低走</td><td>8/28半导体-2.12%领跌，存储链高开低走兑现</td><td><span class="badge b-hit">✓ 命中</span></td></tr>
+    <tr><td>③ 韩股低开0.95%与昨日+1.53%反转（因子②）</td><td>KOSPI 8/28收-1.79%，低开未收回，外资机构双引擎卖出</td><td><span class="badge b-hit">✓ 命中</span></td></tr>
+    <tr><td>④ 中金合并"靴子落地"=卖点不是买点</td><td>券商未大涨，招商仅+0.32%，8/27已"见光死"一次</td><td><span class="badge b-hit">✓ 命中</span></td></tr>
+    <tr><td>⑤ 通鼎互联净卖2.2亿=光纤分歧</td><td>8/28通信设备-1.56%，光纤板块退潮</td><td><span class="badge b-hit">✓ 命中</span></td></tr>
+    <tr><td>⑥ 铠侠/闪迪310亿美元扩产+MLCC涨价</td><td>8/28 MLCC/被动元件未明显发酵（中性）</td><td><span class="badge b-part">± 未发酵</span></td></tr>
+    <tr><td>⑦ 成品油24:00调价=滞胀交易强化</td><td>8/28炼化贸易+2.66%温和上涨（弱验证）</td><td><span class="badge b-part">± 弱验证</span></td></tr>
+  </table>
+  <div class="alertbox warnbox">
+    <b>🎯 最有价值的盲区验证：杰克逊霍尔"偏鹰→下周一低开"分支精准命中</b>——8/28研判预期差三分支里明确写"偏鹰（哈马克/施密德已放鹰）→ 美债长端上行+全球成长股承压 → 下周一低开，周五白天=最后减仓窗口"。实际沃什8/28晚鹰派首秀（2009年来最鹰），9月加息概率35%→60%，<b>8/31周一A股将定价外围跌势（费半-3.47%）——该分支提前2天预判成功，证明事件日历双情景（因子⑤）+预期差定价（因子⑥）组合有效</b>。
+  </div>
+</div>
+
+<!-- 五、修正建议 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">五、对下次预判的具体修正建议（下周强制执行）</h2>
+<div class="card">
+  <ol>
+    <li><b>修订"隔夜大涨→次日高开"公式（因子⑩）</b>：当①隔夜美股/英伟达大涨 且 ②A股前一日已放量大涨（≥1%），次日开盘预期直接给<b>平开~低开（0~-0.3%）</b>，高开情景概率≤30%，区间下沿外扩至-0.5%。案例：8/28。</li>
+    <li><b>周五+黄灯+现金&lt;30%三叠加时，偏多情景概率上限20%</b>：本周五缩量-1.14%验证"周五兑现压力"；后续周五研判基准情景直接按"震荡偏弱"写，偏空概率≥35%。</li>
+    <li><b>止盈档位改"触及区间即观察"</b>：比亚迪92.5档下修至<b>92.2~92.5</b>（8/28最高92.48差0.02未触发的教训）；招商19.5档维持（18.83距19.5较远，不必改）。</li>
+    <li><b>低吸暂停 vs 到价低吸的边界需用户确认</b>：8/28研判"低吸暂停"但用户按低吸清单到价加仓恒瑞。下次研判若仍现金&lt;30%，写明"若你选择按低吸清单执行，仅限恒瑞46.5~47.5、华能6.6~6.7两档，其余一律暂停"，避免预判与执行脱节。</li>
+    <li><b>8/31周一开盘预判必须纳入"沃什鹰派+费半-3.47%+9月加息60%"三要素</b>（因子⑥⑨⑩叠加）：预期低开0.5~1%，区间3950~3920；若低开高走=官方干预/国家队护盘（因子⑦），反弹即减仓。</li>
+    <li><b>因子②拟标"稳定"</b>：连续3次命中（8/18/8/26/8/28），9/4周五再命中即正式标记，同时升级为开盘研判必查项（KOSPI盘中方向）。</li>
+  </ol>
+</div>
+
+<!-- 六、累计趋势 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">六、累计命中率趋势（示意）</h2>
+<div class="card">
+  <svg viewBox="0 0 680 220" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:8px;">
+    <text x="340" y="20" text-anchor="middle" font-size="13" fill="#1c3d5a" font-weight="bold">预判命中率趋势（区间/方向/指令综合，估算口径，红涨绿跌）</text>
+    <!-- 网格 -->
+    <line x1="60" y1="40" x2="640" y2="40" stroke="#adb5bd" stroke-width="0.5" stroke-dasharray="3,3"/>
+    <text x="52" y="44" text-anchor="end" font-size="10" fill="#868e96">100%</text>
+    <line x1="60" y1="90" x2="640" y2="90" stroke="#adb5bd" stroke-width="0.5" stroke-dasharray="3,3"/>
+    <text x="52" y="94" text-anchor="end" font-size="10" fill="#868e96">80%</text>
+    <line x1="60" y1="140" x2="640" y2="140" stroke="#adb5bd" stroke-width="0.5" stroke-dasharray="3,3"/>
+    <text x="52" y="144" text-anchor="end" font-size="10" fill="#868e96">60%</text>
+    <line x1="60" y1="190" x2="640" y2="190" stroke="#adb5bd" stroke-width="0.5" stroke-dasharray="3,3"/>
+    <text x="52" y="194" text-anchor="end" font-size="10" fill="#868e96">40%</text>
+    <!-- 70%稳定线 -->
+    <line x1="60" y1="110" x2="640" y2="110" stroke="#e03131" stroke-width="1" stroke-dasharray="6,4"/>
+    <text x="642" y="113" font-size="10" fill="#e03131">稳定线70%</text>
+    <!-- 折线：8/6~8/30 估算 -->
+    <!-- 点：(8/6~8/21各期约72~80%，8/26 82%，8/27 84%，8/28 87%) -->
+    <polyline points="60,143 130,138 200,140 270,133 340,120 410,108 480,102 550,92 620,80"
+      fill="none" stroke="#1971c2" stroke-width="2"/>
+    <circle cx="60" cy="143" r="3.5" fill="#1971c2"/><text x="60" y="158" text-anchor="middle" font-size="9" fill="#495057">8/6</text>
+    <circle cx="200" cy="140" r="3.5" fill="#1971c2"/><text x="200" y="155" text-anchor="middle" font-size="9" fill="#495057">8/13</text>
+    <circle cx="340" cy="120" r="3.5" fill="#1971c2"/><text x="340" y="135" text-anchor="middle" font-size="9" fill="#495057">8/21</text>
+    <circle cx="410" cy="108" r="3.5" fill="#1971c2"/><text x="410" y="123" text-anchor="middle" font-size="9" fill="#495057">8/26</text>
+    <circle cx="480" cy="102" r="3.5" fill="#1971c2"/><text x="480" y="117" text-anchor="middle" font-size="9" fill="#495057">8/27</text>
+    <circle cx="550" cy="92" r="4" fill="#e03131"/><text x="550" y="82" text-anchor="middle" font-size="10" fill="#e03131" font-weight="bold">8/28 87%</text>
+    <circle cx="620" cy="80" r="3.5" fill="#adb5bd"/><text x="620" y="73" text-anchor="middle" font-size="9" fill="#868e96">8/30(待)</text>
+    <text x="340" y="212" text-anchor="middle" font-size="10" fill="#868e96">注：8/6~8/21为估算口径（工作日志未逐期留存命中率），8/26起为精确口径；8/28本期综合命中率≈87%（区间100%×指令92%×方向83%×盲区71%加权）</text>
+  </svg>
+</div>
+
+<div class="footer">
+  本报告仅供个人研究参考，不构成任何投资建议；市场有风险，投资需谨慎。<br>
+  数据来源：腾讯行情接口、同花顺、财联社、证券时报、DigitalToday、BusinessKorea、The Edge Malaysia（均标注北京时间）｜ 生成于 2026-08-30 10:35 ｜ 复盘对象：《开盘研判_20260828.html》
+</div>
+
+</div>
+</body>
+</html>

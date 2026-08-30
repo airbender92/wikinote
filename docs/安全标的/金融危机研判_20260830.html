@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金融危机研判_20260830（第5期·狂热监测）</title>
+<style>
+  :root {
+    --red: #d32f2f; --red-bg: #fdecea; --green: #2e7d32; --green-bg: #e8f5e9;
+    --yellow: #f9a825; --yellow-bg: #fff8e1; --gray: #666; --line: #e0e0e0;
+    --bg: #fafafa; --card: #ffffff; --text: #222;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 16px 60px; }
+  h1 { font-size: 24px; margin-bottom: 4px; }
+  .sub { color: var(--gray); font-size: 13px; margin-bottom: 18px; }
+  h2 { font-size: 19px; margin: 28px 0 12px; padding-left: 10px; border-left: 4px solid #1565c0; }
+  h3 { font-size: 15px; margin: 16px 0 8px; color: #1565c0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+  th, td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; }
+  th { background: #f0f4f8; font-weight: 600; white-space: nowrap; }
+  .red { color: var(--red); font-weight: 600; }
+  .green { color: var(--green); font-weight: 600; }
+  .yellow { color: #e65100; font-weight: 600; }
+  .up { background: var(--red-bg); } .down { background: var(--green-bg); } .warn { background: var(--yellow-bg); }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; margin-right: 4px; }
+  .tag-red { background: var(--red-bg); color: var(--red); } .tag-green { background: var(--green-bg); color: var(--green); }
+  .tag-yellow { background: var(--yellow-bg); color: #e65100; } .tag-gray { background: #eceff1; color: #455a64; }
+  .verdict { font-size: 16px; padding: 14px 18px; border-radius: 10px; margin: 12px 0; font-weight: 700; }
+  .verdict-yellow { background: var(--yellow-bg); border: 1px solid #f9a825; color: #b45309; }
+  .score { font-size: 30px; font-weight: 800; color: #e65100; }
+  .small { font-size: 12px; color: var(--gray); }
+  ul { padding-left: 20px; margin: 6px 0; } li { margin: 4px 0; }
+  .src { font-size: 11px; color: #999; }
+  .disc { font-size: 12px; color: #888; border-top: 1px solid var(--line); margin-top: 30px; padding-top: 12px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+  .progress { display: flex; align-items: center; gap: 8px; }
+  .bar { flex: 1; height: 10px; background: #eceff1; border-radius: 5px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>金融危机研判（狂热监测）· 第5期</h1>
+<div class="sub">研判时间：2026-08-30（周日）10:30 北京时间 ｜ 数据基准：A股截至8/28收盘、美股截至8/29凌晨（美东8/28收盘）、两融截至8/27（T+1披露）、外汇/债市截至8/28~8/29 ｜ 上次研判：8/27晚第4期（黄灯临界、狂热度6.4/10）</div>
+
+<!-- ============ TL;DR ============ -->
+<div class="card">
+  <h2 style="margin-top:0">TL;DR 结论先行</h2>
+  <table>
+    <tr><th style="width:120px">本期末次判定</th><td><span class="tag tag-yellow">黄灯（维持，信号升级）</span><span class="tag tag-gray">红灯差约3~4条</span> 狂热度 <b class="score" style="font-size:20px">6.5</b><span class="small">/10（上期6.4，+0.1）</span>，阶段：<b>升温→高位反复（狂热初期）</b></td></tr>
+    <tr><th>核心变化（vs 8/27）</th><td>
+      ① <b>美联储9月加息概率 35%→60%</b>（沃什杰克逊霍尔鹰派首秀，2009年来最鹰）；② <b>日元跌破160</b>（7月底美日联合干预后首次，日本上月干预964亿美元创纪录）；③ <b>10Y日债2.93%距3%仅5~7bp</b>（上期12bp）；④ <b>30Y美债5.21%距因子①触发线5.3%仅9bp</b>；⑤ <b>两融8/27转增+119亿</b>（6连降后首次，融资买入额+451亿）；⑥ 韩央行8/27已二次加息至3%、欧央行9月加息被完全定价
+    </td></tr>
+    <tr><th>持仓动作（下周）</th><td><b>主路径=反弹止盈恢复现金（现金≈10.8%→第一目标30%+→黄灯目标45%）</b>；优先级：比亚迪92.5+减1手 → 招商19.5~20减2手 → 白药52.5+减1手 → 南瑞收盘破23.0减1手 → 国投破13.5减1手；恒瑞观望（防守46.5，不加仓）</td></tr>
+    <tr><th>一句话</th><td><b>全球加息预期共振进入"质变"阶段：三个长端利率（美30Y/日10Y）同时逼近临界，美联储9月加息从"可能"变"大概率"——下周A股开盘将直接定价8/28~8/29外围跌势，反弹即减仓窗口，现金优先。</b></td></tr>
+  </table>
+</div>
+
+<!-- ============ 一、狂热度 ============ -->
+<h2>一、狂热度评分与阶段判断</h2>
+<div class="card">
+  <div class="progress"><span style="font-size:15px">狂热度</span><div class="bar"><div class="bar-fill" style="width:65%; background:linear-gradient(90deg,#f9a825,#e65100)"></div></div><b class="score" style="font-size:24px">6.5</b><span class="small">/10</span></div>
+  <div style="margin-top:8px" class="small">8/15：6.1 → 8/27：6.4 → 8/30：6.5（+0.1，高位反复）｜阶段判断：<b>升温→高位反复（狂热初期）</b>——成交与涨停维持高位，但结构出现"杠杆进、配置撤"的新背离，未见爆款基金/开户暴增等典型狂热顶部特征</div>
+  <table>
+    <tr><th>指标</th><th>当前值（时点）</th><th>历史位置</th><th>信号</th></tr>
+    <tr><td>两市成交额</td><td>2.10万亿（8/28），连续2日超2万亿</td><td>8/27为2.13万亿（近期峰值）</td><td><span class="tag tag-yellow">高位维持</span> 环比-1.14%，8/28缩量回落</td></tr>
+    <tr><td>涨停/连板</td><td>涨停82只、跌停2只（8/28）；深中华A 7连板、海鸥住工5连板</td><td>封板率77.36%，19股封单超1亿</td><td><span class="tag tag-yellow">局部活跃</span> 连板高度一般（7板），非全市场狂热</td></tr>
+    <tr><td>两融余额</td><td>26651.17亿（8/27，T+1）</td><td>+119.42亿，<b>6连降后首次转增</b>；融资买入额2031.68亿（+451亿）</td><td><span class="tag tag-red">杠杆回流（偏热）</span> 融资盘重新进场</td></tr>
+    <tr><td>融券余额</td><td>287.08亿（8/27）</td><td>连续6个交易日增加</td><td><span class="tag tag-yellow">空头累积</span></td></tr>
+    <tr><td>宽基ETF申赎</td><td>单日净赎回24.66亿（8/28）</td><td>连续2个交易日净赎回</td><td><span class="tag tag-green">配置资金撤离</span> 与融资流入背离</td></tr>
+    <tr><td>新基金发行</td><td>8月全月75只（48家公募）</td><td>2026年内月度新低（6月峰182只）</td><td><span class="tag tag-green">发行端冷清</span> 无爆款秒光，仅FOF创新高（稳健需求）</td></tr>
+    <tr><td>股指期货</td><td>上证50/沪深300/中证500/1000偏多头（8/28）</td><td>—</td><td><span class="tag tag-yellow">期货看多</span></td></tr>
+    <tr><td>板块结构</td><td>8/28渔业+4.55%/房产服务+3.75%领涨；半导体-2.12%/医药-2.1~2.7%领跌</td><td>热点从科技切向农业/化工/低估值</td><td><span class="tag tag-green">高位板块回调</span> 8/27半导体PCB集中走强后8/28分化</td></tr>
+  </table>
+  <div class="small">⚡ 结构解读：<b>融资买入额单日+451亿（杠杆散户进场）vs 宽基ETF连续2日净赎回（配置资金离场）</b>——"钱在跑价在涨"演变为"杠杆在进、配置在撤"，历史上这种结构常见于阶段顶部区域（参照2021抱团股顶部）。但新基金发行冷清（8月新低）说明尚未到全民入场阶段，故未升档狂热顶部。</div>
+</div>
+
+<!-- ============ 二、关键信号清单 ============ -->
+<h2>二、关键信号逐项清单（三档监测表）</h2>
+<div class="card">
+  <table>
+    <tr><th style="width:150px">信号类别</th><th>指标</th><th>当前值</th><th>判定</th></tr>
+    <tr><td rowspan="5">滞胀/宏观（黄灯硬触发①）</td><td>美7月核心PCE</td><td>3.3%（同比，目标2%）</td><td class="red">超目标，滞胀确认</td></tr>
+    <tr><td>美7月PCE整体</td><td>3.7%超预期（上期已知）</td><td class="red">确认</td></tr>
+    <tr><td>美Q2 GDP</td><td>1.5%放缓（上期已知）</td><td class="red">确认</td></tr>
+    <tr><td>非农初步下修</td><td><b>-7.9万人</b>（预期+18.3万）</td><td class="red">就业降温，滞胀强化（新增信号）</td></tr>
+    <tr><td>美联储表态</td><td>沃什：通胀"底层趋势未实质性改善"、"还有工作要做"</td><td class="red">2009年来最鹰杰克逊霍尔讲话</td></tr>
+    <tr><td rowspan="3">三央行紧缩共振（黄灯硬触发②）</td><td>美联储9月加息概率</td><td><b>55.7~60%</b>（8/28，上期36.5~44%）</td><td class="red">大幅升级（新增信号）</td></tr>
+    <tr><td>日央行9/17-18加息</td><td>概率约80%（高盛预期从2027/1提前至2026/9）</td><td class="red">"确定性事件"</td></tr>
+    <tr><td>韩央行/欧央行</td><td>韩8/27连续第二次加息至3%；欧9月加息被完全定价（法2.7%/西4.5%通胀）</td><td class="red">共振强化</td></tr>
+    <tr><td rowspan="2">警报线① 10Y日债</td><td>10Y日债收益率</td><td>2.93%（8/27）~盘中2.945%（8/25，30年新高）</td><td class="red"><b>距3%仅5~7bp</b>（上期2.88%距12bp）</td></tr>
+    <tr><td>财政压力</td><td>2027财年预算申请130万亿日元 vs 税收83万亿；债务超GDP 200%；财务省假定利率3.8%</td><td class="red">英国2022特拉斯时刻类比警告</td></tr>
+    <tr><td rowspan="2">警报线② USD/JPY</td><td>美元/日元</td><td><b>160.11</b>（8/28收盘），盘中破160（干预后首次）</td><td class="yellow">距178~180未触发，但日元急贬=输入通胀→逼日央行加息</td></tr>
+    <tr><td>干预情况</td><td>日本过去1个月干预964亿美元（创历史纪录），仍失守160</td><td class="yellow">干预边际失效信号</td></tr>
+    <tr><td rowspan="2">警报线③ HY利差</td><td>整体HY OAS</td><td>2.63%（ICE 8/27），历史10年分位1%</td><td class="green">未触发，仍处低位</td></tr>
+    <tr><td>CCC级利差</td><td><b>9.98%创2025/4/21以来新高</b>（8/25数据）</td><td class="yellow">低评级分层信号（早期预警）</td></tr>
+    <tr><td rowspan="2">警报线④ 存储背离</td><td>SK海力士/三星</td><td>8/28 SK海力士-4.45%、三星-3.38%（外资+机构净卖2万亿韩元）</td><td class="yellow">背离修复中（方向=同步下跌，非补涨）</td></tr>
+    <tr><td>A股半导体</td><td>8/28半导体-2.12%、科创50 -1.85%</td><td class="yellow">跟随调整</td></tr>
+    <tr><td rowspan="3">美债长端（因子①）</td><td>10Y美债</td><td>4.728%（+5.6bp，8/28）</td><td class="yellow">上行中</td></tr>
+    <tr><td>30Y美债</td><td><b>5.2129%</b>（+2.19bp）</td><td class="red"><b>距因子①触发线5.3%仅9bp</b>（新增信号）</td></tr>
+    <tr><td>2Y美债</td><td>4.36%（+12.79bp，单日大升）</td><td class="yellow">加息预期定价</td></tr>
+    <tr><td rowspan="3">流动性/风险资产</td><td>美元指数</td><td>99.71（+0.61%，两个半月最大单日涨幅）</td><td class="yellow">美元走强</td></tr>
+    <tr><td>黄金/白银</td><td>现货金-3.19%破4500（报4454）、银-4.3%；COMEX金-3.43%</td><td class="yellow">避险资产同跌=流动性收紧交易</td></tr>
+    <tr><td>比特币/油价</td><td>BTC -3.34%报77413；美油83.40（周跌4.16%）；霍尔木兹运输协议传闻</td><td class="yellow">风险资产普跌；油价回落暂缓滞胀</td></tr>
+  </table>
+  <div class="small">绿灯条件：财报强/利率未失控/无流动性危机 → <b>利率已明显失控（9月加息60%+长端新高）</b>，绿灯排除。<br>
+  黄灯条件：狂热≥3项 / 滞胀确认 / 警报线任一 / 外围传导 → <b>滞胀确认+三央行共振+警报线①逼近+日元破160 均命中，黄灯维持</b>。<br>
+  红灯条件：信贷骤停（银行集体跌）/全球周跌10%级/上证破3800/持仓集体破位/外围系统性事件 → <b>均未发生，红灯差约3~4条</b>（最接近的是：30Y美债破5.3%→流动性冲击；10Y日债破3%→日债危机；日元急贬→套息平仓）。</div>
+</div>
+
+<!-- ============ 三、四条警报线 ============ -->
+<h2>三、四条警报线对照（每周五核对）</h2>
+<div class="card">
+  <table>
+    <tr><th>警报线</th><th>阈值</th><th>当前值（8/28~8/29）</th><th>距触发</th><th>状态</th></tr>
+    <tr><td><b>① 10Y日债破3%</b></td><td>3%</td><td>2.93%~2.945%（30年新高）</td><td class="red"><b>仅5~7bp</b></td><td><span class="tag tag-red">最逼近</span> 日央行9/17-18会议=定时器，加息概率80%</td></tr>
+    <tr><td><b>② USD/JPY站稳178~180</b></td><td>178~180</td><td>160.11（破160，干预后首次）</td><td>约18~20点</td><td><span class="tag tag-yellow">方向恶化</span> 日元急贬→输入通胀→逼加息，干预964亿美元失效</td></tr>
+    <tr><td><b>③ HY信用利差破3%</b></td><td>3%</td><td>整体2.63%（极低位）；CCC级9.98%创新高</td><td>整体安全</td><td><span class="tag tag-yellow">分层信号</span> 优质债无压力，最差企业定价恶化</td></tr>
+    <tr><td><b>④ A股存储背离修复</b></td><td>背离修复</td><td>SK海力士-4.45%、A股半导体-2.12%</td><td>正在"双杀"式修复</td><td><span class="tag tag-yellow">警戒</span> 非补涨修复，是同步下跌</td></tr>
+  </table>
+  <div style="margin-top:8px"><b>判断：警报线①是最近引信（差5~7bp），叠加30Y美债5.21%距5.3%仅9bp——两个长端利率同时逼近临界，全球定价锚松动。任一破位=黄灯升级或红灯前奏。</b></div>
+</div>
+
+<!-- ============ 四、外围扫描 ============ -->
+<h2>四、外围扫描（美/日/韩/欧+关税）</h2>
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0">🇺🇸 美国：鹰派质变</h3>
+    <ul>
+      <li><b>美股8/28（美东）</b>：道指-0.02%（53559.99）、标普-0.25%（7711.76）、纳指-0.52%（26402.42）；本周三大指数仍收涨（道+0.53%/标普+0.49%/纳+0.85%）</li>
+      <li><b>费半-3.47%</b>：迈威尔-10.28%、ARM-6.33%、应用材料-4.29%；<b>英伟达-4.57%</b>（财报次日回吐，前日+8.74%）</li>
+      <li>存储相对抗跌：美光-0.27%、西数-0.55%、SK海力士(ADR)-0.35%、闪迪小涨；光通信重挫（Coherent-5.51%）</li>
+      <li><b>沃什杰克逊霍尔首秀（北京8/28晚22:00）</b>：重申2%目标坚定，通胀"底层趋势未实质改善"→<b>9月加息概率35%→55.7~60%，12月近90%</b>；但称讲话非"前瞻指引"</li>
+      <li><b>长端利率新高</b>：2Y 4.36%（+12.8bp）、10Y 4.728%、30Y 5.2129%——30Y距因子①触发线5.3%仅9bp</li>
+      <li>美元指数+0.61%创两个半月最大单日涨幅；<b>非农初步下修7.9万</b>（就业降温）</li>
+      <li><b>AI视角</b>：沃什称AI是"新生产要素"，关注其对资产价格/生产率影响，但不影响当前决策；英伟达指引+70%超预期（8/27财报）</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">🇯🇵 日本：警报线①计时器</h3>
+    <ul>
+      <li><b>10Y日债2.93%~2.945%创30年新高</b>，30Y 4.06%；专家称3%是心理防线，"突破只是时间问题"</li>
+      <li><b>日元跌破160</b>（7月底美日联合干预后首次）；日本过去1个月干预964亿美元创历史纪录仍失守</li>
+      <li>日央行9/17-18加息概率约80%；<b>高盛把加息预期从2027/1提前至2026/9</b>，预计2027年1月/7月再各加一次至1.75%</li>
+      <li>核心CPI连续59个月同比上涨；<b>"股债汇三杀"风险发酵</b>（日经跳水+债率飙升+日元走弱）</li>
+      <li>财政恶化：2027财年预算申请130万亿 vs 税收83万亿；债务超GDP 200%；财务省假定利率3.8%；专家类比英国2022特拉斯危机</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">🇰🇷 韩国：存储镜像+加息</h3>
+    <ul>
+      <li><b>KOSPI 8/28收6788.88（-1.79%）</b>，三连涨终结；外资+机构净卖2万亿韩元，散户接盘4241亿</li>
+      <li><b>三星-3.38%（收25.7万韩元）、SK海力士-4.45%（收165.3万韩元）</b>——HBM/AI获利回吐</li>
+      <li>韩元走强（美元/韩元1372.5），与股市下跌背离</li>
+      <li>韩央行8/27连续第二次加息至3%、上调今年GDP预期至3.3%；韩国8/1-20出口+56%、半导体出口+198.8%创新高</li>
+      <li>SK海力士回购40万亿韩元并注销、2025-27年回馈超50%自由现金流；三星90-110万亿韩元股东回报</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">🌐 外围事件/欧/关税</h3>
+    <ul>
+      <li><b>欧央行9月加息被完全定价</b>：法国8月通胀2.7%、西班牙4.5%创三年新高；STOXX600周五+0.51%</li>
+      <li><b>特朗普半导体关税"第二阶段"（8/27 Politico）</b>：范围扩至含芯片整机（笔记本/游戏机/服务器），或取消1月六类豁免；卢特尼克"投资换免税配额"方案；韩台不投资=100%威胁</li>
+      <li>台积电占73%代工份额、90%+尖端芯片；CCIA估算关税使美年损900亿GDP、20%数据中心项目推迟</li>
+      <li>同日SK海力士印第安纳40亿美元先进封装厂破土——"一手招商引资一手加税"的矛盾</li>
+      <li>对A股：国产替代主线延续；存储链波动加大；商务部五项反制利好国产检测/光芯片</li>
+      <li>中东：霍尔木兹海峡运输协议传闻→油价回落（美油83.40周跌4.16%），暂缓滞胀压力</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 五、持仓动作 ============ -->
+<h2>五、持仓6只逐只动作建议（下周8/31~9/4）</h2>
+<div class="card">
+  <div class="verdict verdict-yellow">⚠️ 当前股票仓位≈89.2%、现金≈10.8%（8/30口径）——远低于黄灯目标45%+。下周主路径=反弹止盈恢复现金；停止一切新开仓/加仓；防守位破位照常执行。</div>
+  <table>
+    <tr><th>持仓</th><th>成本/手数</th><th>8/28收盘</th><th>浮盈亏</th><th>下周动作（四选一+价位+防守位）</th></tr>
+    <tr>
+      <td>比亚迪</td><td>87.753/2手</td><td class="red">92.32（+0.91%）</td><td class="red">+5.2%</td>
+      <td><b>反弹92.5~93.5减1手</b>（8/28收92.32已贴触发区下沿，8/31冲高即执行；原95档止盈提前至92.5档）｜守88.5（跌破减1手）</td>
+    </tr>
+    <tr>
+      <td>招商证券</td><td>19.469/5手</td><td class="red">18.71（+0.32%）</td><td class="green">-3.9%</td>
+      <td><b>反弹19.5~20减2手</b>（券商合并落地=利好兑现，8/27已"见光死"一次，反弹即卖）｜守17.7防线（破则减1手）</td>
+    </tr>
+    <tr>
+      <td>云南白药</td><td>50.685/4手</td><td class="red">50.00（+0.02%）</td><td class="green">-1.4%</td>
+      <td><b>反弹52.5~53.5减1手</b>（8/28收50.00重回49防守上方，弱反弹路径）｜防守49（二级48.5，放量破则减1手）</td>
+    </tr>
+    <tr>
+      <td>国电南瑞</td><td>23.854/5手</td><td class="green">23.01（-0.22%）</td><td class="green">-3.5%</td>
+      <td><b>观望</b>：8/28收23.01守住23.0✅（8/27午盘破23.0警告的"收盘破则减1手"未触发）｜守23.0，<b>收盘破23.0减1手</b>；止盈25.5/27/28.5</td>
+    </tr>
+    <tr>
+      <td>国投电力</td><td>13.959/3手</td><td class="green">13.64（-1.94%）</td><td class="green">-2.3%</td>
+      <td><b>观望</b>：贴13.5防守（8/28最低13.54已触防守上沿）｜<b>破13.5减1手</b>；止盈14.8/15.5</td>
+    </tr>
+    <tr>
+      <td>恒瑞医药</td><td>47.355/6手</td><td class="green">47.32（-0.61%）</td><td class="green">-0.1%</td>
+      <td><b>观望（不加仓）</b>：8/28医药板块领跌（生物制品-2.73%）但恒瑞仅-0.61%相对抗跌，贴近成本｜防守46.5（低吸清单下沿），跌破46.0重估；止盈梯度待后续研判补充</td>
+    </tr>
+  </table>
+  <div style="margin-top:10px">
+    <b>现金恢复路径测算</b>：若下周执行 比亚迪减1手（≈9250元）+招商减2手（≈3900元）+白药减1手（≈5250元）≈ <b>1.84万元</b> → 现金≈11155+18400≈<b>2.96万元≈28.6%</b>（接近30%第一目标）；继续南瑞破位减1手+国投破位减1手可再+≈3665元 → 现金≈3.3万≈<b>32%</b>。<br>
+    <b>核心逻辑</b>：黄灯期"宁可卖早不可卖晚"，反弹/冲高是恢复现金的窗口而非加仓理由；8/31 A股将定价周五外围（美股跌+费半-3.47%+加息概率60%），高开即减、低开破位也减（防守位纪律）。
+  </div>
+</div>
+
+<!-- ============ 六、与上期对比 ============ -->
+<h2>六、与上期（8/27第4期）差异对比</h2>
+<div class="card">
+  <table>
+    <tr><th>维度</th><th>8/27晚 第4期</th><th>8/30 第5期</th><th>变化</th></tr>
+    <tr><td>判定</td><td>黄灯（临界触发）</td><td>黄灯（维持，信号升级）</td><td>红灯差约4条→约3~4条</td></tr>
+    <tr><td>狂热度</td><td>6.4/10</td><td>6.5/10</td><td class="yellow">+0.1，两融转增+涨停维持</td></tr>
+    <tr><td>美联储9月加息概率</td><td>36.5~44%</td><td>55.7~60%</td><td class="red">沃什鹰派首秀后大幅上调</td></tr>
+    <tr><td>警报线①10Y日债</td><td>2.88%（距3%约12bp）</td><td>2.93%~2.945%（距3%仅5~7bp）</td><td class="red">更逼近</td></tr>
+    <tr><td>USD/JPY</td><td>158.7~159.4</td><td>160.11（破160，干预后首次）</td><td class="red">日元急贬破位</td></tr>
+    <tr><td>两融</td><td>6连降-447亿（背离：钱在跑价在涨）</td><td>8/27转增+119.42亿，融资买入+451亿</td><td class="yellow">背离修复为"杠杆进、配置撤"新结构</td></tr>
+    <tr><td>30Y美债</td><td>—（未列入）</td><td>5.2129%（距因子①线5.3%仅9bp）</td><td class="red">新逼近信号</td></tr>
+    <tr><td>HY利差</td><td>2.80%走阔12bp中</td><td>整体2.63%（低位）；CCC级9.98%创新高</td><td class="yellow">整体回落但低评级分层</td></tr>
+    <tr><td>持仓现金</td><td>24.5%</td><td>≈10.8%（8/30恒瑞加仓后）</td><td class="red">⚠️ 现金进一步下降，恢复现金更紧迫</td></tr>
+    <tr><td>KOSPI/存储</td><td>背离3日未修复</td><td>KOSPI 8/28 -1.79%、SK海力士-4.45%、A股半导体-2.12%</td><td class="yellow">背离以"双杀"方式修复</td></tr>
+  </table>
+  <div class="small">新增风险（本期首次捕获）：① 美联储鹰派质变（9月加息60%）；② 日元破160+干预964亿美元失效；③ 30Y美债逼近5.3%；④ CCC级信用利差创新高；⑤ 韩国8/28外资机构"双引擎"抛售半导体权重。</div>
+</div>
+
+<!-- ============ 七、大家没想到的点 ============ -->
+<h2>七、"大家没想到的点"</h2>
+<div class="card">
+  <ol>
+    <li><b>两个长端利率同时逼近临界——全球定价锚在松动</b>：市场聚焦日债3%，却忽略了30Y美债5.21%距因子①触发线（5.3%）仅9bp。8/19暴跌-2.4%的教训是30Y>5.3%共振；当前两条线几乎同时进入"临门一脚"，任一破位都可能触发全球长债抛售→股债双杀。</li>
+    <li><b>沃什"反前瞻指引"的自我矛盾</b>：他明说讲话"不应被解读为前瞻指引"、"沟通更克制"，但市场在24小时内把9月加息概率从35%推到60%。预期差的修复方向只有两个：要么美股再跌，要么概率回落——8/31 A股开盘将直接为这个矛盾定价。</li>
+    <li><b>干预964亿美元仍失守160——干预失效的前兆</b>：日本上月创纪录干预汇市，日元依然破160。若9/17-18日央行加息幅度不足（预期25bp），日元可能加速奔165~170，套息平仓（1.5~3万亿美元）将从"风险情景"变"基准情景"。</li>
+    <li><b>时差背离：A股8/28的抗跌是"假安全"</b>：8/28 A股仅-0.11%，但当晚美股费半-3.47%、英伟达-4.57%、9月加息概率60%落地。8/31周一A股半导体/存储/科技链补跌压力大，红利防御相对占优——低开勿慌，破位才减。</li>
+    <li><b>融资买入+451亿 vs 宽基ETF净赎回24.66亿</b>：杠杆散户在进、配置资金在撤，与2021抱团顶部的资金结构同构。8/28两融转增不是"增量牛"信号，反而可能是顶部区域的杠杆回流。</li>
+    <li><b>CCC级利差9.98%创新高，整体HY利差却2.63%极低位</b>：市场对最差企业定价风险、对优质企业毫无戒心——信用分层是危机前的经典早期信号（2007年次级债先于整体市场恶化）。</li>
+    <li><b>黄金-3.19%破4500=流动性收紧交易</b>：加息预期下避险资产与股市同跌，说明市场定价的是"实际利率上行"而非"避险"——若金价续跌，资源/贵金属链（观察池紫金矿业等）逆风，滞胀对冲逻辑短期失效。</li>
+    <li><b>特朗普半导体关税"第二阶段"是双刃剑</b>：范围扩至服务器/整机+可能取消数据中心豁免——表面利好国产替代，但若引发全球AI资本开支预期下修（CCIA测算20%数据中心推迟），A股算力链反而承压；存储涨价（DRAM/HBM紧缺）与关税成本并存，方向难判，勿追高。</li>
+  </ol>
+</div>
+
+<!-- ============ 八、下周哨点 ============ -->
+<h2>八、下周关键哨点（8/31~9/4）</h2>
+<div class="card">
+  <table>
+    <tr><th>时间（北京时间）</th><th>事件</th><th>影响</th></tr>
+    <tr><td>8/31（周一）</td><td>A股开盘定价周五外围（费半-3.47%/加息60%）；韩国8月出口数据（9/1）前哨；<b>8/31中报收官</b>（业绩雷集中释放）</td><td class="yellow">半导体/存储补跌风险；业绩雷个股闪崩风险</td></tr>
+    <tr><td>9/1（周一/周二）</td><td>韩国8月出口（预期+62.6%）；<b>电池消费税9/1实施</b>（锂电2%→2027年4%）</td><td class="yellow">存储链方向标；锂电定价</td></tr>
+    <tr><td>9/2~9/3</td><td>美8月ISM制造业、ADP；9/3沃勒讲话</td><td class="yellow">加息预期再定价</td></tr>
+    <tr><td>9/4~9/5</td><td>美8月非农（8/29已下修7.9万前值）；杰克逊霍尔余波</td><td class="red">若非农弱→滞胀定价强化；若强→加息概率再升</td></tr>
+    <tr><td>9/15-16</td><td>美联储FOMC</td><td class="red">9月加息落地窗口</td></tr>
+    <tr><td>9/17-18</td><td><b>日央行利率会议</b></td><td class="red">警报线①最大触发点（10Y日债3%）；套息平仓定时器</td></tr>
+  </table>
+</div>
+
+<div class="disc">
+  <b>免责声明</b>：本报告仅供个人研究参考，不构成任何投资建议。数据来源：腾讯行情接口、同花顺、财联社、证券时报、央视财经、新浪财经、东方财富、The Edge Malaysia、BusinessKorea、DigitalToday、MacroRadar、Raymond James、国信证券研报等，均已标注时间与来源；行情数据截至2026-08-28收盘，两融为T+1口径。投资有风险，决策需独立判断。危机监测只做提示与分级，不代做交易决定；红灯触发时防守位执行不加犹豫。
+</div>
+
+</div>
+</body>
+</html>

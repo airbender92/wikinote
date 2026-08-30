@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每周复盘_20260830（提示词G·自我纠偏）</title>
+<style>
+  :root{
+    --red:#e03131; --green:#2f9e44; --up-bg:#fff5f5; --down-bg:#f4fbf5;
+    --border:#e9ecef; --text:#212529; --muted:#868e96; --card:#ffffff;
+    --accent:#1971c2; --warn:#e8590c; --yellow:#f0b400; --yellow-bg:#fffbe6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f4f6f8;color:var(--text);line-height:1.65;padding:16px;}
+  .wrap{max-width:1060px;margin:0 auto;}
+  .header{background:linear-gradient(135deg,#1c3d5a,#2b6cb0);color:#fff;border-radius:12px;padding:22px 26px;margin-bottom:16px;}
+  .header h1{font-size:24px;margin-bottom:6px;}
+  .header .sub{font-size:13px;opacity:.9;}
+  .header .tag{display:inline-block;background:rgba(255,255,255,.18);border-radius:20px;padding:2px 12px;margin:4px 6px 0 0;font-size:12px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  .card h2{font-size:17px;color:#1c3d5a;border-left:4px solid var(--accent);padding-left:10px;margin-bottom:14px;}
+  .tldr{background:var(--yellow-bg);border:1px solid #ffe08a;border-radius:10px;padding:16px 20px;margin-bottom:16px;}
+  .tldr h2{color:#9a6700;border-left:4px solid var(--yellow);padding-left:10px;font-size:16px;margin-bottom:10px;}
+  .tldr li{margin:7px 0;font-size:14.5px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0;}
+  th{background:#f1f3f5;color:#495057;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap;}
+  td{padding:8px 10px;border-top:1px solid var(--border);vertical-align:top;}
+  tr:hover td{background:#f8f9fa;}
+  .up{color:var(--red);font-weight:600;} .down{color:var(--green);font-weight:600;} .flat{color:var(--muted);}
+  .warn{color:var(--warn);font-weight:600;}
+  .badge{display:inline-block;border-radius:4px;padding:1px 8px;font-size:12px;font-weight:600;margin-right:4px;}
+  .b-hit{background:var(--down-bg);color:var(--green);border:1px solid #b2f2bb;}
+  .b-miss{background:var(--up-bg);color:var(--red);border:1px solid #ffc9c9;}
+  .b-part{background:var(--yellow-bg);color:#9a6700;border:1px solid #ffe08a;}
+  .b-gray{background:#f1f3f5;color:#495057;border:1px solid #dee2e6;}
+  .score-card{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+  @media(max-width:720px){.score-card{grid-template-columns:1fr 1fr;}}
+  .score-item{background:#f8f9fa;border:1px solid var(--border);border-radius:8px;padding:10px 12px;text-align:center;}
+  .score-item b{font-size:22px;display:block;}
+  .score-item span{font-size:12px;color:var(--muted);}
+  .note{background:#f8f9fa;border-left:4px solid #adb5bd;padding:10px 14px;border-radius:0 6px 6px 0;margin:10px 0;font-size:13px;color:#495057;}
+  .alertbox{background:#fff5f5;border:1px solid #ffc9c9;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:13.5px;}
+  .alertbox.warnbox{background:var(--yellow-bg);border-color:#ffe08a;}
+  .alertbox.greenbox{background:var(--down-bg);border-color:#b2f2bb;}
+  ul,ol{padding-left:22px;} li{margin:5px 0;font-size:14px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;padding:20px 0 10px;}
+  .diag{display:flex;gap:12px;margin:12px 0;padding:12px;border:1px solid var(--border);border-radius:8px;background:#f8f9fa;}
+  @media(max-width:720px){.diag{flex-direction:column;}}
+  .diag .tag-sym{font-size:28px;line-height:1.2;min-width:44px;text-align:center;}
+  .diag h3{font-size:15px;margin-bottom:6px;}
+  .diag p{font-size:13px;margin:4px 0;}
+  .diag .label{display:inline-block;font-size:11px;color:#fff;background:#1971c2;border-radius:4px;padding:0 6px;margin-right:6px;}
+  .diag .label.w{background:#e8590c;} .diag .label.g{background:#2f9e44;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>每周复盘·自我纠偏（提示词G）· 2026-08-30</h1>
+  <div class="sub">复盘周：8/24（周一）~8/28（周五）｜ 执行：8/30（周日）10:40 ｜ 优先级最高：修"分析框架"而非"行情" ｜ 复盘对象=分析者本身，不追责、不改历史</div>
+  <div>
+    <span class="tag">📊 周方向命中 ~70%</span>
+    <span class="tag">📈 周区间命中 ~80%</span>
+    <span class="tag">💼 周指令命中 ~85%</span>
+    <span class="tag">🔍 5项诊断：方向性+概率分布 为主要病灶</span>
+  </div>
+</div>
+
+<div class="tldr">
+  <h2>TL;DR（结论先行）</h2>
+  <ol>
+    <li><b>本周预判质量"区间强、方向弱"</b>：指数区间命中率高（8/26✓、8/28✓、8/27±），但<b>开盘方向连续3日系统性高估</b>（8/26预判高开实际平开、8/27预判高开实际平开、8/28预判高开0.3~0.8%实际低开-0.16%）——本周最大系统性病灶=<b>方向性偏差（偏乐观）</b>，根因=对"利好前置兑现"（因子⑨⑩）的压制力度持续低估。</li>
+    <li><b>持仓指令执行优秀（≈85%）</b>：8/26减仓潮（洛钼清仓/招商减3手/比亚迪减1手/国投减1手）全部执行到位且多数卖在区间上沿；8/27低吸挂单（华能/恒瑞）双双成交；8/28止盈档均"未到价不执行"=纪律正确。唯一执行偏差=8/28研判"低吸暂停"但用户实际加仓恒瑞3手。</li>
+    <li><b>5项诊断结论</b>：<b>方向性偏差（高估开盘）</b>与<b>概率分布偏差（基准情景兜底和稀泥）</b>为主病灶；遗漏偏差=因子"事后归因>事前对照"；情绪偏差=浮盈提前兑现+浮亏找理由持有并存；框架偏差="三情景+警报线"框架未覆盖风格切换与利好前置。</li>
+    <li><b>下周纠偏处方（强制执行）</b>：①开盘预期默认"平开偏弱"起步（隔夜大涨+昨日已大涨→高开≤30%）；②基准情景≤50%（命中因子≥2时≤40%）且必须写明多空倾向；③新增4项强制检查项（KOSPI方向/事件落地日/资金风格顺逆风/警报线破位→偏空≥50%）；④自我提醒≤3条（见处方清单）。</li>
+    <li><b>因子清单变更</b>：新增⑨⑩（8/30已并入F复盘）；因子②KOSPI转向连续3次命中（8/18/8/26/8/28）→<b>下周9/4再命中即正式标"稳定"</b>；本周无证伪因子。</li>
+  </ol>
+</div>
+
+<!-- 一、周度命中率 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">一、周度命中率汇总（8/24~8/28）</h2>
+<div class="card">
+  <div class="score-card">
+    <div class="score-item"><b class="warn">~70%</b><span>方向命中率<br>（指数方向）</span></div>
+    <div class="score-item"><b class="up">~80%</b><span>指数区间命中率<br>（区间框架）</span></div>
+    <div class="score-item"><b class="up">~85%</b><span>持仓指令命中率<br>（执行质量）</span></div>
+    <div class="score-item"><b>78%</b><span>综合（加权）<br>（vs 历史累计~75%）</span></div>
+  </div>
+  <table>
+    <tr><th>日期</th><th>研判产物</th><th>方向</th><th>区间</th><th>指令/其他</th><th>关键验证点</th></tr>
+    <tr>
+      <td>8/24 周一</td><td>开盘研判</td>
+      <td><span class="badge b-part">±</span>平开偏弱45%</td>
+      <td><span class="badge b-part">±</span>3880~3930</td>
+      <td><span class="badge b-hit">✓</span>歌尔@23.43清仓执行到位（计划区间22.5~23.5上沿）</td>
+      <td>周初缩量1.89万亿地量；超级周（英伟达/PCE/杰克逊霍尔）判断正确</td>
+    </tr>
+    <tr>
+      <td>8/26 周三</td><td>开盘+午盘+收盘</td>
+      <td><span class="badge b-hit">✓</span>6/8命中</td>
+      <td><span class="badge b-hit">✓</span>3880~3920区间内</td>
+      <td><span class="badge b-hit">✓</span>午盘指令2✓/3±；收盘判定缩量普涨✓</td>
+      <td>招商"破位→减1手"方向错（实际+5.21%）→沉淀因子④空头陷阱；存储补涨未兑现→因子⑧</td>
+    </tr>
+    <tr>
+      <td>8/27 周四</td><td>开盘+午盘+收盘+危机研判E</td>
+      <td><span class="badge b-part">±</span>高开vs平开✗、方向✓</td>
+      <td><span class="badge b-part">±</span>高点3958超预判3945达13点</td>
+      <td><span class="badge b-part">±</span>减仓指令未触发✗；低吸挂单华能/恒瑞双双成交✓</td>
+      <td>红利→科技风格大切换未预判（科创50+3.77% vs 持仓5绿）；"招商最可能触发减仓"被证伪</td>
+    </tr>
+    <tr>
+      <td>8/28 周五</td><td>开盘研判</td>
+      <td><span class="badge b-miss">✗</span>高开0.3~0.8% vs 实际低开-0.16%</td>
+      <td><span class="badge b-hit">✓</span>3945~3995完全命中（3947.80~3970.31）</td>
+      <td><span class="badge b-hit">✓</span>持仓12项11命中（92%）；盲区5/7</td>
+      <td>杰克逊霍尔"偏鹰→下周一低开"分支提前2天预判成功=因子⑤⑥组合有效</td>
+    </tr>
+  </table>
+  <div class="note">
+    <b>口径说明</b>：方向命中=指数开盘方向与全天方向预判 vs 实际（本周3天高估开盘=主要失分项）；区间命中=全天区间框架是否兜住实际高低点（8/28完全命中、8/27高点超13点=±）；指令命中=持仓逐只操作指令执行质量（含"未到价不执行=正确"）。8/24方向/区间因当日收盘数据未逐项留存，按±计。<br>
+    <b>本周 vs 历史累计</b>：方向~70%（历史~72%）基本持平；区间~80%（历史~75%）小幅改善；指令~85%（历史~80%）改善——<b>框架稳定性在提升，方向性预判是短板</b>。
+  </div>
+</div>
+
+<!-- 二、5项诊断 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">二、系统性偏差扫描（5项诊断）</h2>
+
+<div class="card">
+  <div class="diag">
+    <div class="tag-sym">📈</div>
+    <div style="flex:1">
+      <h3>a. 方向性偏差 —— <span class="warn">主病灶：系统性偏乐观（高估开盘）</span></h3>
+      <p><span class="label">症状</span>连续3个交易日高估开盘方向：8/26预判高开（实际平开）、8/27预判高开0.3~0.6%（实际平开）、8/28预判高开0.3~0.8%（实际低开-0.16%）。对"利好兑现/利好前置"的压制力度系统性低估。</p>
+      <p><span class="label w">证据</span>①8/27英伟达+8.74%隔夜大涨→8/28 A股低开（A股8/27已+1.13%提前兑现=因子⑩）；②8/27中金合并上会=利好兑现日，招商仅+0.38%未冲19.5；③8/26 PCE落地日美股低开（因子⑥）——<b>三天三例均为"事件落地→不涨反弱"</b>，但每日开盘预判仍先写高开。</p>
+      <p><span class="label g">处方</span>开盘预期默认"平开偏弱"起步；仅当出现增量资金证据（融资转增+宽基ETF净申购+北向净流入）才允许给高开；隔夜大涨+昨日A股已大涨 → 直接给"平开~低开"（高开概率≤30%）。</p>
+    </div>
+  </div>
+
+  <div class="diag">
+    <div class="tag-sym">🎲</div>
+    <div style="flex:1">
+      <h3>b. 概率分布偏差 —— <span class="warn">次病灶：基准情景"和稀泥"，极端情景从不上调</span></h3>
+      <p><span class="label">症状</span>本周三情景：8/26基准45%、8/27基准50%、8/28基准45%——基准情景恒为"震荡"，偏空/偏多极端情景从未给到40%+；命中过度集中在"震荡类"表述，等于用宽区间"兜住"一切结果。</p>
+      <p><span class="label w">证据</span>8/27基准50%实际是风格大切换日（科创50+3.77% vs 持仓全绿）——"震荡"掩盖了结构性行情；8/28命中因子⑨⑩（≥2条）按铁律基准应≤40%，但仍给45%。<b>基准情景成为逃避方向判断的舒适区。</b></p>
+      <p><span class="label g">处方</span>基准情景上限50%（命中因子≥2时≤40%）；每个方向必须写明"偏多/偏空哪个占优"（禁止纯"震荡"表述）；极端情景概率下限25%；每周至少一次把某一情景给到40%+（强制表态）。</p>
+    </div>
+  </div>
+
+  <div class="diag">
+    <div class="tag-sym">🔍</div>
+    <div style="flex:1">
+      <h3>c. 遗漏偏差 —— 因子"事后归因多、事前对照少"</h3>
+      <p><span class="label">症状</span>因子清单8/26已固化8条，但8/27~8/28仍重复在"事件日/隔夜大涨→高开"上犯错（8/27招商、8/28大盘）——因子已存在，未在写预判前主动对照。</p>
+      <p><span class="label w">证据</span>因子⑤事件日历8/26即固化，8/27中金上会日仍预判"招商最可能触发减仓"（实际见光死）；因子⑧杠杆退潮8/26固化，8/28两融转增+119亿的"杠杆回流"信号未被列入当日预判变量。<b>8/26日志自评："因子清单价值在事前对照而非事后归因"——本周仍在重犯。</b></p>
+      <p><span class="label g">处方</span>开盘研判固定步骤：先扫10条因子清单逐条打勾（命中/临界/不适用），再写预判；命中≥2条→强制调低基准概率并在报告中明示。</p>
+    </div>
+  </div>
+
+  <div class="diag">
+    <div class="tag-sym">😐</div>
+    <div style="flex:1">
+      <h3>d. 情绪偏差 —— 浮盈提前兑现 + 浮亏找理由持有并存</h3>
+      <p><span class="label">症状</span>①浮盈侧：比亚迪8/26@92.15减1手（止盈带90~93上沿，执行优秀，但8/28冲92.48时未触发92.5档=档位设置略紧）；②浮亏侧：招商（-3.9%）、南瑞（-3.5%）浮亏持有，8/26招商实际+5.21%大涨时预判仍是"破位减仓"（悲观惯性）；③执行偏差：8/28研判"低吸暂停"但用户实际按低吸清单到价加仓恒瑞3手≈47.19（用户侧"逢低吸筹"倾向 vs 分析侧"周五观望"纪律冲突）。</p>
+      <p><span class="label w">证据</span>8/26招商案例=预判悲观、执行乐观（用户卖对）；8/28恒瑞案例=预判保守、执行积极（用户加仓）——<b>两方向都有情绪化倾向，但好在都落在既有纪律区间内（止盈带/低吸清单），未失控。</b></p>
+      <p><span class="label g">处方</span>①浮盈标的止盈档位贴近现价（比亚迪92.5→92.2~92.5，避免差0.02不成交）；②浮亏标的不因"看好逻辑"推迟防守位执行（南瑞23.0/国投13.5/招商17.7照常）；③"暂停低吸 vs 到价低吸"边界下周起由用户明示（若坚持低吸仅限恒瑞46.5~47.5、华能6.6~6.7两档）。</p>
+    </div>
+  </div>
+
+  <div class="diag">
+    <div class="tag-sym">🖼️</div>
+    <div style="flex:1">
+      <h3>e. 框架偏差 —— "三情景+警报线"框架外信号被无视</h3>
+      <p><span class="label">症状</span>①<b>风格切换未纳入框架</b>：8/27红利→科技大切换（科创50+3.77% vs 持仓防御仓全绿）事前无预警——框架只盯指数点位与警报线，不盯"资金在板块间搬家"；②<b>利好前置兑现</b>（因子⑩）是复盘才发现的框架外新类别；③8/27两融转增vs宽基ETF净赎回背离是数据层发现，非框架主动捕获。</p>
+      <p><span class="label w">证据</span>8/27日志：资金从红利防御（银行/公用/白酒）大规模撤出→科技，持仓6只5绿1红；该日研判焦点全在英伟达/杰克逊霍尔，<b>对"持仓组合 vs 市场主线风格错配"零提示</b>。</p>
+      <p><span class="label g">处方</span>每日开盘研判新增"风格顺逆风检查"：资金净流入TOP3板块 vs 持仓归属板块对比（持仓板块资金净流出=逆风日，组合预期下修）；周度新增"持仓 vs 市场主线偏离度"监测；框架外信号（两融/ETF申赎/大股东减持）列入每周固定扫描项。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 三、纠偏处方 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">三、纠偏处方（下周8/31~9/4强制执行）</h2>
+<div class="card">
+  <h2 style="margin-top:0">3.1 概率分布规则修正（写入每日提示词A纪律区）</h2>
+  <ul>
+    <li><b>基准情景上限50%</b>；命中偏差因子≥2条时基准≤40%，且必须在报告明示"已按铁律压降"。</li>
+    <li><b>极端情景概率下限25%</b>（偏空/偏多任一不得低于25%）；每周至少一次把某一情景给到40%+（强制表态，禁止和稀泥）。</li>
+    <li><b>周五+黄灯+现金&lt;30%三叠加时，偏多情景上限20%</b>（8/28缩量-1.14%验证）。</li>
+    <li>三情景禁止纯"震荡"表述——每个情景必须写明"涨/跌/结构"中至少两个维度。</li>
+  </ul>
+  <h2>3.2 新增强制检查项（开盘研判必做4查）</h2>
+  <ul>
+    <li><b>查①KOSPI盘中方向</b>（因子②）：韩股开盘由涨转跌→A股科技/存储高开低走预警，开盘预期下修0.3%。</li>
+    <li><b>查②"事件落地日+昨日已大涨"</b>（因子⑩）：今日是否有数据/财报/并购落地，且昨日A股已涨≥1%→高开概率≤30%，直接给平开~低开。</li>
+    <li><b>查③资金风格顺逆风</b>（新）：昨/今资金净流入TOP3板块 vs 持仓归属板块（防御仓在科技吸金日=逆风，组合预期下修）。</li>
+    <li><b>查④警报线破位</b>（因子①）：美债30Y&gt;5.3% 或 10Y日债&gt;3% 或 美元/日元≥178 → 偏空概率直接≥50%、区间下沿外扩-2%。</li>
+  </ul>
+  <h2>3.3 偏差因子清单变更</h2>
+  <table>
+    <tr><th>变更</th><th>因子</th><th>说明</th></tr>
+    <tr><td><span class="badge b-part">新增</span></td><td>⑨ 财报指引超预期倍数</td><td>8/27英伟达+70%指引案例，8/28验证（A股低开）→ 正式纳入（8/30 F复盘已并入）</td></tr>
+    <tr><td><span class="badge b-part">新增</span></td><td>⑩ 利好前置兑现</td><td>8/28"隔夜大涨→次日低开"案例沉淀 → 正式纳入（8/30 F复盘已并入）</td></tr>
+    <tr><td><span class="badge b-hit">加权</span></td><td>② KOSPI转向</td><td>连续3次命中（8/18/8/26/8/28）→ 下周9/4再命中即标"稳定"，升级为每日必查项（已列入3.2查①）</td></tr>
+    <tr><td><span class="badge b-hit">加权</span></td><td>⑥ 预期差定价</td><td>本周多次命中（闪迪盘后挫/招商见光死/沃什鹰派）→ 稳定候选</td></tr>
+    <tr><td><span class="badge b-hit">加权</span></td><td>⑤ 事件日历双情景</td><td>杰克逊霍尔"偏鹰→下周一低开"分支提前2天预判成功 → 稳定候选</td></tr>
+    <tr><td><span class="badge b-gray">待证伪</span></td><td>—</td><td>本周无连续2次证伪的因子</td></tr>
+  </table>
+  <h2>3.4 下周"自我提醒"（≤3条）</h2>
+  <div class="alertbox warnbox" style="font-size:14.5px">
+    ① <b>「利好前置=低开起步，别被隔夜大涨带节奏」</b>——先查昨日A股涨没涨，再定开盘方向。<br>
+    ② <b>「基准情景写清多空倾向，不搞50%和稀泥」</b>——命中因子≥2，基准压到40%以下。<br>
+    ③ <b>「周五+黄灯+现金10.8%：偏多≤20%，反弹即减仓」</b>——现金恢复优先于一切新开仓/加仓。
+  </div>
+</div>
+
+<!-- 四、本周执行亮点 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">四、本周执行亮点（保留，不因纠偏否定）</h2>
+<div class="card">
+  <div class="alertbox greenbox">
+    <ul>
+      <li><b>8/26减仓潮执行到位</b>：洛钼清仓@19.56（=收盘价上沿）、招商减3手@18.51（4周高抛带上沿）、比亚迪减1手@92.15（90~93止盈带）、国投减1手@14.06——<b>现金38.3%验证"右侧兑现路径"有效</b>。</li>
+      <li><b>8/27低吸清单到价执行</b>：华能@6.68、恒瑞@47.517（错杀低吸非追高）——低吸清单机制运转正常。</li>
+      <li><b>因子④（空头陷阱）实战获利</b>：招商8/25破17.7→8/26+5.21%，8/26研判已引用该因子不再追止损，用户高抛成功。</li>
+      <li><b>8/28"未到价不执行"纪律正确</b>：6只止盈档均未触发，无一次乱动；南瑞守23.0验证"收盘口径"防守有效。</li>
+      <li><b>杰克逊霍尔"偏鹰分支"预判成功</b>：提前2天提示"偏鹰→下周一低开、周五白天=最后减仓窗口"，实际沃什鹰派→9月加息概率60%→8/31承压。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 五、下周执行清单 -->
+<h2 style="font-size:19px;margin:24px 0 10px;padding-left:10px;border-left:4px solid #1565c0;">五、下周（8/31~9/4）执行清单</h2>
+<div class="card">
+  <table>
+    <tr><th>事项</th><th>内容</th><th>触发/执行</th></tr>
+    <tr><td>8/31 周一开盘</td><td>定价"沃什鹰派+费半-3.47%+9月加息60%"三要素</td><td>预期低开0.5~1%（因子⑥⑨⑩叠加）；低开高走=官方干预（因子⑦）反弹即减</td></tr>
+    <tr><td>反弹止盈（优先）</td><td>比亚迪92.2~92.5减1手 → 招商19.5~20减2手 → 白药52.5~53.5减1手</td><td>现金≈10.8%→30%+（第一目标）→45%（黄灯目标）</td></tr>
+    <tr><td>防守位执行</td><td>南瑞收盘破23.0减1手；国投破13.5减1手；招商破17.7减1手；白药破49/48.5减1手；恒瑞破46.5重估</td><td>破位即执行，不因"看好逻辑"推迟</td></tr>
+    <tr><td>8/31~9/1 数据哨点</td><td>8/31中报收官业绩雷；9/1韩国8月出口+电池消费税实施</td><td>业绩雷防闪崩；电池链勿接飞刀</td></tr>
+    <tr><td>9/4 周五</td><td>美8月非农（前值下修7.9万）</td><td>数据日=卖窗口；因子②若再命中即标"稳定"</td></tr>
+    <tr><td>每日必做</td><td>开盘前4查（KOSPI/事件落地/资金风格/警报线）+ 因子清单10条逐条对照</td><td>写预判前完成，命中≥2条基准≤40%</td></tr>
+  </table>
+</div>
+
+<div class="footer">
+  本报告仅供个人研究参考，不构成任何投资建议；市场有风险，投资需谨慎。<br>
+  复盘对象：8/24~8/28 开盘/午盘/收盘研判HTML、8/27危机研判、8/30预判复盘、工作日志 ｜ 生成于 2026-08-30 10:40
+</div>
+
+</div>
+</body>
+</html>
